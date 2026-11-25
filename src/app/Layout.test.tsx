@@ -1,7 +1,7 @@
 import { render, screen, within } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
-import { realContent } from '../test/content';
+import { realContent, rootData } from '../test/content';
 import { createRoutes, routerFuture, type RootLoader } from './routes';
 
 const content = realContent();
@@ -14,7 +14,7 @@ function renderAt(path: string, loader: RootLoader) {
   return render(<RouterProvider router={router} future={{ v7_startTransition: true }} />);
 }
 
-const withAllStops: RootLoader = async () => ({ content, stops: content.stops });
+const withAllStops: RootLoader = async () => rootData(content);
 
 describe('Layout header', () => {
   it('shows the logo, region tabs from content, Scenes link and Passport link', async () => {
@@ -32,7 +32,7 @@ describe('Layout header', () => {
   });
 
   it('counts only the stops this build may show', async () => {
-    renderAt('/', async () => ({ content, stops: [] }));
+    renderAt('/', async () => rootData(content, []));
     const header = await screen.findByRole('banner');
     expect(within(header).getByRole('link', { name: 'Passport · 0/0' })).toBeInTheDocument();
   });

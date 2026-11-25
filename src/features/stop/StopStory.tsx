@@ -1,16 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import BackLink from '../../components/BackLink/BackLink';
-import DialogueBox from '../../components/DialogueBox/DialogueBox';
 import InfoDrawer from '../../components/InfoDrawer/InfoDrawer';
 import ReadMoreDialog from '../../components/ReadMoreDialog/ReadMoreDialog';
-import SceneView from '../../components/SceneView/SceneView';
 import SourceCard from '../../components/SourceCard/SourceCard';
 import type { Content, PlayableStop } from '../../content/schemas';
+import type { PlayableStopV3 } from '../../content/schemas.v3';
 import { t } from '../../i18n/t';
 import { useLanguage } from '../../i18n/useLanguage';
 import { cx } from '../../lib/cx';
 import { useSceneFit } from '../../lib/useSceneFit';
 import { useProgress } from '../../store/progress';
+import { chaptersReadAt, buildSteps } from '../story/steps';
+import StoryPlayer from '../story/StoryPlayer';
 import StopActions from './StopActions';
 import StopFacts from './StopFacts';
 import styles from './StopPage.module.css';
@@ -21,46 +22,57 @@ const FRAME_CHROME = 28;
 
 interface StopStoryProps {
   stop: PlayableStop;
+  story: PlayableStopV3;
   content: Content;
   isFinal: boolean;
 }
 
 /**
- * Stop screen (SRS v2.3 §5.5): a full-width, whole-number-scaled scene with the dialogue over
- * its bottom (desktop) or under it (phones); This stop / Item / Sources in an Info drawer.
+ * Stop screen (SRS v2.3 §3.6, §5.5): the chapter story player on a whole-number-scaled scene,
+ * text over its bottom (desktop) or under it (phones); This stop / Item / Sources in a drawer.
  */
-export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
-  const [index, setIndex] = useState(0);
+export default function StopStory({ stop, story, content, isFinal }: StopStoryProps) {
   const [readMoreOpen, setReadMoreOpen] = useState(false);
   const [infoOpen, setInfoOpen] = useState(false);
+  const [atEnd, setAtEnd] = useState(false);
   const stageRef = useRef<HTMLDivElement>(null);
   const fit = useSceneFit(stageRef, SCENE.w, SCENE.h, FRAME_CHROME);
   const visited = useProgress((s) => s.visited.includes(stop.id));
-  const visit = useProgress((s) => s.visit);
-  const complete = useProgress((s) => s.complete);
-  const markRead = useProgress((s) => s.markRead);
+  const { visit, complete, markRead, markChaptersRead } = useProgress.getState();
   const lang = useLanguage();
-  const lines = stop.dialogue.lines;
-  const lastIndex = lines.length - 1;
-  const finished = visited || index === lastIndex;
+  const finished = visited || atEnd;
   const hasQuiz = stop.quiz.length > 0;
   const closeInfo = useCallback(() => setInfoOpen(false), []);
 
-  // GD-3: reaching the last line marks the stop visited (and read in this language, §3.10).
-  // GD-6: the final stop has no quiz; finishing its dialogue completes it quietly.
-  useEffect(() => {
-    if (index !== lastIndex) return;
-    visit(stop.id);
-    markRead(stop.id, lang);
-    if (isFinal && !hasQuiz) complete(stop, { quiet: true });
-  }, [index, lastIndex, stop, visit, markRead, lang, complete, isFinal, hasQuiz]);
+  // GD-3: reaching the last step marks the stop visited (and read in this language, §3.10);
+  // chapters read are counted (§3.8). GD-6: the final stop has no quiz; it completes quietly.
+  const onProgress = useCallback(
+    (index: number, total: number) => {
+      markChaptersRead(stop.id, chaptersReadAt(buildSteps(story.chapters), index));
+      const end = index === total - 1;
+      setAtEnd(end);
+      if (!end) return;
+      visit(stop.id);
+      markRead(stop.id, lang);
+      if (isFinal && !hasQuiz) complete(stop, { quiet: true });
+    },
+    [stop, story.chapters, lang, isFinal, hasQuiz, visit, markRead, markChaptersRead, complete],
+  );
 
   // §5.5: a phone held sideways shows the scene full-screen (the top bar scrolls away).
   useEffect(() => {
     if (fit.landscape) stageRef.current?.scrollIntoView?.({ block: 'start' });
   }, [fit.landscape]);
 
-  const next = () => setIndex(index < lastIndex ? index + 1 : 0);
+  // The builder stop's links (quiz and builder) are under the scene (§3.5).
+  const endLink = stop.builder
+    ? undefined
+    : hasQuiz
+      ? {
+          to: `/stop/${stop.id}/quiz`,
+          label: t('stop.takeQuizButton', { label: t('stop.takeQuiz') }),
+        }
+      : undefined;
 
   return (
     <div className={cx(styles.screen, infoOpen && styles.infoOpen)}>
@@ -87,16 +99,17 @@ export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
         </button>
       </div>
       <div ref={stageRef} className={cx(styles.stage, fit.overlay && styles.overlay)}>
-        <section
-          className={styles.sceneBox}
-          style={{ width: fit.width }}
-          aria-label={t('stop.story')}
-        >
-          <SceneView stop={stop} speaker={lines[index]?.speaker} />
-          <div className={styles.dialogue}>
-            <DialogueBox stop={stop} characters={content.characters} index={index} onNext={next} />
-          </div>
-        </section>
+        <StoryPlayer
+          story={story}
+          characters={content.characters}
+          sources={content.sources}
+          quiet={isFinal}
+          endLink={endLink}
+          width={fit.width}
+          onProgress={onProgress}
+          textClassName={styles.dialogue}
+          overlay={fit.overlay}
+        />
         <InfoDrawer id="stop-info" open={infoOpen} onClose={closeInfo}>
           <StopFacts
             stop={stop}
@@ -111,7 +124,12 @@ export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
         isFinal={isFinal}
         onReadMore={() => setReadMoreOpen(true)}
       />
-      <ReadMoreDialog stop={stop} open={readMoreOpen} onClose={() => setReadMoreOpen(false)} />
+      <ReadMoreDialog
+        stop={story}
+        sources={content.sources}
+        open={readMoreOpen}
+        onClose={() => setReadMoreOpen(false)}
+      />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import type { Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 /**
  * Marks the intro (FR-4) as seen, but only on a fresh profile: once a save exists it is
@@ -48,4 +48,17 @@ export async function horizontalOverflow(page: Page): Promise<number> {
   return page.evaluate(
     () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
   );
+}
+
+/** SRS v2.3 §3.6: jumps to the end of the stop's story (it still counts as visited). */
+export async function finishStory(page: Page) {
+  await page.getByRole('button', { name: 'Skip to the end' }).click();
+  await expect(page.getByRole('button', { name: 'Replay ↺' })).toBeVisible();
+}
+
+/** Plays the whole story with Next, as a player would (the first press finishes the typing). */
+export async function playStory(page: Page) {
+  const next = page.getByRole('button', { name: 'Next ▶' });
+  while (await next.isVisible()) await next.click();
+  await expect(page.getByRole('button', { name: 'Replay ↺' })).toBeVisible();
 }

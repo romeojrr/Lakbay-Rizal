@@ -3,7 +3,7 @@
 // dialogue, quizzes, builder, final stop and rewards are all exercised.
 import { expect, test, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
-import { horizontalOverflow, skipIntroOnFreshProfile } from './helpers';
+import { finishStory, horizontalOverflow, skipIntroOnFreshProfile } from './helpers';
 
 interface SeedStop {
   id: string;
@@ -11,7 +11,6 @@ interface SeedStop {
   year: number;
   builder?: boolean;
   place: { label: string };
-  dialogue: { lines: unknown[] };
   quiz: { prompt: string; answer: string; options: { id: string; text: string }[] }[];
 }
 
@@ -33,14 +32,11 @@ async function playDialogue(page: Page, stop: SeedStop) {
     page.getByRole('heading', { level: 1, name: `${stop.place.label} · ${stop.year}` }),
   ).toBeVisible();
   await expectImagesLoaded(page, stop.id);
-  for (let i = 1; i < stop.dialogue.lines.length; i++) {
-    await page.getByRole('button', { name: 'Next ▶' }).click();
-  }
-  await expect(page.getByRole('button', { name: 'Replay ↺' })).toBeVisible();
+  await finishStory(page);
 }
 
 async function playQuiz(page: Page, stop: SeedStop) {
-  await page.getByRole('link', { name: 'Quiz ▶' }).click();
+  await page.getByRole('link', { name: 'Quiz ▶', exact: true }).click();
   for (let i = 0; i < stop.quiz.length; i++) {
     const prompt = (await page.locator('#quiz-prompt').textContent()) ?? '';
     const question = stop.quiz.find((q) => q.prompt === prompt);

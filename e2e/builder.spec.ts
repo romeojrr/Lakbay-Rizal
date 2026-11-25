@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { skipIntroOnFreshProfile } from './helpers';
+import { playStory, skipIntroOnFreshProfile } from './helpers';
 
 test.beforeEach(async ({ page }) => {
   await skipIntroOnFreshProfile(page);
@@ -13,8 +13,7 @@ test('Dapitan: finish dialogue → builder → clinic + water system → stamp (
   await page.getByRole('link', { name: 'Dapitan, 1892, open' }).click();
   await expect(page.getByRole('heading', { level: 1, name: 'Dapitan · 1892' })).toBeVisible();
 
-  const next = page.getByRole('button', { name: 'Next ▶' });
-  while (await next.isVisible()) await next.click();
+  await playStory(page);
   await page.getByRole('link', { name: 'Build the town ▶' }).click();
 
   await expect(page.getByText('Town projects 1/3')).toBeVisible();

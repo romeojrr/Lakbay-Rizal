@@ -6,10 +6,10 @@ import { createRoutes, routerFuture, type RootLoader } from '../../app/routes';
 import { sortByOrder } from '../../content/selectors';
 import { initialProgress, useProgress } from '../../store/progress';
 import { useUi } from '../../store/ui';
-import { realContent } from '../../test/content';
+import { realContent, rootData } from '../../test/content';
 
 const content = realContent();
-const allStops: RootLoader = async () => ({ content, stops: content.stops });
+const allStops: RootLoader = async () => rootData(content);
 
 function renderAt(path: string, loader: RootLoader = allStops) {
   const router = createMemoryRouter(createRoutes(loader), {
@@ -105,7 +105,7 @@ describe('MapPage', () => {
   });
 
   it('shows "Content coming soon" when no stops may be shown (FR-62)', async () => {
-    renderAt('/region/europe', async () => ({ content, stops: [] }));
+    renderAt('/region/europe', async () => rootData(content, []));
     expect(await screen.findByRole('heading', { name: 'Content coming soon' })).toBeVisible();
     expect(screen.queryByRole('link', { name: /Enter/ })).toBeNull();
   });

@@ -1,0 +1,58 @@
+/* §7.10: a 64 px frame at a whole-number scale (--s), 3 px ink frame on parchment. */
+.frame {
+  --s: 2;
+  flex-shrink: 0;
+  padding: 0;
+  background: var(--card-warm);
+  border: 3px solid var(--ink);
+}
+
+.portrait {
+  width: calc(64px * var(--s));
+  height: calc(64px * var(--s));
+  background-image: var(--sheet);
+  background-repeat: no-repeat;
+  background-size: calc(256px * var(--s)) calc(384px * var(--s));
+  background-position: calc(-64px * var(--s) * var(--col)) calc(-64px * var(--s) * var(--row));
+  image-rendering: pixelated;
+}
+
+/* Talk frames: columns 2 and 3, 8 frames a second. */
+.talking {
+  animation: talk 250ms steps(2) infinite;
+}
+
+@keyframes talk {
+  from {
+    background-position-x: calc(-128px * var(--s));
+  }
+  to {
+    background-position-x: calc(-256px * var(--s));
+  }
+}
+
+/* Slides in from the side (180 ms). */
+.slide {
+  animation: slide-in 180ms ease-out;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-16px);
+    opacity: 0;
+  }
+}
+
+/* Narrow phones: 1× (64 px) so the text keeps room. */
+@media (max-width: 400px) {
+  .frame {
+    --s: 1;
+  }
+}
+
+/* Phones held sideways: the scene needs the space. */
+@media (orientation: landscape) and (max-height: 500px) {
+  .frame {
+    --s: 1;
+  }
+}

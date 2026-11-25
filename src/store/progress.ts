@@ -127,6 +127,8 @@ interface ProgressActions {
   setSeenIntro: () => void;
   /** §3.10: notes that a stop was read in a language (for the `bilingual` achievement). */
   markRead: (stopId: string, lang: Lang) => void;
+  /** §3.6/§3.8: the player has read `count` chapters of a stop (keeps the highest). */
+  markChaptersRead: (stopId: string, count: number) => void;
   /** Starts again from nothing (Settings → Reset progress). */
   reset: () => void;
 }
@@ -229,6 +231,12 @@ export const useProgress = create<ProgressStore>()(
           return langs.includes(lang) ? s : { readIn: { ...s.readIn, [stopId]: [...langs, lang] } };
         }),
       // Settings (language, text size…) are the player's choices, not progress: they stay.
+      markChaptersRead: (stopId, count) =>
+        set((s) =>
+          (s.chaptersRead[stopId] ?? 0) >= count
+            ? s
+            : { chaptersRead: { ...s.chaptersRead, [stopId]: count } },
+        ),
       reset: () => set((s) => ({ ...initialProgress(), settings: s.settings })),
     }),
     {

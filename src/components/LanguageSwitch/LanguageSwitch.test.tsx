@@ -9,10 +9,10 @@ import { createRoutes, routerFuture, type RootLoader } from '../../app/routes';
 import { clearTranslations } from '../../content/translations';
 import { setActiveLanguage } from '../../i18n/t';
 import { initialProgress, useProgress } from '../../store/progress';
-import { rawContentV3, realContent } from '../../test/content';
+import { rawContentV3, realContent, rootData } from '../../test/content';
 
 const content = realContent();
-const loader: RootLoader = async () => ({ content, stops: content.stops });
+const loader: RootLoader = async () => rootData(content);
 const raw = rawContentV3() as unknown as Record<string, unknown>;
 
 const fetchMock = vi.fn(async (url: string) => {

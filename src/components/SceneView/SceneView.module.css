@@ -1,6 +1,16 @@
 .scene {
   position: relative;
+  overflow: hidden;
   border: var(--border);
+}
+
+/* v2.3 §3.6: the camera layer pans and zooms over 1.2 s (transform only). */
+.camera {
+  transform-origin: 0 0;
+}
+
+.pan {
+  transition: transform 1.2s ease-in-out;
 }
 
 .image {
@@ -22,12 +32,6 @@
   border: 3px solid var(--card-warm);
 }
 
-.tag {
-  position: absolute;
-  right: 14px;
-  top: 14px;
-}
-
 /* "…" above the speaker; its bottom centre sits on the anchor. */
 .bubble {
   position: absolute;
@@ -38,6 +42,18 @@
   background: #ffffff;
   border: 3px solid var(--ink);
   animation: pop 180ms ease-out;
+}
+
+/* The "…" bobs gently while the line is spoken. */
+.bob {
+  display: inline-block;
+  animation: bob 1.2s steps(2) infinite;
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(-3px);
+  }
 }
 
 @keyframes pop {
@@ -53,11 +69,6 @@
     top: 8px;
     padding: 3px 8px;
     font-size: var(--fs-small);
-  }
-
-  .tag {
-    right: 8px;
-    top: 8px;
   }
 
   .bubble {

@@ -2,6 +2,7 @@
 // In development the content is validated again so mistakes show up in the console.
 import { CONTENT_FILES, type ContentFileName } from './constants';
 import type { Content } from './schemas';
+import type { StopV3 } from './schemas.v3';
 
 export class ContentLoadError extends Error {
   override name = 'ContentLoadError';
@@ -17,9 +18,36 @@ export function loadContent(fetchImpl: typeof fetch = fetch): Promise<Content> {
   return cache;
 }
 
+let storiesCache: Promise<StopV3[]> | null = null;
+
+/**
+ * Content v3 stops (SRS v2.3 §6.2b): the chapters and close-up lines the story player plays.
+ * Until U4 the rest of the game still reads stops.json.
+ */
+export function loadStories(fetchImpl: typeof fetch = fetch): Promise<StopV3[]> {
+  storiesCache ??= fetchJson(fetchImpl, 'stops.v3')
+    .then(async (raw) => {
+      if (import.meta.env.DEV) {
+        const { StopsV3FileSchema } = await import('./schemas.v3');
+        const result = StopsV3FileSchema.safeParse(raw);
+        if (!result.success) {
+          throw new ContentLoadError(`stops.v3.json is invalid: ${result.error.message}`);
+        }
+        return result.data;
+      }
+      return raw as StopV3[];
+    })
+    .catch((error: unknown) => {
+      storiesCache = null;
+      throw error;
+    });
+  return storiesCache;
+}
+
 /** For tests. */
 export function clearContentCache(): void {
   cache = null;
+  storiesCache = null;
 }
 
 async function fetchContent(fetchImpl: typeof fetch): Promise<Content> {
@@ -43,7 +71,10 @@ async function fetchContent(fetchImpl: typeof fetch): Promise<Content> {
   return raw as unknown as Content;
 }
 
-async function fetchJson(fetchImpl: typeof fetch, name: ContentFileName): Promise<unknown> {
+async function fetchJson(
+  fetchImpl: typeof fetch,
+  name: ContentFileName | 'stops.v3',
+): Promise<unknown> {
   const url = `${import.meta.env.BASE_URL}content/${name}.json`;
   let response: Response;
   try {

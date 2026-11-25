@@ -119,8 +119,6 @@
     "badge": "{place} · {year}",
     "dramatized": "Dramatized",
     "dramatizedTip": "Based on real events. The exact words are imagined.",
-    "dialogue": "Dialogue",
-    "lineOf": "Line {n} of {total}",
     "next": "Next",
     "replay": "Replay",
     "thisStop": "This stop",
@@ -158,7 +156,15 @@
     "recorded": "Recorded",
     "recordedTip": "Real words, from a published source.",
     "takeQuiz": "Take the quiz",
-    "autoplay": "Auto-play"
+    "autoplay": "Auto-play",
+    "prevButton": "◀ {label}",
+    "takeQuizButton": "{label} ▶",
+    "source": "Source: {title}",
+    "tipWithSource": "{tip} {source}",
+    "progress": "Story progress",
+    "stepOf": "Step {n} of {total}",
+    "date": "Date",
+    "playerHelp": "Keys: → or Space for next, ← for back, A for auto-play."
   },
   "quiz": {
     "title": "{place} Quiz",
@@ -398,5 +404,13 @@
   "a11y": {
     "portrait": "Portrait of {name}, {mood}",
     "scene": "Scene: {alt}"
+  },
+  "mood": {
+    "neutral": "calm",
+    "happy": "happy",
+    "sad": "sad",
+    "serious": "serious",
+    "surprised": "surprised",
+    "thinking": "thinking"
   }
 }

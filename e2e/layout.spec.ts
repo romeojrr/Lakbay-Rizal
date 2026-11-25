@@ -200,9 +200,9 @@ test('stop Info: drawer on desktop, Story | Info on phones', async ({ page }) =>
   await page.setViewportSize({ width: 360, height: 740 });
   await page.getByRole('button', { name: 'Info', pressed: false }).click();
   await expect(page.locator('[data-guide="sources-card"]')).toBeVisible();
-  await expect(page.getByRole('region', { name: 'Dialogue' })).toBeHidden();
+  await expect(page.locator('[data-step]')).toBeHidden();
   await page.getByRole('button', { name: 'Story', pressed: false }).click();
-  await expect(page.getByRole('region', { name: 'Dialogue' })).toBeVisible();
+  await expect(page.locator('[data-step]')).toBeVisible();
 });
 
 function testInfo() {

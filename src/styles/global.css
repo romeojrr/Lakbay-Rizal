@@ -126,3 +126,25 @@ a {
   transition-duration: 0.01ms !important;
   scroll-behavior: auto !important;
 }
+
+/* SRS v2.3 §5.6: with reduced motion, things that would move fade in instead (200 ms).
+   These selectors outrank the reduced-motion reset above, so the fade keeps its length. */
+.motion-fade {
+  animation: motion-fade 200ms ease-out;
+}
+
+@keyframes motion-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion='off']) .motion-fade {
+    animation-duration: 200ms !important;
+  }
+}
+
+:root[data-motion='on'] .motion-fade {
+  animation-duration: 200ms !important;
+}

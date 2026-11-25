@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { skipIntroOnFreshProfile } from './helpers';
+import { finishStory, skipIntroOnFreshProfile } from './helpers';
 
 test.beforeEach(async ({ page }) => {
   await skipIntroOnFreshProfile(page);
@@ -28,10 +28,9 @@ test('completing Berlin adds stamp + item, and it survives a refresh (M4, SRS §
   await page.getByRole('button', { name: 'Free explore' }).click();
   await page.getByRole('link', { name: 'Berlin, 1887, open' }).click();
 
-  // 4. Step through the dialogue → Quiz enables
-  await page.getByRole('button', { name: 'Next ▶' }).click();
-  await page.getByRole('button', { name: 'Next ▶' }).click();
-  await page.getByRole('link', { name: 'Quiz ▶' }).click();
+  // 4. Finish the story → Quiz enables
+  await finishStory(page);
+  await page.getByRole('link', { name: 'Quiz ▶', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Berlin Quiz' })).toBeVisible();
 
   // 5. Wrong → hint, no penalty → right → next → right

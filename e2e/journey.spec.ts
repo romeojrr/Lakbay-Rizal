@@ -3,7 +3,7 @@
 // The production-build check ("Content coming soon") is in production.spec.ts.
 import { expect, test, type Page } from '@playwright/test';
 import { expectNoSeriousA11yIssues } from './a11y';
-import { horizontalOverflow, openFromMenu } from './helpers';
+import { finishStory, horizontalOverflow, openFromMenu, playStory } from './helpers';
 
 async function answerBerlin(page: Page, correctly: boolean) {
   const prompt = (await page.locator('#quiz-prompt').textContent()) ?? '';
@@ -52,10 +52,9 @@ test('SRS §12: the whole journey', async ({ page }) => {
     await expectNoSeriousA11yIssues(page, 'stop (step 12)');
   });
 
-  await test.step('4. step through all dialogue lines → Quiz enables', async () => {
-    await page.getByRole('button', { name: 'Next ▶' }).click();
-    await page.getByRole('button', { name: 'Next ▶' }).click();
-    await page.getByRole('link', { name: 'Quiz ▶' }).click();
+  await test.step('4. play the whole story → Quiz enables', async () => {
+    await playStory(page);
+    await page.getByRole('link', { name: 'Quiz ▶', exact: true }).click();
     await expect(page.getByRole('heading', { name: 'Berlin Quiz' })).toBeVisible();
     await expectNoSeriousA11yIssues(page, 'quiz (step 12)');
   });
@@ -101,8 +100,7 @@ test('SRS §12: the whole journey', async ({ page }) => {
     await page.getByRole('link', { name: 'Dapitan, 1892, open' }).click();
     // The stop page loads on demand: wait for it before stepping through the dialogue.
     await expect(page.getByRole('heading', { level: 1, name: 'Dapitan · 1892' })).toBeVisible();
-    const next = page.getByRole('button', { name: 'Next ▶' });
-    while (await next.isVisible()) await next.click();
+    await finishStory(page);
     await page.getByRole('link', { name: 'Build the town ▶' }).click();
     await expectNoSeriousA11yIssues(page, 'builder (step 12)');
     await page.getByRole('button', { name: 'Build the Clinic' }).click();

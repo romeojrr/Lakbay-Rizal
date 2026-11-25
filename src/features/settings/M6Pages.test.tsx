@@ -4,10 +4,10 @@ import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { createRoutes, routerFuture, type RootLoader } from '../../app/routes';
 import { initialProgress, useProgress } from '../../store/progress';
-import { realContent } from '../../test/content';
+import { realContent, rootData } from '../../test/content';
 
 const content = realContent();
-const loader: RootLoader = async () => ({ content, stops: content.stops });
+const loader: RootLoader = async () => rootData(content);
 
 function renderAt(path: string) {
   const router = createMemoryRouter(createRoutes(loader), {

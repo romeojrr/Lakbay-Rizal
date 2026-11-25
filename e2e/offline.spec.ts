@@ -3,7 +3,7 @@
 // worker, so this test does the real thing: it runs its own server and stops it.
 import { expect, test } from '@playwright/test';
 import { spawn, type ChildProcess } from 'node:child_process';
-import { skipIntroOnFreshProfile } from './helpers';
+import { finishStory, skipIntroOnFreshProfile } from './helpers';
 
 async function waitForServer(url: string) {
   for (let i = 0; i < 120; i++) {
@@ -62,9 +62,8 @@ test('after one visit the game loads and plays offline', async ({ page }, testIn
       .toBe(true);
 
     // And it still plays: finish the dialogue and open the quiz.
-    const next = page.getByRole('button', { name: 'Next ▶' });
-    while (await next.isVisible()) await next.click();
-    await page.getByRole('link', { name: 'Quiz ▶' }).click();
+    await finishStory(page);
+    await page.getByRole('link', { name: 'Quiz ▶', exact: true }).click();
     await expect(page.getByRole('heading', { name: 'Calamba Quiz' })).toBeVisible();
 
     await page.goto(`${origin}/region/europe`);

@@ -195,6 +195,8 @@ export const SourceSchema = z.strictObject({
   id: text,
   tier: z.union([z.literal(1), z.literal(2), z.literal(3)]),
   kind: z.enum(['print', 'online', 'art-reference']),
+  /** v2.3 §3.6: the short title shown on Recorded tags, facts and quiz answers. */
+  short: text.max(70, 'must be 70 characters or fewer'),
   citation: text,
   useFor: text,
   where: text,

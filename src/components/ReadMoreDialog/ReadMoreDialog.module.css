@@ -1,7 +1,41 @@
-.meta {
-  margin-top: 0;
+/* Then / Today / Date, as the "This stop" card's place boxes. */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+  margin: 0 0 12px;
+}
+
+.facts div {
+  padding: 8px 10px;
+  background: var(--card-warm);
+  border: 2px solid var(--ink);
+}
+
+.facts dt {
   font-size: var(--fs-small);
   color: var(--muted);
+}
+
+.facts dd {
+  margin: 0;
+  font-size: var(--fs-small);
+  line-height: 1.35;
+}
+
+.heading {
+  margin: 16px 0 6px;
+  font-size: var(--fs-small);
+}
+
+.sources {
+  margin: 0;
+  padding-left: 1.4em;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--fs-small);
+  line-height: 1.35;
 }
 
 .credit {

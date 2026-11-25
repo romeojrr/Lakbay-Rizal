@@ -14,7 +14,10 @@ interface UiState {
    * this so it can take the focus back afterwards.
    */
   pendingFocus: string | null;
+  /** §3.6: where the player is in each stop's story (survives a language switch). */
+  storyStep: Record<string, number>;
   setLastRegion: (region: RegionId) => void;
+  setStoryStep: (stopId: string, step: number) => void;
   setTimelineYear: (year: number | null) => void;
   setTimelineExpanded: (expanded: boolean) => void;
 }
@@ -24,6 +27,8 @@ export const useUi = create<UiState>()((set) => ({
   timelineYear: null,
   timelineExpanded: false,
   pendingFocus: null,
+  storyStep: {},
+  setStoryStep: (stopId, step) => set((s) => ({ storyStep: { ...s.storyStep, [stopId]: step } })),
   setLastRegion: (lastRegion) => set({ lastRegion }),
   setTimelineYear: (timelineYear) => set({ timelineYear }),
   setTimelineExpanded: (timelineExpanded) => set({ timelineExpanded }),

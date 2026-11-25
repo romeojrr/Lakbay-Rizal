@@ -48,17 +48,11 @@
   min-width: 0;
 }
 
-.sceneBox {
-  position: relative;
-  max-width: 100%;
-  margin: 0 auto;
-}
-
 .dialogue {
   margin-top: 12px;
 }
 
-/* Wide scenes: a compact text box over the bottom 30 % of the scene (§5.5). */
+/* Wide scenes: the text box sits over the bottom of the scene (§3.6, §5.5). */
 .overlay .dialogue {
   position: absolute;
   left: 50%;
@@ -69,56 +63,11 @@
   transform: translateX(-50%);
 }
 
-.overlay .dialogue > section {
-  padding: 12px 16px;
-  gap: 14px;
-}
-
-.overlay .dialogue p {
-  min-height: 0;
-}
-
 /* Phones held sideways: a slimmer text box so most of the scene stays visible. */
 @media (orientation: landscape) and (max-height: 500px) {
   .overlay .dialogue {
     bottom: 8px;
     width: calc(100% - 24px);
-  }
-
-  .overlay .dialogue > section {
-    padding: 8px 12px;
-  }
-
-  /* The speaker's name stays; the portrait makes room for the scene. */
-  .overlay .dialogue > section > :first-child {
-    display: none;
-  }
-
-  .overlay .dialogue p {
-    font-size: var(--fs-small);
-  }
-
-  /* Name and line on the left, Next on the right: about 30 % of the scene (§5.5). */
-  .overlay .dialogue > section > :last-child {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 2px 12px;
-  }
-
-  .overlay .dialogue > section > :last-child > :not(:last-child) {
-    grid-column: 1;
-  }
-
-  .overlay .dialogue > section > :last-child > :last-child {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-    align-self: end;
-    margin: 0;
-  }
-
-  /* The progress dots (screen readers still hear "Line n of N"). */
-  .overlay .dialogue > section > :last-child > :last-child > :first-child {
-    display: none;
   }
 }
 

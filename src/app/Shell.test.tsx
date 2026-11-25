@@ -3,11 +3,12 @@ import userEvent from '@testing-library/user-event';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { initialProgress, useProgress } from '../store/progress';
-import { realContent } from '../test/content';
+import { useUi } from '../store/ui';
+import { realContent, rootData } from '../test/content';
 import { createRoutes, routerFuture, type RootLoader } from './routes';
 
 const content = realContent();
-const loader: RootLoader = async () => ({ content, stops: content.stops });
+const loader: RootLoader = async () => rootData(content);
 
 function renderAt(path: string) {
   const router = createMemoryRouter(createRoutes(loader), {
@@ -25,6 +26,7 @@ beforeEach(() => {
 
 afterEach(() => {
   useProgress.setState(initialProgress());
+  useUi.setState({ storyStep: {} });
 });
 
 // SRS v2.3 §3.7: ids the guided tour will look for.
@@ -113,6 +115,8 @@ describe('App shell v2.3 (§5.5)', () => {
 
   it('stop screen has every guide target (§3.7)', async () => {
     useProgress.setState({ mode: 'free' });
+    // line-tag is on spoken lines, so open the story at its first line (step 4).
+    useUi.setState({ storyStep: { 'berlin-1887': 4 } });
     renderAt('/stop/berlin-1887');
     await screen.findByRole('heading', { level: 1, name: 'Berlin · 1887' });
     for (const id of STOP_GUIDES) {

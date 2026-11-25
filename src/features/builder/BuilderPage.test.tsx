@@ -4,12 +4,12 @@ import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { createRoutes, routerFuture, type RootLoader } from '../../app/routes';
 import { initialProgress, useProgress } from '../../store/progress';
-import { realContent } from '../../test/content';
+import { realContent, rootData } from '../../test/content';
 import { availableMaterials, isTownComplete, shortfall } from './builderModel';
 
 const content = realContent();
 const { builder } = content;
-const loader: RootLoader = async () => ({ content, stops: content.stops });
+const loader: RootLoader = async () => rootData(content);
 
 function renderAt(path: string) {
   const router = createMemoryRouter(createRoutes(loader), {
@@ -126,10 +126,7 @@ describe('Dapitan builder page (M5)', () => {
       projects: { ...builder.projects, water: { ...builder.projects.water, cost: { stone: 99 } } },
     };
     const router = createMemoryRouter(
-      createRoutes(async () => ({
-        content: { ...content, builder: pricey },
-        stops: content.stops,
-      })),
+      createRoutes(async () => rootData({ ...content, builder: pricey })),
       { initialEntries: ['/dapitan/build'], future: routerFuture },
     );
     render(<RouterProvider router={router} future={{ v7_startTransition: true }} />);

@@ -20,7 +20,7 @@ function Notice({ title, children }: { title: string; children?: React.ReactNode
 /** /stop/:stopId — checks the stop exists and is open, then plays it (M3). */
 export default function StopPage() {
   const { stopId } = useParams();
-  const { content, stops } = useRootData();
+  const { content, stops, stories } = useRootData();
   const mode = useProgress((s) => s.mode);
   const completed = useProgress((s) => s.completed);
   const stop = stops.find((s) => s.id === stopId);
@@ -50,8 +50,22 @@ export default function StopPage() {
       </Notice>
     );
   }
-  // key: a new stop starts its dialogue from the first line.
+  const story = stories.find((s) => s.id === stop.id);
+  if (!story || story.status === 'outline') {
+    return (
+      <Notice title={t('stop.comingSoonTitle')}>
+        <BackLink fallback={`/region/${stop.region}`} label={t('stop.backToMap')} />
+      </Notice>
+    );
+  }
+  // key: each stop has its own player.
   return (
-    <StopStory key={stop.id} stop={stop} content={content} isFinal={isFinalStop(stop, stops)} />
+    <StopStory
+      key={stop.id}
+      stop={stop}
+      story={story}
+      content={content}
+      isFinal={isFinalStop(stop, stops)}
+    />
   );
 }

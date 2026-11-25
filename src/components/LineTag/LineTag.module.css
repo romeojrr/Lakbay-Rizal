@@ -7,17 +7,26 @@
   display: inline-block;
   padding: 4px 10px;
   font-size: var(--fs-small);
-  color: var(--ink);
-  background: var(--gold);
   border: 3px solid var(--ink);
   cursor: help;
   min-height: 36px;
 }
 
+/* Green Recorded, grey Dramatized (§3.6); both keep 4.5:1 text contrast. */
+.recorded {
+  color: #ffffff;
+  background: var(--success);
+}
+
+.dramatized {
+  color: var(--ink);
+  background: var(--line-soft);
+}
+
 .tip {
   position: absolute;
-  right: 0;
-  top: calc(100% + 6px);
+  left: 0;
+  bottom: calc(100% + 6px);
   z-index: 3;
   width: max-content;
   max-width: 240px;
