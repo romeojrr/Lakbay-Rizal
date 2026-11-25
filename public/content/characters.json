@@ -1,0 +1,90 @@
+{
+  "rizal": {
+    "name": "José Rizal",
+    "sprite": "/assets/sprites/rizal_adult_suit.png"
+  },
+  "rizal-dapitan": {
+    "name": "José Rizal",
+    "sprite": "/assets/sprites/rizal_dapitan.png"
+  },
+  "jose-boy": {
+    "name": "José",
+    "sprite": "/assets/sprites/rizal_boy_student.png"
+  },
+  "jose-child": {
+    "name": "José",
+    "sprite": "/assets/sprites/rizal_child.png"
+  },
+  "teodora": {
+    "name": "Teodora Alonso",
+    "sprite": "/assets/sprites/teodora_alonso.png"
+  },
+  "viola": {
+    "name": "Maximo Viola",
+    "sprite": "/assets/sprites/maximo_viola.png"
+  },
+  "jesuit": {
+    "name": "Jesuit teacher",
+    "sprite": "/assets/sprites/jesuit_teacher.png"
+  },
+  "pupil": {
+    "name": "Pupil",
+    "sprite": "/assets/sprites/pupil_a.png"
+  },
+  "narrator": {
+    "name": "Narrator",
+    "icon": "/assets/icons/stamp_bagumbayan.png"
+  },
+  "rizal-young": {
+    "name": "José Rizal (age 18)",
+    "sprite": "/assets/sprites/rizal_young.png"
+  },
+  "justiniano": {
+    "name": "Maestro Justiniano Aquino Cruz",
+    "sprite": "/assets/sprites/justiniano.png"
+  },
+  "dominican": {
+    "name": "Dominican professor",
+    "sprite": "/assets/sprites/dominican.png"
+  },
+  "gentleman": {
+    "name": "A gentleman of Barcelona",
+    "sprite": "/assets/sprites/barcelona_gentleman.png"
+  },
+  "de-wecker": {
+    "name": "Dr. Louis de Wecker",
+    "sprite": "/assets/sprites/de_wecker.png"
+  },
+  "ullmer": {
+    "name": "Pastor Karl Ullmer",
+    "sprite": "/assets/sprites/ullmer.png"
+  },
+  "blumentritt": {
+    "name": "Ferdinand Blumentritt",
+    "sprite": "/assets/sprites/blumentritt.png"
+  },
+  "seiko": {
+    "name": "Usui Seiko (O-Sei-san)",
+    "sprite": "/assets/sprites/seiko.png"
+  },
+  "luna": {
+    "name": "Juan Luna",
+    "sprite": "/assets/sprites/juan_luna.png"
+  },
+  "nellie": {
+    "name": "Nellie Boustead",
+    "sprite": "/assets/sprites/nellie_boustead.png"
+  },
+  "printer": {
+    "name": "Printer, Meyer-Van Loo",
+    "sprite": "/assets/sprites/ghent_printer.png"
+  },
+  "member": {
+    "name": "A member of La Liga",
+    "sprite": "/assets/sprites/liga_member.png"
+  },
+  "teodora-older": {
+    "name": "Teodora Alonso",
+    "sprite": "/assets/sprites/teodora_older.png"
+  }
+}

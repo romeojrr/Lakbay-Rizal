@@ -5,15 +5,17 @@
   "type": "module",
   "scripts": {
     "copy-assets": "tsx scripts/copy-assets.ts",
+    "convert-seed": "tsx scripts/convert-seed.ts",
+    "validate-content": "tsx scripts/validate-content.ts",
     "predev": "npm run copy-assets",
     "dev": "vite",
-    "prebuild": "npm run copy-assets",
+    "prebuild": "npm run copy-assets && npm run validate-content",
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc -b",
     "lint": "eslint . && prettier --check .",
     "format": "prettier --write .",
-    "pretest": "npm run copy-assets",
+    "pretest": "npm run copy-assets && npm run validate-content",
     "test": "vitest run",
     "test:e2e": "playwright test"
   },
@@ -22,7 +24,8 @@
     "@fontsource/pixelify-sans": "^5.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.30.6"
+    "react-router-dom": "^6.30.6",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",

@@ -1,0 +1,35 @@
+{
+  "start": {
+    "bamboo": 8,
+    "stone": 10,
+    "tools": 3
+  },
+  "projects": {
+    "school": {
+      "prebuilt": true,
+      "cost": {
+        "bamboo": 5,
+        "stone": 2,
+        "tools": 1
+      },
+      "fact": "Rizal taught the boys of Dapitan for free. In return, they helped with work around Talisay."
+    },
+    "clinic": {
+      "prebuilt": false,
+      "cost": {
+        "bamboo": 6,
+        "stone": 4
+      },
+      "fact": "Rizal was an eye doctor. He treated the people of Dapitan, and poor patients paid nothing."
+    },
+    "water": {
+      "prebuilt": false,
+      "cost": {
+        "stone": 6,
+        "tools": 3
+      },
+      "fact": "He built a water system so the town could have clean water."
+    }
+  },
+  "note": "Costs are game balance, not history. Facts must be verified."
+}

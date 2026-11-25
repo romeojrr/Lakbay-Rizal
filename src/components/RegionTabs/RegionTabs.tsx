@@ -1,23 +1,25 @@
 import { NavLink } from 'react-router-dom';
+import type { Region } from '../../content/schemas';
 import { t } from '../../i18n/t';
 import styles from './RegionTabs.module.css';
 
-// M0: fixed list. M1 reads the regions from public/content/regions.json.
-const REGION_IDS = ['philippines', 'asia', 'europe', 'america'] as const;
+interface RegionTabsProps {
+  regions: readonly Pick<Region, 'id' | 'label'>[];
+}
 
-export default function RegionTabs() {
+export default function RegionTabs({ regions }: RegionTabsProps) {
   return (
     <nav aria-label={t('nav.regions')} className={styles.nav}>
       <ul className={styles.list}>
-        {REGION_IDS.map((id) => (
-          <li key={id}>
+        {regions.map((region) => (
+          <li key={region.id}>
             <NavLink
-              to={`/region/${id}`}
+              to={`/region/${region.id}`}
               className={({ isActive }) =>
                 isActive ? `${styles.tab} ${styles.active}` : styles.tab
               }
             >
-              {t(`regions.${id}`)}
+              {region.label}
             </NavLink>
           </li>
         ))}

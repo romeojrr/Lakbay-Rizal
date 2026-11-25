@@ -3,10 +3,10 @@ import RegionTabs from '../components/RegionTabs/RegionTabs';
 import { t } from '../i18n/t';
 import { asset } from '../lib/asset';
 import styles from './Layout.module.css';
+import { useRootData } from './useRootData';
 
-// M0 placeholder: M1 replaces these with progress + the number of stops in content.
+// Placeholder until the progress store arrives in M4.
 const STAMPS_EARNED = 0;
-const STOPS_TOTAL = 25;
 
 function PassportIcon() {
   return (
@@ -26,6 +26,7 @@ function PassportIcon() {
 }
 
 export default function Layout() {
+  const { content, stops } = useRootData();
   return (
     <>
       <header className={styles.header}>
@@ -40,14 +41,14 @@ export default function Layout() {
             />
             <span className={styles.logoText}>{t('app.logo')}</span>
           </Link>
-          <RegionTabs />
+          <RegionTabs regions={content.regions} />
           <div className={styles.actions}>
             <Link to="/scenes" className={styles.navLink}>
               {t('nav.scenes')}
             </Link>
             <Link to="/passport" className={`${styles.navLink} ${styles.passport}`}>
               <PassportIcon />
-              {t('nav.passport', { done: STAMPS_EARNED, total: STOPS_TOTAL })}
+              {t('nav.passport', { done: STAMPS_EARNED, total: stops.length })}
             </Link>
           </div>
         </div>

@@ -1,14 +1,53 @@
 import type { RouteObject } from 'react-router-dom';
+import { loadContent } from '../content/loader';
+import { isPreviewMode } from '../content/preview';
+import type { Content, Stop } from '../content/schemas';
+import { getVisibleStops, shouldIncludeDrafts } from '../content/selectors';
+import ContentError from './ContentError';
 import Layout from './Layout';
+import LoadingScreen from './LoadingScreen';
 
-// M0: an empty shell. Each milestone adds its SRS FR-2 routes here.
-export const routes: RouteObject[] = [
-  {
-    path: '/',
-    element: <Layout />,
-    children: [{ index: true }, { path: '*' }],
-  },
-];
+export interface RootData {
+  content: Content;
+  /** Stops the player may see in this build (FR-62), in order. */
+  stops: Stop[];
+}
+
+export type RootLoader = () => Promise<RootData>;
+
+export async function rootLoader(): Promise<RootData> {
+  const content = await loadContent();
+  const includeDrafts = shouldIncludeDrafts({
+    dev: import.meta.env.DEV,
+    buildFlag: __INCLUDE_DRAFTS__,
+    previewParam: isPreviewMode(window.location.search),
+  });
+  return { content, stops: getVisibleStops(content.stops, includeDrafts) };
+}
+
+/** Placeholder page until the map (M2) and other screens arrive. */
+function BlankPage() {
+  return null;
+}
+
+// Each milestone adds its SRS FR-2 routes under the root.
+export function createRoutes(loader: RootLoader = rootLoader): RouteObject[] {
+  return [
+    {
+      id: 'root',
+      path: '/',
+      loader,
+      shouldRevalidate: () => false, // content never changes while the game runs
+      element: <Layout />,
+      errorElement: <ContentError />,
+      HydrateFallback: LoadingScreen,
+      children: [
+        { index: true, Component: BlankPage },
+        { path: '*', Component: BlankPage },
+      ],
+    },
+  ];
+}
 
 export const routerFuture = {
   v7_relativeSplatPath: true,

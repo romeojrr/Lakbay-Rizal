@@ -1,0 +1,122 @@
+{
+  "moth-story": {
+    "name": "The moth story",
+    "desc": "The story his mother read to him at night.",
+    "icon": "/assets/icons/items/moth-story.png"
+  },
+  "ateneo-medal": {
+    "name": "Ateneo medal",
+    "desc": "For finishing at the top of his class.",
+    "icon": "/assets/icons/items/ateneo-medal.png"
+  },
+  "medicine-diploma": {
+    "name": "Licentiate in medicine",
+    "desc": "From the Universidad Central, Madrid.",
+    "icon": "/assets/icons/items/medicine-diploma.png"
+  },
+  "noli-me-tangere": {
+    "name": "Noli Me Tangere",
+    "desc": "His first novel, printed in Berlin in 1887.",
+    "icon": "/assets/icons/items/noli-me-tangere.png"
+  },
+  "talisay-school-bell": {
+    "name": "School bell",
+    "desc": "From his school for boys in Talisay.",
+    "icon": "/assets/icons/items/talisay-school-bell.png"
+  },
+  "cartilla": {
+    "name": "Cartilla",
+    "desc": "The little primer pupils read from in Biñan.",
+    "icon": "/assets/icons/items/cartilla.png"
+  },
+  "silver-pen": {
+    "name": "Silver pen",
+    "desc": "First prize of the 1879 Liceo poetry contest, for \"A la juventud filipina\".",
+    "icon": "/assets/icons/items/silver-pen.png"
+  },
+  "amor-patrio": {
+    "name": "\"Amor Patrio\"",
+    "desc": "His first essay written abroad, printed in Diariong Tagalog, August 1882.",
+    "icon": "/assets/icons/items/amor-patrio.png"
+  },
+  "ophthalmoscope": {
+    "name": "Ophthalmoscope",
+    "desc": "The eye doctor's lamp and lens he learned to use in Paris.",
+    "icon": "/assets/icons/items/ophthalmoscope.png"
+  },
+  "forget-me-not": {
+    "name": "Forget-me-nots",
+    "desc": "His favourite flowers, from the banks of the Neckar.",
+    "icon": "/assets/icons/items/forget-me-not.png"
+  },
+  "noli-chapters": {
+    "name": "Last chapters of the Noli",
+    "desc": "Written in Pastor Ullmer's house in Wilhelmsfeld.",
+    "icon": "/assets/icons/items/noli-chapters.png"
+  },
+  "wilhelm-tell": {
+    "name": "Wilhelm Tell, in Tagalog",
+    "desc": "His translation of Schiller's play about a fight for freedom.",
+    "icon": "/assets/icons/items/wilhelm-tell.png"
+  },
+  "memorial-book": {
+    "name": "Leitmeritz memorial book",
+    "desc": "Rizal and Viola signed it on 16 May 1887.",
+    "icon": "/assets/icons/items/memorial-book.png"
+  },
+  "doctor-bag": {
+    "name": "Doctor's bag",
+    "desc": "\"Doctor Uliman\" of Calamba, 1887.",
+    "icon": "/assets/icons/items/doctor-bag.png"
+  },
+  "sakura-sprig": {
+    "name": "Cherry blossoms",
+    "desc": "Spring in Tokyo, 1888.",
+    "icon": "/assets/icons/items/sakura-sprig.png"
+  },
+  "train-ticket": {
+    "name": "Train ticket",
+    "desc": "San Francisco to New York, May 1888.",
+    "icon": "/assets/icons/items/train-ticket.png"
+  },
+  "reader-ticket": {
+    "name": "Reading Room ticket",
+    "desc": "His pass to the British Museum Reading Room.",
+    "icon": "/assets/icons/items/reader-ticket.png"
+  },
+  "annotated-morga": {
+    "name": "Annotated Morga",
+    "desc": "Morga's 1609 history with Rizal's notes; Paris, 1890.",
+    "icon": "/assets/icons/items/annotated-morga.png"
+  },
+  "la-solidaridad": {
+    "name": "La Solidaridad",
+    "desc": "The reformists' newspaper, where his essay on indolence appeared.",
+    "icon": "/assets/icons/items/la-solidaridad.png"
+  },
+  "fili-manuscript": {
+    "name": "Manuscript of the Fili",
+    "desc": "Finished in Biarritz on 29 March 1891.",
+    "icon": "/assets/icons/items/fili-manuscript.png"
+  },
+  "el-filibusterismo": {
+    "name": "El Filibusterismo",
+    "desc": "His second novel, printed in Ghent in September 1891.",
+    "icon": "/assets/icons/items/el-filibusterismo.png"
+  },
+  "calling-card": {
+    "name": "Calling card",
+    "desc": "His card as an eye doctor in Hong Kong, 1891–1892.",
+    "icon": "/assets/icons/items/calling-card.png"
+  },
+  "liga-constitution": {
+    "name": "Rules of La Liga Filipina",
+    "desc": "The society founded in Tondo on 3 July 1892.",
+    "icon": "/assets/icons/items/liga-constitution.png"
+  },
+  "mi-ultimo-adios": {
+    "name": "Mi Último Adiós",
+    "desc": "His farewell poem, hidden in a small alcohol stove.",
+    "icon": "/assets/icons/items/mi-ultimo-adios.png"
+  }
+}

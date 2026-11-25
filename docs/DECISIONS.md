@@ -13,3 +13,18 @@ One line per judgment call: date — decision — reason.
 - 2026-11-25 — Kept React Router 6 despite two moderate `npm audit` advisories (backslash open redirect in `<Link>`, SSR hydration). — SRS §8.1 picks v6; our links are fixed app paths and we do not use SSR. Revisit at M8.
 - 2026-11-25 — ESLint pinned to v9. — eslint-plugin-react and eslint-plugin-jsx-a11y do not support ESLint 10 yet.
 - 2026-11-25 — `npm test` runs Vitest only; Playwright runs with `npm run test:e2e`. — Matches the check sequence in CLAUDE.md and keeps the unit loop fast.
+- 2026-11-25 — `public/content/*.json` is now the content the team edits; `content/` keeps the original seed. `npm run convert-seed` refuses to overwrite existing files unless run with `--force`. — Re-running it by accident must not erase fact-checking work.
+- 2026-11-25 — In `regions.json`, regions are an array in tab order (Philippines, Asia, Europe, America), each with an `id`. — The seed used an object in a different order; an array makes the tab order explicit.
+- 2026-11-25 — Content JSON objects are strict: an unknown key is an error. — Catches misspelled field names, which would otherwise be silently ignored.
+- 2026-11-25 — Story length: outside 90–170 words is a warning for drafts and an error for verified stops. — Literal reading of SRS §6.2; the target stays 100–150.
+- 2026-11-25 — Quiz questions need exactly 4 options. — FR-40 says "four options each".
+- 2026-11-25 — The final stop is the one with the highest `order` (today Bagumbayan). — Lets GD-6 rules work without hard-coding an id.
+- 2026-11-25 — Extra validation beyond SRS §6.2: stop coordinates must fall inside their region map; scenes must be 384 × 216 and icons 26 × 26; region maps must match their declared size; verified stops need page numbers for print books and at least one Tier 1/2 source; sources on Scribd, SlideShare, Prezi, Course Hero, Brainly or Wikipedia are rejected. — These come from SRS §7.1, §8.6 and §14.1 and are cheap to check.
+- 2026-11-25 — A dialogue with `dramatized: false` in which a character speaks gives a warning, not an error. — SRS §6.4 requires the flag, but a documented quote may be shown as not dramatized; a person must decide.
+- 2026-11-25 — Asset paths are checked against `assets/` (the source that is copied to `public/assets/`). — Validation does not depend on copy-assets having run first.
+- 2026-11-25 — Content is validated in the browser only in development; production trusts the build-time check. Zod is loaded with a dynamic import so it is not in the production bundle. — SRS §8.3 ("validates again (dev only)") and NFR-1 bundle size.
+- 2026-11-25 — `characters.json` has an optional `portrait` crop (`left`, `top`, `width`, `height`); none is set yet. — The seed has no crops; M3 will use the SRS §5.4 default and add crops only where a sprite needs one.
+- 2026-11-25 — Preview mode (`?preview=1`) is remembered for the browser tab in sessionStorage; `?preview=0` turns it off. — Otherwise the flag would be lost on the first link click.
+- 2026-11-25 — The root route loads content with a React Router loader and never revalidates it. — Content is static; one fetch per visit.
+- 2026-11-25 — When content cannot load, the page shows "The journey could not load" with a Try again button (details only in development). — No "game over" states (GD-5); keep the message friendly.
+- 2026-11-25 — The header's Passport total now counts the stops this build may show (25 in development, 0 in a production build with no verified stops). — FR-62.

@@ -1,7 +1,10 @@
 import { render, screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
+import { realContent } from '../../test/content';
 import RegionTabs from './RegionTabs';
+
+const { regions } = realContent();
 
 function renderAt(path: string) {
   return render(
@@ -9,13 +12,13 @@ function renderAt(path: string) {
       initialEntries={[path]}
       future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
     >
-      <RegionTabs />
+      <RegionTabs regions={regions} />
     </MemoryRouter>,
   );
 }
 
 describe('RegionTabs', () => {
-  it('links to all four regions', () => {
+  it('links to every region in content, in order', () => {
     renderAt('/');
     const nav = screen.getByRole('navigation', { name: 'Regions' });
     const links = within(nav).getAllByRole('link');

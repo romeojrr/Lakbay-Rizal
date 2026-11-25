@@ -1,16 +1,14 @@
 {
   "app": {
-    "logo": "LAKBAY RIZAL"
+    "logo": "LAKBAY RIZAL",
+    "loading": "Loading the journey…",
+    "loadErrorTitle": "The journey could not load",
+    "loadErrorBody": "Check your connection, then try again.",
+    "reload": "Try again"
   },
   "nav": {
     "regions": "Regions",
     "scenes": "Scenes",
     "passport": "Passport · {done}/{total}"
-  },
-  "regions": {
-    "philippines": "Philippines",
-    "asia": "Asia",
-    "europe": "Europe",
-    "america": "America"
   }
 }

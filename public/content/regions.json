@@ -1,0 +1,70 @@
+[
+  {
+    "id": "philippines",
+    "image": "/assets/maps/philippines.png",
+    "w": 320,
+    "h": 320,
+    "lat0": 4.8,
+    "lat1": 20.2,
+    "lon0": 114.6,
+    "lon1": 130.2,
+    "label": "Philippines",
+    "years": "1861 – 1896",
+    "inset": {
+      "id": "manila-laguna",
+      "image": "/assets/maps/manila_laguna_inset.png",
+      "w": 176,
+      "h": 176,
+      "lat0": 13.95,
+      "lat1": 14.75,
+      "lon0": 120.75,
+      "lon1": 121.55,
+      "label": "Manila area"
+    }
+  },
+  {
+    "id": "asia",
+    "image": "/assets/maps/asia.png",
+    "w": 384,
+    "h": 240,
+    "lat0": 18,
+    "lat1": 40,
+    "lon0": 110,
+    "lon1": 145,
+    "label": "Asia",
+    "years": "1888 – 1892"
+  },
+  {
+    "id": "europe",
+    "image": "/assets/maps/europe.png",
+    "w": 384,
+    "h": 288,
+    "lat0": 35.5,
+    "lat1": 57,
+    "lon0": -13,
+    "lon1": 28.25,
+    "label": "Europe",
+    "years": "1882 – 1891"
+  },
+  {
+    "id": "america",
+    "image": "/assets/maps/america.png",
+    "w": 384,
+    "h": 192,
+    "lat0": 30,
+    "lat1": 46,
+    "lon0": -126,
+    "lon1": -70,
+    "label": "America",
+    "years": "1888",
+    "route": [
+      [37.77, -122.42],
+      [38.58, -121.49],
+      [39.53, -119.81],
+      [41.26, -95.94],
+      [41.88, -87.63],
+      [42.65, -73.76],
+      [40.71, -74.01]
+    ]
+  }
+]

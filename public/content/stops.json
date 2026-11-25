@@ -1,0 +1,3477 @@
+[
+  {
+    "id": "calamba-1861",
+    "order": 1,
+    "region": "philippines",
+    "dateLabel": "19 June 1861",
+    "year": 1861,
+    "place": {
+      "then": "Calamba, Laguna",
+      "today": "Calamba City, Laguna",
+      "lat": 14.2136,
+      "lon": 121.1669
+    },
+    "theme": "study",
+    "title": "Born in Calamba",
+    "teaser": "A house by the lake, and a mother who teaches",
+    "story": "José Protasio Rizal Mercado y Alonso Realonda was born on 19 June 1861 in Calamba, a farming town on the shore of Laguna de Bay. He was the seventh of eleven children of Francisco Mercado and Teodora Alonso. The family lived in a two-storey bahay na bato near the town church: stone walls below, hardwood and capiz-shell windows above. Part of the ground floor opened to the street for Doña Teodora's small businesses. His mother was his first teacher. She taught him the alphabet when he was about three and read stories to him at night. One story was about a young moth that flew too close to a lamp's flame. Rizal remembered it all his life. From the house he could see Mount Makiling, the mountain that watches over Calamba.",
+    "scene": {
+      "image": "/assets/scenes/calamba_1864.png",
+      "time": "Morning",
+      "alt": "Teodora Alonso reads to young José in front of the family bahay na bato",
+      "speakerAnchors": {
+        "teodora": {
+          "x": 60.5,
+          "y": 58
+        },
+        "jose-child": {
+          "x": 70,
+          "y": 72
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "teodora",
+          "text": "Come, José. Tonight we read the story of the young moth."
+        },
+        {
+          "speaker": "jose-child",
+          "text": "Why does the moth fly so close to the flame, Inay?"
+        },
+        {
+          "speaker": "narrator",
+          "text": "Rizal later wrote that this story stayed with him for the rest of his life."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "Who was Rizal’s first teacher?",
+        "options": [
+          {
+            "id": "a",
+            "text": "His mother, Teodora Alonso"
+          },
+          {
+            "id": "b",
+            "text": "A Jesuit priest"
+          },
+          {
+            "id": "c",
+            "text": "His brother Paciano"
+          },
+          {
+            "id": "d",
+            "text": "A teacher in Biñan"
+          }
+        ],
+        "answer": "a",
+        "hint": "Think about who read to him at home."
+      },
+      {
+        "id": "q2",
+        "prompt": "What kind of house did the family live in?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A nipa hut by the lake"
+          },
+          {
+            "id": "b",
+            "text": "A bahay na bato"
+          },
+          {
+            "id": "c",
+            "text": "A stone church"
+          },
+          {
+            "id": "d",
+            "text": "A wooden boat house"
+          }
+        ],
+        "answer": "b",
+        "hint": "Stone below, hardwood above."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_calamba.png"
+      },
+      "item": "moth-story",
+      "materials": {
+        "bamboo": 2
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "memorias",
+        "pages": ""
+      },
+      {
+        "sourceId": "reminiscences",
+        "pages": ""
+      },
+      {
+        "sourceId": "own-story",
+        "pages": "",
+        "chapter": "\"My Boyhood\" (chs. I–III, written 1878)"
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "zaide",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. IV, \"Rizal's Early Childhood\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. II, \"School-Days and First Impressions\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Seventh of eleven children",
+      "Alphabet at about age three",
+      "Source for the moth story (Rizal’s student memoirs)",
+      "House description vs the 1950 reconstruction"
+    ]
+  },
+  {
+    "id": "binan-1869",
+    "order": 2,
+    "region": "philippines",
+    "dateLabel": "1869–1870",
+    "year": 1869,
+    "place": {
+      "then": "Biñan, Laguna",
+      "today": "Biñan City, Laguna",
+      "lat": 14.34,
+      "lon": 121.08
+    },
+    "theme": "study",
+    "title": "School in Biñan",
+    "teaser": "First formal school, away from home",
+    "story": "In June 1869 Paciano took his younger brother José, then eight, to the town of Biñan to go to school. Classes were held in the house of the teacher, Maestro Justiniano Aquino Cruz, a small nipa house near the home of their aunt. Rizal later described him as tall and thin, strict, and very learned in Spanish and Latin grammar. On his first day José was teased, got into a fight with the teacher's son Pedro, and won. He was punished with the ruler more than once, but he soon led the class. An old painter, Juancho Carrera, also taught him to draw and paint. Near the end of 1870 a letter called him home, and he sailed back to Calamba on the steamer Talim. Years later he wrote about the tears he shed on leaving Calamba for Biñan.",
+    "scene": {
+      "image": "/assets/scenes/binan_1869.png",
+      "time": "Rainy afternoon",
+      "alt": "Maestro Justiniano stands with his ferule in front of three pupils, José among them holding his books, inside a nipa-house classroom while rain falls outside",
+      "speakerAnchors": {
+        "justiniano": {
+          "x": 18,
+          "y": 58
+        },
+        "jose-boy": {
+          "x": 38.5,
+          "y": 64
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "justiniano",
+          "text": "Do you know Spanish, boy? And Latin?"
+        },
+        {
+          "speaker": "jose-boy",
+          "text": "Only a little, sir."
+        },
+        {
+          "speaker": "narrator",
+          "text": "The class laughed. Within months, José was the best pupil in the room."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "Who took José to school in Biñan?",
+        "options": [
+          {
+            "id": "a",
+            "text": "His brother Paciano"
+          },
+          {
+            "id": "b",
+            "text": "His father Francisco"
+          },
+          {
+            "id": "c",
+            "text": "A Jesuit priest"
+          },
+          {
+            "id": "d",
+            "text": "His uncle José Alberto"
+          }
+        ],
+        "answer": "a",
+        "hint": "His older brother."
+      },
+      {
+        "id": "q2",
+        "prompt": "Where were the classes held?",
+        "options": [
+          {
+            "id": "a",
+            "text": "In the town church"
+          },
+          {
+            "id": "b",
+            "text": "In the teacher's own house"
+          },
+          {
+            "id": "c",
+            "text": "In a Spanish school building"
+          },
+          {
+            "id": "d",
+            "text": "In the town hall"
+          }
+        ],
+        "answer": "b",
+        "hint": "A small nipa house."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_binan.png"
+      },
+      "item": "cartilla",
+      "materials": {
+        "bamboo": 1
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "memorias",
+        "pages": ""
+      },
+      {
+        "sourceId": "reminiscences",
+        "pages": ""
+      },
+      {
+        "sourceId": "own-story",
+        "pages": "",
+        "chapter": "\"My Boyhood\" (chs. I–III, written 1878)"
+      },
+      {
+        "sourceId": "ocampo-binan",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "zaide",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. IV, \"Rizal's Early Childhood\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. II, \"School-Days and First Impressions\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Date he left Biñan: 17 Dec 1870 (Zaide, matches the Saturday) vs 1871 (Manila Bulletin) — see §14.4",
+      "Teacher's description and the fight with Pedro: confirm wording in Memorias"
+    ]
+  },
+  {
+    "id": "ateneo-1872",
+    "order": 3,
+    "region": "philippines",
+    "dateLabel": "June 1872 – March 1877",
+    "year": 1872,
+    "place": {
+      "then": "Ateneo Municipal, Calle Arzobispo, Intramuros, Manila",
+      "today": "Intramuros, Manila (the school later moved; now Ateneo de Manila University)",
+      "lat": 14.5906,
+      "lon": 120.9731
+    },
+    "theme": "study",
+    "title": "First day at the Ateneo",
+    "teaser": "A small boy, a big school, two rival \"empires\"",
+    "story": "In June 1872, eleven-year-old José went to Manila to enter the Ateneo Municipal, a school run by Jesuit priests inside the walls of Intramuros. At first the school turned him away. He had registered late, and he looked small and sickly. With help from Manuel Xerez Burgos, he was accepted. The Jesuits split each class into two rival ‘empires’, Romans and Carthaginians, who competed for the top places. José began at the bottom and rose to ‘emperor’ within a month. He studied Spanish, Latin, mathematics and the sciences, and he began writing poems. In March 1877 he finished with a Bachelor of Arts and the highest grades, called sobresaliente. Years later he said his time at the Ateneo shaped how he thought and worked.",
+    "scene": {
+      "image": "/assets/scenes/intramuros_1872.png",
+      "time": "Midday",
+      "alt": "Young José and a Jesuit teacher outside the Ateneo Municipal",
+      "speakerAnchors": {
+        "jesuit": {
+          "x": 37,
+          "y": 58
+        },
+        "jose-boy": {
+          "x": 46,
+          "y": 66
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "June 1872. The Ateneo Municipal, inside the walls of Intramuros."
+        },
+        {
+          "speaker": "jesuit",
+          "text": "You registered late, my boy, and you look very young."
+        },
+        {
+          "speaker": "jose-boy",
+          "text": "I can study as hard as anyone, Father."
+        },
+        {
+          "speaker": "narrator",
+          "text": "With help from Manuel Xerez Burgos, José is admitted."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "Who ran the Ateneo Municipal?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Dominican friars"
+          },
+          {
+            "id": "b",
+            "text": "Jesuit priests"
+          },
+          {
+            "id": "c",
+            "text": "The city government only"
+          },
+          {
+            "id": "d",
+            "text": "Rizal’s family"
+          }
+        ],
+        "answer": "b",
+        "hint": "The teacher in the scene wears a Jesuit cassock."
+      },
+      {
+        "id": "q2",
+        "prompt": "What were the two rival class groups called?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Romans and Carthaginians"
+          },
+          {
+            "id": "b",
+            "text": "Greeks and Persians"
+          },
+          {
+            "id": "c",
+            "text": "Red and Blue"
+          },
+          {
+            "id": "d",
+            "text": "Lions and Eagles"
+          }
+        ],
+        "answer": "a",
+        "hint": "Two ancient empires that fought each other."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_manila.png"
+      },
+      "item": "ateneo-medal",
+      "materials": {
+        "stone": 2
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "memorias",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "zaide",
+        "pages": ""
+      },
+      {
+        "sourceId": "fhl-ateneo",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. V, \"Jagor's Prophecy\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. III, \"First Contacts with the Enemy\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Xerez Burgos detail",
+      "\"Emperor within a month\"",
+      "Graduation date and honours",
+      "1872 appearance of the Ateneo building"
+    ]
+  },
+  {
+    "id": "ust-1877",
+    "order": 4,
+    "region": "philippines",
+    "dateLabel": "1877–1882",
+    "year": 1877,
+    "place": {
+      "then": "University of Santo Tomas, Intramuros",
+      "today": "Intramuros, Manila (UST later moved to Sampaloc)",
+      "lat": 14.592,
+      "lon": 120.975
+    },
+    "theme": "study",
+    "title": "University in Intramuros",
+    "teaser": "Philosophy and letters, then medicine",
+    "story": "In 1877 Rizal entered the University of Santo Tomas, run by Dominican friars inside the walls of Intramuros. He first took philosophy and letters, then in 1878 he moved to medicine, partly because his mother's eyes were failing. He did not enjoy the school. He later wrote that the Dominican teachers were hostile to Filipino students and that the teaching was old-fashioned. Outside class he did well. In 1879 the Liceo Artístico-Literario of Manila held a poetry contest for native and mestizo writers. Rizal, eighteen, won first prize with \"A la juventud filipina\", a poem calling the Filipino youth the \"fair hope\" of the motherland. His prize was a silver pen shaped like a feather. In May 1882 he quietly left to finish his studies in Spain.",
+    "scene": {
+      "image": "/assets/scenes/ust_1879.png",
+      "time": "Midday",
+      "alt": "Young Rizal holds his prize poem in the arcaded stone cloister of the old University of Santo Tomas, facing a Dominican friar in a white habit and black cape",
+      "speakerAnchors": {
+        "rizal-young": {
+          "x": 43.5,
+          "y": 58
+        },
+        "dominican": {
+          "x": 56,
+          "y": 58
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "Manila, 1879. The judges of the Liceo contest have read the poems."
+        },
+        {
+          "speaker": "dominican",
+          "text": "First prize, to a student of this university. A native, they say."
+        },
+        {
+          "speaker": "rizal-young",
+          "text": "I wrote it for the young people of our country."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "What did Rizal win for \"A la juventud filipina\"?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A gold medal"
+          },
+          {
+            "id": "b",
+            "text": "A silver pen shaped like a feather"
+          },
+          {
+            "id": "c",
+            "text": "A scholarship to Madrid"
+          },
+          {
+            "id": "d",
+            "text": "A painting"
+          }
+        ],
+        "answer": "b",
+        "hint": "Something a writer uses."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which religious order ran the University of Santo Tomas?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The Jesuits"
+          },
+          {
+            "id": "b",
+            "text": "The Franciscans"
+          },
+          {
+            "id": "c",
+            "text": "The Dominicans"
+          },
+          {
+            "id": "d",
+            "text": "The Augustinians"
+          }
+        ],
+        "answer": "c",
+        "hint": "Think of the friar in white and black."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_ust.png"
+      },
+      "item": "silver-pen",
+      "materials": {
+        "stone": 1
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "memorias",
+        "pages": ""
+      },
+      {
+        "sourceId": "own-story",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "zaide",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. V, \"Jagor's Prophecy\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. III, \"First Contacts with the Enemy\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Year he switched to medicine (1878) and reason",
+      "Prize: feather-shaped silver pen with gold ribbon — confirm in Memorias or Zaide"
+    ]
+  },
+  {
+    "id": "barcelona-1882",
+    "order": 5,
+    "region": "europe",
+    "dateLabel": "June–Sept 1882",
+    "year": 1882,
+    "place": {
+      "then": "Barcelona, Spain",
+      "today": "Barcelona, Spain",
+      "lat": 41.39,
+      "lon": 2.17
+    },
+    "theme": "travel",
+    "title": "Arriving in Spain",
+    "teaser": "First steps in Europe",
+    "story": "Rizal left Manila secretly on 3 May 1882. Only his brother Paciano and a few relatives knew. After a sea voyage through Singapore, the Suez Canal and Marseille, he reached Barcelona on 16 June 1882. He stayed at the Fonda de España and walked the Rambla, the city's long, tree-lined avenue. At first he thought the city ugly, but within weeks he changed his mind and came to like it. In Barcelona he wrote \"Amor Patrio\" (Love of Country), his first essay written abroad. It was published in Manila on 20 August 1882 in the newspaper Diariong Tagalog, under the pen name Laong Laan, in Spanish with a Tagalog translation by Marcelo H. del Pilar. In the autumn he moved to Madrid to study medicine.",
+    "scene": {
+      "image": "/assets/scenes/barcelona_1882.png",
+      "time": "Summer morning",
+      "alt": "Rizal in a bowler hat walks under plane trees on the Rambla in Barcelona beside a local gentleman, with five-storey houses and green shutters behind",
+      "speakerAnchors": {
+        "rizal": {
+          "x": 33.5,
+          "y": 58
+        },
+        "gentleman": {
+          "x": 43,
+          "y": 58
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "gentleman",
+          "text": "Welcome to Barcelona, señor. You have come a long way."
+        },
+        {
+          "speaker": "rizal",
+          "text": "From Manila. I am here to study, and to write about my country."
+        },
+        {
+          "speaker": "narrator",
+          "text": "His essay \"Amor Patrio\" was printed in Manila that August."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "What pen name did Rizal use for \"Amor Patrio\"?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Dimasalang"
+          },
+          {
+            "id": "b",
+            "text": "Laong Laan"
+          },
+          {
+            "id": "c",
+            "text": "Plaridel"
+          },
+          {
+            "id": "d",
+            "text": "Taga-ilog"
+          }
+        ],
+        "answer": "b",
+        "hint": "It means 'always ready'."
+      },
+      {
+        "id": "q2",
+        "prompt": "Who knew about Rizal's trip to Spain before he left?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The whole town of Calamba"
+          },
+          {
+            "id": "b",
+            "text": "The Governor-General"
+          },
+          {
+            "id": "c",
+            "text": "Only Paciano and a few relatives"
+          },
+          {
+            "id": "d",
+            "text": "His teachers at UST"
+          }
+        ],
+        "answer": "c",
+        "hint": "He left in secret."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_barcelona.png"
+      },
+      "item": "amor-patrio",
+      "materials": {
+        "tools": 1
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "reminiscences",
+        "pages": ""
+      },
+      {
+        "sourceId": "epistolario",
+        "pages": ""
+      },
+      {
+        "sourceId": "mb-barcelona",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "zaide",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. VI, \"The Period of Preparation\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. IV, \"Voices of Prophecy\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Arrival 16 June 1882 and Fonda de España (Manila Bulletin)",
+      "His first unfavourable impression of Barcelona: confirm in his letters/diary"
+    ]
+  },
+  {
+    "id": "madrid-1882",
+    "order": 6,
+    "region": "europe",
+    "dateLabel": "Sept 1882 – 1885",
+    "year": 1882,
+    "place": {
+      "then": "Universidad Central, Calle de San Bernardo, Madrid",
+      "today": "Calle de San Bernardo 49, Madrid, Spain",
+      "lat": 40.4253,
+      "lon": -3.7064
+    },
+    "theme": "study",
+    "title": "Student in Madrid",
+    "teaser": "Two degrees at once, far from home",
+    "story": "On 3 May 1882, Rizal left Manila for Spain without telling his parents; only his brother Paciano and a few relatives knew. After arriving in Barcelona, he moved to Madrid and enrolled at the Universidad Central, the country’s leading university, on Calle de San Bernardo. He took two courses at once: medicine, and philosophy and letters. He also studied painting and languages in his spare time. Money from home was often late, so he lived simply. In 1884 he finished his licentiate in medicine, and in 1885 his licentiate in philosophy and letters. In Madrid he joined other Filipino students who wanted reforms in the Philippines. At a banquet in 1884 he gave a famous toast honouring the painters Juan Luna and Félix Resurrección Hidalgo.",
+    "scene": {
+      "image": "/assets/scenes/madrid_1882.png",
+      "time": "Autumn dusk",
+      "alt": "Rizal outside the Universidad Central on Calle San Bernardo at dusk",
+      "speakerAnchors": {
+        "rizal": {
+          "x": 52,
+          "y": 58
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "Autumn 1882. Calle de San Bernardo, Madrid."
+        },
+        {
+          "speaker": "rizal",
+          "text": "Medicine by day, letters by night. Two degrees, if the money from home holds out."
+        },
+        {
+          "speaker": "narrator",
+          "text": "He finished medicine in 1884 and philosophy and letters in 1885."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "Which two courses did Rizal take at the same time in Madrid?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Law and engineering"
+          },
+          {
+            "id": "b",
+            "text": "Medicine, and philosophy and letters"
+          },
+          {
+            "id": "c",
+            "text": "Painting and music"
+          },
+          {
+            "id": "d",
+            "text": "Theology and law"
+          }
+        ],
+        "answer": "b",
+        "hint": "One for the body, one for the mind."
+      },
+      {
+        "id": "q2",
+        "prompt": "Which painters did Rizal honour in his 1884 toast?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Juan Luna and Félix Resurrección Hidalgo"
+          },
+          {
+            "id": "b",
+            "text": "Goya and Velázquez"
+          },
+          {
+            "id": "c",
+            "text": "Fernando Amorsolo and Botong Francisco"
+          },
+          {
+            "id": "d",
+            "text": "Monet and Renoir"
+          }
+        ],
+        "answer": "a",
+        "hint": "Two Filipino painters who won prizes in Madrid."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_madrid.png"
+      },
+      "item": "medicine-diploma",
+      "materials": {
+        "tools": 1
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "reminiscences",
+        "pages": ""
+      },
+      {
+        "sourceId": "epistolario",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "zaide",
+        "pages": ""
+      },
+      {
+        "sourceId": "ucm-paraninfo",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. VI, \"The Period of Preparation\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. IV, \"Voices of Prophecy\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Departure date 3 May 1882",
+      "Licentiate dates (1884, 1885)",
+      "Banquet year and honourees"
+    ]
+  },
+  {
+    "id": "paris-1885",
+    "order": 7,
+    "region": "europe",
+    "dateLabel": "Nov 1885 – Feb 1886",
+    "year": 1885,
+    "place": {
+      "then": "Paris, France",
+      "today": "Paris, France",
+      "lat": 48.86,
+      "lon": 2.35
+    },
+    "theme": "study",
+    "title": "Training as an eye doctor",
+    "teaser": "Learning eye surgery in Paris",
+    "story": "After finishing his medical studies in Madrid, Rizal went to Paris to train as an eye doctor. He chose this field because he wanted to cure his mother's failing eyesight. From November 1885 to February 1886 he worked as an assistant to Dr. Louis de Wecker, one of the leading eye surgeons in France. In the clinic he watched operations and learned to do them himself. He wrote home that he could now perform all the operations, though they needed a lot of practice. In his free time he visited Filipino friends, among them the painter Juan Luna and the Pardo de Tavera family. Paris was expensive, and he lived carefully. On 1 February 1886 he left for Germany to continue his training.",
+    "scene": {
+      "image": "/assets/scenes/paris_1885.png",
+      "time": "Winter afternoon",
+      "alt": "Rizal and the bearded, grey-haired Dr. de Wecker stand in a tall Paris clinic with an eye chart, a patient's chair, a lamp on a brass stand and a glass instrument cabinet",
+      "speakerAnchors": {
+        "rizal": {
+          "x": 37,
+          "y": 58
+        },
+        "de-wecker": {
+          "x": 46.5,
+          "y": 58
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "de-wecker",
+          "text": "Steady hands, Monsieur Rizal. The eye forgives very little."
+        },
+        {
+          "speaker": "rizal",
+          "text": "I will practise until I can do it for my mother."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "Why did Rizal choose to become an eye doctor?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It paid the most"
+          },
+          {
+            "id": "b",
+            "text": "To cure his mother's eyes"
+          },
+          {
+            "id": "c",
+            "text": "His father asked him to"
+          },
+          {
+            "id": "d",
+            "text": "It was the only course left"
+          }
+        ],
+        "answer": "b",
+        "hint": "Think of someone at home in Calamba."
+      },
+      {
+        "id": "q2",
+        "prompt": "Whose clinic did Rizal work in, in Paris?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Dr. Otto Becker"
+          },
+          {
+            "id": "b",
+            "text": "Dr. Louis de Wecker"
+          },
+          {
+            "id": "c",
+            "text": "Dr. Reinhold Rost"
+          },
+          {
+            "id": "d",
+            "text": "Dr. Maximo Viola"
+          }
+        ],
+        "answer": "b",
+        "hint": "A leading French eye surgeon."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_paris.png"
+      },
+      "item": "ophthalmoscope",
+      "materials": {
+        "tools": 1
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "epistolario",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "coates",
+        "pages": ""
+      },
+      {
+        "sourceId": "inq-why-return",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. VI, \"The Period of Preparation\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. IV, \"Voices of Prophecy\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Months with de Wecker (Nov 1885–Feb 1886)",
+      "Quote about performing all operations: confirm in the letter to his family"
+    ]
+  },
+  {
+    "id": "heidelberg-1886",
+    "order": 8,
+    "region": "europe",
+    "dateLabel": "February–August 1886",
+    "year": 1886,
+    "place": {
+      "then": "Heidelberg, Grand Duchy of Baden",
+      "today": "Heidelberg, Germany",
+      "lat": 49.4,
+      "lon": 8.67
+    },
+    "theme": "study",
+    "title": "Spring in Heidelberg",
+    "teaser": "An eye clinic and a poem to flowers",
+    "story": "Rizal arrived in Heidelberg, an old university town on the Neckar River, on 3 February 1886. He worked at the university eye clinic under Professor Otto Becker and attended lectures there. Because he already held a Spanish medical licence, he was allowed to observe and assist even though he was not enrolled. German students liked him, partly because he played chess well. In spring, flowers bloomed along the river, among them his favourite, the light-blue forget-me-not. Homesick, he wrote the poem \"A las flores de Heidelberg\" (To the Flowers of Heidelberg), asking the flowers to carry his love home. On 31 July 1886, from Heidelberg, he wrote his first letter to Ferdinand Blumentritt, an Austrian teacher who studied the Philippines. It began a friendship that lasted the rest of his life.",
+    "scene": {
+      "image": "/assets/scenes/heidelberg_1886.png",
+      "time": "Spring morning",
+      "alt": "Rizal stands among forget-me-nots on the Neckar riverbank, with the Old Bridge, its twin-towered gate, the old town and the red sandstone castle ruin on the wooded hill behind",
+      "speakerAnchors": {
+        "rizal": {
+          "x": 43.5,
+          "y": 58
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": false,
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "Spring 1886. Forget-me-nots bloom along the Neckar."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Missing Calamba, Rizal wrote a poem to the flowers of Heidelberg."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "Which flower was Rizal's favourite in Heidelberg?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The rose"
+          },
+          {
+            "id": "b",
+            "text": "The tulip"
+          },
+          {
+            "id": "c",
+            "text": "The forget-me-not"
+          },
+          {
+            "id": "d",
+            "text": "The sampaguita"
+          }
+        ],
+        "answer": "c",
+        "hint": "Small and light blue."
+      },
+      {
+        "id": "q2",
+        "prompt": "Who was Rizal's teacher at the Heidelberg eye clinic?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Professor Otto Becker"
+          },
+          {
+            "id": "b",
+            "text": "Dr. Louis de Wecker"
+          },
+          {
+            "id": "c",
+            "text": "Pastor Karl Ullmer"
+          },
+          {
+            "id": "d",
+            "text": "Professor Blumentritt"
+          }
+        ],
+        "answer": "a",
+        "hint": "A German professor."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_heidelberg.png"
+      },
+      "item": "forget-me-not",
+      "materials": {
+        "bamboo": 1
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "rizal-blumentritt",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "hu-berlin-2011",
+        "pages": ""
+      },
+      {
+        "sourceId": "inq-heidelberg",
+        "pages": ""
+      },
+      {
+        "sourceId": "wilhelmsfeld-flyer",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. VI, \"The Period of Preparation\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. IV, \"Voices of Prophecy\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Poem date: 22 April 1886 (most sources) vs 12 April — see §14.4",
+      "First letter to Blumentritt dated Heidelberg, 31 July 1886 (Correspondence, letter 1)"
+    ]
+  },
+  {
+    "id": "wilhelmsfeld-1886",
+    "order": 9,
+    "region": "europe",
+    "dateLabel": "April–June 1886",
+    "year": 1886,
+    "place": {
+      "then": "Wilhelmsfeld, Baden",
+      "today": "Wilhelmsfeld, Germany",
+      "lat": 49.47,
+      "lon": 8.75
+    },
+    "theme": "travel",
+    "title": "A village in the hills",
+    "teaser": "Summer with a pastor’s family",
+    "story": "In the spring of 1886 Rizal went to stay in Wilhelmsfeld, a village in the wooded hills above Heidelberg. He lived for about three months in the vicarage of the Protestant pastor Karl Ullmer, with the pastor's wife and their children Etta and Fritz. Rizal was a Catholic, but he and the pastor became close friends. They talked often about religion and found they agreed on many things. The quiet village helped him work. Here he wrote the last chapters of his first novel, Noli Me Tangere. His German also improved. On 25 June 1886 he returned to Heidelberg. Today the village remembers him with a park named after him.",
+    "scene": {
+      "image": "/assets/scenes/wilhelmsfeld_1886.png",
+      "time": "Summer morning",
+      "alt": "Rizal in a straw hat greets Pastor Karl Ullmer, in a black frock coat with a book, at the garden gate of a half-timbered vicarage with a white village church and pine woods behind",
+      "speakerAnchors": {
+        "rizal": {
+          "x": 41,
+          "y": 58
+        },
+        "ullmer": {
+          "x": 51.5,
+          "y": 58
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "ullmer",
+          "text": "You are a Catholic and I am a Lutheran, Herr Rizal, yet we agree on most things."
+        },
+        {
+          "speaker": "rizal",
+          "text": "Then the quarrel is smaller than people think."
+        },
+        {
+          "speaker": "narrator",
+          "text": "In this house he wrote the last chapters of the Noli."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "What did Rizal finish writing in Wilhelmsfeld?",
+        "options": [
+          {
+            "id": "a",
+            "text": "El Filibusterismo"
+          },
+          {
+            "id": "b",
+            "text": "The last chapters of Noli Me Tangere"
+          },
+          {
+            "id": "c",
+            "text": "Mi Último Adiós"
+          },
+          {
+            "id": "d",
+            "text": "A la juventud filipina"
+          }
+        ],
+        "answer": "b",
+        "hint": "His first novel."
+      },
+      {
+        "id": "q2",
+        "prompt": "Who was Rizal's host in Wilhelmsfeld?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A Catholic bishop"
+          },
+          {
+            "id": "b",
+            "text": "Pastor Karl Ullmer"
+          },
+          {
+            "id": "c",
+            "text": "Professor Otto Becker"
+          },
+          {
+            "id": "d",
+            "text": "The town mayor"
+          }
+        ],
+        "answer": "b",
+        "hint": "A Protestant pastor."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_wilhelmsfeld.png"
+      },
+      "item": "noli-chapters",
+      "materials": {
+        "bamboo": 1,
+        "stone": 1
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "hu-berlin-2011",
+        "pages": ""
+      },
+      {
+        "sourceId": "inq-wilhelmsfeld",
+        "pages": ""
+      },
+      {
+        "sourceId": "wilhelmsfeld-flyer",
+        "pages": ""
+      },
+      {
+        "sourceId": "zaide",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. VI, \"The Period of Preparation\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Exact months of the stay (about three months; left 25 June 1886)",
+      "Names of Ullmer's children (Etta, Fritz)",
+      "Rizal park and memorials in Wilhelmsfeld (municipal flyer)"
+    ]
+  },
+  {
+    "id": "leipzig-1886",
+    "order": 10,
+    "region": "europe",
+    "dateLabel": "August–October 1886",
+    "year": 1886,
+    "place": {
+      "then": "Leipzig, Kingdom of Saxony",
+      "today": "Leipzig, Germany",
+      "lat": 51.34,
+      "lon": 12.37
+    },
+    "theme": "writing",
+    "title": "Leipzig",
+    "teaser": "Translating and studying",
+    "story": "Rizal arrived in Leipzig, a city of books and printers, on 14 August 1886. He attended lectures at the University of Leipzig and made friends with scholars there. Life was cheaper than in Heidelberg, and he earned some money correcting proofs for a publishing house. He also worked on translations into Tagalog. One was Friedrich Schiller's play Wilhelm Tell, the story of a Swiss hero who stood up to unjust rulers, so that Filipinos could read about a fight for freedom. Another was a set of fairy tales by Hans Christian Andersen, for his nieces and nephews. Historians do not fully agree on where each translation was started and finished. On 29 October 1886 he left Leipzig for Dresden, and then went on to Berlin.",
+    "scene": {
+      "image": "/assets/scenes/leipzig_1886.png",
+      "time": "Autumn evening",
+      "alt": "Rizal, in shirtsleeves with a book, stands in his rented room by a writing table with a lamp and manuscript pages; a tiled stove on one side and Leipzig's Old Town Hall tower through the window",
+      "speakerAnchors": {
+        "rizal": {
+          "x": 69.5,
+          "y": 58
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "rizal",
+          "text": "Wilhelm Tell, in Tagalog. Our people should know this story too."
+        },
+        {
+          "speaker": "narrator",
+          "text": "He also put Andersen's fairy tales into Tagalog for the children at home."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "Which play did Rizal translate into Tagalog?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Hamlet"
+          },
+          {
+            "id": "b",
+            "text": "Wilhelm Tell"
+          },
+          {
+            "id": "c",
+            "text": "Don Quixote"
+          },
+          {
+            "id": "d",
+            "text": "Faust"
+          }
+        ],
+        "answer": "b",
+        "hint": "A Swiss hero with a crossbow."
+      },
+      {
+        "id": "q2",
+        "prompt": "Whose fairy tales did Rizal translate for his nieces and nephews?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The Brothers Grimm"
+          },
+          {
+            "id": "b",
+            "text": "Aesop"
+          },
+          {
+            "id": "c",
+            "text": "Hans Christian Andersen"
+          },
+          {
+            "id": "d",
+            "text": "Charles Perrault"
+          }
+        ],
+        "answer": "c",
+        "hint": "The Danish storyteller."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_leipzig.png"
+      },
+      "item": "wilhelm-tell",
+      "materials": {
+        "tools": 1
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "rizal-blumentritt",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "zaide",
+        "pages": ""
+      },
+      {
+        "sourceId": "guillermo-2009",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. VI, \"The Period of Preparation\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. IV, \"Voices of Prophecy\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Where the Tell translation was done (Leipzig vs Wilhelmsfeld/Heidelberg) — see §14.4",
+      "Proofreading job: confirm in a letter"
+    ]
+  },
+  {
+    "id": "berlin-1887",
+    "order": 11,
+    "region": "europe",
+    "dateLabel": "Nov 1886 – May 1887",
+    "year": 1887,
+    "place": {
+      "then": "Berlin, Kingdom of Prussia (German Empire)",
+      "today": "Berlin, Germany",
+      "lat": 52.52,
+      "lon": 13.405
+    },
+    "theme": "writing",
+    "title": "The Noli is printed",
+    "teaser": "His first novel gets printed",
+    "story": "Rizal arrived in Berlin in late 1886 to continue his medical training and finish a novel he had been writing for years: Noli Me Tangere. The book showed the abuses Filipinos suffered under Spanish rule, through the story of Crisóstomo Ibarra. By the time it was done, Rizal had almost no money left and nearly gave up. Then his friend Dr. Maximo Viola, a fellow Filipino from Bulacan, came to visit. Viola lent him the money to print it. In March 1887, the first 2,000 copies came off the press in Berlin. Rizal sent copies to friends, including Ferdinand Blumentritt. The novel spread quietly to the Philippines, where the Spanish authorities banned it. It made Rizal famous, and a target.",
+    "scene": {
+      "image": "/assets/scenes/berlin_1887.png",
+      "time": "Winter daylight",
+      "alt": "Rizal and Maximo Viola inside a Berlin print works with a cylinder press",
+      "speakerAnchors": {
+        "rizal": {
+          "x": 24.5,
+          "y": 56
+        },
+        "viola": {
+          "x": 35.5,
+          "y": 56
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "viola",
+          "text": "José! I heard you have no money left to print your novel. Let me lend it to you."
+        },
+        {
+          "speaker": "rizal",
+          "text": "Thank you, my friend. This book will show the world how Filipinos suffer under Spanish rule."
+        },
+        {
+          "speaker": "narrator",
+          "text": "March 1887: 2,000 copies of Noli Me Tangere are printed here in Berlin."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "Who lent Rizal the money to print Noli Me Tangere?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Ferdinand Blumentritt"
+          },
+          {
+            "id": "b",
+            "text": "Maximo Viola"
+          },
+          {
+            "id": "c",
+            "text": "Marcelo H. del Pilar"
+          },
+          {
+            "id": "d",
+            "text": "Graciano López Jaena"
+          }
+        ],
+        "answer": "b",
+        "hint": "He was a doctor friend from Bulacan who visited Rizal in Berlin."
+      },
+      {
+        "id": "q2",
+        "prompt": "How many copies were in the first printing?",
+        "options": [
+          {
+            "id": "a",
+            "text": "200"
+          },
+          {
+            "id": "b",
+            "text": "500"
+          },
+          {
+            "id": "c",
+            "text": "2,000"
+          },
+          {
+            "id": "d",
+            "text": "20,000"
+          }
+        ],
+        "answer": "c",
+        "hint": "Read the last line of the dialogue."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_berlin.png"
+      },
+      "item": "noli-me-tangere",
+      "materials": {
+        "bamboo": 2,
+        "stone": 2
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "rizal-blumentritt",
+        "pages": ""
+      },
+      {
+        "sourceId": "noli",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "zaide",
+        "pages": ""
+      },
+      {
+        "sourceId": "nhcp-viola",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. VI, \"The Period of Preparation\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. VII, \"Again in the Philippines\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Arrival month in Berlin and when Viola arrived",
+      "Exact day in March 1887 the Noli came off the press (21, 27 or 29 — SRS §14.4)"
+    ]
+  },
+  {
+    "id": "leitmeritz-1887",
+    "order": 12,
+    "region": "europe",
+    "dateLabel": "13–17 May 1887",
+    "year": 1887,
+    "place": {
+      "then": "Leitmeritz, Bohemia (Austria-Hungary)",
+      "today": "Litoměřice, Czech Republic",
+      "lat": 50.53,
+      "lon": 14.13
+    },
+    "theme": "travel",
+    "title": "Meeting Blumentritt",
+    "teaser": "Pen pals meet at last",
+    "story": "Rizal and Ferdinand Blumentritt had written to each other for almost a year, but they had never met. In May 1887, after the Noli was printed, Rizal and his friend Maximo Viola set out on a tour of Europe. On 13 May 1887 their train reached Leitmeritz in Bohemia, then part of Austria-Hungary, and Blumentritt was waiting at the station. He helped them find a room at the Hotel Krebs and took them home to meet his wife Rosa and their children. For four days he showed them his town, its beer gardens and its old square. On 16 May 1887 Rizal and Viola signed the city's memorial book after meeting the mayor. The two friends met only this once, but they wrote to each other until the night before Rizal died.",
+    "scene": {
+      "image": "/assets/scenes/leitmeritz_1887.png",
+      "time": "Spring afternoon",
+      "alt": "Blumentritt, bearded and in glasses, welcomes Rizal and Maximo Viola in Leitmeritz's market square, with arcaded baroque houses, a town hall with a clock and a column behind them",
+      "speakerAnchors": {
+        "viola": {
+          "x": 29.5,
+          "y": 58
+        },
+        "rizal": {
+          "x": 40.5,
+          "y": 58
+        },
+        "blumentritt": {
+          "x": 51.5,
+          "y": 58
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "blumentritt",
+          "text": "Herr Rizal! After all our letters, here you are."
+        },
+        {
+          "speaker": "rizal",
+          "text": "At last, my friend. This is Maximo Viola, who paid for the Noli."
+        },
+        {
+          "speaker": "viola",
+          "text": "We came all the way from Berlin to meet you, Professor."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "How did Rizal and Blumentritt first get to know each other?",
+        "options": [
+          {
+            "id": "a",
+            "text": "At university in Madrid"
+          },
+          {
+            "id": "b",
+            "text": "Through letters"
+          },
+          {
+            "id": "c",
+            "text": "On a ship to Europe"
+          },
+          {
+            "id": "d",
+            "text": "In Hong Kong"
+          }
+        ],
+        "answer": "b",
+        "hint": "Pen and paper."
+      },
+      {
+        "id": "q2",
+        "prompt": "Who travelled with Rizal to Leitmeritz?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Juan Luna"
+          },
+          {
+            "id": "b",
+            "text": "Marcelo H. del Pilar"
+          },
+          {
+            "id": "c",
+            "text": "Maximo Viola"
+          },
+          {
+            "id": "d",
+            "text": "Paciano Rizal"
+          }
+        ],
+        "answer": "c",
+        "hint": "The friend who paid for the Noli."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_leitmeritz.png"
+      },
+      "item": "memorial-book",
+      "materials": {
+        "stone": 2
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "rizal-blumentritt",
+        "pages": ""
+      },
+      {
+        "sourceId": "nhcp-viola",
+        "pages": ""
+      },
+      {
+        "sourceId": "mb-litomerice",
+        "pages": ""
+      },
+      {
+        "sourceId": "inq-litomerice",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. VI, \"The Period of Preparation\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. VII, \"Again in the Philippines\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Departure 16 vs 17 May 1887 — see §14.4",
+      "Memorial book signatures dated 16 May 1887 (Inquirer Lifestyle photo)"
+    ]
+  },
+  {
+    "id": "calamba-1887",
+    "order": 13,
+    "region": "philippines",
+    "dateLabel": "Aug 1887 – Feb 1888",
+    "year": 1887,
+    "place": {
+      "then": "Calamba, Laguna",
+      "today": "Calamba City, Laguna",
+      "lat": 14.21,
+      "lon": 121.17
+    },
+    "theme": "cause",
+    "title": "Home again",
+    "teaser": "Trouble over the town’s lands",
+    "story": "Rizal came home in August 1887 after five years in Europe. His ship reached Manila on the night of 5 August, and on 8 August he was back in Calamba. He turned the ground floor of the family house into a clinic. His first patient was his mother, whose eyes were clouded by cataracts. News spread that a doctor from Germany had arrived, and patients came from far away. People called him \"Doctor Uliman\", from alemán, German. But the Noli had angered powerful people. The Governor-General called him to Malacañang and gave him a Spanish officer as a bodyguard. Rizal also helped the farmers of Calamba prepare a report on their troubles with the Dominican estate that owned their land. To protect his family, he left again on 3 February 1888.",
+    "scene": {
+      "image": "/assets/scenes/calamba_1887.png",
+      "time": "Morning",
+      "alt": "Rizal, back from Europe, stands with his mother Doña Teodora in the clinic on the ground floor of the family house; a farmer in a salakot waits at the open door with cane fields and Mount Makiling outside",
+      "speakerAnchors": {
+        "teodora-older": {
+          "x": 35,
+          "y": 58
+        },
+        "rizal": {
+          "x": 44,
+          "y": 58
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "teodora-older",
+          "text": "José, I can hardly see your face."
+        },
+        {
+          "speaker": "rizal",
+          "text": "That is why I studied the eyes, Inay. You will be my first patient."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Soon the sick came from all over Luzon to see \"Doctor Uliman\"."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "Why did people call Rizal \"Doctor Uliman\"?",
+        "options": [
+          {
+            "id": "a",
+            "text": "He was very old"
+          },
+          {
+            "id": "b",
+            "text": "He came from Germany"
+          },
+          {
+            "id": "c",
+            "text": "He was from Ulim town"
+          },
+          {
+            "id": "d",
+            "text": "He was a ship's doctor"
+          }
+        ],
+        "answer": "b",
+        "hint": "Alemán means German."
+      },
+      {
+        "id": "q2",
+        "prompt": "Who was Rizal's first patient in his Calamba clinic?",
+        "options": [
+          {
+            "id": "a",
+            "text": "His father"
+          },
+          {
+            "id": "b",
+            "text": "Paciano"
+          },
+          {
+            "id": "c",
+            "text": "His mother"
+          },
+          {
+            "id": "d",
+            "text": "The parish priest"
+          }
+        ],
+        "answer": "c",
+        "hint": "Her eyes were clouded."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_calamba1887.png"
+      },
+      "item": "doctor-bag",
+      "materials": {
+        "bamboo": 2
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "epistolario",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "ocampo-agrarian",
+        "pages": ""
+      },
+      {
+        "sourceId": "inq-why-return",
+        "pages": ""
+      },
+      {
+        "sourceId": "zaide",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. VII, \"The Period of Propaganda\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. VII, \"Again in the Philippines\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Did he operate on his mother in 1887, or were the cataracts not yet ripe? Sources differ — see §14.4",
+      "Arrival in Manila 5 Aug 1887 (night) and Calamba 8 Aug"
+    ]
+  },
+  {
+    "id": "japan-1888",
+    "order": 14,
+    "region": "asia",
+    "dateLabel": "28 Feb – 13 Apr 1888",
+    "year": 1888,
+    "place": {
+      "then": "Tokyo, Japan",
+      "today": "Tokyo, Japan",
+      "lat": 35.68,
+      "lon": 139.69
+    },
+    "theme": "travel",
+    "title": "Spring in Japan",
+    "teaser": "Weeks in Tokyo",
+    "story": "Rizal reached Yokohama on 28 February 1888 and went on to Tokyo. The Spanish Legation in Azabu invited him to stay as its guest, which also let the Spanish keep an eye on him. He stayed about six weeks. He studied the Japanese language and learned enough to get by, watched kabuki theatre, and filled a notebook with sketches. He admired how clean and honest the country was, but disliked seeing men pull other people in rickshaws. He became close to Usui Seiko, called O-Sei-san, who showed him the city and helped him with the language. He thought for a while of staying, but his work for his country came first. On 13 April 1888 he sailed from Yokohama on the steamer Belgic, bound for America.",
+    "scene": {
+      "image": "/assets/scenes/tokyo_1888.png",
+      "time": "Spring afternoon",
+      "alt": "Rizal in a bowler hat walks with O-Sei-san in a blue kimono along a canal lined with cherry trees in bloom, past a white wall, a tiled gate, a stone lantern and a red arched bridge",
+      "speakerAnchors": {
+        "rizal": {
+          "x": 45,
+          "y": 58
+        },
+        "seiko": {
+          "x": 55,
+          "y": 58
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "seiko",
+          "text": "This word means 'thank you'. Try it: arigatō."
+        },
+        {
+          "speaker": "rizal",
+          "text": "Arigatō. You are a patient teacher."
+        },
+        {
+          "speaker": "narrator",
+          "text": "In April he sailed for America. He wrote that he would never forget Japan."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "Where did Rizal stay in Tokyo?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A Buddhist temple"
+          },
+          {
+            "id": "b",
+            "text": "The Spanish Legation"
+          },
+          {
+            "id": "c",
+            "text": "A Filipino merchant's house"
+          },
+          {
+            "id": "d",
+            "text": "A hotel in Yokohama"
+          }
+        ],
+        "answer": "b",
+        "hint": "The office of Spain's diplomats."
+      },
+      {
+        "id": "q2",
+        "prompt": "What did Rizal dislike in Japan?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The food"
+          },
+          {
+            "id": "b",
+            "text": "The cold spring"
+          },
+          {
+            "id": "c",
+            "text": "Men pulling people in rickshaws"
+          },
+          {
+            "id": "d",
+            "text": "The trains"
+          }
+        ],
+        "answer": "c",
+        "hint": "A kind of transport."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_japan.png"
+      },
+      "item": "sakura-sprig",
+      "materials": {
+        "stone": 1
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "reminiscences",
+        "pages": ""
+      },
+      {
+        "sourceId": "ocampo-japan",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "coates",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. VII, \"The Period of Propaganda\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. VII, \"Again in the Philippines\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "How much Japanese he learned and kabuki/judo details: confirm in his diary (Reminiscences)",
+      "Seiko's role as guide and interpreter"
+    ]
+  },
+  {
+    "id": "usa-1888",
+    "order": 15,
+    "region": "america",
+    "dateLabel": "28 Apr – 16 May 1888",
+    "year": 1888,
+    "place": {
+      "then": "San Francisco to New York, USA",
+      "today": "USA",
+      "lat": 37.77,
+      "lon": -122.42
+    },
+    "theme": "travel",
+    "title": "Across America",
+    "teaser": "Coast to coast by train",
+    "story": "The Belgic reached San Francisco on 28 April 1888, but the passengers were not allowed to land. The ship was held in quarantine because of a smallpox scare, though no one on board was sick. Rizal suspected the real reason was politics: there were hundreds of Chinese workers on board, and the United States was then passing laws to keep Chinese workers out. He landed on 4 May and stayed two days at the Palace Hotel. On 6 May he took the ferry to Oakland and boarded a train across the continent, through Sacramento, Reno, Omaha, Chicago and Albany. He reached New York on 13 May. He admired America's size and wealth but wrote that it did not give equal freedom to people of all races. On 16 May he sailed for Liverpool on the City of Rome.",
+    "scene": {
+      "image": "/assets/scenes/usa_1888.png",
+      "time": "Morning",
+      "alt": "Rizal in an overcoat and bowler hat stands on a wooden station platform in Nevada beside his travel trunk, with a steam locomotive, a passenger car, a depot, a water tank and the snowy Sierra behind",
+      "speakerAnchors": {
+        "rizal": {
+          "x": 52,
+          "y": 58
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "Six days of quarantine in San Francisco Bay, then a train across a whole continent."
+        },
+        {
+          "speaker": "rizal",
+          "text": "A great country, rich and new. But is it free for everyone?"
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "Why was Rizal kept on the ship at San Francisco?",
+        "options": [
+          {
+            "id": "a",
+            "text": "He had no passport"
+          },
+          {
+            "id": "b",
+            "text": "The ship was placed in quarantine"
+          },
+          {
+            "id": "c",
+            "text": "There was a storm"
+          },
+          {
+            "id": "d",
+            "text": "The port was closed on Sundays"
+          }
+        ],
+        "answer": "b",
+        "hint": "A health rule."
+      },
+      {
+        "id": "q2",
+        "prompt": "How did Rizal cross the United States?",
+        "options": [
+          {
+            "id": "a",
+            "text": "By stagecoach"
+          },
+          {
+            "id": "b",
+            "text": "By ship around South America"
+          },
+          {
+            "id": "c",
+            "text": "By train"
+          },
+          {
+            "id": "d",
+            "text": "On horseback"
+          }
+        ],
+        "answer": "c",
+        "hint": "Steam and rails."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_usa.png"
+      },
+      "item": "train-ticket",
+      "materials": {
+        "tools": 1
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "reminiscences",
+        "pages": ""
+      },
+      {
+        "sourceId": "ocampo-us",
+        "pages": ""
+      },
+      {
+        "sourceId": "inq-quarantine",
+        "pages": ""
+      },
+      {
+        "sourceId": "foundsf-sobredo",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. VII, \"The Period of Propaganda\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. VII, \"Again in the Philippines\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Length of quarantine: six vs seven days — see §14.4",
+      "Reason given for quarantine (smallpox vs cholera) — use the letter Sobredo quotes"
+    ]
+  },
+  {
+    "id": "london-1888",
+    "order": 16,
+    "region": "europe",
+    "dateLabel": "May 1888 – March 1889",
+    "year": 1888,
+    "place": {
+      "then": "London, England",
+      "today": "London, United Kingdom",
+      "lat": 51.51,
+      "lon": -0.13
+    },
+    "theme": "writing",
+    "title": "The British Museum",
+    "teaser": "Annotating an old history of the islands",
+    "story": "Rizal arrived in London in late May 1888 and stayed for most of a year. He rented two rooms from the Beckett family at 37 Chalcot Crescent, Primrose Hill. A blue plaque on the house remembers him today. He came to London for one reason: the British Museum. Its Reading Room, under a great dome, held rare books about the Philippines that he could not find elsewhere. Day after day he copied by hand a history of the islands written in 1609 by Antonio de Morga, a Spanish official. He added his own notes to show that Filipinos had a culture, trade and writing before the Spanish arrived. In March 1889 he moved to Paris, where the book would be published.",
+    "scene": {
+      "image": "/assets/scenes/london_1888.png",
+      "time": "Winter day",
+      "alt": "Rizal stands at a reading desk in the British Museum Reading Room, with Morga's old book open beside his handwritten copy, tiers of curved bookcases and the great dome with its windows above",
+      "speakerAnchors": {
+        "rizal": {
+          "x": 51.5,
+          "y": 58
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "The British Museum Reading Room, winter 1888."
+        },
+        {
+          "speaker": "rizal",
+          "text": "Morga wrote this in 1609. If I copy it and add notes, our people can see who we were before."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "Why did Rizal go to London?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To study English law"
+          },
+          {
+            "id": "b",
+            "text": "To read rare books at the British Museum"
+          },
+          {
+            "id": "c",
+            "text": "To meet the Queen"
+          },
+          {
+            "id": "d",
+            "text": "To print the Noli"
+          }
+        ],
+        "answer": "b",
+        "hint": "A famous reading room."
+      },
+      {
+        "id": "q2",
+        "prompt": "Whose old history of the Philippines did Rizal copy and annotate?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Antonio de Morga"
+          },
+          {
+            "id": "b",
+            "text": "Ferdinand Magellan"
+          },
+          {
+            "id": "c",
+            "text": "Miguel López de Legazpi"
+          },
+          {
+            "id": "d",
+            "text": "José Burgos"
+          }
+        ],
+        "answer": "a",
+        "hint": "Written in 1609."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_london.png"
+      },
+      "item": "reader-ticket",
+      "materials": {
+        "stone": 1
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "morga-1890",
+        "pages": ""
+      },
+      {
+        "sourceId": "rizal-blumentritt",
+        "pages": ""
+      },
+      {
+        "sourceId": "eh-plaque",
+        "pages": ""
+      },
+      {
+        "sourceId": "mb-morga",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. VII, \"The Period of Propaganda\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. VII, \"Again in the Philippines\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Dates of arrival (late May 1888) and departure (March 1889)",
+      "Reader's admission at the British Museum: confirm the register entry"
+    ]
+  },
+  {
+    "id": "paris-1889",
+    "order": 17,
+    "region": "europe",
+    "dateLabel": "1889–1890",
+    "year": 1889,
+    "place": {
+      "then": "Paris, France",
+      "today": "Paris, France",
+      "lat": 48.86,
+      "lon": 2.35
+    },
+    "theme": "writing",
+    "title": "Paris, 1889",
+    "teaser": "The annotated Morga comes out",
+    "story": "Rizal moved to Paris in March 1889, the year of the Exposition Universelle, a world's fair held from May to October. Its star was the brand-new Eiffel Tower. Rizal gathered his Filipino friends in Paris into a club. They first called it the Kidlat Club, because it would last only as long as the fair, like lightning. Then, after seeing Native Americans riding proudly in Buffalo Bill's show, they renamed themselves the Indios Bravos, the Brave Indios. Spaniards used 'indio' as an insult; Rizal wanted his friends to wear it with pride and to excel in study and sport. He also finished his annotated edition of Morga's history. It was printed in Paris by Garnier Hermanos in 1890.",
+    "scene": {
+      "image": "/assets/scenes/paris_1889.png",
+      "time": "Summer afternoon",
+      "alt": "Rizal in a straw boater walks with the painter Juan Luna on a gravel walk at the 1889 Paris world's fair, with the new Eiffel Tower, a domed exhibition palace with flags, crowds and chestnut trees",
+      "speakerAnchors": {
+        "rizal": {
+          "x": 43.5,
+          "y": 58
+        },
+        "luna": {
+          "x": 53.5,
+          "y": 58
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "luna",
+          "text": "They call us indios as an insult, Pepe."
+        },
+        {
+          "speaker": "rizal",
+          "text": "Then let us be Indios Bravos, and make them change what the word means."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "Why was the first club called \"Kidlat\"?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It met during storms"
+          },
+          {
+            "id": "b",
+            "text": "It would last only as long as the fair"
+          },
+          {
+            "id": "c",
+            "text": "Its members were fast runners"
+          },
+          {
+            "id": "d",
+            "text": "It was named after a ship"
+          }
+        ],
+        "answer": "b",
+        "hint": "Kidlat means lightning."
+      },
+      {
+        "id": "q2",
+        "prompt": "Where was Rizal's annotated Morga printed?",
+        "options": [
+          {
+            "id": "a",
+            "text": "London"
+          },
+          {
+            "id": "b",
+            "text": "Madrid"
+          },
+          {
+            "id": "c",
+            "text": "Paris"
+          },
+          {
+            "id": "d",
+            "text": "Manila"
+          }
+        ],
+        "answer": "c",
+        "hint": "The city of the world's fair."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_paris1889.png"
+      },
+      "item": "annotated-morga",
+      "materials": {
+        "tools": 1
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "morga-1890",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "hu-berlin-2011",
+        "pages": ""
+      },
+      {
+        "sourceId": "zaide",
+        "pages": ""
+      },
+      {
+        "sourceId": "gma-paris",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. VII, \"The Period of Propaganda\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. VII (Paris, Juan Luna) and ch. X (the 1889 Exposition)"
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Kidlat Club founded 19 March 1889 (letter to Blumentritt)",
+      "Indios Bravos story: Alejandrino's memoir La Senda del Sacrificio (1949)"
+    ]
+  },
+  {
+    "id": "brussels-1890",
+    "order": 18,
+    "region": "europe",
+    "dateLabel": "1890",
+    "year": 1890,
+    "place": {
+      "then": "Brussels, Belgium",
+      "today": "Brussels, Belgium",
+      "lat": 50.85,
+      "lon": 4.35
+    },
+    "theme": "writing",
+    "title": "Brussels",
+    "teaser": "Writing the second novel",
+    "story": "Paris was costly and full of parties, so early in 1890 Rizal moved to Brussels to save money and write. He lodged in a boarding house run by two sisters, Suzanne and Marie Jacoby, at 38 Rue Philippe de Champagne. There he worked on his second novel, El Filibusterismo, and wrote articles for La Solidaridad, the Filipino reformists' newspaper. His longest essay, \"Sobre la indolencia de los filipinos\" (On the Indolence of the Filipinos), appeared in five parts from July to September 1890. In it he argued that Filipinos were not lazy by nature, and that the troubles of colonial rule had taught them to stop working hard. That year brought bad news from home: the estate dispute in Calamba was going against his family.",
+    "scene": {
+      "image": "/assets/scenes/brussels_1890.png",
+      "time": "Winter evening",
+      "alt": "Rizal in shirtsleeves holds a page of his manuscript in a lamp-lit boarding-house room with flowered wallpaper, a writing desk, a washstand and an iron stove, while snow falls on Brussels gables outside",
+      "speakerAnchors": {
+        "rizal": {
+          "x": 40.5,
+          "y": 58
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "A boarding house in Brussels. The second novel grows page by page."
+        },
+        {
+          "speaker": "rizal",
+          "text": "They say we are lazy. I will show why a people stops working when its work is taken from it."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "Why did Rizal move from Paris to Brussels?",
+        "options": [
+          {
+            "id": "a",
+            "text": "To study law"
+          },
+          {
+            "id": "b",
+            "text": "It was cheaper and quieter for writing"
+          },
+          {
+            "id": "c",
+            "text": "He was expelled from France"
+          },
+          {
+            "id": "d",
+            "text": "To open a clinic"
+          }
+        ],
+        "answer": "b",
+        "hint": "Money and peace."
+      },
+      {
+        "id": "q2",
+        "prompt": "What did Rizal argue in \"On the Indolence of the Filipinos\"?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Filipinos are lazy by nature"
+          },
+          {
+            "id": "b",
+            "text": "Colonial conditions, not nature, made people stop working hard"
+          },
+          {
+            "id": "c",
+            "text": "Farming should be abandoned"
+          },
+          {
+            "id": "d",
+            "text": "Spain should leave at once"
+          }
+        ],
+        "answer": "b",
+        "hint": "Causes, not nature."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_brussels.png"
+      },
+      "item": "la-solidaridad",
+      "materials": {
+        "stone": 1
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "epistolario",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "zaide",
+        "pages": ""
+      },
+      {
+        "sourceId": "inq-belgium",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. VII, \"The Period of Propaganda\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. X, \"Filipino Indolence\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Boarding house address (38 Rue Philippe de Champagne) and the Jacoby sisters' names",
+      "Indolence essay: five instalments, 15 July–15 Sept 1890"
+    ]
+  },
+  {
+    "id": "biarritz-1891",
+    "order": 19,
+    "region": "europe",
+    "dateLabel": "February–March 1891",
+    "year": 1891,
+    "place": {
+      "then": "Biarritz, France",
+      "today": "Biarritz, France",
+      "lat": 43.48,
+      "lon": -1.56
+    },
+    "theme": "writing",
+    "title": "Biarritz",
+    "teaser": "The second novel is finished",
+    "story": "In February 1891 Rizal went to Biarritz, a resort town on the Atlantic coast of France, to rest after a hard year. He stayed as a guest of the Boustead family, old friends, at their winter house, the Villa Eliada. There he grew close to their daughter Nellie. He hoped to marry her, but it did not work out: she wanted him to become a Protestant, and her mother did not favour the match. They parted as friends. Rizal turned back to his writing. On 29 March 1891, the eve of his departure for Paris, he finished the manuscript of El Filibusterismo. He wrote to Blumentritt that day: \"I have finished my book!\"",
+    "scene": {
+      "image": "/assets/scenes/biarritz_1891.png",
+      "time": "Late winter morning",
+      "alt": "Rizal and Nellie Boustead stand on the terrace of the Villa Eliada, with a stone balustrade, potted palms, a white villa with a striped awning and the Bay of Biscay breaking on dark rocks",
+      "speakerAnchors": {
+        "rizal": {
+          "x": 38,
+          "y": 58
+        },
+        "nellie": {
+          "x": 47.5,
+          "y": 58
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "nellie",
+          "text": "You work even here, by the sea."
+        },
+        {
+          "speaker": "rizal",
+          "text": "The second novel is almost done, Nellie. I must finish it before I leave."
+        },
+        {
+          "speaker": "narrator",
+          "text": "On 29 March 1891 he wrote the last page."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "What did Rizal finish in Biarritz?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Noli Me Tangere"
+          },
+          {
+            "id": "b",
+            "text": "The manuscript of El Filibusterismo"
+          },
+          {
+            "id": "c",
+            "text": "His annotated Morga"
+          },
+          {
+            "id": "d",
+            "text": "Mi Último Adiós"
+          }
+        ],
+        "answer": "b",
+        "hint": "His second novel."
+      },
+      {
+        "id": "q2",
+        "prompt": "Whose guest was Rizal in Biarritz?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The Pardo de Taveras"
+          },
+          {
+            "id": "b",
+            "text": "The Boustead family"
+          },
+          {
+            "id": "c",
+            "text": "The Lunas"
+          },
+          {
+            "id": "d",
+            "text": "The Becketts"
+          }
+        ],
+        "answer": "b",
+        "hint": "They owned the Villa Eliada."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_biarritz.png"
+      },
+      "item": "fili-manuscript",
+      "materials": {
+        "bamboo": 1
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "epistolario",
+        "pages": ""
+      },
+      {
+        "sourceId": "rizal-blumentritt",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "zaide",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. VII, \"The Period of Propaganda\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Manuscript finished 29 March 1891 in Biarritz vs clean copy finished in Brussels in April (Ocampo) — see §14.4",
+      "Reasons the romance ended: confirm in Rizal's letters"
+    ]
+  },
+  {
+    "id": "ghent-1891",
+    "order": 20,
+    "region": "europe",
+    "dateLabel": "July–September 1891",
+    "year": 1891,
+    "place": {
+      "then": "Ghent, Belgium",
+      "today": "Ghent, Belgium",
+      "lat": 51.05,
+      "lon": 3.72
+    },
+    "theme": "writing",
+    "title": "El Filibusterismo",
+    "teaser": "The second novel is printed",
+    "story": "On 5 July 1891 Rizal moved to Ghent, a Belgian university city where printing was cheaper. He found a printer, F. Meyer-Van Loo on Vlaanderenstraat, who would print El Filibusterismo and accept payment in parts. Money soon ran out. Rizal pawned his jewels, lived on very little food, and printing stopped halfway. He even thought of burning the manuscript. Then his friend Valentín Ventura in Paris heard of his trouble and sent money, and the work went on. On 18 September 1891 El Filibusterismo came off the press. Rizal dedicated it to Gomez, Burgos and Zamora, the three priests executed in 1872. He sent the first copies to friends in Hong Kong and gave the original manuscript to Ventura.",
+    "scene": {
+      "image": "/assets/scenes/ghent_1891.png",
+      "time": "Summer day",
+      "alt": "Rizal reads a proof sheet beside a printer in an apron in a small Ghent print shop with an iron hand press, type cases, proofs pinned on a line and a leaded window onto a canal with stepped gables",
+      "speakerAnchors": {
+        "rizal": {
+          "x": 55.5,
+          "y": 58
+        },
+        "printer": {
+          "x": 65.5,
+          "y": 58
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "printer",
+          "text": "We cannot go on without payment, monsieur."
+        },
+        {
+          "speaker": "rizal",
+          "text": "I have pawned everything I own. Give me a little time."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Valentín Ventura sent the money. The book was finished on 18 September 1891."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "Who saved the printing of El Filibusterismo?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Maximo Viola"
+          },
+          {
+            "id": "b",
+            "text": "Valentín Ventura"
+          },
+          {
+            "id": "c",
+            "text": "Blumentritt"
+          },
+          {
+            "id": "d",
+            "text": "Juan Luna"
+          }
+        ],
+        "answer": "b",
+        "hint": "A friend in Paris sent money."
+      },
+      {
+        "id": "q2",
+        "prompt": "To whom did Rizal dedicate El Filibusterismo?",
+        "options": [
+          {
+            "id": "a",
+            "text": "His mother"
+          },
+          {
+            "id": "b",
+            "text": "Gomez, Burgos and Zamora"
+          },
+          {
+            "id": "c",
+            "text": "The Filipino youth"
+          },
+          {
+            "id": "d",
+            "text": "Blumentritt"
+          }
+        ],
+        "answer": "b",
+        "hint": "Three priests executed in 1872."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_ghent.png"
+      },
+      "item": "el-filibusterismo",
+      "materials": {
+        "stone": 1,
+        "tools": 1
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "fili",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "zaide",
+        "pages": ""
+      },
+      {
+        "sourceId": "inq-fili-first",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. VII, \"The Period of Propaganda\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. VIII, \"The Grapes of Wrath\"; ch. XIII, \"The Safe-Conduct\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Arrival in Ghent 5 July 1891",
+      "Ventura's help and the manuscript gift: confirm in letters"
+    ]
+  },
+  {
+    "id": "hongkong-1891",
+    "order": 21,
+    "region": "asia",
+    "dateLabel": "Nov 1891 – June 1892",
+    "year": 1891,
+    "place": {
+      "then": "Hong Kong (British colony)",
+      "today": "Hong Kong, China",
+      "lat": 22.28,
+      "lon": 114.16
+    },
+    "theme": "cause",
+    "title": "Hong Kong",
+    "teaser": "An eye clinic and plans for home",
+    "story": "Rizal left Europe and reached Hong Kong, then a British colony, on 20 November 1891. He opened an eye clinic at No. 5 D'Aguilar Street in Central and soon had many patients, Chinese, British and Portuguese among them. His family, who had lost their lands in Calamba, joined him, and they lived together at No. 2 Rednaxela Terrace. Christmas 1891 was one of the happiest of his life. He operated on his mother's eye, and she could read again. He also made a plan to move Filipino families to North Borneo and start a farming colony there, but it came to nothing. In June 1892 he decided to go home to Manila, knowing it was dangerous. Today plaques mark both his clinic and his house.",
+    "scene": {
+      "image": "/assets/scenes/hongkong_1891.png",
+      "time": "Morning",
+      "alt": "Rizal in a light suit and straw hat stands with his mother Doña Teodora on D'Aguilar Street, Hong Kong, by his doctor's brass plate, with arcaded colonial buildings, Chinese signboards, a rickshaw, junks in the harbour and Victoria Peak behind",
+      "speakerAnchors": {
+        "rizal": {
+          "x": 62,
+          "y": 58
+        },
+        "teodora-older": {
+          "x": 72,
+          "y": 58
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "teodora-older",
+          "text": "I can read your letters again, José."
+        },
+        {
+          "speaker": "rizal",
+          "text": "Then the years of study were worth it, Inay."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Christmas 1891 in Hong Kong, with his family around him."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "What did Rizal open in Hong Kong?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A school"
+          },
+          {
+            "id": "b",
+            "text": "An eye clinic"
+          },
+          {
+            "id": "c",
+            "text": "A newspaper"
+          },
+          {
+            "id": "d",
+            "text": "A shop"
+          }
+        ],
+        "answer": "b",
+        "hint": "He was a doctor."
+      },
+      {
+        "id": "q2",
+        "prompt": "Where did Rizal plan a Filipino farming colony?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Singapore"
+          },
+          {
+            "id": "b",
+            "text": "North Borneo"
+          },
+          {
+            "id": "c",
+            "text": "Japan"
+          },
+          {
+            "id": "d",
+            "text": "Guam"
+          }
+        ],
+        "answer": "b",
+        "hint": "A British territory south of the Philippines."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_hongkong.png"
+      },
+      "item": "calling-card",
+      "materials": {
+        "tools": 1
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "epistolario",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "coates",
+        "pages": ""
+      },
+      {
+        "sourceId": "hk-plaque",
+        "pages": ""
+      },
+      {
+        "sourceId": "scmp-rednaxela",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. VIII, \"Despujol's Duplicity\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. XIII, \"The Safe-Conduct\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": ["Arrival date (19 Nov evening vs 20 Nov)", "Which eye he operated on and when"]
+  },
+  {
+    "id": "manila-1892",
+    "order": 22,
+    "region": "philippines",
+    "dateLabel": "26 June – 17 July 1892",
+    "year": 1892,
+    "place": {
+      "then": "Tondo, Manila",
+      "today": "Tondo, Manila",
+      "lat": 14.62,
+      "lon": 120.97
+    },
+    "theme": "cause",
+    "title": "La Liga Filipina",
+    "teaser": "A new society, then arrest",
+    "story": "Rizal returned to Manila on 26 June 1892. On the evening of 3 July he met with Filipino patriots in the house of Doroteo Ongjunco on Ilaya Street, Tondo. There they founded La Liga Filipina, a society for peaceful reform. Its aims were to unite the whole country, to help members in need, to defend them against injustice, and to encourage education, farming and trade. Among those present was Andrés Bonifacio. Three days later, on 6 July, Rizal was arrested. The authorities said that leaflets attacking the friars had been found in his luggage. He was held in Fort Santiago and then sent into exile in Dapitan, in Mindanao, arriving on 17 July 1892. Soon after, Bonifacio founded the Katipunan.",
+    "scene": {
+      "image": "/assets/scenes/tondo_1892.png",
+      "time": "Night",
+      "alt": "Rizal reads the society's rules to four members standing around a long table under a hanging oil lamp in the wood-panelled upper hall of a Tondo house with capiz windows",
+      "speakerAnchors": {
+        "rizal": {
+          "x": 49,
+          "y": 58
+        },
+        "member": {
+          "x": 70,
+          "y": 58
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "rizal",
+          "text": "The first aim of La Liga: to unite the whole archipelago into one strong body."
+        },
+        {
+          "speaker": "member",
+          "text": "Then every member helps the others, in need and in danger."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Three days later, Rizal was arrested."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "Where was La Liga Filipina founded?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Calamba"
+          },
+          {
+            "id": "b",
+            "text": "Intramuros"
+          },
+          {
+            "id": "c",
+            "text": "Tondo"
+          },
+          {
+            "id": "d",
+            "text": "Malolos"
+          }
+        ],
+        "answer": "c",
+        "hint": "On Ilaya Street."
+      },
+      {
+        "id": "q2",
+        "prompt": "Where was Rizal sent after his arrest in 1892?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Guam"
+          },
+          {
+            "id": "b",
+            "text": "Dapitan"
+          },
+          {
+            "id": "c",
+            "text": "Spain"
+          },
+          {
+            "id": "d",
+            "text": "Hong Kong"
+          }
+        ],
+        "answer": "b",
+        "hint": "A town in Mindanao."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_tondo.png"
+      },
+      "item": "liga-constitution",
+      "materials": {
+        "bamboo": 1,
+        "stone": 1
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "ncca-revolution",
+        "pages": ""
+      },
+      {
+        "sourceId": "inq-liga",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "zaide",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "chs. VIII–IX, \"Despujol's Duplicity\" and \"The Deportation to Dapitan\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. XIII (La Liga) and ch. XIV (arrest)"
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Who attended (Bonifacio; whether Mabini was there) — keep to names two sources agree on",
+      "Arrest 6 July and arrival in Dapitan 17 July 1892"
+    ]
+  },
+  {
+    "id": "dapitan-1892",
+    "order": 23,
+    "region": "philippines",
+    "dateLabel": "July 1892 – July 1896",
+    "year": 1892,
+    "place": {
+      "then": "Dapitan and Talisay, Mindanao",
+      "today": "Dapitan City, Zamboanga del Norte",
+      "lat": 8.6556,
+      "lon": 123.4239
+    },
+    "theme": "exile",
+    "title": "Teacher in exile",
+    "teaser": "Sent far from Manila, he builds for the town",
+    "story": "In July 1892, days after founding La Liga Filipina in Manila, Rizal was arrested and sent into exile in Dapitan, a small town in Mindanao. He arrived on 17 July 1892. Soon after, he won a share of the government lottery and used it to buy land in Talisay, about a kilometre from the town. There he built houses of bamboo, wood and nipa. He opened a school for boys, who did chores and farm work instead of paying fees. He treated patients, and poor patients paid nothing. He built a water system for the town, drained marshes and lit the plaza. He also farmed, wrote poems and collected plants and animals for European scientists. He stayed four years.",
+    "scene": {
+      "image": "/assets/scenes/dapitan_1893.png",
+      "time": "Golden hour",
+      "alt": "Rizal teaching three pupils outside his bamboo and nipa houses at Talisay",
+      "speakerAnchors": {
+        "rizal-dapitan": {
+          "x": 32,
+          "y": 58
+        },
+        "pupil": {
+          "x": 52,
+          "y": 66
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": true,
+      "lines": [
+        {
+          "speaker": "rizal-dapitan",
+          "text": "Come, boys. Arithmetic first, then we help finish the water pipes."
+        },
+        {
+          "speaker": "pupil",
+          "text": "Yes, Doctor!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "His pupils paid no fees. Instead, they helped with work around Talisay."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "What did Rizal’s pupils give instead of school fees?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Rice and fish"
+          },
+          {
+            "id": "b",
+            "text": "Chores and farm work"
+          },
+          {
+            "id": "c",
+            "text": "Nothing at all"
+          },
+          {
+            "id": "d",
+            "text": "Coins every Sunday"
+          }
+        ],
+        "answer": "b",
+        "hint": "Read the story again: what did the boys do?"
+      },
+      {
+        "id": "q2",
+        "prompt": "What were Rizal’s houses in Talisay made of?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Stone and brick"
+          },
+          {
+            "id": "b",
+            "text": "Bamboo, wood and nipa"
+          },
+          {
+            "id": "c",
+            "text": "Concrete"
+          },
+          {
+            "id": "d",
+            "text": "Iron sheets"
+          }
+        ],
+        "answer": "b",
+        "hint": "Look at the houses in the scene."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_dapitan.png"
+      },
+      "item": "talisay-school-bell"
+    },
+    "builder": true,
+    "sources": [
+      {
+        "sourceId": "rizal-blumentritt",
+        "pages": ""
+      },
+      {
+        "sourceId": "nhcp-dapitan-1973",
+        "pages": ""
+      },
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "zaide",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. IX, \"The Deportation to Dapitan\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. XIV, \"The Exile of Dapitan\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Lottery details",
+      "Which house was clinic / school / dormitory",
+      "Water system details",
+      "Arrival 17 July 1892 confirmed in rappler-talisay; confirm in a Tier 1/2 source"
+    ]
+  },
+  {
+    "id": "fortsantiago-1896",
+    "order": 24,
+    "region": "philippines",
+    "dateLabel": "3 Nov – 29 Dec 1896",
+    "year": 1896,
+    "place": {
+      "then": "Fort Santiago, Intramuros",
+      "today": "Fort Santiago, Intramuros, Manila",
+      "lat": 14.595,
+      "lon": 120.97
+    },
+    "theme": "writing",
+    "title": "Fort Santiago",
+    "teaser": "His last poem",
+    "story": "In 1896 Rizal was allowed to leave Dapitan to serve as a volunteer doctor in Cuba. While he was at sea, revolution broke out in the Philippines. He was arrested on board, held in Barcelona, and shipped back to Manila, arriving on 3 November 1896. He was locked in Fort Santiago. On 26 December a military court tried him for rebellion, sedition and illegal association. He could not question the witnesses, and he was sentenced to death. On 29 December he was moved to the prison chapel. That day he finished a poem of fourteen stanzas, a farewell to his country. He hid it inside a small alcohol stove and gave the stove to his sister Trinidad, saying in English, \"There is something inside.\" The poem is now known as Mi Último Adiós.",
+    "scene": {
+      "image": "/assets/scenes/fortsantiago_1896.png",
+      "time": "Evening",
+      "alt": "Rizal in a black suit stands in a candle-lit stone cell in Fort Santiago, with a small barred window showing the evening sky, a table holding papers, a book and a small alcohol stove, a cot and a crucifix",
+      "speakerAnchors": {
+        "rizal": {
+          "x": 46,
+          "y": 58
+        }
+      }
+    },
+    "dialogue": {
+      "dramatized": false,
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "Fort Santiago, 29 December 1896."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Rizal finished his last poem and hid it in a small alcohol stove."
+        },
+        {
+          "speaker": "rizal",
+          "text": "There is something inside."
+        },
+        {
+          "speaker": "narrator",
+          "text": "His sister Trinidad carried the stove home, and the family found the poem inside."
+        }
+      ]
+    },
+    "quiz": [
+      {
+        "id": "q1",
+        "prompt": "Where did Rizal hide his last poem?",
+        "options": [
+          {
+            "id": "a",
+            "text": "In his shoe"
+          },
+          {
+            "id": "b",
+            "text": "Inside a small alcohol stove"
+          },
+          {
+            "id": "c",
+            "text": "In a book of prayers"
+          },
+          {
+            "id": "d",
+            "text": "Under his pillow"
+          }
+        ],
+        "answer": "b",
+        "hint": "Something he used to heat water."
+      },
+      {
+        "id": "q2",
+        "prompt": "What is Rizal's last poem called today?",
+        "options": [
+          {
+            "id": "a",
+            "text": "A la juventud filipina"
+          },
+          {
+            "id": "b",
+            "text": "Mi Último Adiós"
+          },
+          {
+            "id": "c",
+            "text": "Amor Patrio"
+          },
+          {
+            "id": "d",
+            "text": "To the Flowers of Heidelberg"
+          }
+        ],
+        "answer": "b",
+        "hint": "My Last Farewell."
+      }
+    ],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_fortsantiago.png"
+      },
+      "item": "mi-ultimo-adios"
+    },
+    "sources": [
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "zaide",
+        "pages": ""
+      },
+      {
+        "sourceId": "coates",
+        "pages": ""
+      },
+      {
+        "sourceId": "intramuros-ultimo",
+        "pages": ""
+      },
+      {
+        "sourceId": "filipinas-last-hours",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. X, \"Consummatum Est\"; ch. XI (the poem found)"
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. XV, \"The Katipunan\"; ch. XVI, \"I Came from Martyrdom unto this Peace\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "The words to Trinidad and when the family found the poem: confirm in Trinidad's account",
+      "Charges and trial date (26 Dec 1896)"
+    ]
+  },
+  {
+    "id": "bagumbayan-1896",
+    "order": 25,
+    "region": "philippines",
+    "dateLabel": "30 December 1896",
+    "year": 1896,
+    "place": {
+      "then": "Bagumbayan, Manila",
+      "today": "Rizal Park (Luneta), Manila",
+      "lat": 14.583,
+      "lon": 120.979
+    },
+    "theme": "cause",
+    "title": "His final day",
+    "teaser": "A quiet ending (see SRS GD-6)",
+    "story": "Early on the morning of 30 December 1896, José Rizal was taken from Fort Santiago and walked to Bagumbayan, the open field beside Manila Bay. There, at about seven o'clock, he was executed. He was thirty-five years old. His death did not end the struggle for freedom; it made it stronger. Within two years the Philippines declared its independence. The field where he died is now Rizal Park, also called the Luneta, and his monument stands there, guarded day and night. Every 30 December the country remembers him on Rizal Day. His novels, his poems, his letters and the places he lived are still with us, and so are the questions he asked about justice, education and love of country. This is the last stop on his journey.",
+    "scene": {
+      "image": "/assets/scenes/bagumbayan_1896.png",
+      "time": "Dawn",
+      "alt": "The empty field of Bagumbayan at dawn, with a promenade and lamp posts, coconut palms, Manila Bay calm and pale, ships at anchor and the mountains of Bataan on the horizon",
+      "speakerAnchors": {}
+    },
+    "dialogue": {
+      "dramatized": false,
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "Bagumbayan, 30 December 1896. Here Rizal's journey ended."
+        },
+        {
+          "speaker": "narrator",
+          "text": "Today this field is Rizal Park, and the country remembers him every Rizal Day."
+        }
+      ]
+    },
+    "quiz": [],
+    "rewards": {
+      "stamp": {
+        "icon": "/assets/icons/stamp_bagumbayan.png"
+      }
+    },
+    "sources": [
+      {
+        "sourceId": "guerrero",
+        "pages": ""
+      },
+      {
+        "sourceId": "zaide",
+        "pages": ""
+      },
+      {
+        "sourceId": "coates",
+        "pages": ""
+      },
+      {
+        "sourceId": "intramuros-execution",
+        "pages": ""
+      },
+      {
+        "sourceId": "filipinas-last-hours",
+        "pages": ""
+      },
+      {
+        "sourceId": "craig-1913",
+        "pages": "",
+        "chapter": "ch. X, \"Consummatum Est\""
+      },
+      {
+        "sourceId": "russell-rodriguez",
+        "pages": "",
+        "chapter": "ch. XVI, \"I Came from Martyrdom unto this Peace\""
+      }
+    ],
+    "status": "draft",
+    "verifyNotes": [
+      "Time of death (about 7:03 a.m.) and wording kept non-graphic (GD-6)",
+      "Philippine independence declared 12 June 1898"
+    ]
+  }
+]

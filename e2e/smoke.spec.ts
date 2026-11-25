@@ -27,8 +27,13 @@ test('self-hosted fonts load and every request stays on the same origin', async 
   });
 
   await page.goto('/');
+  // Wait for the header (the first Pixelify text), then make sure both fonts load.
+  await expect(page.getByRole('banner')).toBeVisible();
   const fontsReady = await page.evaluate(async () => {
-    await document.fonts.ready;
+    await Promise.all([
+      document.fonts.load('700 26px "Pixelify Sans"'),
+      document.fonts.load('600 16px "Nunito"'),
+    ]);
     return {
       pixel: document.fonts.check('700 26px "Pixelify Sans"'),
       body: document.fonts.check('600 16px "Nunito"'),

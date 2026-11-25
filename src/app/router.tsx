@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { routerFuture, routes } from './routes';
+import { createRoutes, routerFuture } from './routes';
 
-export const router = createBrowserRouter(routes, {
+export const router = createBrowserRouter(createRoutes(), {
   basename: import.meta.env.BASE_URL,
   future: routerFuture,
 });
