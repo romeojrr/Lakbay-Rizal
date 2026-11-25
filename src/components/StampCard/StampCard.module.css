@@ -1,0 +1,81 @@
+.stamp,
+.locked {
+  position: relative;
+  height: 150px;
+  list-style: none;
+}
+
+.stamp {
+  padding: 6px;
+  background: var(--card);
+  border: var(--border);
+  box-shadow: 3px 3px 0 rgba(31, 26, 36, 0.25);
+}
+
+.inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 3px dashed;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.year {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.plain .inner {
+  border-style: solid;
+  border-color: var(--line-soft) !important;
+}
+
+.plain .name {
+  color: var(--ink) !important;
+}
+
+.new {
+  position: absolute;
+  top: -12px;
+  right: -10px;
+  padding: 2px 8px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--accent);
+  border: var(--border);
+}
+
+.locked {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--track);
+  border: 3px dashed #a39a8c;
+}
+
+.question {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--pin-locked-dot);
+}
+
+.lockedYear {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--muted);
+}

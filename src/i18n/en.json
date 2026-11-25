@@ -98,6 +98,66 @@
     "epilogueTimeline": "See the whole timeline",
     "epilogueCredits": "Credits"
   },
+  "quiz": {
+    "title": "{place} Quiz",
+    "progress": "Question {n} of {total}",
+    "answers": "Answers",
+    "pick": "Pick an answer",
+    "correct": "Correct!",
+    "wrong": "Not quite",
+    "hint": "Hint: {hint}",
+    "tryAgain": "Try again",
+    "nextQuestion": "Next question ▶",
+    "finish": "See your reward ▶",
+    "rightMark": "correct answer",
+    "wrongMark": "your answer, not correct",
+    "backToStory": "◀ Back to story",
+    "finishStoryFirst": "Finish the story first",
+    "goToStory": "Go to the story"
+  },
+  "reward": {
+    "title": "Stop complete!",
+    "stamp": "{place} stamp",
+    "andItem": "{stamp} and {item} are yours.",
+    "onlyStamp": "{stamp} is yours.",
+    "materials": "Builder materials",
+    "already": "You already earned these rewards.",
+    "openPassport": "Open passport ▶",
+    "backToMap": "Back to map"
+  },
+  "materials": {
+    "bamboo": "Bamboo",
+    "stone": "Stone",
+    "tools": "Tools"
+  },
+  "passport": {
+    "title": "Passport",
+    "number": "No. {number}",
+    "traveller": "Traveller",
+    "portraitAlt": "Pixel portrait of {name}",
+    "name": "Name",
+    "born": "Born",
+    "bornValue": "{year} · {place}",
+    "stamps": "Stamps",
+    "stampsValue": "{done} of {total}",
+    "themeBadges": "Theme badges",
+    "badgeCount": "{done}/{total}",
+    "badgeComplete": "complete",
+    "stampsTitle": "Stamps",
+    "new": "New!",
+    "lockedStamp": "Stamp not earned yet, {year}",
+    "journal": "Open journal ▶"
+  },
+  "journal": {
+    "title": "Journal",
+    "intro": "Keepsakes you have collected on the journey.",
+    "empty": "No keepsakes yet. Finish a stop's quiz to collect one.",
+    "count": "{count} of {total} keepsakes",
+    "backToPassport": "◀ Back to passport"
+  },
+  "progress": {
+    "resetNotice": "Your saved progress could not be read, so the journey starts fresh."
+  },
   "timeline": {
     "title": "Timeline",
     "hint": "Slide to travel through the years",

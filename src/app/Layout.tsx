@@ -1,12 +1,14 @@
+import { useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import RegionTabs from '../components/RegionTabs/RegionTabs';
+import Toast from '../components/Toast/Toast';
 import { t } from '../i18n/t';
 import { asset } from '../lib/asset';
+import { consumeLoadProblem, useProgress } from '../store/progress';
 import styles from './Layout.module.css';
 import { useRootData } from './useRootData';
 
-// Placeholder until the progress store arrives in M4.
-const STAMPS_EARNED = 0;
+const NOTICE_MS = 6000;
 
 function PassportIcon() {
   return (
@@ -27,6 +29,18 @@ function PassportIcon() {
 
 export default function Layout() {
   const { content, stops } = useRootData();
+  const stamps = useProgress((s) => s.stamps);
+  const earned = stops.filter((s) => stamps.includes(s.id)).length;
+  // §8.5: tell the player once if their saved progress could not be read.
+  const [notice, setNotice] = useState(() =>
+    consumeLoadProblem() ? t('progress.resetNotice') : null,
+  );
+  useEffect(() => {
+    if (!notice) return;
+    const timer = setTimeout(() => setNotice(null), NOTICE_MS);
+    return () => clearTimeout(timer);
+  }, [notice]);
+
   return (
     <>
       <header className={styles.header}>
@@ -48,7 +62,7 @@ export default function Layout() {
             </Link>
             <Link to="/passport" className={`${styles.navLink} ${styles.passport}`}>
               <PassportIcon />
-              {t('nav.passport', { done: STAMPS_EARNED, total: stops.length })}
+              {t('nav.passport', { done: earned, total: stops.length })}
             </Link>
           </div>
         </div>
@@ -56,6 +70,7 @@ export default function Layout() {
       <main className={styles.main}>
         <Outlet />
       </main>
+      {notice && <Toast message={notice} />}
     </>
   );
 }

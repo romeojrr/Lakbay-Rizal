@@ -5,6 +5,9 @@ import type { Content, Stop } from '../content/schemas';
 import { getVisibleStops, shouldIncludeDrafts } from '../content/selectors';
 import HomeRedirect from '../features/map/HomeRedirect';
 import MapPage from '../features/map/MapPage';
+import JournalPage from '../features/journal/JournalPage';
+import PassportPage from '../features/passport/PassportPage';
+import QuizPage from '../features/quiz/QuizPage';
 import StopPage from '../features/stop/StopPage';
 import ContentError from './ContentError';
 import Layout from './Layout';
@@ -48,6 +51,9 @@ export function createRoutes(loader: RootLoader = rootLoader): RouteObject[] {
         { index: true, Component: HomeRedirect },
         { path: 'region/:regionId', Component: MapPage },
         { path: 'stop/:stopId', Component: StopPage },
+        { path: 'stop/:stopId/quiz', Component: QuizPage },
+        { path: 'passport', Component: PassportPage },
+        { path: 'journal', Component: JournalPage },
         { path: '*', Component: BlankPage },
       ],
     },

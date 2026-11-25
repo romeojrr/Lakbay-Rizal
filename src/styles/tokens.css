@@ -28,6 +28,13 @@
   --chip-cause: #b23a2b;
   --chip-exile: #1f7a6f;
 
+  /* Theme colors for text on white (≥ 4.5:1), e.g. stamp place names */
+  --text-study: #2c5fb8;
+  --text-travel: #a4521a;
+  --text-writing: #6a3fb8;
+  --text-cause: #b23a2b;
+  --text-exile: #1f7a6f;
+
   /* Map */
   --pin-locked: #b8b0a2;
   --pin-locked-dot: #8a8274;

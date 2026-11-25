@@ -52,4 +52,14 @@ One line per judgment call: date — decision — reason.
 - 2026-11-25 — Read more uses the native `<dialog>` with an added Tab/Shift+Tab cycle. — Native modals let Tab escape to the browser UI; FR-33 asks for a focus trap.
 - 2026-11-25 — A locked stop opened by URL (Guided) shows "This stop is still locked" with a link to the next stop; outline stops show "coming soon". — FR-18.
 - 2026-11-25 — On the final stop (no quiz) the Epilogue card (timeline + credits links) appears once the dialogue is finished. Completing the stop and the plain passport page come with the progress actions in M4. — GD-6.
+- 2026-11-25 — Progress is saved with Zustand `persist` under `lakbay-rizal:v1`; the storage adapter itself parses, migrates (`store/migrations.ts`) and checks the save, and a damaged save is copied to `lakbay-rizal:v1:corrupt` before the game starts fresh. The check is hand-written, not Zod. — FR-70 / §8.5; Zod stays out of the production bundle (NFR-1).
+- 2026-11-25 — Blocked or full storage never stops the game; progress then lasts for the visit only, with no notice. — Private browsing should still be playable.
+- 2026-11-25 — A wrong answer marks the pick ✗, reveals the right answer ✓ (FR-41) and shows the hint; "Try again" brings the same question back with its options reshuffled. A right answer needs "Next question ▶"; the last one shows "See your reward ▶". — FR-41 and FR-42 together; no penalty (GD-5).
+- 2026-11-25 — The quiz opens only after the stop's dialogue is finished (stop visited); otherwise it links back to the story. — FR-31 "last line … unlocks Quiz".
+- 2026-11-25 — `complete(stop)` is idempotent and returns whether rewards were new; the reward card says "You already earned these rewards" on a replay. — GD-4 / FR-43.
+- 2026-11-25 — Passport traveller details come from content: name and sprite from `characters.rizal`, "Born" and the passport number from the first stop. — FR-60: no historical text in components.
+- 2026-11-25 — Passport portrait uses the sprite at 2× (the mockup used 2.5×). — Integer scaling keeps pixels even (SRS §5.2).
+- 2026-11-25 — Theme badges are dimmed until every stop in the theme is done, then light up with a gold ring and ★. — FR-52 ("lights up when complete"); the mockup lit any badge above 0.
+- 2026-11-25 — Stamp place names use text-safe theme colors (`--text-*`). — The Travel orange is 2.6:1 on white.
+- 2026-11-25 — The final stop completes quietly when its dialogue ends: stamp added, no "New!", no reward card; its passport page is plain and untilted. — GD-6.
 - 2026-11-25 — Playwright now builds with INCLUDE_DRAFTS=true. The production "Content coming soon" check is a unit test for now; the second e2e build arrives with the §12 test in M8. — Two builds in one Playwright run need extra setup.

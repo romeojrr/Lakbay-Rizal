@@ -1,0 +1,120 @@
+/* Centred column, max 1000 px (Quiz.dc.html) */
+.page {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.top {
+  margin-bottom: -6px;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.bar {
+  flex: 1 1 200px;
+  height: 16px;
+  background: var(--card);
+  border: var(--border);
+}
+
+.fill {
+  height: 100%;
+  transition: width 200ms ease-out;
+}
+
+.count {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.pick {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--muted);
+}
+
+.feedback {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 16px 18px;
+}
+
+.correct,
+.wrong {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.correct {
+  color: var(--success);
+}
+
+.correct:focus,
+.wrong:focus {
+  outline: none;
+}
+
+.hint {
+  flex: 1 1 100%;
+  order: 2;
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.action {
+  order: 3;
+  margin-left: auto;
+  min-height: 48px;
+  padding: 8px 18px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--accent);
+  border: var(--border);
+  box-shadow: var(--shadow-button);
+  cursor: pointer;
+}
+
+.action:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.notice {
+  max-width: 560px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.noticeTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 24px;
+}

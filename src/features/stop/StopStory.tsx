@@ -24,15 +24,19 @@ export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
   const [readMoreOpen, setReadMoreOpen] = useState(false);
   const visited = useProgress((s) => s.visited.includes(stop.id));
   const visit = useProgress((s) => s.visit);
+  const complete = useProgress((s) => s.complete);
   const lines = stop.dialogue.lines;
   const lastIndex = lines.length - 1;
   const finished = visited || index === lastIndex;
   const hasQuiz = stop.quiz.length > 0;
 
   // GD-3: reaching the last line marks the stop visited.
+  // GD-6: the final stop has no quiz; finishing its dialogue completes it quietly.
   useEffect(() => {
-    if (index === lastIndex) visit(stop.id);
-  }, [index, lastIndex, stop.id, visit]);
+    if (index !== lastIndex) return;
+    visit(stop.id);
+    if (isFinal && !hasQuiz) complete(stop, { quiet: true });
+  }, [index, lastIndex, stop, visit, complete, isFinal, hasQuiz]);
 
   const next = () => setIndex(index < lastIndex ? index + 1 : 0);
 
