@@ -195,7 +195,18 @@
     "streak": "Streak {n}",
     "done": "Stop complete!",
     "gold": "Gold stamp",
-    "silver": "Silver stamp"
+    "silver": "Silver stamp",
+    "showHint": "Show hint",
+    "explainLine": "{label}: {text}",
+    "correctionLine": "{label}: {text}",
+    "orderHelp": "Drag the rows, or tap two rows to swap them. With a keyboard: pick a row, then use the up and down arrows.",
+    "moved": "{text} is now number {n} of {total}.",
+    "position": "number {n} of {total}",
+    "matchLeft": "Names",
+    "matchRight": "Matches",
+    "matchedWith": "matched with {text}",
+    "notMatched": "not matched yet",
+    "errorFound": "the part that was wrong"
   },
   "reward": {
     "title": "Stop complete!",

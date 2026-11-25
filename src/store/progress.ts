@@ -13,6 +13,16 @@ export const CORRUPT_KEY = `${STORAGE_KEY}:corrupt`;
 
 export type StampGrade = 'gold' | 'silver';
 
+/** One question's result in a finished quiz (see features/quiz/quizModel.ts). */
+export interface QuizResult {
+  id: string;
+  type: string;
+  skill: string;
+  /** Tries until it was right (1 = first try). */
+  attempts: number;
+  hintOpened: boolean;
+}
+
 /** Store version 2 (SRS v2.3 §8.4). Version-1 saves are upgraded in migrations.ts. */
 export interface Progress {
   version: 2;
@@ -115,6 +125,12 @@ interface ProgressActions {
    * Returns true the first time, false if the stop was already completed.
    */
   complete: (stop: Stop, options?: { quiet?: boolean }) => boolean;
+  /**
+   * §3.8: a finished quiz completes the stop (rewards once, GD-4) and grades its stamp; a gold
+   * grade replaces silver, never the other way. `results` feed XP and achievements (U5).
+   * Returns true the first time the stop is completed.
+   */
+  finishQuiz: (stop: Stop, results: readonly QuizResult[], grade: StampGrade) => boolean;
   /** FR-51: the "New!" tag goes once the passport has been opened. */
   markPassportSeen: () => void;
   /** Dapitan builder: marks a project built. The page checks the materials first. */
@@ -219,6 +235,15 @@ export const useProgress = create<ProgressStore>()(
           newStamp: options.quiet ? state.newStamp : stop.id,
         });
         return true;
+      },
+      finishQuiz: (stop, _results, grade) => {
+        const fresh = get().complete(stop);
+        set((s) =>
+          s.stampGrade[stop.id] === 'gold'
+            ? s
+            : { stampGrade: { ...s.stampGrade, [stop.id]: grade } },
+        );
+        return fresh;
       },
       markPassportSeen: () => set((s) => (s.newStamp === undefined ? s : { newStamp: undefined })),
       build: (project) => set((s) => ({ builder: { ...s.builder, [project]: true } })),

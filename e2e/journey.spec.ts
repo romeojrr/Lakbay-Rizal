@@ -4,22 +4,7 @@
 import { expect, test, type Page } from '@playwright/test';
 import { expectNoSeriousA11yIssues } from './a11y';
 import { finishStory, horizontalOverflow, openFromMenu, playStory } from './helpers';
-
-async function answerBerlin(page: Page, correctly: boolean) {
-  const prompt = (await page.locator('#quiz-prompt').textContent()) ?? '';
-  const lent = prompt.startsWith('Who lent');
-  const name = lent
-    ? correctly
-      ? 'Maximo Viola'
-      : 'Ferdinand Blumentritt'
-    : correctly
-      ? '2,000'
-      : '20,000';
-  await page
-    .getByRole('group', { name: prompt })
-    .getByRole('button', { name, exact: true })
-    .click();
-}
+import { playQuiz } from './quiz';
 
 async function noSideScroll(page: Page) {
   expect(await horizontalOverflow(page)).toBeLessThanOrEqual(0);
@@ -60,13 +45,7 @@ test('SRS §12: the whole journey', async ({ page }) => {
   });
 
   await test.step('5. wrong → hint, no penalty → right → next → right', async () => {
-    await answerBerlin(page, false);
-    await expect(page.getByText(/^Hint: /)).toBeVisible();
-    await page.getByRole('button', { name: 'Try again' }).click();
-    await answerBerlin(page, true);
-    await page.getByRole('button', { name: 'Next question ▶' }).click();
-    await answerBerlin(page, true);
-    await page.getByRole('button', { name: 'See your reward ▶' }).click();
+    await playQuiz(page, 'berlin-1887', { wrongFirst: true });
   });
 
   await test.step('6. reward card → Open passport shows Berlin with New!', async () => {

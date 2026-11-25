@@ -34,7 +34,7 @@ describe('loadContent', () => {
   it('logs content warnings in development', async () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
     await loadContent(fakeFetch());
-    expect(warn).toHaveBeenCalledWith(expect.stringContaining('fortsantiago-1896'));
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining('ust-1877 › quiz'));
   });
 
   it('fails with a clear error when a file is missing, then retries on the next call', async () => {

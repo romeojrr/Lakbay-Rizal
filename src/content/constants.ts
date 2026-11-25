@@ -18,8 +18,8 @@ export const CONTENT_FILES = [
 
 export type ContentFileName = (typeof CONTENT_FILES)[number];
 
-/** Content v3 (SRS v2.3 §6.1, §6.2b). The game starts using them in U3–U6. */
-export const V3_CONTENT_FILES = ['stops.v3', 'guide', 'gamification'] as const;
+/** v2.3 files beside the stops (SRS §6.1): the guide (U6) and gamification (U5). */
+export const V3_CONTENT_FILES = ['guide', 'gamification'] as const;
 export type V3ContentFileName = (typeof V3_CONTENT_FILES)[number];
 
 /** The Filipino content (§3.10), loaded only when the player picks Filipino. */

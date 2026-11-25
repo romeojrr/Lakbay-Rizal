@@ -1,15 +1,15 @@
 // Puts the Filipino text over the English content (SRS v2.3 §3.10). Pure functions: the
 // English content is never changed. Any Filipino string that is missing or empty keeps the
 // English one, string by string. Ids, numbers, images and sources always stay English.
-import type { Content, Stop } from './schemas';
-import type { FilContent, FilStop, Question, StopV3 } from './schemas.v3';
+import type { Content, Question, Stop } from './schemas';
+import type { FilContent, FilStop } from './schemas.v3';
 
 /** The Filipino string, or the English one when there is none. */
 const pick = (fil: string | undefined, en: string): string =>
   fil !== undefined && fil.trim() !== '' ? fil : en;
 
 /** Fields shared by v2 and v3 stops: title, teaser, date, places, scene text. */
-function localizeStopBase<T extends Stop | StopV3>(stop: T, fil: FilStop | undefined): T {
+function localizeStopBase<T extends Stop>(stop: T, fil: FilStop | undefined): T {
   if (!fil) return stop;
   return {
     ...stop,
@@ -30,13 +30,13 @@ function localizeStopBase<T extends Stop | StopV3>(stop: T, fil: FilStop | undef
   };
 }
 
-/** v2 content (what the game shows until U3): stops' shared fields, names, items, facts. */
+/** The content in Filipino: stops (with chapters and quiz), names, regions, items, facts. */
 export function localizeContent(content: Content, fil: FilContent | null): Content {
   if (!fil) return content;
   const translated = fil['i18n/fil.stops'];
   return {
     ...content,
-    stops: content.stops.map((stop) => localizeStopBase(stop, translated.stops[stop.id])),
+    stops: content.stops.map((stop) => localizeStopV3(stop, translated.stops[stop.id])),
     regions: content.regions.map((region) => ({
       ...region,
       label: pick(translated.regions?.[region.id], region.label),
@@ -73,7 +73,7 @@ function localizeProject<T extends { fact: string }>(project: T, fact: string | 
 }
 
 /** A v3 stop in Filipino: the shared fields plus chapters, lines, facts and quiz text. */
-export function localizeStopV3(stop: StopV3, fil: FilStop | undefined): StopV3 {
+export function localizeStopV3(stop: Stop, fil: FilStop | undefined): Stop {
   if (!fil) return stop;
   const base = localizeStopBase(stop, fil);
   return {

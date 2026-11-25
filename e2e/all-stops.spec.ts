@@ -4,6 +4,7 @@
 import { expect, test, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { finishStory, horizontalOverflow, skipIntroOnFreshProfile } from './helpers';
+import { playQuiz } from './quiz';
 
 interface SeedStop {
   id: string;
@@ -11,7 +12,7 @@ interface SeedStop {
   year: number;
   builder?: boolean;
   place: { label: string };
-  quiz: { prompt: string; answer: string; options: { id: string; text: string }[] }[];
+  quiz: unknown[];
 }
 
 const stops = (JSON.parse(readFileSync('public/content/stops.json', 'utf8')) as SeedStop[]).sort(
@@ -35,22 +36,9 @@ async function playDialogue(page: Page, stop: SeedStop) {
   await finishStory(page);
 }
 
-async function playQuiz(page: Page, stop: SeedStop) {
+async function playStopQuiz(page: Page, stop: SeedStop) {
   await page.getByRole('link', { name: 'Quiz ▶', exact: true }).click();
-  for (let i = 0; i < stop.quiz.length; i++) {
-    const prompt = (await page.locator('#quiz-prompt').textContent()) ?? '';
-    const question = stop.quiz.find((q) => q.prompt === prompt);
-    expect(question, `${stop.id}: unknown question "${prompt}"`).toBeDefined();
-    const answer = question?.options.find((o) => o.id === question.answer)?.text ?? '';
-    const group = page.getByRole('group', { name: prompt });
-    await group.getByRole('button', { name: answer, exact: true }).click();
-    await expect(page.getByRole('heading', { name: 'Correct!' })).toBeVisible();
-    const last = i === stop.quiz.length - 1;
-    await page
-      .getByRole('button', { name: last ? 'See your reward ▶' : 'Next question ▶' })
-      .click();
-  }
-  await expect(page.getByRole('heading', { name: 'Stop complete!' })).toBeVisible();
+  await playQuiz(page, stop.id);
   await expect(page.getByText(`${stop.place.label} stamp`, { exact: false })).toBeVisible();
 }
 
@@ -75,7 +63,7 @@ test('all 25 stops play end to end in Guided order (M7)', async ({ page }) => {
       await page.goto(`/stop/${stop.id}`);
       await playDialogue(page, stop);
       if (stop.builder) await playBuilder(page);
-      else if (stop.quiz.length > 0) await playQuiz(page, stop);
+      else if (stop.quiz.length > 0) await playStopQuiz(page, stop);
       else await expect(page.getByRole('heading', { name: 'Epilogue' })).toBeVisible();
 
       await expect(page.getByRole('link', { name: `Passport · ${index + 1}/25` })).toBeVisible();

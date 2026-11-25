@@ -26,10 +26,16 @@ describe('validateContent — the seed', () => {
     expect(result.content?.stops).toHaveLength(25);
   });
 
-  it('only warns about the Fort Santiago line that is not marked dramatized', () => {
+  it('warns only about the §6.4b writing rules the content pack does not meet yet', () => {
     const { warnings } = validateContent(rawContent());
     expect(warnings.map(formatProblem)).toEqual([
-      expect.stringContaining('fortsantiago-1896 › dialogue.dramatized'),
+      expect.stringContaining('ust-1877 › quiz: should have at least one "error" question'),
+      expect.stringContaining(
+        'heidelberg-1886 › quiz: should have at least one "order" or "match"',
+      ),
+      expect.stringContaining('wilhelmsfeld-1886 › chapters[3].narration: has 4 paragraphs'),
+      expect.stringContaining('biarritz-1891 › quiz: should have at least one "order" or "match"'),
+      expect.stringContaining('ghent-1891 › chapters[3].narration: has 4 paragraphs'),
     ]);
   });
 });
@@ -37,10 +43,10 @@ describe('validateContent — the seed', () => {
 describe('validateContent — schema errors name the stop and field', () => {
   it('a quiz answer that matches no option', () => {
     const raw = rawContent();
-    const quiz = stopIn(raw, 'berlin-1887').quiz as Json[];
-    quiz[0] = { ...quiz[0], answer: 'e' };
+    const quiz = stopIn(raw, 'calamba-1861').quiz as Json[];
+    quiz[1] = { ...quiz[1], answer: 'e' }; // calamba-1861 q2 is an mcq
     expect(errorsFor(raw)).toEqual([
-      'stops.json › berlin-1887 › quiz[0].answer: "e" does not match any option id (a, b, c, d)',
+      'stops.json › calamba-1861 › quiz[1].answer: "e" does not match any option id (a, b, c, d)',
     ]);
   });
 
@@ -90,13 +96,12 @@ describe('validateContent — schema errors name the stop and field', () => {
 });
 
 describe('validateContent — cross-file rules (SRS §6.2)', () => {
-  it('a speaker missing from characters.json and from speakerAnchors', () => {
+  it('a speaker missing from characters.json', () => {
     const raw = rawContent();
-    const lines = (stopIn(raw, 'berlin-1887').dialogue as { lines: Json[] }).lines;
-    must(lines[0]).speaker = 'ghost';
+    const chapter = must((stopIn(raw, 'berlin-1887').chapters as { lines: Json[] }[])[0]);
+    must(chapter.lines[0]).speaker = 'ghost';
     expect(errorsFor(raw)).toEqual([
-      'stops.json › berlin-1887 › dialogue.lines[0].speaker: "ghost" is not in characters.json',
-      'stops.json › berlin-1887 › dialogue.lines[0].speaker: "ghost" has no entry in scene.speakerAnchors',
+      'stops.json › berlin-1887 › chapters[0].lines[0].speaker: "ghost" is not in characters.json',
     ]);
   });
 
@@ -137,9 +142,7 @@ describe('validateContent — cross-file rules (SRS §6.2)', () => {
   it('no quiz on a stop that is not the last', () => {
     const raw = rawContent();
     stopIn(raw, 'berlin-1887').quiz = [];
-    expect(errorsFor(raw)).toEqual([
-      'stops.json › berlin-1887 › quiz: needs 1 to 5 questions, has 0',
-    ]);
+    expect(errorsFor(raw)).toEqual(['stops.json › berlin-1887 › quiz: needs 5 questions, has 0']);
   });
 
   it('a place outside its region map', () => {

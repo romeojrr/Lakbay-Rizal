@@ -67,7 +67,7 @@ describe('localizeContent', () => {
 });
 
 describe('localizeStopV3', () => {
-  const english = v3['stops.v3'].find((s) => s.id === 'calamba-1861');
+  const english = content.stops.find((s) => s.id === 'calamba-1861');
   if (!english) throw new Error('calamba-1861');
   const stop = localizeStopV3(english, fil['i18n/fil.stops'].stops['calamba-1861']);
 

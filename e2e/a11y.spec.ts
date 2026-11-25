@@ -52,8 +52,11 @@ for (const [name, path, heading] of PAGES) {
 }
 
 test('axe: quiz after a wrong answer, and the Read more dialog', async ({ page }) => {
+  // Berlin's first question is "order": Check it unsolved (it never starts solved).
   await page.goto('/stop/berlin-1887/quiz');
-  await page.getByRole('group', { name: /\?$/ }).getByRole('button').first().click();
+  await page.getByRole('button', { name: 'Check' }).click();
+  await expect(page.getByRole('heading', { name: 'Not quite' })).toBeVisible();
+  await page.getByRole('button', { name: 'Show hint' }).click();
   await expectNoSeriousA11yIssues(page, 'quiz feedback');
 
   await page.goto('/stop/berlin-1887');

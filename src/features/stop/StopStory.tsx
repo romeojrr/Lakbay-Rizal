@@ -4,7 +4,6 @@ import InfoDrawer from '../../components/InfoDrawer/InfoDrawer';
 import ReadMoreDialog from '../../components/ReadMoreDialog/ReadMoreDialog';
 import SourceCard from '../../components/SourceCard/SourceCard';
 import type { Content, PlayableStop } from '../../content/schemas';
-import type { PlayableStopV3 } from '../../content/schemas.v3';
 import { t } from '../../i18n/t';
 import { useLanguage } from '../../i18n/useLanguage';
 import { cx } from '../../lib/cx';
@@ -22,7 +21,6 @@ const FRAME_CHROME = 28;
 
 interface StopStoryProps {
   stop: PlayableStop;
-  story: PlayableStopV3;
   content: Content;
   isFinal: boolean;
 }
@@ -31,7 +29,8 @@ interface StopStoryProps {
  * Stop screen (SRS v2.3 §3.6, §5.5): the chapter story player on a whole-number-scaled scene,
  * text over its bottom (desktop) or under it (phones); This stop / Item / Sources in a drawer.
  */
-export default function StopStory({ stop, story, content, isFinal }: StopStoryProps) {
+export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
+  const story = stop;
   const [readMoreOpen, setReadMoreOpen] = useState(false);
   const [infoOpen, setInfoOpen] = useState(false);
   const [atEnd, setAtEnd] = useState(false);

@@ -1,25 +1,12 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import { finishStory, skipIntroOnFreshProfile } from './helpers';
+import { playQuiz } from './quiz';
 
 test.beforeEach(async ({ page }) => {
   await skipIntroOnFreshProfile(page);
 });
 
 /** Picks the right or a wrong answer for whichever Berlin question is showing. */
-async function answerBerlin(page: Page, correctly: boolean) {
-  const group = page.getByRole('group', { name: /\?$/ });
-  const prompt = (await group.getAttribute('aria-labelledby')) ?? '';
-  const lent = (await page.locator(`#${prompt}`).textContent())?.startsWith('Who lent');
-  const name = lent
-    ? correctly
-      ? 'Maximo Viola'
-      : 'Ferdinand Blumentritt'
-    : correctly
-      ? /^2,000/
-      : /^20,000/;
-  await group.getByRole('button', { name }).click();
-}
-
 test('completing Berlin adds stamp + item, and it survives a refresh (M4, SRS §12 steps 3–7)', async ({
   page,
 }) => {
@@ -34,13 +21,7 @@ test('completing Berlin adds stamp + item, and it survives a refresh (M4, SRS §
   await expect(page.getByRole('heading', { name: 'Berlin Quiz' })).toBeVisible();
 
   // 5. Wrong → hint, no penalty → right → next → right
-  await answerBerlin(page, false);
-  await expect(page.getByText(/^Hint: /)).toBeVisible();
-  await page.getByRole('button', { name: 'Try again' }).click();
-  await answerBerlin(page, true);
-  await page.getByRole('button', { name: 'Next question ▶' }).click();
-  await answerBerlin(page, true);
-  await page.getByRole('button', { name: 'See your reward ▶' }).click();
+  await playQuiz(page, 'berlin-1887', { wrongFirst: true });
 
   // 6. Reward card → Open passport shows Berlin with New!
   await expect(page.getByText('Berlin stamp and Noli Me Tangere are yours.')).toBeVisible();

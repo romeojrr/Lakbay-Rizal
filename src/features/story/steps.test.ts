@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { cameraView, onScreen } from '../../components/SceneView/camera';
-import { realStories } from '../../test/content';
+import { realContent } from '../../test/content';
 import { buildSteps, chaptersReadAt, stepText, types } from './steps';
 
-const calamba = realStories().find((s) => s.id === 'calamba-1861');
+const calamba = realContent().stops.find((s) => s.id === 'calamba-1861');
 if (!calamba) throw new Error('calamba-1861');
 
 describe('buildSteps (SRS v2.3 §3.6)', () => {
@@ -24,7 +24,7 @@ describe('buildSteps (SRS v2.3 §3.6)', () => {
   });
 
   it('every stop has a story of 20 to 25 steps', () => {
-    for (const story of realStories()) {
+    for (const story of realContent().stops) {
       const count = buildSteps(story.chapters).length;
       expect(count, story.id).toBeGreaterThanOrEqual(20);
       expect(count, story.id).toBeLessThanOrEqual(25);

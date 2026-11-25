@@ -12,11 +12,13 @@ interface RewardCardProps {
   item: Item | undefined;
   /** False when the stop was completed before: rewards are given once (GD-4). */
   fresh: boolean;
+  /** §3.8: this attempt's stamp grade. */
+  grade?: 'gold' | 'silver';
 }
 
 /** Stamp + item + materials, with Open passport and Back to map (FR-43). */
 const RewardCard = forwardRef<HTMLHeadingElement, RewardCardProps>(function RewardCard(
-  { stop, item, fresh },
+  { stop, item, fresh, grade },
   ref,
 ) {
   const stamp = t('reward.stamp', { place: stop.place.label });
@@ -39,6 +41,11 @@ const RewardCard = forwardRef<HTMLHeadingElement, RewardCardProps>(function Rewa
             ? t('reward.andItem', { stamp, item: item.name })
             : t('reward.onlyStamp', { stamp })}
         </p>
+        {grade && (
+          <p className={grade === 'gold' ? styles.gold : styles.silver}>
+            {grade === 'gold' ? t('quiz.gold') : t('quiz.silver')}
+          </p>
+        )}
         {materials.length > 0 && (
           <p className={styles.materials}>
             {t('reward.materials')}: {materials.join(' · ')}

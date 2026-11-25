@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import SceneView from '../../components/SceneView/SceneView';
-import type { Character, Source } from '../../content/schemas';
-import type { PlayableStopV3 } from '../../content/schemas.v3';
+import type { Character, PlayableStop, Source } from '../../content/schemas';
 import { t } from '../../i18n/t';
 import { useReducedMotion } from '../../lib/useReducedMotion';
 import { useUi } from '../../store/ui';
@@ -19,7 +18,7 @@ const QUIET_CPS = 25;
 export const AUTOPLAY_DELAY = 1500;
 
 interface StoryPlayerProps {
-  story: PlayableStopV3;
+  story: PlayableStop;
   characters: Record<string, Character>;
   sources: Source[];
   /** GD-6: the final stop (no close-ups, no auto-play, slower text). */

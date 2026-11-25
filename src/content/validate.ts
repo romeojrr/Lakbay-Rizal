@@ -2,6 +2,7 @@
 // Used by scripts/validate-content.ts (build + test) and by the loader in development.
 import type { z } from 'zod';
 import { isInsideMap, projectToPercent } from '../lib/projection';
+import { checkChapters, checkQuiz, countWords, duplicates } from './validateStop';
 import {
   CONTENT_FILES,
   FILE_SCHEMAS,
@@ -10,6 +11,8 @@ import {
   type ContentFileName,
   type Stop,
 } from './schemas';
+
+export { countWords, duplicates };
 
 export type RawContent = Record<ContentFileName, unknown>;
 
@@ -53,10 +56,6 @@ const BANNED_SOURCE_HOSTS =
 
 export function formatProblem(problem: Problem): string {
   return `${problem.file} › ${problem.where}: ${problem.message}`;
-}
-
-export function countWords(text: string): number {
-  return text.trim().split(/\s+/).filter(Boolean).length;
 }
 
 export function validateContent(raw: RawContent, options: ValidateOptions = {}): ValidationResult {
@@ -207,7 +206,7 @@ class CrossChecker {
   }
 
   private checkStop(stop: Stop): void {
-    const { characters, items, regions, sources } = this.content;
+    const { items, regions, sources } = this.content;
     const at = (field?: string) => (field ? `${stop.id} › ${field}` : stop.id);
     const error = (field: string, message: string) => this.error('stops.json', at(field), message);
     const warn = (field: string, message: string) => this.warn('stops.json', at(field), message);
@@ -230,58 +229,11 @@ class CrossChecker {
 
     if (stop.status === 'outline') return;
 
-    // Dialogue: every speaker except the narrator needs a character and a scene anchor.
-    const { lines, dramatized } = stop.dialogue;
-    lines.forEach((line, i) => {
-      if (line.speaker === 'narrator') return;
-      if (!(line.speaker in characters)) {
-        error(`dialogue.lines[${i}].speaker`, `"${line.speaker}" is not in characters.json`);
-      }
-      if (!stop.scene.speakerAnchors?.[line.speaker]) {
-        error(
-          `dialogue.lines[${i}].speaker`,
-          `"${line.speaker}" has no entry in scene.speakerAnchors`,
-        );
-      }
-    });
-    if (lines.length > 5)
-      warn('dialogue.lines', `has ${lines.length} lines; use 5 or fewer (SRS §6.4)`);
-    lines.forEach((line, i) => {
-      const words = countWords(line.text);
-      if (words > 25)
-        warn(`dialogue.lines[${i}].text`, `has ${words} words; use 25 or fewer (SRS §6.4)`);
-    });
-    if (!dramatized && lines.some((l) => l.speaker !== 'narrator')) {
-      warn(
-        'dialogue.dramatized',
-        'a character speaks but the dialogue is not marked dramatized; set it to true unless every spoken line is a documented quote',
-      );
-    }
+    // §6.2b: chapters, lines and the quiz (none on the final stop, GD-6).
+    checkChapters(stop, this.content, error, warn);
+    checkQuiz(stop, stop === this.stopsByOrder.at(-1), this.content, error, warn);
 
-    // Quiz: the final stop has none (GD-6); every other stop has 1–5.
-    const isFinal = stop === this.stopsByOrder.at(-1);
-    if (isFinal && stop.quiz.length > 0) {
-      error('quiz', 'the final stop must have no quiz (SRS GD-6)');
-    } else if (!isFinal && (stop.quiz.length < 1 || stop.quiz.length > 5)) {
-      error('quiz', `needs 1 to 5 questions, has ${stop.quiz.length}`);
-    }
-    for (const id of duplicates(stop.quiz.map((q) => q.id))) {
-      error('quiz', `question id "${id}" is used more than once`);
-    }
-    stop.quiz.forEach((question, qi) => {
-      const optionIds = question.options.map((o) => o.id);
-      for (const id of duplicates(optionIds)) {
-        error(`quiz[${qi}].options`, `option id "${id}" is used more than once`);
-      }
-      if (!optionIds.includes(question.answer)) {
-        error(
-          `quiz[${qi}].answer`,
-          `"${question.answer}" does not match any option id (${optionIds.join(', ')})`,
-        );
-      }
-    });
-
-    // Story length: aim for 100–150 words.
+    // Read more summary (`story`): aim for 100–150 words.
     const words = countWords(stop.story);
     if (words < 90 || words > 170) {
       const message = `has ${words} words; it should be 100–150`;
@@ -363,14 +315,4 @@ class CrossChecker {
       }
     }
   }
-}
-
-export function duplicates<T>(values: readonly T[]): T[] {
-  const seen = new Set<T>();
-  const repeated = new Set<T>();
-  for (const value of values) {
-    if (seen.has(value)) repeated.add(value);
-    seen.add(value);
-  }
-  return [...repeated];
 }

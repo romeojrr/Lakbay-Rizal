@@ -1,11 +1,13 @@
-// Zod schemas for public/content/*.json — mirrors SRS §6.2.
+// Zod schemas for public/content/*.json — SRS §6.2, with v2.3 §6.2b stops (chapters, quiz).
 // Objects are strict so a misspelled key fails validation instead of being ignored.
 import { z } from 'zod';
 import {
   BUILDER_PROJECTS,
   CONTENT_FILES,
   MATERIALS,
+  MOODS,
   REGION_IDS,
+  SKILLS,
   THEMES,
   type ContentFileName,
 } from './constants';
@@ -45,19 +47,6 @@ export const PlaceSchema = z.strictObject({
 
 export const AnchorSchema = z.strictObject({ x: percent, y: percent });
 
-const DialogueSchema = z.strictObject({
-  dramatized: z.boolean(),
-  lines: z.array(z.strictObject({ speaker: text, text })),
-});
-
-const QuizQuestionSchema = z.strictObject({
-  id: text,
-  prompt: text,
-  options: z.array(z.strictObject({ id: text, text })).length(4, 'needs exactly 4 options'),
-  answer: text,
-  hint: text,
-});
-
 export const SourceRefSchema = z.strictObject({
   sourceId: text,
   pages: z.string().optional(),
@@ -80,10 +69,95 @@ export const stopBase = {
   verifyNotes: z.array(text).optional(),
 };
 
+// --- Stops: content v3 (SRS v2.3 §6.2b) --------------------------------------
+
+export const MoodSchema = z.enum(MOODS);
+export const SkillSchema = z.enum(SKILLS);
+
+export const LineSchema = z.strictObject({
+  speaker: text,
+  text,
+  mood: MoodSchema,
+  onScene: z.boolean(),
+  /** Present only when the words are quoted from a published source. */
+  recorded: z.strictObject({ sourceId: text }).optional(),
+});
+
+export const ChapterSchema = z.strictObject({
+  id: z.string().regex(/^c\d+$/, 'must look like c1, c2, …'),
+  title: text.max(40, 'must be 40 characters or fewer'),
+  camera: z.strictObject({
+    x: percent,
+    y: percent,
+    zoom: z.number().min(1, 'must be 1 or more').max(1.6, 'must be 1.6 or less'),
+  }),
+  narration: z.array(text).min(1, 'needs at least 1 paragraph'),
+  lines: z.array(LineSchema).max(4, 'use at most 4 lines per chapter'),
+  fact: z.strictObject({ text, sourceId: text }).optional(),
+});
+
+const choice = z.strictObject({ id: text, text });
+const questionBase = {
+  id: text,
+  skill: SkillSchema,
+  prompt: text,
+  explain: text,
+  sourceId: text,
+  hint: text,
+};
+
+export const QuestionSchema = z.discriminatedUnion('type', [
+  z.strictObject({
+    ...questionBase,
+    type: z.literal('mcq'),
+    options: z.array(choice).length(4, 'needs exactly 4 options'),
+    answer: text,
+  }),
+  z.strictObject({
+    ...questionBase,
+    type: z.literal('multi'),
+    options: z.array(choice).min(3, 'needs at least 3 options'),
+    answers: z.array(text).min(2, 'needs at least 2 answers'),
+  }),
+  z.strictObject({
+    ...questionBase,
+    type: z.literal('order'),
+    /** Listed in the correct order; the game shuffles them. */
+    items: z.array(choice).min(3, 'needs 3 to 5 items').max(5, 'needs 3 to 5 items'),
+    answer: z.array(text),
+  }),
+  z.strictObject({
+    ...questionBase,
+    type: z.literal('match'),
+    left: z.array(choice),
+    right: z.array(choice),
+    pairs: z.record(z.string(), text),
+  }),
+  z.strictObject({
+    ...questionBase,
+    type: z.literal('error'),
+    segments: z.array(choice).min(2, 'needs at least 2 segments'),
+    answer: text,
+    correction: text,
+  }),
+]);
+
+const v3Fields = {
+  contentVersion: z.literal(3),
+  /** Narration words, computed by the content script. */
+  wordCount: count,
+  /** Kept for the v2 "Dramatized" rule. */
+  dialogue: z.strictObject({ dramatized: z.literal(true) }),
+  chapters: z.array(ChapterSchema),
+  quiz: z.array(QuestionSchema),
+};
+
 /** A stop that is written and illustrated ('draft' or 'verified'). */
 export const PlayableStopSchema = z.strictObject({
   ...stopBase,
+  ...v3Fields,
   status: z.enum(['draft', 'verified']),
+  /** The 100–150-word summary shown by Read more. */
   story: text,
   scene: z.strictObject({
     image: assetPath,
@@ -93,10 +167,6 @@ export const PlayableStopSchema = z.strictObject({
     notes: z.array(text).max(3, 'use at most 3 notes').optional(),
     speakerAnchors: z.record(z.string(), AnchorSchema).optional(),
   }),
-  dialogue: DialogueSchema.extend({
-    lines: DialogueSchema.shape.lines.min(1, 'needs at least 1 line'),
-  }),
-  quiz: z.array(QuizQuestionSchema),
   rewards: z.strictObject({
     stamp: z.strictObject({ icon: assetPath }),
     item: text.optional(),
@@ -107,6 +177,7 @@ export const PlayableStopSchema = z.strictObject({
 /** A placeholder stop: may have '[TO WRITE]' text and no art yet (SRS §6.2). */
 export const OutlineStopSchema = z.strictObject({
   ...stopBase,
+  ...v3Fields,
   status: z.literal('outline'),
   story: z.string(),
   scene: z.strictObject({
@@ -116,8 +187,6 @@ export const OutlineStopSchema = z.strictObject({
     notes: z.array(z.string()).optional(),
     speakerAnchors: z.record(z.string(), AnchorSchema).optional(),
   }),
-  dialogue: DialogueSchema,
-  quiz: z.array(QuizQuestionSchema),
   rewards: z.strictObject({
     stamp: z.strictObject({ icon: assetPath.nullable() }),
     item: text.optional(),
@@ -213,6 +282,12 @@ export type BuilderProject = (typeof BUILDER_PROJECTS)[number];
 export type PlayableStop = z.infer<typeof PlayableStopSchema>;
 export type OutlineStop = z.infer<typeof OutlineStopSchema>;
 export type Stop = z.infer<typeof StopSchema>;
+export type Mood = z.infer<typeof MoodSchema>;
+export type Skill = z.infer<typeof SkillSchema>;
+export type Line = z.infer<typeof LineSchema>;
+export type Chapter = z.infer<typeof ChapterSchema>;
+export type Question = z.infer<typeof QuestionSchema>;
+export type QuestionType = Question['type'];
 export type Region = z.infer<typeof RegionSchema>;
 export type Character = z.infer<typeof CharacterSchema>;
 export type Item = z.infer<typeof ItemSchema>;

@@ -66,18 +66,17 @@ docs/                DECISIONS.md and CONTENT_TODO.md
 
 All historical text, dates, quiz questions and coordinates live in **`public/content/`**. No historical text is written in the code, so content changes never need a programmer.
 
-| File                | Holds                                                                                                                                                   |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `stops.json`        | The 25 stops: place, story, scene, dialogue, quiz, rewards, sources, status, verify notes.                                                              |
-| `sources.json`      | The bibliography (SRS §14), referred to by `sourceId`.                                                                                                  |
-| `characters.json`   | Speakers: name and sprite.                                                                                                                              |
-| `items.json`        | Keepsake items: name, one-line description, icon.                                                                                                       |
-| `regions.json`      | Map images, projection bounds, the Manila inset, the America rail route.                                                                                |
-| `builder.json`      | Dapitan builder: start materials, costs and the fact shown for each project.                                                                            |
-| `stops.v3.json`     | Content v3 (SRS v2.3 §6.2b): the same 25 stops with 4 chapters, close-up dialogue lines and 5 mixed quiz questions each. The game switches to it in U3. |
-| `guide.json`        | What Rizal says as the guide: the tour, tips and quiz reactions (SRS §3.7).                                                                             |
-| `gamification.json` | XP, ranks and achievements (SRS §3.8).                                                                                                                  |
-| `i18n/fil.*.json`   | The Filipino translation of the stops, guide and gamification files (SRS §3.10).                                                                        |
+| File                | Holds                                                                                      |
+| ------------------- | ------------------------------------------------------------------------------------------ |
+| `stops.json`        | The 25 stops: place, story, scene, dialogue, quiz, rewards, sources, status, verify notes. |
+| `sources.json`      | The bibliography (SRS §14), referred to by `sourceId`.                                     |
+| `characters.json`   | Speakers: name and sprite.                                                                 |
+| `items.json`        | Keepsake items: name, one-line description, icon.                                          |
+| `regions.json`      | Map images, projection bounds, the Manila inset, the America rail route.                   |
+| `builder.json`      | Dapitan builder: start materials, costs and the fact shown for each project.               |
+| `guide.json`        | What Rizal says as the guide: the tour, tips and quiz reactions (SRS §3.7).                |
+| `gamification.json` | XP, ranks and achievements (SRS §3.8).                                                     |
+| `i18n/fil.*.json`   | The Filipino translation of the stops, guide and gamification files (SRS §3.10).           |
 
 After any edit, run **`npm run validate-content`**. It explains every problem with the file, stop and field, for example:
 
@@ -96,10 +95,10 @@ To verify a stop (SRS §13–§14):
 1. Check every date and fact in the stop against **two sources, at least one Tier 1 or Tier 2** (Tier 1 = Rizal's own writings, Tier 2 = scholarly biographies and official bodies).
 2. Fill in `pages` for every book in the stop's `sources` (`"pages": "148–149"`).
 3. Work through each line in `verifyNotes`, then delete the notes you have resolved. A verified stop must have none left.
-4. Check the dialogue: if a real person speaks, `dialogue.dramatized` must be `true` unless every spoken line is a documented quote.
+4. Check the dialogue: a line may have `recorded` only if its words are quoted from the cited source; every other line is shown as Dramatized and a teacher must approve it.
 5. Set `"status": "verified"` and run `npm run validate-content`. It refuses a verified stop that is missing any of the above.
 
-Writing rules (SRS §6.4): stories 100–150 words, plain English, old place name first; at most 5 dialogue lines of 25 words or fewer; quiz questions test the story text only.
+Writing rules (SRS §6.4b): 600–800 words of narration in 4 chapters, plain English, old place name first; at most 4 lines of 25 words or fewer per chapter; 5 quiz questions per stop whose answers are in the chapter text, each with a hint and an explanation; a 100–150-word summary for Read more.
 
 ### Filipino
 

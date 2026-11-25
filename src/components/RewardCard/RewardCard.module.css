@@ -72,3 +72,22 @@
 .secondary {
   background: var(--card);
 }
+
+/* §3.8 stamp grade: a small ribbon; the word carries the meaning. */
+.gold,
+.silver {
+  align-self: flex-start;
+  margin: 0;
+  padding: 2px 10px;
+  font-size: var(--fs-small);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+}
+
+.gold {
+  background: var(--gold);
+}
+
+.silver {
+  background: #d6d3cc;
+}

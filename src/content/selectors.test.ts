@@ -31,7 +31,7 @@ function asOutline(stop: Stop): Stop {
     status: 'outline',
     story: '[TO WRITE]',
     scene: { image: null, time: null, alt: '' },
-    dialogue: { dramatized: false, lines: [] },
+    chapters: [],
     quiz: [],
     rewards: { stamp: { icon: null } },
   };
