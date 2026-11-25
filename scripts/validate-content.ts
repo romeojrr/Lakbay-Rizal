@@ -1,6 +1,6 @@
 // Validates public/content/*.json and checks every asset it points to (SRS §8.3, FR-61).
 // Runs before `npm run build` and `npm test`; exits with code 1 when anything is wrong.
-import { closeSync, existsSync, openSync, readFileSync, readSync } from 'node:fs';
+import { closeSync, existsSync, openSync, readFileSync, readSync, statSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CONTENT_FILES } from '../src/content/constants';
@@ -31,8 +31,9 @@ function pngInfo(path: string): AssetInfo | null {
   } finally {
     closeSync(fd);
   }
-  if (header.toString('latin1', 1, 4) !== 'PNG') return { width: 0, height: 0 };
-  return { width: header.readUInt32BE(16), height: header.readUInt32BE(20) };
+  const bytes = statSync(file).size;
+  if (header.toString('latin1', 1, 4) !== 'PNG') return { width: 0, height: 0, bytes };
+  return { width: header.readUInt32BE(16), height: header.readUInt32BE(20), bytes };
 }
 
 const raw: Partial<RawContent> = {};

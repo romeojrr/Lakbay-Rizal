@@ -27,10 +27,12 @@ export default function ClusterPin({
   const allLocked = group.members.every((m) => m.state === 'locked');
   const count = group.members.length;
   const place = insetLabel ?? groupLabel(group);
-  const label = allLocked && !insetLabel ? '?' : place;
-  const name = allLocked
+  // A locked group shows "?" instead of its places. The name contains the visible text in
+  // reading order ("2" then the label), so speech-control users can say it (WCAG 2.5.3).
+  const hidePlace = allLocked && !insetLabel;
+  const name = hidePlace
     ? t('pin.lockedCluster', { count })
-    : t(group.kind === 'inset' ? 'pin.inset' : 'pin.cluster', { place, count });
+    : t(group.kind === 'inset' ? 'pin.inset' : 'pin.cluster', { count, place });
   const size = state === 'current' ? 36 : 30;
 
   return (
@@ -55,11 +57,11 @@ export default function ClusterPin({
       <span
         className={styles.count}
         style={{ background: pinColor(stop, allLocked ? 'locked' : state) }}
-        aria-hidden="true"
       >
         {count}
-      </span>
-      <span className={styles.label}>{label}</span>
+      </span>{' '}
+      {/* The space keeps the visible text "2 Paris" matching the name "2 Paris stops". */}
+      <span className={styles.label}>{hidePlace ? '?' : place}</span>
     </button>
   );
 }

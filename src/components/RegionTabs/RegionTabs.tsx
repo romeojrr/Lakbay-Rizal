@@ -20,14 +20,12 @@ export default function RegionTabs({ regions, nextRegion }: RegionTabsProps) {
               className={({ isActive }) =>
                 isActive ? `${styles.tab} ${styles.active}` : styles.tab
               }
+              aria-label={
+                region.id === nextRegion ? t('nav.nextHere', { region: region.label }) : undefined
+              }
             >
               {region.label}
-              {region.id === nextRegion && (
-                <>
-                  <span className={styles.marker} aria-hidden="true" />
-                  <span className="visually-hidden">{t('nav.nextHere')}</span>
-                </>
-              )}
+              {region.id === nextRegion && <span className={styles.marker} aria-hidden="true" />}
             </NavLink>
           </li>
         ))}

@@ -1,8 +1,17 @@
-/* Self-hosted fonts (SIL OFL). No requests to Google Fonts at runtime. */
-@import '@fontsource/pixelify-sans/400.css';
-@import '@fontsource/pixelify-sans/500.css';
-@import '@fontsource/pixelify-sans/600.css';
-@import '@fontsource/pixelify-sans/700.css';
-@import '@fontsource/nunito/600.css';
-@import '@fontsource/nunito/700.css';
-@import '@fontsource/nunito/800.css';
+/* Self-hosted fonts (SIL OFL). No requests to Google Fonts at runtime.
+   Only the Latin and Latin Extended subsets: the game text is English with Spanish,
+   Filipino and Czech place names (ñ, á, ě, ř); Cyrillic and Vietnamese are never used. */
+@import '@fontsource/pixelify-sans/latin-400.css';
+@import '@fontsource/pixelify-sans/latin-ext-400.css';
+@import '@fontsource/pixelify-sans/latin-500.css';
+@import '@fontsource/pixelify-sans/latin-ext-500.css';
+@import '@fontsource/pixelify-sans/latin-600.css';
+@import '@fontsource/pixelify-sans/latin-ext-600.css';
+@import '@fontsource/pixelify-sans/latin-700.css';
+@import '@fontsource/pixelify-sans/latin-ext-700.css';
+@import '@fontsource/nunito/latin-600.css';
+@import '@fontsource/nunito/latin-ext-600.css';
+@import '@fontsource/nunito/latin-700.css';
+@import '@fontsource/nunito/latin-ext-700.css';
+@import '@fontsource/nunito/latin-800.css';
+@import '@fontsource/nunito/latin-ext-800.css';

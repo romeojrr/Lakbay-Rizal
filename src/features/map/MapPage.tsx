@@ -39,7 +39,10 @@ export default function MapPage() {
   const mode = useProgress((s) => s.mode);
   const completed = useProgress((s) => s.completed);
   const setMode = useProgress((s) => s.setMode);
-  const { timelineYear, setTimelineYear, setLastRegion } = useUi();
+  // Separate selectors: setting lastRegion must not re-render the whole map.
+  const timelineYear = useUi((s) => s.timelineYear);
+  const setTimelineYear = useUi((s) => s.setTimelineYear);
+  const setLastRegion = useUi((s) => s.setLastRegion);
   const navigate = useNavigate();
   const location = useLocation();
   const insetRef = useRef<HTMLDivElement>(null);

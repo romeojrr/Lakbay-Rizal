@@ -52,8 +52,15 @@
   border-color: var(--pin-locked-dot);
 }
 
-.dimmed {
-  opacity: 0.4;
+/* After the timeline year: the pin fades, but its label stays readable (4.5:1, NFR-2). */
+.dimmed > svg,
+.dimmed > .count {
+  opacity: 0.35;
+}
+
+.dimmed:not(.current) .label {
+  color: var(--muted);
+  border-style: dashed;
 }
 
 .highlighted {
@@ -65,8 +72,16 @@
   box-shadow: 0 0 0 3px var(--gold);
 }
 
+/* Small maps: hide the label visually but keep it in the accessible name. */
 .compact:not(.current, .highlighted) .label {
-  display: none;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  padding: 0;
+  border: 0;
 }
 
 /* Cluster square with a count */

@@ -61,7 +61,8 @@
   font-weight: 700;
 }
 
-.locked .year,
+/* Locked rows: muted text, not transparency, so they keep 4.5:1 contrast (NFR-2). */
 .locked .name {
-  opacity: 0.6;
+  font-weight: 700;
+  color: var(--muted);
 }

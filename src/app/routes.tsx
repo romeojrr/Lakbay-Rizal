@@ -3,16 +3,8 @@ import { loadContent } from '../content/loader';
 import { isPreviewMode } from '../content/preview';
 import type { Content, Stop } from '../content/schemas';
 import { getVisibleStops, shouldIncludeDrafts } from '../content/selectors';
-import BuilderPage from '../features/builder/BuilderPage';
-import CreditsPage from '../features/credits/CreditsPage';
-import GalleryPage from '../features/gallery/GalleryPage';
-import JournalPage from '../features/journal/JournalPage';
 import HomeRedirect from '../features/map/HomeRedirect';
 import MapPage from '../features/map/MapPage';
-import PassportPage from '../features/passport/PassportPage';
-import QuizPage from '../features/quiz/QuizPage';
-import SettingsPage from '../features/settings/SettingsPage';
-import StopPage from '../features/stop/StopPage';
 import ContentError from './ContentError';
 import Layout from './Layout';
 import LoadingScreen from './LoadingScreen';
@@ -36,6 +28,14 @@ export async function rootLoader(): Promise<RootData> {
   return { content, stops: getVisibleStops(content.stops, includeDrafts) };
 }
 
+/**
+ * Pages other than the map load on first use (NFR-1: less JavaScript before the first
+ * paint). The service worker precaches them, so they still open offline.
+ */
+const page = (load: () => Promise<{ default: React.ComponentType }>) => async () => ({
+  Component: (await load()).default,
+});
+
 // The routes of SRS FR-2.
 export function createRoutes(loader: RootLoader = rootLoader): RouteObject[] {
   return [
@@ -50,14 +50,14 @@ export function createRoutes(loader: RootLoader = rootLoader): RouteObject[] {
       children: [
         { index: true, Component: HomeRedirect },
         { path: 'region/:regionId', Component: MapPage },
-        { path: 'stop/:stopId', Component: StopPage },
-        { path: 'stop/:stopId/quiz', Component: QuizPage },
-        { path: 'passport', Component: PassportPage },
-        { path: 'journal', Component: JournalPage },
-        { path: 'dapitan/build', Component: BuilderPage },
-        { path: 'scenes', Component: GalleryPage },
-        { path: 'settings', Component: SettingsPage },
-        { path: 'credits', Component: CreditsPage },
+        { path: 'stop/:stopId', lazy: page(() => import('../features/stop/StopPage')) },
+        { path: 'stop/:stopId/quiz', lazy: page(() => import('../features/quiz/QuizPage')) },
+        { path: 'passport', lazy: page(() => import('../features/passport/PassportPage')) },
+        { path: 'journal', lazy: page(() => import('../features/journal/JournalPage')) },
+        { path: 'dapitan/build', lazy: page(() => import('../features/builder/BuilderPage')) },
+        { path: 'scenes', lazy: page(() => import('../features/gallery/GalleryPage')) },
+        { path: 'settings', lazy: page(() => import('../features/settings/SettingsPage')) },
+        { path: 'credits', lazy: page(() => import('../features/credits/CreditsPage')) },
         { path: '*', Component: NotFoundPage },
       ],
     },

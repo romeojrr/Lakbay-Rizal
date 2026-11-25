@@ -8,7 +8,7 @@
   },
   "nav": {
     "regions": "Regions",
-    "nextHere": ", your next stop is here",
+    "nextHere": "{region}, your next stop is here",
     "scenes": "Scenes",
     "passport": "Passport · {done}/{total}"
   },
@@ -36,8 +36,8 @@
     "current": "{place}, {year}, current stop",
     "open": "{place}, {year}, open",
     "locked": "Locked stop, {year}",
-    "cluster": "{place}, {count} stops",
-    "inset": "{place}, {count} stops, show the close-up map",
+    "cluster": "{count} {place} stops",
+    "inset": "{count} {place} stops, show the close-up map",
     "lockedCluster": "{count} locked stops"
   },
   "status": {

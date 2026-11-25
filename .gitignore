@@ -1,5 +1,7 @@
 node_modules/
 dist/
+dist-prod/
+lighthouse/
 
 # Generated from assets/ by scripts/copy-assets.ts — edit assets/ instead
 public/assets/

@@ -22,7 +22,11 @@ export interface Problem {
 export interface AssetInfo {
   width: number;
   height: number;
+  /** File size, when known (NFR-1: each scene PNG ≤ 60 KB). */
+  bytes?: number;
 }
+
+const MAX_SCENE_BYTES = 60 * 1024;
 
 export interface ValidateOptions {
   /**
@@ -329,6 +333,14 @@ class CrossChecker {
 
     for (const stop of this.content.stops) {
       check('stops.json', `${stop.id} › scene.image`, stop.scene.image, SIZES.scene);
+      const bytes = stop.scene.image ? assetInfo(stop.scene.image)?.bytes : undefined;
+      if (bytes !== undefined && bytes > MAX_SCENE_BYTES) {
+        this.error(
+          'stops.json',
+          `${stop.id} › scene.image`,
+          `${stop.scene.image} is ${Math.round(bytes / 1024)} KB; scenes must be 60 KB or less (NFR-1)`,
+        );
+      }
       check('stops.json', `${stop.id} › rewards.stamp.icon`, stop.rewards.stamp.icon, SIZES.icon);
     }
     for (const [id, item] of Object.entries(this.content.items)) {

@@ -19,7 +19,7 @@ test('fresh profile opens the Philippines with Calamba current and later stops l
   await expect(page).toHaveURL(/\/region\/philippines$/);
   await expect(page.getByRole('heading', { level: 1, name: 'Philippines' })).toBeVisible();
   await expect(
-    page.getByRole('button', { name: 'Manila area, 8 stops, show the close-up map' }),
+    page.getByRole('button', { name: '8 Manila area stops, show the close-up map' }),
   ).toBeVisible();
   await expect(page.getByRole('button', { name: 'Locked stop, 1892' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Enter Calamba ▶' })).toBeVisible();

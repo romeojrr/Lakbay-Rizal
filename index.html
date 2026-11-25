@@ -3,8 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A pixel-art journey through José Rizal's life: scenes, short stories, quizzes and a passport of stamps."
+    />
     <meta name="theme-color" content="#1F1A24" />
-    <link rel="icon" href="data:," />
+    <link rel="icon" type="image/png" href="%BASE_URL%assets/icons/app/icon-192.png" />
+    <link rel="apple-touch-icon" href="%BASE_URL%assets/icons/app/icon-192.png" />
+    <!-- Start the content downloads with the script instead of after it (NFR-1 LCP). -->
+    <link rel="preload" href="%BASE_URL%content/stops.json" as="fetch" crossorigin="anonymous" />
+    <link rel="preload" href="%BASE_URL%content/regions.json" as="fetch" crossorigin="anonymous" />
+    <link
+      rel="preload"
+      href="%BASE_URL%content/characters.json"
+      as="fetch"
+      crossorigin="anonymous"
+    />
+    <link rel="preload" href="%BASE_URL%content/items.json" as="fetch" crossorigin="anonymous" />
+    <link rel="preload" href="%BASE_URL%content/builder.json" as="fetch" crossorigin="anonymous" />
+    <link rel="preload" href="%BASE_URL%content/sources.json" as="fetch" crossorigin="anonymous" />
     <title>Lakbay Rizal</title>
   </head>
   <body>

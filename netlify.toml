@@ -1,0 +1,26 @@
+# Netlify: production shows only verified stops; deploy previews and branch deploys
+# include drafts so the team and teachers can test (SRS FR-62, M8).
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[context.deploy-preview.environment]
+  INCLUDE_DRAFTS = "true"
+
+[context.branch-deploy.environment]
+  INCLUDE_DRAFTS = "true"
+
+# SPA fallback: every path loads the app (FR-2).
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# The service worker must never be cached by the CDN, or updates would not arrive.
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"

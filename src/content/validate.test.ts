@@ -213,6 +213,16 @@ describe('validateContent — assets', () => {
     expect(errorsFor(rawContent(), realSize)).toEqual([]);
   });
 
+  it('rejects a scene over 60 KB (NFR-1)', () => {
+    const assetInfo = (path: string) =>
+      path === '/assets/scenes/berlin_1887.png'
+        ? { width: 384, height: 216, bytes: 61 * 1024 }
+        : realSize(path);
+    expect(errorsFor(rawContent(), assetInfo)).toEqual([
+      'stops.json › berlin-1887 › scene.image: /assets/scenes/berlin_1887.png is 61 KB; scenes must be 60 KB or less (NFR-1)',
+    ]);
+  });
+
   it('reports a missing file and a wrong size', () => {
     const assetInfo = (path: string) => {
       if (path === '/assets/scenes/berlin_1887.png') return null;

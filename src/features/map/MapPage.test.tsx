@@ -82,7 +82,7 @@ describe('MapPage', () => {
     const user = userEvent.setup();
     renderAt('/region/philippines');
     const cluster = await screen.findByRole('button', {
-      name: 'Manila area, 8 stops, show the close-up map',
+      name: '8 Manila area stops, show the close-up map',
     });
     await user.click(cluster);
     const inset = screen.getByRole('heading', { name: 'Manila area' }).closest('[tabindex="-1"]');

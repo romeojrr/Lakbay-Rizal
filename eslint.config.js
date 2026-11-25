@@ -10,6 +10,8 @@ import tseslint from 'typescript-eslint';
 export default defineConfig([
   globalIgnores([
     'dist',
+    'dist-prod',
+    'lighthouse',
     'public/assets',
     'assets',
     'art-tools',
