@@ -32,7 +32,8 @@ In development every stop is shown, including drafts.
 | `npm run build:drafts`     | Production build that also shows draft stops (classroom testing, previews).                                                                                                  |
 | `npm run preview`          | Serves `dist/` at http://localhost:4173.                                                                                                                                     |
 | `npm run test:e2e`         | Browser tests (Playwright) at 1440 px and 360 px, including the SRS §12 journey, accessibility scans, offline play and every stop played end to end. Builds the site itself. |
-| `npm run validate-content` | Checks `public/content/*.json` and every image it points to.                                                                                                                 |
+| `npm run validate-content` | Checks `public/content/*.json` (including content v3 and the Filipino files) and every image it points to.                                                                   |
+| `npm run i18n-missing`     | Lists the UI strings that have no Filipino yet (they show in English).                                                                                                       |
 | `npm run lighthouse [url]` | Lighthouse Performance + Accessibility, mobile and desktop, median of 3 runs. Start a server first (`npm run build:drafts && npm run preview`). Reports go to `lighthouse/`. |
 
 Before you commit, run the same checks as CI:
@@ -55,7 +56,7 @@ src/                 the React app
   features/          one folder per screen (map, stop, quiz, passport, builder…)
   content/           Zod schemas, content checks, loader, selectors
   store/             saved progress (localStorage) and its migrations
-  i18n/en.json       every piece of UI text
+  i18n/              every piece of UI text: en.json (English) and fil.json (Filipino)
 e2e/                 Playwright tests
 scripts/             build helpers (content checks, asset copy, Lighthouse…)
 docs/                DECISIONS.md and CONTENT_TODO.md
@@ -65,14 +66,18 @@ docs/                DECISIONS.md and CONTENT_TODO.md
 
 All historical text, dates, quiz questions and coordinates live in **`public/content/`**. No historical text is written in the code, so content changes never need a programmer.
 
-| File              | Holds                                                                                      |
-| ----------------- | ------------------------------------------------------------------------------------------ |
-| `stops.json`      | The 25 stops: place, story, scene, dialogue, quiz, rewards, sources, status, verify notes. |
-| `sources.json`    | The bibliography (SRS §14), referred to by `sourceId`.                                     |
-| `characters.json` | Speakers: name and sprite.                                                                 |
-| `items.json`      | Keepsake items: name, one-line description, icon.                                          |
-| `regions.json`    | Map images, projection bounds, the Manila inset, the America rail route.                   |
-| `builder.json`    | Dapitan builder: start materials, costs and the fact shown for each project.               |
+| File                | Holds                                                                                                                                                   |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `stops.json`        | The 25 stops: place, story, scene, dialogue, quiz, rewards, sources, status, verify notes.                                                              |
+| `sources.json`      | The bibliography (SRS §14), referred to by `sourceId`.                                                                                                  |
+| `characters.json`   | Speakers: name and sprite.                                                                                                                              |
+| `items.json`        | Keepsake items: name, one-line description, icon.                                                                                                       |
+| `regions.json`      | Map images, projection bounds, the Manila inset, the America rail route.                                                                                |
+| `builder.json`      | Dapitan builder: start materials, costs and the fact shown for each project.                                                                            |
+| `stops.v3.json`     | Content v3 (SRS v2.3 §6.2b): the same 25 stops with 4 chapters, close-up dialogue lines and 5 mixed quiz questions each. The game switches to it in U3. |
+| `guide.json`        | What Rizal says as the guide: the tour, tips and quiz reactions (SRS §3.7).                                                                             |
+| `gamification.json` | XP, ranks and achievements (SRS §3.8).                                                                                                                  |
+| `i18n/fil.*.json`   | The Filipino translation of the stops, guide and gamification files (SRS §3.10).                                                                        |
 
 After any edit, run **`npm run validate-content`**. It explains every problem with the file, stop and field, for example:
 
@@ -95,6 +100,12 @@ To verify a stop (SRS §13–§14):
 5. Set `"status": "verified"` and run `npm run validate-content`. It refuses a verified stop that is missing any of the above.
 
 Writing rules (SRS §6.4): stories 100–150 words, plain English, old place name first; at most 5 dialogue lines of 25 words or fewer; quiz questions test the story text only.
+
+### Filipino
+
+The game has an EN | FIL switch in the top bar and in Settings. A new player gets Filipino if the browser's language is Filipino or Tagalog. Filipino text comes from `public/content/i18n/fil.*.json` (content) and `src/i18n/fil.json` (buttons and labels). Any string that has no Filipino yet shows in English, one string at a time.
+
+The Filipino files are drafts (`"status": "draft"`), so a "Draft translation" badge shows next to the switch. When a fluent teacher has checked a file, set its `"status"` to `"reviewed"`; the badge goes when all three are reviewed. `npm run validate-content` checks that each Filipino stop has the same chapters, paragraphs, lines, facts, questions and choices as the English one.
 
 ### Content still missing
 
@@ -129,7 +140,7 @@ After the first visit a service worker keeps the whole game (pages, art, fonts, 
 
 ## Saved progress
 
-Progress is stored in the browser under the key `lakbay-rizal:v1`. If a save cannot be read, the game keeps a copy under `lakbay-rizal:v1:corrupt`, starts fresh and tells the player. To change what is saved, bump the version and add a migration in `src/store/migrations.ts`. Players can reset everything from **Settings → Reset progress**.
+Progress is stored in the browser under the key `lakbay-rizal:v1` (store version 2 since v2.3; older saves are upgraded automatically). If a save cannot be read, the game keeps a copy under `lakbay-rizal:v1:corrupt`, starts fresh and tells the player. To change what is saved, bump the version and add a migration in `src/store/migrations.ts`. Players can reset everything from **Settings → Reset progress**.
 
 ## Quality checks (last run 25 November 2026)
 

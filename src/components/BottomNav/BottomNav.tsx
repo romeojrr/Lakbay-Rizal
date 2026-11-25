@@ -71,7 +71,7 @@ export default function BottomNav({ mapRegion, earned, total }: BottomNavProps) 
             to="/passport"
             icon={<PassportIcon />}
             label={t('nav.passportShort')}
-            name={t('nav.passport', { done: earned, total })}
+            name={t('nav.passportCount', { label: t('nav.passport'), done: earned, total })}
             current={pathname === '/passport'}
             guide="passport-button"
           />

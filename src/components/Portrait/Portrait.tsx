@@ -15,7 +15,7 @@ interface Crop {
 
 /**
  * Head-and-shoulders crop of a sprite at 3× (SRS §5.4). An adult 34 × 78 sprite gives the
- * mockup's left −12, top −18, 102 × 234. A character's `portrait` in content overrides this.
+ * mockup's left −12, top −18, 102 × 234. A character's `spriteCrop` in content overrides this.
  */
 export function defaultCrop(width: number, height: number): Crop {
   const w = width * SCALE;
@@ -52,7 +52,7 @@ function BookIcon() {
 export default function Portrait({ character }: { character: Character | undefined }) {
   const [natural, setNatural] = useState<{ w: number; h: number } | null>(null);
   const sprite = character?.sprite;
-  const crop = character?.portrait ?? (natural ? defaultCrop(natural.w, natural.h) : null);
+  const crop = character?.spriteCrop ?? (natural ? defaultCrop(natural.w, natural.h) : null);
 
   return (
     <div className={styles.box}>

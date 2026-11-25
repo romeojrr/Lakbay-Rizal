@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ConfirmDialog from '../../components/ConfirmDialog/ConfirmDialog';
+import DraftBadge from '../../components/LanguageSwitch/DraftBadge';
 import ModeToggle from '../../components/ModeToggle/ModeToggle';
 import Panel from '../../components/Panel/Panel';
+import { getTranslations, isDraftTranslation } from '../../content/translations';
+import { LANGS, type Lang } from '../../i18n/language';
 import { t, type MessageKey } from '../../i18n/t';
+import { changeLanguage, useLanguage, useRestoreFocus } from '../../i18n/useLanguage';
 import { useProgress, type Progress } from '../../store/progress';
 import { useUi } from '../../store/ui';
 import styles from './SettingsPage.module.css';
@@ -47,7 +51,45 @@ function Choice<K extends 'textSize' | 'reduceMotion'>({
   );
 }
 
-/** /settings — text size, motion, journey mode, verify notes, reset (FR-71). */
+function LanguageOption({ lang, current }: { lang: Lang; current: Lang }) {
+  const ref = useRef<HTMLInputElement>(null);
+  useRestoreFocus(`settings-${lang}`, ref);
+  return (
+    <label className={styles.segment}>
+      <input
+        ref={ref}
+        type="radio"
+        name="lang"
+        value={lang}
+        checked={current === lang}
+        onChange={() => void changeLanguage(lang, `settings-${lang}`)}
+      />
+      <span lang={lang}>{t(`lang.${lang}`)}</span>
+    </label>
+  );
+}
+
+/** §3.10: the same choice as the EN | FIL switch in the top bar. */
+function LanguageChoice() {
+  const lang = useLanguage();
+  return (
+    <fieldset className={styles.fieldset}>
+      <legend className={styles.legend}>{t('settings.language')}</legend>
+      <div className={styles.segments}>
+        {LANGS.map((option) => (
+          <LanguageOption key={option} lang={option} current={lang} />
+        ))}
+      </div>
+      {lang === 'fil' && isDraftTranslation(getTranslations()) && (
+        <p className={styles.help}>
+          <DraftBadge wide />
+        </p>
+      )}
+    </fieldset>
+  );
+}
+
+/** /settings — language, text size, motion, journey mode, verify notes, reset (FR-71). */
 export default function SettingsPage() {
   const mode = useProgress((s) => s.mode);
   const setMode = useProgress((s) => s.setMode);
@@ -67,6 +109,7 @@ export default function SettingsPage() {
   return (
     <Panel className={styles.panel}>
       <h1 className={styles.title}>{t('settings.title')}</h1>
+      <LanguageChoice />
       <Choice
         name="textSize"
         legend="settings.textSize"

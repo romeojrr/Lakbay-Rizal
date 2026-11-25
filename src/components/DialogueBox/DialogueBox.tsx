@@ -51,7 +51,9 @@ export default function DialogueBox({ stop, characters, index, onNext }: Dialogu
             {t('stop.lineOf', { n: index + 1, total: lines.length })}
           </span>
           <button type="button" className={styles.next} onClick={onNext}>
-            {last ? t('stop.replay') : t('stop.next')}
+            {last
+              ? t('stop.replayButton', { label: t('stop.replay') })
+              : t('stop.nextButton', { label: t('stop.next') })}
           </button>
         </div>
       </div>

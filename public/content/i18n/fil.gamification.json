@@ -1,0 +1,69 @@
+{
+  "lang": "fil",
+  "status": "draft",
+  "achievements": {
+    "first-steps": {
+      "title": "Unang hakbang",
+      "desc": "Tapusin ang una mong hinto."
+    },
+    "sobresaliente": {
+      "title": "Sobresaliente",
+      "desc": "Sagutin nang tama ang limang tanong ng isang hinto sa unang subok."
+    },
+    "emperor": {
+      "title": "Emperador ng klase",
+      "desc": "Umabot sa streak na 10 tamang sagot."
+    },
+    "historian": {
+      "title": "Historyador",
+      "desc": "Sagutin nang tama ang 10 tanong tungkol sa sanggunian."
+    },
+    "detective": {
+      "title": "Detektib",
+      "desc": "Humanap ng 10 mali sa mga tanong na 'hanapin ang mali'."
+    },
+    "timekeeper": {
+      "title": "Tagapag-ingat ng panahon",
+      "desc": "Ayusin nang tama ang 10 set ng pangyayari."
+    },
+    "globetrotter": {
+      "title": "Manlalakbay sa mundo",
+      "desc": "Tapusin ang isang hinto sa lahat ng apat na rehiyon."
+    },
+    "bookworm": {
+      "title": "Mahilig magbasa",
+      "desc": "Buksan ang 'Magbasa pa' at ang mga sanggunian sa 10 hinto."
+    },
+    "builder": {
+      "title": "Tagapagtayo ng Dapitan",
+      "desc": "Itayo ang paaralan, klinika at sistema ng tubig."
+    },
+    "collector": {
+      "title": "Kolektor",
+      "desc": "Ipunin ang lahat ng alaala."
+    },
+    "full-passport": {
+      "title": "Puno ang pasaporte",
+      "desc": "Makuha ang lahat ng 24 na tatak ng pagsusulit."
+    },
+    "bilingual": {
+      "title": "Polyglot",
+      "desc": "Basahin ang isang hinto sa Ingles at sa Filipino."
+    },
+    "safe-traveller": {
+      "title": "Ligtas na manlalakbay",
+      "desc": "Mag-download ng save code."
+    },
+    "journey-end": {
+      "title": "Nagpapatuloy ang paglalakbay",
+      "desc": "Marating ang dulo ng paglalakbay ni Rizal."
+    }
+  },
+  "ranks": {
+    "estudyante": "Mag-aaral",
+    "bachiller": "Batsilyer sa Sining, gaya ni Rizal noong 1877",
+    "manlalakbay": "Manlalakbay",
+    "manunulat": "Manunulat",
+    "ilustrado": "Edukadong Pilipino ng henerasyon ng reporma"
+  }
+}

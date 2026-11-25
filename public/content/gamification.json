@@ -1,0 +1,153 @@
+{
+  "_readme": "Gamification rules (SRS v2.3 §3.8). All numbers are content, not code: change them here without touching components.",
+  "xp": {
+    "correctFirstTry": 20,
+    "correctSecondTry": 10,
+    "correctLaterTry": 5,
+    "hintPenalty": 5,
+    "streakBonusEvery": 5,
+    "streakBonus": 25,
+    "perfectStopBonus": 30,
+    "chapterRead": 5,
+    "readMoreOpened": 5,
+    "builderProject": 40
+  },
+  "quizPass": {
+    "minCorrectFirstTry": 4,
+    "outOf": 5,
+    "note": "A stop is completed when every question has been answered correctly; the stamp is 'gold' when at least 4 of 5 were right on the first try, 'silver' otherwise. Retries are unlimited; there is no fail screen (GD-5)."
+  },
+  "ranks": [
+    {
+      "id": "estudyante",
+      "minXp": 0,
+      "title": "Estudyante",
+      "meaning": "Student"
+    },
+    {
+      "id": "bachiller",
+      "minXp": 400,
+      "title": "Bachiller",
+      "meaning": "Bachelor of Arts, as Rizal became in 1877"
+    },
+    {
+      "id": "manlalakbay",
+      "minXp": 1000,
+      "title": "Manlalakbay",
+      "meaning": "Traveller"
+    },
+    {
+      "id": "manunulat",
+      "minXp": 1800,
+      "title": "Manunulat",
+      "meaning": "Writer"
+    },
+    {
+      "id": "ilustrado",
+      "minXp": 2800,
+      "title": "Ilustrado",
+      "meaning": "An educated Filipino of the reform generation"
+    }
+  ],
+  "achievements": [
+    {
+      "id": "first-steps",
+      "icon": "moth-story",
+      "title": "First steps",
+      "desc": "Finish your first stop.",
+      "rule": "completed >= 1"
+    },
+    {
+      "id": "sobresaliente",
+      "icon": "ateneo-medal",
+      "title": "Sobresaliente",
+      "desc": "Answer all five questions of a stop right on the first try.",
+      "rule": "anyPerfectStop"
+    },
+    {
+      "id": "emperor",
+      "icon": "ateneo-medal",
+      "title": "Emperor of the class",
+      "desc": "Reach a streak of 10 correct answers.",
+      "rule": "bestStreak >= 10"
+    },
+    {
+      "id": "historian",
+      "icon": "reader-ticket",
+      "title": "Historian",
+      "desc": "Answer 10 source questions right.",
+      "rule": "skillCorrect.source >= 10"
+    },
+    {
+      "id": "detective",
+      "icon": "fili-manuscript",
+      "title": "Detective",
+      "desc": "Find 10 mistakes in 'spot the error' questions.",
+      "rule": "typeCorrect.error >= 10"
+    },
+    {
+      "id": "timekeeper",
+      "icon": "train-ticket",
+      "title": "Timekeeper",
+      "desc": "Put 10 sets of events in the right order.",
+      "rule": "typeCorrect.order >= 10"
+    },
+    {
+      "id": "globetrotter",
+      "icon": "train-ticket",
+      "title": "Globetrotter",
+      "desc": "Complete a stop in all four regions.",
+      "rule": "regionsCompleted == 4"
+    },
+    {
+      "id": "bookworm",
+      "icon": "noli-me-tangere",
+      "title": "Bookworm",
+      "desc": "Open 'Read more' and the sources on 10 stops.",
+      "rule": "readMoreOpened >= 10"
+    },
+    {
+      "id": "builder",
+      "icon": "talisay-school-bell",
+      "title": "Builder of Dapitan",
+      "desc": "Build the school, clinic and water system.",
+      "rule": "builder.all"
+    },
+    {
+      "id": "collector",
+      "icon": "silver-pen",
+      "title": "Collector",
+      "desc": "Collect every keepsake.",
+      "rule": "items == allItems"
+    },
+    {
+      "id": "full-passport",
+      "icon": "amor-patrio",
+      "title": "Full passport",
+      "desc": "Earn all 24 quiz stamps.",
+      "rule": "stamps >= 24"
+    },
+    {
+      "id": "bilingual",
+      "icon": "wilhelm-tell",
+      "title": "Polyglot",
+      "desc": "Read a stop in both English and Filipino.",
+      "rule": "readInBothLanguages"
+    },
+    {
+      "id": "safe-traveller",
+      "icon": "calling-card",
+      "title": "Safe traveller",
+      "desc": "Download a save code.",
+      "rule": "exportedSave"
+    },
+    {
+      "id": "journey-end",
+      "icon": null,
+      "title": "The journey goes on",
+      "desc": "Reach the end of Rizal's journey.",
+      "rule": "completed includes bagumbayan-1896",
+      "quiet": true
+    }
+  ]
+}

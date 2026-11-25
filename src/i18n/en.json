@@ -4,26 +4,41 @@
     "loading": "Loading the journey…",
     "loadErrorTitle": "The journey could not load",
     "loadErrorBody": "Check your connection, then try again.",
-    "reload": "Try again"
+    "reload": "Try again",
+    "name": "Lakbay Rizal",
+    "tagline": "Rizal's journey, stop by stop"
   },
   "nav": {
     "regions": "Regions",
     "nextHere": "{region}, your next stop is here",
     "scenes": "Scenes",
-    "passport": "Passport · {done}/{total}",
+    "passport": "Passport",
     "passportShort": "Passport",
     "main": "Main",
     "map": "Map",
     "timeline": "Timeline",
     "journal": "Journal",
-    "more": "More"
+    "more": "More",
+    "passportCount": "{label} · {done}/{total}",
+    "settings": "Settings",
+    "credits": "Credits",
+    "back": "Back"
   },
   "xp": {
-    "label": "{xp} XP"
+    "label": "XP",
+    "amount": "{xp} {label}",
+    "gain": "+{n} XP"
   },
   "lang": {
-    "short": "EN",
-    "current": "Language: English"
+    "en": "English",
+    "fil": "Filipino",
+    "enShort": "EN",
+    "filShort": "FIL",
+    "named": "{short} ({name})",
+    "draft": "Draft translation",
+    "draftShort": "Draft",
+    "draftTip": "Written by AI, being checked by the RIZLIFE team.",
+    "loading": "Loading Filipino…"
   },
   "panel": {
     "label": "Stops in this region",
@@ -51,7 +66,15 @@
     "comingSoonTitle": "Content coming soon",
     "comingSoonBody": "The team is still checking the history for these stops. Please come back later.",
     "notFoundTitle": "That place is not on the map",
-    "backToMap": "Back to the map"
+    "backToMap": "Back to the map",
+    "next": "Next stop",
+    "enter": "Enter",
+    "journey": "Journey",
+    "locked": "Finish the previous stop first",
+    "guided": "Guided",
+    "free": "Free explore",
+    "timeline": "Timeline",
+    "comingSoon": "Content coming soon"
   },
   "pin": {
     "done": "{place}, {year}, completed",
@@ -98,8 +121,8 @@
     "dramatizedTip": "Based on real events. The exact words are imagined.",
     "dialogue": "Dialogue",
     "lineOf": "Line {n} of {total}",
-    "next": "Next ▶",
-    "replay": "Replay ↺",
+    "next": "Next",
+    "replay": "Replay",
     "thisStop": "This stop",
     "then": "Then",
     "today": "Today",
@@ -124,7 +147,18 @@
     "epilogueTitle": "Epilogue",
     "epilogueBody": "You have reached the end of the journey.",
     "epilogueTimeline": "See the whole timeline",
-    "epilogueCredits": "Credits"
+    "epilogueCredits": "Credits",
+    "chapter": "Chapter {n} of {total}",
+    "nextButton": "{label} ▶",
+    "prev": "Back",
+    "skip": "Skip to the end",
+    "replayButton": "{label} ↺",
+    "item": "Keepsake",
+    "didYouKnow": "Did you know?",
+    "recorded": "Recorded",
+    "recordedTip": "Real words, from a published source.",
+    "takeQuiz": "Take the quiz",
+    "autoplay": "Auto-play"
   },
   "quiz": {
     "title": "{place} Quiz",
@@ -133,7 +167,7 @@
     "pick": "Pick an answer",
     "correct": "Correct!",
     "wrong": "Not quite",
-    "hint": "Hint: {hint}",
+    "hint": "Hint",
     "tryAgain": "Try again",
     "nextQuestion": "Next question ▶",
     "finish": "See your reward ▶",
@@ -141,7 +175,21 @@
     "wrongMark": "your answer, not correct",
     "backToStory": "◀ Back to story",
     "finishStoryFirst": "Finish the story first",
-    "goToStory": "Go to the story"
+    "goToStory": "Go to the story",
+    "question": "Question {n} of {total}",
+    "check": "Check",
+    "next": "Next question",
+    "hintLine": "{label}: {hint}",
+    "explain": "Why",
+    "order": "Drag to put these in order",
+    "match": "Tap a name, then its match",
+    "multi": "Select all that apply",
+    "error": "Tap the part that is wrong",
+    "correction": "Correction",
+    "streak": "Streak {n}",
+    "done": "Stop complete!",
+    "gold": "Gold stamp",
+    "silver": "Silver stamp"
   },
   "reward": {
     "title": "Stop complete!",
@@ -215,7 +263,8 @@
     "notHere": "There is no builder to open",
     "school": "School",
     "clinic": "Clinic",
-    "water": "Water system"
+    "water": "Water system",
+    "title": "Dapitan builder"
   },
   "gallery": {
     "title": "Scene gallery",
@@ -250,7 +299,11 @@
     "resetConfirm": "Yes, reset",
     "keep": "Keep my progress",
     "cancel": "Cancel",
-    "resetDone": "Progress was reset. The journey starts again."
+    "resetDone": "Progress was reset. The journey starts again.",
+    "language": "Language",
+    "sound": "Sound",
+    "music": "Music",
+    "replayTour": "Replay the tour"
   },
   "credits": {
     "title": "Credits",
@@ -307,5 +360,43 @@
     "school": "School",
     "europe": "Europe",
     "exile": "Exile"
+  },
+  "region": {
+    "philippines": "Philippines",
+    "asia": "Asia",
+    "europe": "Europe",
+    "america": "America"
+  },
+  "rank": {
+    "label": "Rank",
+    "up": "New rank: {rank}",
+    "estudyante": "Estudyante",
+    "bachiller": "Bachiller",
+    "manlalakbay": "Manlalakbay",
+    "manunulat": "Manunulat",
+    "ilustrado": "Ilustrado"
+  },
+  "ach": {
+    "title": "Achievements",
+    "unlocked": "Achievement unlocked"
+  },
+  "certificate": {
+    "title": "Certificate of Journey",
+    "print": "Print certificate",
+    "name": "Your name"
+  },
+  "save": {
+    "saved": "Saved",
+    "export": "Download save code",
+    "import": "Load save code",
+    "importOk": "Progress loaded",
+    "importBad": "That save code could not be read",
+    "reminder": "It's been a while. Download a save code to keep your progress safe.",
+    "private": "Private window: progress will be erased when you close it.",
+    "unsaved": "You are in the middle of a quiz. Leave anyway?"
+  },
+  "a11y": {
+    "portrait": "Portrait of {name}, {mood}",
+    "scene": "Scene: {alt}"
   }
 }

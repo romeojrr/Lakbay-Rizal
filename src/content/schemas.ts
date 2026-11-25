@@ -12,29 +12,29 @@ import {
 
 export { BUILDER_PROJECTS, CONTENT_FILES, MATERIALS, REGION_IDS, THEMES, type ContentFileName };
 
-const text = z.string().trim().min(1, 'must not be empty');
+export const text = z.string().trim().min(1, 'must not be empty');
 // Folder names have no dots, so a path cannot climb out of /assets/ with "..".
-const assetPath = z
+export const assetPath = z
   .string()
   .regex(
     /^\/assets\/(?:[\w-]+\/)*[\w.-]+\.png$/,
     'must be a PNG path like /assets/scenes/berlin_1887.png',
   );
-const percent = z.number().min(0).max(100);
+export const percent = z.number().min(0).max(100);
 const latitude = z.number().min(-90).max(90);
 const longitude = z.number().min(-180).max(180);
-const count = z.number().int().min(0);
+export const count = z.number().int().min(0);
 
 export const ThemeSchema = z.enum(THEMES);
 export const RegionIdSchema = z.enum(REGION_IDS);
 
-const MaterialsSchema = z.strictObject({
+export const MaterialsSchema = z.strictObject({
   bamboo: count.optional(),
   stone: count.optional(),
   tools: count.optional(),
 });
 
-const PlaceSchema = z.strictObject({
+export const PlaceSchema = z.strictObject({
   /** Short name for pins, cards and lists, e.g. "Berlin". */
   label: text.max(16, 'must be 16 characters or fewer'),
   then: text,
@@ -43,7 +43,7 @@ const PlaceSchema = z.strictObject({
   lon: longitude,
 });
 
-const AnchorSchema = z.strictObject({ x: percent, y: percent });
+export const AnchorSchema = z.strictObject({ x: percent, y: percent });
 
 const DialogueSchema = z.strictObject({
   dramatized: z.boolean(),
@@ -58,13 +58,13 @@ const QuizQuestionSchema = z.strictObject({
   hint: text,
 });
 
-const SourceRefSchema = z.strictObject({
+export const SourceRefSchema = z.strictObject({
   sourceId: text,
   pages: z.string().optional(),
   chapter: z.string().optional(),
 });
 
-const stopBase = {
+export const stopBase = {
   id: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'must be lowercase-with-dashes'),
   order: z.number().int().min(1),
   region: RegionIdSchema,
@@ -160,10 +160,15 @@ export const CharacterSchema = z
     name: text,
     sprite: assetPath.optional(),
     icon: assetPath.optional(),
-    portrait: PortraitCropSchema.optional(),
+    /** Which part of the sprite the v2.2 dialogue box shows (optional). */
+    spriteCrop: PortraitCropSchema.optional(),
+    /** v2.3 §7.10: the close-up portrait sheet; null for the narrator. */
+    portrait: assetPath.nullable().optional(),
+    /** v2.3 §6.2b: speaks only from off the scene (letters, memories), so has no sprite. */
+    offscreenOnly: z.literal(true).optional(),
   })
-  .refine((c) => c.sprite !== undefined || c.icon !== undefined, {
-    message: 'needs a sprite or an icon',
+  .refine((c) => c.sprite !== undefined || c.icon !== undefined || c.offscreenOnly, {
+    message: 'needs a sprite or an icon (or offscreenOnly: true)',
   });
 export const CharactersFileSchema = z.record(z.string(), CharacterSchema);
 

@@ -365,7 +365,7 @@ class CrossChecker {
   }
 }
 
-function duplicates<T>(values: readonly T[]): T[] {
+export function duplicates<T>(values: readonly T[]): T[] {
   const seen = new Set<T>();
   const repeated = new Set<T>();
   for (const value of values) {

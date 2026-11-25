@@ -1,0 +1,161 @@
+{
+  "app": {
+    "name": "Lakbay Rizal",
+    "tagline": "Ang paglalakbay ni Rizal, hinto sa hinto",
+    "reload": "Subukan muli"
+  },
+  "nav": {
+    "map": "Mapa",
+    "scenes": "Mga Tagpo",
+    "passport": "Pasaporte",
+    "journal": "Talaarawan",
+    "settings": "Settings",
+    "credits": "Pagkilala",
+    "back": "Bumalik",
+    "passportShort": "Pasaporte",
+    "timeline": "Timeline"
+  },
+  "region": {
+    "philippines": "Pilipinas",
+    "asia": "Asya",
+    "europe": "Europa",
+    "america": "Amerika"
+  },
+  "map": {
+    "next": "Susunod na hinto",
+    "enter": "Pumasok",
+    "journey": "Paglalakbay",
+    "locked": "Tapusin muna ang naunang hinto",
+    "guided": "Guided",
+    "free": "Malayang paglilibot",
+    "timeline": "Timeline",
+    "comingSoon": "Paparating ang nilalaman",
+    "section": "Mapa",
+    "comingSoonTitle": "Paparating ang nilalaman"
+  },
+  "stop": {
+    "chapter": "Kabanata {n} ng {total}",
+    "next": "Susunod",
+    "prev": "Bumalik",
+    "skip": "Lumaktaw sa dulo",
+    "replay": "Ulitin",
+    "readMore": "Magbasa pa",
+    "sources": "Mga sanggunian",
+    "thisStop": "Ang hintong ito",
+    "then": "Noon",
+    "today": "Ngayon",
+    "item": "Alaala",
+    "didYouKnow": "Alam mo ba?",
+    "recorded": "Totoong salita",
+    "recordedTip": "Totoong salita, mula sa isang nalathalang sanggunian.",
+    "dramatized": "Isinadula",
+    "dramatizedTip": "Batay sa totoong pangyayari. Guni-guni ang eksaktong mga salita.",
+    "takeQuiz": "Sagutan ang pagsusulit",
+    "autoplay": "Kusang tuloy",
+    "epilogueCredits": "Pagkilala"
+  },
+  "quiz": {
+    "question": "Tanong {n} ng {total}",
+    "check": "Suriin",
+    "next": "Susunod na tanong",
+    "hint": "Pahiwatig",
+    "tryAgain": "Subukan muli",
+    "correct": "Tama!",
+    "wrong": "Hindi pa",
+    "explain": "Bakit",
+    "order": "I-drag upang ayusin ang mga ito",
+    "match": "Pindutin ang pangalan, saka ang katugma nito",
+    "multi": "Piliin lahat ng angkop",
+    "error": "Pindutin ang bahaging mali",
+    "correction": "Pagtutuwid",
+    "streak": "Streak {n}",
+    "done": "Tapos ang hinto!",
+    "gold": "Gintong tatak",
+    "silver": "Pilak na tatak",
+    "progress": "Tanong {n} ng {total}"
+  },
+  "xp": {
+    "label": "XP",
+    "gain": "+{n} XP"
+  },
+  "rank": {
+    "label": "Ranggo",
+    "up": "Bagong ranggo: {rank}",
+    "estudyante": "Estudyante",
+    "bachiller": "Bachiller",
+    "manlalakbay": "Manlalakbay",
+    "manunulat": "Manunulat",
+    "ilustrado": "Ilustrado"
+  },
+  "ach": {
+    "title": "Mga Tagumpay",
+    "unlocked": "Nabuksan ang tagumpay"
+  },
+  "passport": {
+    "title": "Pasaporte",
+    "new": "Bago!"
+  },
+  "journal": {
+    "title": "Talaarawan"
+  },
+  "builder": {
+    "title": "Pagtatayo sa Dapitan",
+    "build": "Itayo",
+    "restart": "Ulitin ang pagtatayo",
+    "didYouKnow": "Alam mo ba?"
+  },
+  "timeline": {
+    "title": "Timeline",
+    "europe": "Europa"
+  },
+  "certificate": {
+    "title": "Sertipiko ng Paglalakbay",
+    "print": "I-print ang sertipiko",
+    "name": "Iyong pangalan"
+  },
+  "settings": {
+    "language": "Wika",
+    "textSize": "Laki ng teksto",
+    "motion": "Bawasan ang galaw",
+    "sound": "Tunog",
+    "music": "Musika",
+    "replayTour": "Ulitin ang tour",
+    "reset": "I-reset ang progreso",
+    "title": "Settings"
+  },
+  "save": {
+    "saved": "Naka-save",
+    "export": "I-download ang save code",
+    "import": "I-load ang save code",
+    "importOk": "Na-load ang progreso",
+    "importBad": "Hindi mabasa ang save code na iyan",
+    "reminder": "Matagal-tagal na. Mag-download ng save code upang maingatan ang iyong progreso.",
+    "private": "Private window: mabubura ang progreso pagsara mo nito.",
+    "unsaved": "Nasa gitna ka ng pagsusulit. Aalis ka pa rin ba?"
+  },
+  "a11y": {
+    "portrait": "Larawan ni {name}, {mood}",
+    "scene": "Tagpo: {alt}"
+  },
+  "card": {
+    "next": "Susunod na hinto"
+  },
+  "journey": {
+    "title": "Paglalakbay"
+  },
+  "mode": {
+    "guided": "Guided",
+    "free": "Malayang paglilibot"
+  },
+  "reward": {
+    "title": "Tapos ang hinto!"
+  },
+  "credits": {
+    "title": "Pagkilala",
+    "sources": "Mga sanggunian"
+  },
+  "footer": {
+    "settings": "Settings",
+    "credits": "Pagkilala"
+  }
+}

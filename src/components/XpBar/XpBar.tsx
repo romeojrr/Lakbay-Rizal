@@ -8,7 +8,7 @@ import styles from './XpBar.module.css';
 export default function XpBar() {
   return (
     <div className={styles.xp} data-guide="xp-bar">
-      <span className={styles.label}>{t('xp.label', { xp: 0 })}</span>
+      <span className={styles.label}>{t('xp.amount', { xp: 0, label: t('xp.label') })}</span>
       <span className={styles.track} aria-hidden="true">
         <span className={styles.fill} style={{ width: '0%' }} />
       </span>

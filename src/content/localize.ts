@@ -1,0 +1,131 @@
+// Puts the Filipino text over the English content (SRS v2.3 §3.10). Pure functions: the
+// English content is never changed. Any Filipino string that is missing or empty keeps the
+// English one, string by string. Ids, numbers, images and sources always stay English.
+import type { Content, Stop } from './schemas';
+import type { FilContent, FilStop, Question, StopV3 } from './schemas.v3';
+
+/** The Filipino string, or the English one when there is none. */
+const pick = (fil: string | undefined, en: string): string =>
+  fil !== undefined && fil.trim() !== '' ? fil : en;
+
+/** Fields shared by v2 and v3 stops: title, teaser, date, places, scene text. */
+function localizeStopBase<T extends Stop | StopV3>(stop: T, fil: FilStop | undefined): T {
+  if (!fil) return stop;
+  return {
+    ...stop,
+    title: pick(fil.title, stop.title),
+    teaser: pick(fil.teaser, stop.teaser),
+    story: pick(fil.story, stop.story),
+    dateLabel: pick(fil.dateLabel, stop.dateLabel),
+    place: {
+      ...stop.place,
+      then: pick(fil.place?.then, stop.place.then),
+      today: pick(fil.place?.today, stop.place.today),
+    },
+    scene: {
+      ...stop.scene,
+      alt: pick(fil.scene?.alt, stop.scene.alt),
+      ...(stop.scene.time !== null ? { time: pick(fil.scene?.time, stop.scene.time) } : {}),
+    },
+  };
+}
+
+/** v2 content (what the game shows until U3): stops' shared fields, names, items, facts. */
+export function localizeContent(content: Content, fil: FilContent | null): Content {
+  if (!fil) return content;
+  const translated = fil['i18n/fil.stops'];
+  return {
+    ...content,
+    stops: content.stops.map((stop) => localizeStopBase(stop, translated.stops[stop.id])),
+    regions: content.regions.map((region) => ({
+      ...region,
+      label: pick(translated.regions?.[region.id], region.label),
+    })),
+    characters: Object.fromEntries(
+      Object.entries(content.characters).map(([id, character]) => [
+        id,
+        { ...character, name: pick(translated.characters?.[id], character.name) },
+      ]),
+    ),
+    items: Object.fromEntries(
+      Object.entries(content.items).map(([id, item]) => [
+        id,
+        {
+          ...item,
+          name: pick(translated.items?.[id]?.name, item.name),
+          desc: pick(translated.items?.[id]?.desc, item.desc),
+        },
+      ]),
+    ),
+    builder: {
+      ...content.builder,
+      projects: {
+        school: localizeProject(content.builder.projects.school, translated.builder?.school),
+        clinic: localizeProject(content.builder.projects.clinic, translated.builder?.clinic),
+        water: localizeProject(content.builder.projects.water, translated.builder?.water),
+      },
+    },
+  };
+}
+
+function localizeProject<T extends { fact: string }>(project: T, fact: string | undefined): T {
+  return { ...project, fact: pick(fact, project.fact) };
+}
+
+/** A v3 stop in Filipino: the shared fields plus chapters, lines, facts and quiz text. */
+export function localizeStopV3(stop: StopV3, fil: FilStop | undefined): StopV3 {
+  if (!fil) return stop;
+  const base = localizeStopBase(stop, fil);
+  return {
+    ...base,
+    chapters: stop.chapters.map((chapter, ci) => {
+      const t = fil.chapters?.[ci];
+      if (!t) return chapter;
+      return {
+        ...chapter,
+        title: pick(t.title, chapter.title),
+        narration: chapter.narration.map((p, i) => pick(t.narration?.[i], p)),
+        lines: chapter.lines.map((line, i) => ({ ...line, text: pick(t.lines?.[i], line.text) })),
+        ...(chapter.fact
+          ? { fact: { ...chapter.fact, text: pick(t.fact, chapter.fact.text) } }
+          : {}),
+      };
+    }),
+    quiz: stop.quiz.map((question, qi) => localizeQuestion(question, fil.quiz?.[qi])),
+  };
+}
+
+type FilQuestion = NonNullable<FilStop['quiz']>[number];
+
+const choices = <C extends { text: string }>(list: C[], fil: string[] | undefined): C[] =>
+  list.map((choice, i) => ({ ...choice, text: pick(fil?.[i], choice.text) }));
+
+function localizeQuestion(question: Question, fil: FilQuestion | undefined): Question {
+  if (!fil) return question;
+  const common = {
+    prompt: pick(fil.prompt, question.prompt),
+    explain: pick(fil.explain, question.explain),
+    hint: pick(fil.hint, question.hint),
+  };
+  switch (question.type) {
+    case 'mcq':
+    case 'multi':
+      return { ...question, ...common, options: choices(question.options, fil.options) };
+    case 'order':
+      return { ...question, ...common, items: choices(question.items, fil.items) };
+    case 'match':
+      return {
+        ...question,
+        ...common,
+        left: choices(question.left, fil.left),
+        right: choices(question.right, fil.right),
+      };
+    case 'error':
+      return {
+        ...question,
+        ...common,
+        segments: choices(question.segments, fil.segments),
+        correction: pick(fil.correction, question.correction),
+      };
+  }
+}

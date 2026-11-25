@@ -41,7 +41,7 @@ export default function TopBar({ regions, nextRegion, earned, total }: TopBarPro
         <LanguageSwitch />
         <Link to="/passport" className={styles.passport} data-guide="passport-button">
           <PassportIcon />
-          {t('nav.passport', { done: earned, total })}
+          {t('nav.passportCount', { label: t('nav.passport'), done: earned, total })}
         </Link>
       </div>
     </header>

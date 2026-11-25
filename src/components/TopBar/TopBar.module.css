@@ -124,3 +124,27 @@
     display: none;
   }
 }
+
+/* Narrow phones: the logo words make room for EN | FIL (and, in Filipino, the "Draft"
+   badge). They stay in the link for screen readers: it keeps its name. */
+@media (max-width: 400px) {
+  .logoText {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .bar:has([data-draft-badge]) .logoText {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}

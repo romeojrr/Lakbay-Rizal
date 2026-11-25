@@ -9,6 +9,11 @@ interface UiState {
   timelineYear: number | null;
   /** §5.5: the timeline is a slim strip under the map, expandable. */
   timelineExpanded: boolean;
+  /**
+   * Switching language re-renders the whole app (§3.10). The control that was used sets
+   * this so it can take the focus back afterwards.
+   */
+  pendingFocus: string | null;
   setLastRegion: (region: RegionId) => void;
   setTimelineYear: (year: number | null) => void;
   setTimelineExpanded: (expanded: boolean) => void;
@@ -18,6 +23,7 @@ export const useUi = create<UiState>()((set) => ({
   lastRegion: null,
   timelineYear: null,
   timelineExpanded: false,
+  pendingFocus: null,
   setLastRegion: (lastRegion) => set({ lastRegion }),
   setTimelineYear: (timelineYear) => set({ timelineYear }),
   setTimelineExpanded: (timelineExpanded) => set({ timelineExpanded }),

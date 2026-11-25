@@ -5,13 +5,17 @@ import { create } from 'zustand';
 import { persist, type PersistStorage, type StorageValue } from 'zustand/middleware';
 import type { Stop } from '../content/schemas';
 import type { JourneyMode } from '../content/selectors';
+import { browserLanguage, type Lang } from '../i18n/language';
 import { CURRENT_VERSION, migrateProgress, sanitizeProgress } from './migrations';
 
 export const STORAGE_KEY = 'lakbay-rizal:v1';
 export const CORRUPT_KEY = `${STORAGE_KEY}:corrupt`;
 
+export type StampGrade = 'gold' | 'silver';
+
+/** Store version 2 (SRS v2.3 §8.4). Version-1 saves are upgraded in migrations.ts. */
 export interface Progress {
-  version: 1;
+  version: 2;
   mode: JourneyMode;
   visited: string[];
   completed: string[];
@@ -21,18 +25,57 @@ export interface Progress {
   builder: { school: boolean; clinic: boolean; water: boolean };
   seenIntro: boolean;
   newStamp?: string;
+  // --- v2.3 ---
+  xp: number;
+  streak: number;
+  bestStreak: number;
+  /** Stop id → stamp grade. Stamps earned before v2.3 have none. */
+  stampGrade: Record<string, StampGrade>;
+  quizStats: { typeCorrect: Record<string, number>; skillCorrect: Record<string, number> };
+  /** Stop id → number of chapters read. */
+  chaptersRead: Record<string, number>;
+  readMoreOpened: string[];
+  achievements: string[];
+  seenTips: string[];
+  tourDone: boolean;
+  /** Stop id → the languages it was read in (the `bilingual` achievement, §3.10). */
+  readIn: Record<string, Lang[]>;
+  save: { lastExportAt?: string; remindersOn: boolean; persisted?: boolean };
+  certificateName?: string;
   settings: {
     textSize: 'normal' | 'large';
     reduceMotion: 'system' | 'on' | 'off';
     showVerifyNotes: boolean;
-    /** v2.3 §5.5: the map's side panel is folded to a rail. Older saves default to false. */
+    /** v2.3 §5.5: the map's side panel is folded to a rail. */
     panelCollapsed: boolean;
+    lang: Lang;
+    sound: boolean;
+    music: boolean;
+    /** 0 to 1. */
+    volume: number;
+    autoplay: boolean;
+  };
+}
+
+export const DEFAULT_VOLUME = 0.7;
+
+export function defaultSettings(): Progress['settings'] {
+  return {
+    textSize: 'normal',
+    reduceMotion: 'system',
+    showVerifyNotes: false,
+    panelCollapsed: false,
+    lang: browserLanguage(),
+    sound: true,
+    music: false,
+    volume: DEFAULT_VOLUME,
+    autoplay: false,
   };
 }
 
 export function initialProgress(): Progress {
   return {
-    version: 1,
+    version: 2,
     mode: 'guided',
     visited: [],
     completed: [],
@@ -42,14 +85,25 @@ export function initialProgress(): Progress {
     builder: { school: false, clinic: false, water: false },
     seenIntro: false,
     newStamp: undefined,
-    settings: {
-      textSize: 'normal',
-      reduceMotion: 'system',
-      showVerifyNotes: false,
-      panelCollapsed: false,
-    },
+    xp: 0,
+    streak: 0,
+    bestStreak: 0,
+    stampGrade: {},
+    quizStats: { typeCorrect: {}, skillCorrect: {} },
+    chaptersRead: {},
+    readMoreOpened: [],
+    achievements: [],
+    seenTips: [],
+    tourDone: false,
+    readIn: {},
+    save: { remindersOn: true },
+    certificateName: undefined,
+    settings: defaultSettings(),
   };
 }
+
+/** The saved fields, in order (everything in the store except the actions). */
+const PROGRESS_KEYS = Object.keys(initialProgress()) as (keyof Progress)[];
 
 interface ProgressActions {
   setMode: (mode: JourneyMode) => void;
@@ -71,6 +125,8 @@ interface ProgressActions {
   setSettings: (settings: Partial<Progress['settings']>) => void;
   /** FR-4: the intro is shown once, until progress is reset. */
   setSeenIntro: () => void;
+  /** §3.10: notes that a stop was read in a language (for the `bilingual` achievement). */
+  markRead: (stopId: string, lang: Lang) => void;
   /** Starts again from nothing (Settings → Reset progress). */
   reset: () => void;
 }
@@ -167,25 +223,20 @@ export const useProgress = create<ProgressStore>()(
       resetBuilder: () => set({ builder: initialProgress().builder }),
       setSettings: (settings) => set((s) => ({ settings: { ...s.settings, ...settings } })),
       setSeenIntro: () => set({ seenIntro: true }),
-      reset: () => set(initialProgress()),
+      markRead: (stopId, lang) =>
+        set((s) => {
+          const langs = s.readIn[stopId] ?? [];
+          return langs.includes(lang) ? s : { readIn: { ...s.readIn, [stopId]: [...langs, lang] } };
+        }),
+      // Settings (language, text size…) are the player's choices, not progress: they stay.
+      reset: () => set((s) => ({ ...initialProgress(), settings: s.settings })),
     }),
     {
       name: STORAGE_KEY,
       version: CURRENT_VERSION,
       storage,
-      partialize: (s): Progress => ({
-        version: s.version,
-        mode: s.mode,
-        visited: s.visited,
-        completed: s.completed,
-        stamps: s.stamps,
-        items: s.items,
-        materials: s.materials,
-        builder: s.builder,
-        seenIntro: s.seenIntro,
-        newStamp: s.newStamp,
-        settings: s.settings,
-      }),
+      partialize: (s): Progress =>
+        Object.fromEntries(PROGRESS_KEYS.map((key) => [key, s[key]])) as unknown as Progress,
     },
   ),
 );

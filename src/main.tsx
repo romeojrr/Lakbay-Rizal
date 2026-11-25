@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
+import LanguageRoot from './app/LanguageRoot';
 import { router } from './app/router';
 import './styles/fonts.css';
 import './styles/tokens.css';
@@ -11,7 +12,9 @@ if (!container) throw new Error('Missing #root element in index.html');
 
 createRoot(container).render(
   <StrictMode>
-    <RouterProvider router={router} future={{ v7_startTransition: true }} />
+    <LanguageRoot>
+      <RouterProvider router={router} future={{ v7_startTransition: true }} />
+    </LanguageRoot>
   </StrictMode>,
 );
 

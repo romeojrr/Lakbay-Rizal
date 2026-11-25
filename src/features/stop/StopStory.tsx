@@ -7,6 +7,7 @@ import SceneView from '../../components/SceneView/SceneView';
 import SourceCard from '../../components/SourceCard/SourceCard';
 import type { Content, PlayableStop } from '../../content/schemas';
 import { t } from '../../i18n/t';
+import { useLanguage } from '../../i18n/useLanguage';
 import { cx } from '../../lib/cx';
 import { useSceneFit } from '../../lib/useSceneFit';
 import { useProgress } from '../../store/progress';
@@ -37,19 +38,22 @@ export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
   const visited = useProgress((s) => s.visited.includes(stop.id));
   const visit = useProgress((s) => s.visit);
   const complete = useProgress((s) => s.complete);
+  const markRead = useProgress((s) => s.markRead);
+  const lang = useLanguage();
   const lines = stop.dialogue.lines;
   const lastIndex = lines.length - 1;
   const finished = visited || index === lastIndex;
   const hasQuiz = stop.quiz.length > 0;
   const closeInfo = useCallback(() => setInfoOpen(false), []);
 
-  // GD-3: reaching the last line marks the stop visited.
+  // GD-3: reaching the last line marks the stop visited (and read in this language, §3.10).
   // GD-6: the final stop has no quiz; finishing its dialogue completes it quietly.
   useEffect(() => {
     if (index !== lastIndex) return;
     visit(stop.id);
+    markRead(stop.id, lang);
     if (isFinal && !hasQuiz) complete(stop, { quiet: true });
-  }, [index, lastIndex, stop, visit, complete, isFinal, hasQuiz]);
+  }, [index, lastIndex, stop, visit, markRead, lang, complete, isFinal, hasQuiz]);
 
   // §5.5: a phone held sideways shows the scene full-screen (the top bar scrolls away).
   useEffect(() => {

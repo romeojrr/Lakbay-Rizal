@@ -110,7 +110,11 @@ export default function QuizRun({ stop, content }: QuizRunProps) {
               >
                 {isRight ? t('quiz.correct') : t('quiz.wrong')}
               </h2>
-              {!isRight && <p className={styles.hint}>{t('quiz.hint', { hint: question.hint })}</p>}
+              {!isRight && (
+                <p className={styles.hint}>
+                  {t('quiz.hintLine', { label: t('quiz.hint'), hint: question.hint })}
+                </p>
+              )}
               <button type="button" className={styles.action} onClick={isRight ? next : tryAgain}>
                 {!isRight ? t('quiz.tryAgain') : isLast ? t('quiz.finish') : t('quiz.nextQuestion')}
               </button>

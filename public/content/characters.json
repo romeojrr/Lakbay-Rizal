@@ -1,90 +1,127 @@
 {
   "rizal": {
     "name": "José Rizal",
-    "sprite": "/assets/sprites/rizal_adult_suit.png"
+    "sprite": "/assets/sprites/rizal_adult_suit.png",
+    "portrait": "/assets/portraits/rizal.png"
   },
   "rizal-dapitan": {
     "name": "José Rizal",
-    "sprite": "/assets/sprites/rizal_dapitan.png"
+    "sprite": "/assets/sprites/rizal_dapitan.png",
+    "portrait": "/assets/portraits/rizal-dapitan.png"
   },
   "jose-boy": {
     "name": "José",
-    "sprite": "/assets/sprites/rizal_boy_student.png"
+    "sprite": "/assets/sprites/rizal_boy_student.png",
+    "portrait": "/assets/portraits/jose-boy.png"
   },
   "jose-child": {
     "name": "José",
-    "sprite": "/assets/sprites/rizal_child.png"
+    "sprite": "/assets/sprites/rizal_child.png",
+    "portrait": "/assets/portraits/jose-child.png"
   },
   "teodora": {
     "name": "Teodora Alonso",
-    "sprite": "/assets/sprites/teodora_alonso.png"
+    "sprite": "/assets/sprites/teodora_alonso.png",
+    "portrait": "/assets/portraits/teodora.png"
   },
   "viola": {
     "name": "Maximo Viola",
-    "sprite": "/assets/sprites/maximo_viola.png"
+    "sprite": "/assets/sprites/maximo_viola.png",
+    "portrait": "/assets/portraits/viola.png"
   },
   "jesuit": {
     "name": "Jesuit teacher",
-    "sprite": "/assets/sprites/jesuit_teacher.png"
+    "sprite": "/assets/sprites/jesuit_teacher.png",
+    "portrait": "/assets/portraits/jesuit.png"
   },
   "pupil": {
     "name": "Pupil",
-    "sprite": "/assets/sprites/pupil_a.png"
+    "sprite": "/assets/sprites/pupil_a.png",
+    "portrait": "/assets/portraits/pupil.png"
   },
   "narrator": {
     "name": "Narrator",
-    "icon": "/assets/icons/stamp_bagumbayan.png"
+    "icon": "/assets/icons/stamp_bagumbayan.png",
+    "portrait": null
   },
   "rizal-young": {
     "name": "José Rizal (age 18)",
-    "sprite": "/assets/sprites/rizal_young.png"
+    "sprite": "/assets/sprites/rizal_young.png",
+    "portrait": "/assets/portraits/rizal-young.png"
   },
   "justiniano": {
     "name": "Maestro Justiniano Aquino Cruz",
-    "sprite": "/assets/sprites/justiniano.png"
+    "sprite": "/assets/sprites/justiniano.png",
+    "portrait": "/assets/portraits/justiniano.png"
   },
   "dominican": {
     "name": "Dominican professor",
-    "sprite": "/assets/sprites/dominican.png"
+    "sprite": "/assets/sprites/dominican.png",
+    "portrait": "/assets/portraits/dominican.png"
   },
   "gentleman": {
     "name": "A gentleman of Barcelona",
-    "sprite": "/assets/sprites/barcelona_gentleman.png"
+    "sprite": "/assets/sprites/barcelona_gentleman.png",
+    "portrait": "/assets/portraits/gentleman.png"
   },
   "de-wecker": {
     "name": "Dr. Louis de Wecker",
-    "sprite": "/assets/sprites/de_wecker.png"
+    "sprite": "/assets/sprites/de_wecker.png",
+    "portrait": "/assets/portraits/de-wecker.png"
   },
   "ullmer": {
     "name": "Pastor Karl Ullmer",
-    "sprite": "/assets/sprites/ullmer.png"
+    "sprite": "/assets/sprites/ullmer.png",
+    "portrait": "/assets/portraits/ullmer.png"
   },
   "blumentritt": {
     "name": "Ferdinand Blumentritt",
-    "sprite": "/assets/sprites/blumentritt.png"
+    "sprite": "/assets/sprites/blumentritt.png",
+    "portrait": "/assets/portraits/blumentritt.png"
   },
   "seiko": {
     "name": "Usui Seiko (O-Sei-san)",
-    "sprite": "/assets/sprites/seiko.png"
+    "sprite": "/assets/sprites/seiko.png",
+    "portrait": "/assets/portraits/seiko.png"
   },
   "luna": {
     "name": "Juan Luna",
-    "sprite": "/assets/sprites/juan_luna.png"
+    "sprite": "/assets/sprites/juan_luna.png",
+    "portrait": "/assets/portraits/luna.png"
   },
   "nellie": {
     "name": "Nellie Boustead",
-    "sprite": "/assets/sprites/nellie_boustead.png"
+    "sprite": "/assets/sprites/nellie_boustead.png",
+    "portrait": "/assets/portraits/nellie.png"
   },
   "printer": {
     "name": "Printer, Meyer-Van Loo",
-    "sprite": "/assets/sprites/ghent_printer.png"
+    "sprite": "/assets/sprites/ghent_printer.png",
+    "portrait": "/assets/portraits/printer.png"
   },
   "member": {
     "name": "A member of La Liga",
-    "sprite": "/assets/sprites/liga_member.png"
+    "sprite": "/assets/sprites/liga_member.png",
+    "portrait": "/assets/portraits/member.png"
   },
   "teodora-older": {
     "name": "Teodora Alonso",
-    "sprite": "/assets/sprites/teodora_older.png"
+    "sprite": "/assets/sprites/teodora_older.png",
+    "portrait": "/assets/portraits/teodora-older.png"
+  },
+  "paciano": {
+    "name": "Paciano Rizal",
+    "portrait": "/assets/portraits/paciano.png",
+    "offscreenOnly": true
+  },
+  "taviel": {
+    "name": "Lt. José Taviel de Andrade",
+    "portrait": "/assets/portraits/taviel.png",
+    "offscreenOnly": true
+  },
+  "luis-taviel": {
+    "name": "Lt. Luis Taviel de Andrade",
+    "portrait": "/assets/portraits/luis-taviel.png",
+    "offscreenOnly": true
   }
 }

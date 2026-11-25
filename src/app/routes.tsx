@@ -1,10 +1,12 @@
 import type { RouteObject } from 'react-router-dom';
 import { loadContent } from '../content/loader';
 import { isPreviewMode } from '../content/preview';
+import { loadTranslations } from '../content/translations';
 import type { Content, Stop } from '../content/schemas';
 import { getVisibleStops, shouldIncludeDrafts } from '../content/selectors';
 import HomeRedirect from '../features/map/HomeRedirect';
 import MapPage from '../features/map/MapPage';
+import { useProgress } from '../store/progress';
 import ContentError from './ContentError';
 import Layout from './Layout';
 import LoadingScreen from './LoadingScreen';
@@ -19,7 +21,9 @@ export interface RootData {
 export type RootLoader = () => Promise<RootData>;
 
 export async function rootLoader(): Promise<RootData> {
-  const content = await loadContent();
+  // §3.10: a player who chose Filipino gets the Filipino text from the first paint.
+  const filipino = useProgress.getState().settings.lang === 'fil' ? loadTranslations() : null;
+  const [content] = await Promise.all([loadContent(), filipino]);
   const includeDrafts = shouldIncludeDrafts({
     dev: import.meta.env.DEV,
     buildFlag: __INCLUDE_DRAFTS__,

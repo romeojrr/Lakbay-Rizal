@@ -6,6 +6,8 @@
   "scripts": {
     "copy-assets": "tsx scripts/copy-assets.ts",
     "convert-seed": "tsx scripts/convert-seed.ts",
+    "convert-v3": "tsx scripts/convert-v3.ts",
+    "i18n-missing": "tsx scripts/i18n-missing.ts",
     "validate-content": "tsx scripts/validate-content.ts",
     "predev": "npm run copy-assets",
     "dev": "vite",
