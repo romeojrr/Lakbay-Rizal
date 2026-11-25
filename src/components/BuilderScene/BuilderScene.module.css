@@ -1,0 +1,47 @@
+.scene {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: var(--border);
+}
+
+.ground {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.building {
+  position: absolute;
+  animation: rise 260ms ease-out;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(8%);
+    opacity: 0;
+  }
+}
+
+.plot {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px dashed var(--card-warm);
+}
+
+.sign {
+  width: 26%;
+  height: auto;
+}
+
+.traveller {
+  position: absolute;
+  left: 43.75%;
+  top: 30%;
+  width: 7.5%;
+  height: auto;
+  filter: drop-shadow(3px 3px 0 rgba(31, 26, 36, 0.3));
+}

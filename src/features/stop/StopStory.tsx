@@ -61,7 +61,10 @@ export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
           </button>
           {hasQuiz &&
             (finished ? (
-              <Link className={styles.primary} to={`/stop/${stop.id}/quiz`}>
+              <Link
+                className={stop.builder ? styles.secondary : styles.primary}
+                to={`/stop/${stop.id}/quiz`}
+              >
                 {t('stop.quiz')}
               </Link>
             ) : (
@@ -71,6 +74,12 @@ export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
               </span>
             ))}
         </div>
+        {stop.builder && finished && (
+          // §3.5: the Dapitan builder opens after the dialogue.
+          <Link className={styles.primary} to="/dapitan/build">
+            {t('stop.builder')}
+          </Link>
+        )}
         {!hasQuiz && isFinal && finished && (
           // GD-6: a quiet close, no quiz and no celebration.
           <Panel className={styles.epilogue} aria-labelledby="epilogue-title">

@@ -5,6 +5,7 @@ import type { Content, Stop } from '../content/schemas';
 import { getVisibleStops, shouldIncludeDrafts } from '../content/selectors';
 import HomeRedirect from '../features/map/HomeRedirect';
 import MapPage from '../features/map/MapPage';
+import BuilderPage from '../features/builder/BuilderPage';
 import JournalPage from '../features/journal/JournalPage';
 import PassportPage from '../features/passport/PassportPage';
 import QuizPage from '../features/quiz/QuizPage';
@@ -54,6 +55,7 @@ export function createRoutes(loader: RootLoader = rootLoader): RouteObject[] {
         { path: 'stop/:stopId/quiz', Component: QuizPage },
         { path: 'passport', Component: PassportPage },
         { path: 'journal', Component: JournalPage },
+        { path: 'dapitan/build', Component: BuilderPage },
         { path: '*', Component: BlankPage },
       ],
     },

@@ -56,6 +56,10 @@ interface ProgressActions {
   complete: (stop: Stop, options?: { quiet?: boolean }) => boolean;
   /** FR-51: the "New!" tag goes once the passport has been opened. */
   markPassportSeen: () => void;
+  /** Dapitan builder: marks a project built. The page checks the materials first. */
+  build: (project: 'school' | 'clinic' | 'water') => void;
+  /** "Restart builder": clears the projects only; stamps and materials stay (SRS §3.5). */
+  resetBuilder: () => void;
   /** Starts again from nothing (Settings → Reset progress). */
   reset: () => void;
 }
@@ -148,6 +152,8 @@ export const useProgress = create<ProgressStore>()(
         return true;
       },
       markPassportSeen: () => set((s) => (s.newStamp === undefined ? s : { newStamp: undefined })),
+      build: (project) => set((s) => ({ builder: { ...s.builder, [project]: true } })),
+      resetBuilder: () => set({ builder: initialProgress().builder }),
       reset: () => set(initialProgress()),
     }),
     {
