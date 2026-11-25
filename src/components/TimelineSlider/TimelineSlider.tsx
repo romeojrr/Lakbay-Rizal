@@ -1,6 +1,7 @@
 import { useRef, type KeyboardEvent, type PointerEvent } from 'react';
 import { clampYear, TIMELINE_END, TIMELINE_START } from '../../features/map/mapModel';
 import { t, type MessageKey } from '../../i18n/t';
+import { cx } from '../../lib/cx';
 import Panel from '../Panel/Panel';
 import styles from './TimelineSlider.module.css';
 
@@ -27,10 +28,18 @@ const percent = (year: number) => ((year - TIMELINE_START) / (TIMELINE_END - TIM
 interface TimelineSliderProps {
   value: number;
   onChange: (year: number) => void;
+  /** §5.5: a slim strip under the map; expanded shows the hint and era labels. */
+  expanded?: boolean;
+  onToggleExpanded?: (expanded: boolean) => void;
 }
 
 /** Year slider, 1861–1896 (FR-20). Arrows ±1 year, PageUp/PageDown ±5, Home/End. */
-export default function TimelineSlider({ value, onChange }: TimelineSliderProps) {
+export default function TimelineSlider({
+  value,
+  onChange,
+  expanded = true,
+  onToggleExpanded,
+}: TimelineSliderProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const thumbRef = useRef<HTMLDivElement>(null);
 
@@ -67,13 +76,14 @@ export default function TimelineSlider({ value, onChange }: TimelineSliderProps)
   };
 
   return (
-    <Panel className={styles.panel} aria-labelledby="timeline-title">
-      <div className={styles.head}>
-        <h2 id="timeline-title" className={styles.title}>
-          {t('timeline.title')}
-        </h2>
-        <span className={styles.hint}>{t('timeline.hint')}</span>
-      </div>
+    <Panel
+      className={cx(styles.panel, expanded && styles.expanded)}
+      aria-labelledby="timeline-title"
+      data-guide="timeline"
+    >
+      <h2 id="timeline-title" className={styles.title}>
+        {t('timeline.title')}
+      </h2>
       <div className={styles.hit} onPointerDown={onPointerDown} onPointerMove={onPointerMove}>
         <div ref={trackRef} className={styles.track}>
           <div className={styles.fill} style={{ width: `${percent(value)}%` }} />
@@ -102,13 +112,27 @@ export default function TimelineSlider({ value, onChange }: TimelineSliderProps)
           </div>
         </div>
       </div>
-      <div className={styles.eras}>
-        {ERAS.map((era) => (
-          <span key={era.year}>
-            {era.year}
-            {era.key && ` · ${t(era.key)}`}
-          </span>
-        ))}
+      {onToggleExpanded && (
+        <button
+          type="button"
+          className={styles.toggle}
+          aria-expanded={expanded}
+          aria-controls="timeline-more"
+          onClick={() => onToggleExpanded(!expanded)}
+        >
+          {expanded ? t('timeline.less') : t('timeline.more')}
+        </button>
+      )}
+      <div id="timeline-more" className={styles.more} hidden={!expanded}>
+        <span className={styles.hint}>{t('timeline.hint')}</span>
+        <div className={styles.eras}>
+          {ERAS.map((era) => (
+            <span key={era.year}>
+              {era.year}
+              {era.key && ` · ${t(era.key)}`}
+            </span>
+          ))}
+        </div>
       </div>
     </Panel>
   );

@@ -7,25 +7,21 @@
 
 .title {
   margin: 0 0 8px;
-  font-family: var(--font-display);
-  font-size: 28px;
+  font-size: var(--fs-h3);
 }
 
 .heading {
   margin: 22px 0 4px;
-  font-family: var(--font-display);
-  font-size: 20px;
+  font-size: var(--fs-body);
 }
 
 .subheading {
   margin: 18px 0 6px;
-  font-family: var(--font-display);
-  font-size: 16px;
+  font-size: var(--fs-small);
   color: var(--muted);
 }
 
 .toWrite {
-  font-weight: 800;
   color: var(--source-needed);
 }
 
@@ -36,5 +32,5 @@
 
 .source {
   margin-bottom: 8px;
-  font-size: 15px;
+  font-size: var(--fs-small);
 }

@@ -20,9 +20,7 @@
 
 .title {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 700;
+  font-size: var(--fs-body);
 }
 
 .bar {
@@ -38,16 +36,14 @@
 }
 
 .count {
-  font-family: var(--font-display);
-  font-size: 16px;
+  font-size: var(--fs-small);
   color: var(--muted);
 }
 
 .pick {
   margin: 0;
   text-align: center;
-  font-family: var(--font-display);
-  font-size: 18px;
+  font-size: var(--fs-small);
   color: var(--muted);
 }
 
@@ -62,9 +58,7 @@
 .correct,
 .wrong {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 700;
+  font-size: var(--fs-body);
 }
 
 .correct {
@@ -80,8 +74,7 @@
   flex: 1 1 100%;
   order: 2;
   margin: 0;
-  font-size: 17px;
-  font-weight: 700;
+  font-size: var(--fs-small);
 }
 
 .action {
@@ -89,9 +82,7 @@
   margin-left: auto;
   min-height: 48px;
   padding: 8px 18px;
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 700;
+  font-size: var(--fs-small);
   color: var(--ink);
   background: var(--accent);
   border: var(--border);
@@ -115,6 +106,5 @@
 
 .noticeTitle {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: 24px;
+  font-size: var(--fs-h3);
 }

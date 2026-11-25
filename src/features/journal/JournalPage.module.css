@@ -12,8 +12,7 @@
 
 .title {
   margin: 0 0 6px;
-  font-family: var(--font-display);
-  font-size: 26px;
+  font-size: var(--fs-h3);
 }
 
 .intro {
@@ -23,7 +22,6 @@
 
 .empty {
   margin: 0;
-  font-weight: 800;
 }
 
 .list {
@@ -63,11 +61,9 @@
 }
 
 .name {
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 700;
+  font-size: var(--fs-small);
 }
 
 .desc {
-  font-size: 15px;
+  font-size: var(--fs-small);
 }

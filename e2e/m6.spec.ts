@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { horizontalOverflow, skipIntroOnFreshProfile } from './helpers';
+import { horizontalOverflow, openFromMenu, skipIntroOnFreshProfile } from './helpers';
 
 test('fresh profile: the intro shows once and can be skipped (SRS §12 step 1, FR-4)', async ({
   page,
@@ -28,7 +28,7 @@ test.describe('with the intro already seen', () => {
   }) => {
     await page.goto('/region/europe');
     await page.getByRole('button', { name: 'Free explore' }).click();
-    await page.getByRole('contentinfo').getByRole('link', { name: 'Settings' }).click();
+    await openFromMenu(page, 'Settings');
 
     await page.getByRole('button', { name: 'Reset progress' }).click();
     const confirm = page.getByRole('dialog', { name: 'Reset all progress?' });
@@ -63,7 +63,7 @@ test.describe('with the intro already seen', () => {
   test('scene gallery: Free explore shows all 25 scenes', async ({ page }) => {
     await page.goto('/region/europe');
     await page.getByRole('button', { name: 'Free explore' }).click();
-    await page.getByRole('link', { name: 'Scenes' }).click();
+    await openFromMenu(page, 'Scenes');
     const list = page.getByRole('navigation', { name: 'Choose a scene' });
     await expect(list.getByRole('button')).toHaveCount(25);
     await list.getByRole('button', { name: /25 · Bagumbayan/ }).click();

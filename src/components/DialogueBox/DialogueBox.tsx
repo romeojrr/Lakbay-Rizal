@@ -18,15 +18,15 @@ export default function DialogueBox({ stop, characters, index, onNext }: Dialogu
   const line = lines[index];
   const last = index === lines.length - 1;
   const textRef = useRef<HTMLParagraphElement>(null);
-  const firstRender = useRef(true);
+  const previousIndex = useRef(index);
 
   // Keep keyboard focus useful: after Replay, move focus to the first line's text.
+  // Only when the line actually changed (not on mount, which React may run twice).
   useEffect(() => {
-    if (firstRender.current) {
-      firstRender.current = false;
-      return;
+    if (previousIndex.current !== index && index === 0) {
+      textRef.current?.focus({ preventScroll: true });
     }
-    if (index === 0) textRef.current?.focus();
+    previousIndex.current = index;
   }, [index]);
 
   if (!line) return null;

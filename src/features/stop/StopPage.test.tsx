@@ -85,11 +85,19 @@ describe('Stop page — Berlin plays end to end (M3)', () => {
     expect(screen.queryByRole('button', { name: 'Dramatized' })).toBeNull();
   });
 
-  it('side panel: this stop, item reward and sources from content (FR-32)', async () => {
+  it('Info drawer: this stop, item reward and sources from content (FR-32, v2.3 §5.5)', async () => {
     const user = userEvent.setup();
     useProgress.setState({ mode: 'free' });
     renderAt('/stop/berlin-1887');
     await screen.findByRole('heading', { level: 1, name: 'Berlin · 1887' });
+
+    // The cards live in the Info drawer, closed at first but present for the guide.
+    expect(document.querySelector('[data-guide="sources-card"]')).not.toBeNull();
+    expect(screen.queryByRole('heading', { name: 'Sources' })).toBeNull();
+    const toggle = screen.getByRole('button', { name: 'Info', expanded: false });
+    await user.click(toggle);
+    expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    expect(screen.getByRole('region', { name: 'About this stop' })).toHaveFocus();
 
     expect(screen.getByText('Berlin, Kingdom of Prussia (German Empire)')).toBeVisible();
     expect(screen.getByText('Berlin, Germany')).toBeVisible();
@@ -101,6 +109,11 @@ describe('Stop page — Berlin plays end to end (M3)', () => {
     await user.click(within(sources).getByRole('button', { name: 'Show all 7 sources' }));
     expect(within(sources).getAllByRole('listitem')).toHaveLength(7);
     expect(within(sources).getByText('ch. VI, "The Period of Preparation"')).toBeVisible();
+
+    // Esc closes the drawer and returns focus to the Info button.
+    await user.keyboard('{Escape}');
+    expect(screen.queryByRole('region', { name: 'About this stop' })).toBeNull();
+    expect(toggle).toHaveFocus();
   });
 
   it('Read more opens the story in a dialog and closes again (FR-33)', async () => {

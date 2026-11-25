@@ -1,0 +1,126 @@
+/* Colours, border and button styles from the v2.2 header (Main.dc.html); slim height from §5.5. */
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  container: topbar / inline-size;
+  background: var(--ink);
+  color: var(--card-warm);
+  border-bottom: 4px solid var(--wood);
+}
+
+.inner {
+  max-width: 1920px;
+  height: var(--topbar-h);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  text-decoration: none;
+  color: var(--card-warm);
+}
+
+/* Head and shoulders of the 34 × 78 sprite at 1× (integer scale), cropped to fit the bar. */
+.logoSprite {
+  width: 34px;
+  height: 40px;
+  overflow: hidden;
+}
+
+.logoSprite img {
+  display: block;
+  width: 34px;
+  height: 78px;
+  margin-top: -2px;
+}
+
+.logoText {
+  font-size: var(--fs-h3);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.tabs {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.link,
+.passport {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 4px 14px;
+  font-size: var(--fs-small);
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--card-warm);
+  border: 2px solid var(--ink-line);
+}
+
+.link:hover {
+  border-color: var(--card-warm);
+}
+
+.passport,
+.passport:hover {
+  color: var(--ink);
+  background: var(--gold);
+  border-color: var(--card-warm);
+}
+
+/* Phones held sideways: the bar scrolls away so scenes can fill the screen (§5.5). */
+@media (orientation: landscape) and (max-height: 500px) {
+  .bar {
+    position: static;
+  }
+}
+
+/* Narrow desktop/tablet bars: keep everything on one line. */
+@container topbar (max-width: 1000px) {
+  .logoText {
+    display: none;
+  }
+}
+
+@container topbar (max-width: 820px) {
+  .link {
+    display: none;
+  }
+}
+
+/* Phones: tabs move into the map screen; Scenes and Passport into the bottom navigation. */
+@media (max-width: 640px) {
+  .inner {
+    padding: 0 12px;
+    gap: 10px;
+  }
+
+  .logoText {
+    display: inline;
+    font-size: var(--fs-body);
+  }
+
+  .logo {
+    margin-right: auto;
+  }
+
+  .tabs,
+  .link,
+  .passport {
+    display: none;
+  }
+}

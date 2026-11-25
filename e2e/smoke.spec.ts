@@ -5,15 +5,23 @@ test.beforeEach(async ({ page }) => {
   await skipIntroOnFreshProfile(page);
 });
 
-test('shell shows the header with no horizontal page scroll', async ({ page }) => {
+test('shell shows the header with no horizontal page scroll', async ({ page }, testInfo) => {
   await page.goto('/');
 
   const header = page.getByRole('banner');
   await expect(header).toBeVisible();
   await expect(header.getByRole('link', { name: 'LAKBAY RIZAL' })).toBeVisible();
-  await expect(header.getByRole('navigation', { name: 'Regions' })).toBeVisible();
-  await expect(header.getByRole('link', { name: 'Scenes' })).toBeVisible();
-  await expect(header.getByRole('link', { name: /^Passport/ })).toBeVisible();
+  if (testInfo.project.name === 'mobile') {
+    // v2.3 §5.5: on phones, region tabs sit on the map; the rest is in the bottom navigation.
+    const bottom = page.getByRole('navigation', { name: 'Main' });
+    await expect(bottom).toBeVisible();
+    await expect(bottom.getByRole('link', { name: /^Passport/ })).toBeVisible();
+    await expect(page.getByRole('navigation', { name: 'Regions' })).toBeVisible();
+  } else {
+    await expect(header.getByRole('navigation', { name: 'Regions' })).toBeVisible();
+    await expect(header.getByRole('link', { name: 'Scenes' })).toBeVisible();
+    await expect(header.getByRole('link', { name: /^Passport/ })).toBeVisible();
+  }
 
   const overflow = await page.evaluate(
     () => document.documentElement.scrollWidth - document.documentElement.clientWidth,

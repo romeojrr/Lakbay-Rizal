@@ -1,0 +1,78 @@
+/* Desktop: slides over the right side of the scene area. */
+.drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  width: min(420px, 92%);
+  overflow-y: auto;
+  background: var(--paper);
+  border: var(--border);
+  box-shadow: var(--shadow-panel);
+}
+
+.drawer[hidden] {
+  display: none;
+}
+
+.drawer:focus {
+  outline: none;
+}
+
+.head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--card-warm);
+  border-bottom: var(--border);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--fs-body);
+}
+
+.close {
+  min-height: 44px;
+  padding: 4px 12px;
+  font-size: var(--fs-small);
+  color: var(--card-warm);
+  background: var(--ink);
+  border: 3px solid var(--ink);
+  cursor: pointer;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+/* Phones: part of the page under the scene (the Info view of Story | Info). */
+@media (max-width: 640px) {
+  .drawer {
+    position: static;
+    width: auto;
+    margin-top: 12px;
+    overflow: visible;
+    background: none;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .head {
+    position: static;
+    display: none;
+  }
+
+  .body {
+    padding: 0;
+  }
+}

@@ -50,7 +50,10 @@ export default function MapView({
 
   return (
     <WoodFrame className={cx(slideFrom && styles[`slide-${slideFrom}`])}>
-      <div className={styles.frame} style={{ aspectRatio: `${region.w} / ${region.h}` }}>
+      <div
+        className={cx('skeleton', styles.frame)}
+        style={{ aspectRatio: `${region.w} / ${region.h}` }}
+      >
         <div
           ref={viewportRef}
           className={cx(styles.viewport, zoom > 1 && styles.zoomed)}

@@ -37,13 +37,11 @@
 }
 
 .name {
-  font-size: 16px;
-  font-weight: 800;
+  font-size: var(--fs-small);
 }
 
 .cost {
-  font-family: var(--font-display);
-  font-size: 14px;
+  font-size: var(--fs-small);
   color: var(--muted);
 }
 
@@ -52,9 +50,7 @@
 .short {
   flex-shrink: 0;
   padding: 6px 12px;
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 700;
+  font-size: var(--fs-small);
 }
 
 .build {
@@ -78,7 +74,7 @@
 }
 
 .short {
-  font-size: 14px;
+  font-size: var(--fs-small);
   color: var(--muted);
   background: var(--line-soft);
   border: 2px solid #a39a8c;

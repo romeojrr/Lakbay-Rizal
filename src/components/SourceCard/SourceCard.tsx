@@ -17,7 +17,7 @@ export default function SourceCard({ refs, sources }: SourceCardProps) {
   const shown = showAll ? refs : refs.slice(0, SHOWN_AT_FIRST);
 
   return (
-    <Panel className={styles.card} aria-labelledby="sources-title">
+    <Panel className={styles.card} aria-labelledby="sources-title" data-guide="sources-card">
       <h2 id="sources-title" className={styles.title}>
         {t('stop.sources')}
       </h2>

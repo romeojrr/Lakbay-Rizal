@@ -56,7 +56,46 @@
   --shadow-button: 4px 4px 0 var(--ink);
   --radius: 0;
 
-  /* Type */
-  --font-display: 'Pixelify Sans', monospace;
-  --font-body: 'Nunito', sans-serif;
+  /* Type — SRS v2.3 §5.3: VT323 for all text, one weight, never below 18 px */
+  --font: 'VT323', monospace;
+  --font-display: var(--font);
+  --font-body: var(--font);
+  --fs-small: 18px;
+  --fs-body: 22px;
+  --fs-h3: 28px;
+  --fs-h2: 36px;
+  --fs-h1: 48px;
+  --line-height: 1.3;
+  --letter-spacing: 0.01em;
+  --measure: 68ch; /* longest comfortable line for story text */
+
+  /* Shell (§5.5) */
+  --topbar-h: 56px;
+  --bottomnav-h: 0px;
+  --panel-w: 340px;
+  --rail-w: 48px;
+}
+
+/* Settings → Text size: Large (FR-71). */
+:root[data-text-size='large'] {
+  --fs-small: 22px;
+  --fs-body: 26px;
+  --fs-h3: 32px;
+  --fs-h2: 40px;
+  --fs-h1: 52px;
+}
+
+/* Phones (§5.3, §5.5): smaller body and h1, slim 48 px bar, bottom navigation. */
+@media (max-width: 640px) {
+  :root {
+    --fs-body: 20px;
+    --fs-h1: 36px;
+    --topbar-h: 48px;
+    --bottomnav-h: 60px;
+  }
+
+  :root[data-text-size='large'] {
+    --fs-body: 24px;
+    --fs-h1: 40px;
+  }
 }

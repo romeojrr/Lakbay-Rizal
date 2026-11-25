@@ -10,7 +10,29 @@
     "regions": "Regions",
     "nextHere": "{region}, your next stop is here",
     "scenes": "Scenes",
-    "passport": "Passport · {done}/{total}"
+    "passport": "Passport · {done}/{total}",
+    "passportShort": "Passport",
+    "main": "Main",
+    "map": "Map",
+    "timeline": "Timeline",
+    "journal": "Journal",
+    "more": "More"
+  },
+  "xp": {
+    "label": "{xp} XP"
+  },
+  "lang": {
+    "short": "EN",
+    "current": "Language: English"
+  },
+  "panel": {
+    "label": "Stops in this region",
+    "hide": "Hide panel",
+    "show": "Show panel",
+    "resize": "Resize panel",
+    "peek": "Panel size: small",
+    "half": "Panel size: half",
+    "full": "Panel size: full"
   },
   "themes": {
     "study": "Study",
@@ -67,6 +89,10 @@
     "back": "◀ Back",
     "backToMap": "◀ Back to map",
     "story": "Story",
+    "info": "Info",
+    "closeInfo": "Close info",
+    "infoTitle": "About this stop",
+    "view": "Show",
     "badge": "{place} · {year}",
     "dramatized": "Dramatized",
     "dramatizedTip": "Based on real events. The exact words are imagined.",
@@ -233,7 +259,7 @@
     "art": "Art",
     "artText": "Original pixel art by the RIZLIFE team.",
     "fonts": "Fonts",
-    "fontsText": "Pixelify Sans and Nunito, both under the SIL Open Font License.",
+    "fontsText": "VT323 by Peter Hull, under the SIL Open Font License.",
     "maps": "Map data",
     "mapsText": "Coastlines come from the land mask in the global-land-mask package, which is derived from GLOBE 1-km elevation data.",
     "sources": "Sources",
@@ -275,6 +301,8 @@
     "title": "Timeline",
     "hint": "Slide to travel through the years",
     "label": "Year",
+    "more": "More",
+    "less": "Less",
     "childhood": "Childhood",
     "school": "School",
     "europe": "Europe",

@@ -27,9 +27,7 @@
 
 .title {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 700;
+  font-size: var(--fs-h3);
   color: var(--success);
 }
 
@@ -39,13 +37,12 @@
 
 .line {
   margin: 0;
-  font-size: 17px;
-  font-weight: 700;
+  font-size: var(--fs-small);
 }
 
 .materials {
   margin: 0;
-  font-size: 15px;
+  font-size: var(--fs-small);
   color: var(--muted);
 }
 
@@ -61,9 +58,7 @@
   align-items: center;
   min-height: 48px;
   padding: 8px 18px;
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 700;
+  font-size: var(--fs-small);
   text-decoration: none;
   color: var(--ink);
   border: var(--border);

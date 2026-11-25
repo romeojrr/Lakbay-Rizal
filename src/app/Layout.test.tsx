@@ -33,7 +33,8 @@ describe('Layout header', () => {
 
   it('counts only the stops this build may show', async () => {
     renderAt('/', async () => ({ content, stops: [] }));
-    expect(await screen.findByRole('link', { name: 'Passport · 0/0' })).toBeInTheDocument();
+    const header = await screen.findByRole('banner');
+    expect(within(header).getByRole('link', { name: 'Passport · 0/0' })).toBeInTheDocument();
   });
 
   it('shows a 404 page inside the shell for unknown URLs', async () => {

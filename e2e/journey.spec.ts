@@ -3,7 +3,7 @@
 // The production-build check ("Content coming soon") is in production.spec.ts.
 import { expect, test, type Page } from '@playwright/test';
 import { expectNoSeriousA11yIssues } from './a11y';
-import { horizontalOverflow } from './helpers';
+import { horizontalOverflow, openFromMenu } from './helpers';
 
 async function answerBerlin(page: Page, correctly: boolean) {
   const prompt = (await page.locator('#quiz-prompt').textContent()) ?? '';
@@ -99,6 +99,8 @@ test('SRS §12: the whole journey', async ({ page }) => {
 
   await test.step('9. Dapitan → dialogue → builder → clinic + water system → stamp', async () => {
     await page.getByRole('link', { name: 'Dapitan, 1892, open' }).click();
+    // The stop page loads on demand: wait for it before stepping through the dialogue.
+    await expect(page.getByRole('heading', { level: 1, name: 'Dapitan · 1892' })).toBeVisible();
     const next = page.getByRole('button', { name: 'Next ▶' });
     while (await next.isVisible()) await next.click();
     await page.getByRole('link', { name: 'Build the town ▶' }).click();
@@ -111,7 +113,7 @@ test('SRS §12: the whole journey', async ({ page }) => {
   });
 
   await test.step('10. Settings → Reset progress → confirm → map back to the start', async () => {
-    await page.getByRole('contentinfo').getByRole('link', { name: 'Settings' }).click();
+    await openFromMenu(page, 'Settings');
     await page.getByRole('button', { name: 'Reset progress' }).click();
     await page
       .getByRole('dialog', { name: 'Reset all progress?' })

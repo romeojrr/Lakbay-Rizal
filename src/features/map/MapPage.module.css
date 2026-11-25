@@ -1,35 +1,36 @@
-/* Layout from Main.dc.html (wide maps) and Philippines.dc.html (square map). */
-.page {
-  display: flex;
-  flex-wrap: wrap;
+/* §5.5 map screen: CSS grid map | panel. The map takes all remaining width; the panel is
+   340 px and folds to a 48 px rail. Container queries handle narrow content areas. */
+.screen {
+  container: mapscreen / inline-size;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--panel-w);
+  align-items: start;
   gap: 24px;
 }
 
-.map {
-  flex: 999 1 560px;
-  min-width: 0;
+.collapsed {
+  grid-template-columns: minmax(0, 1fr) var(--rail-w);
 }
 
-.aside {
-  flex: 1 1 340px;
+.mapArea {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
-.square .map {
-  flex: 1 1 520px;
-  max-width: 780px;
+/* Fit the map to the screen height too, keeping its shape (--ratio = width / height). */
+.mapBox {
+  width: min(100%, calc((100dvh - var(--topbar-h) - 180px) * var(--ratio)));
+  min-width: min(100%, 320px);
+  margin: 0 auto;
 }
 
-.square .aside {
-  flex-basis: 380px;
-}
-
-.timeline {
-  flex: 1 1 100%;
-  min-width: 0;
+.phoneTabs {
+  display: none;
 }
 
 .notFound {
@@ -39,17 +40,37 @@
 
 .notFoundTitle {
   margin: 0 0 10px;
-  font-family: var(--font-display);
-  font-size: 24px;
+  font-size: var(--fs-h3);
 }
 
+/* Narrow content area (tablets): panel goes under the map. */
+@container mapscreen (max-width: 760px) {
+  .grid,
+  .collapsed {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Phones: region tabs sit above the map; the panel is a bottom sheet (SidePanel). */
 @media (max-width: 640px) {
-  .page {
-    gap: 20px;
+  /* Same dark strip as the header, so the tab colours stay as in v2.2. */
+  .phoneTabs {
+    display: block;
+    margin: -16px -16px 12px;
+    padding: 6px 12px;
+    overflow-x: auto;
+    background: var(--ink);
+    border-bottom: 4px solid var(--wood);
   }
 
-  .map,
-  .square .map {
-    flex-basis: 100%;
+  .grid,
+  .collapsed {
+    grid-template-columns: minmax(0, 1fr);
+    padding-bottom: 140px; /* room for the peeking sheet */
+  }
+
+  .mapBox {
+    width: 100%;
+    min-width: 0;
   }
 }

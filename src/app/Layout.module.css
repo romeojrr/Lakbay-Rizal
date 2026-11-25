@@ -1,90 +1,21 @@
-/* Header layout from reference/mockup/Main.dc.html */
-.header {
-  background: var(--ink);
-  color: var(--card-warm);
-  border-bottom: 4px solid var(--wood);
-}
-
-.inner {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 12px 24px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 16px 24px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: var(--card-warm);
-}
-
-.logoSprite {
-  display: block;
-  width: 24px;
-  height: 55px;
-}
-
-.logoText {
-  font-family: var(--font-display);
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.navLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 8px 14px;
-  font-family: var(--font-display);
-  font-size: 16px;
-  white-space: nowrap;
-  text-decoration: none;
-  color: var(--card-warm);
-  border: 2px solid var(--ink-line);
-}
-
-.navLink:hover {
-  border-color: var(--card-warm);
-}
-
-.passport,
-.passport:hover {
-  color: var(--ink);
-  background: var(--gold);
-  border-color: var(--card-warm);
-}
-
+/* Page area under the slim top bar (§5.5). Each screen sets its own width limit. */
 .main {
-  max-width: 1400px;
+  max-width: 1920px;
   margin: 0 auto;
   padding: 24px;
 }
 
 .footer {
-  max-width: 1400px;
+  max-width: 1920px;
   margin: 0 auto;
-  padding: 8px 24px 32px;
+  padding: 0 24px 24px;
 }
 
 .footerNav {
   display: flex;
   flex-wrap: wrap;
   gap: 4px 24px;
-  font-family: var(--font-display);
-  font-size: 16px;
+  font-size: var(--fs-small);
 }
 
 .footerNav a {
@@ -93,16 +24,13 @@
   min-height: 44px;
 }
 
+/* Phones: Settings and Credits live in the bottom navigation's More menu. */
 @media (max-width: 640px) {
-  .footer {
-    padding: 8px 16px 24px;
-  }
-
-  .inner {
-    padding: 12px 16px;
-  }
-
   .main {
-    padding: 16px;
+    padding: 16px 16px calc(var(--bottomnav-h) + env(safe-area-inset-bottom) + 24px);
+  }
+
+  .footer {
+    display: none;
   }
 }

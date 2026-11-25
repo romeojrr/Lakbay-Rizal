@@ -1,17 +1,5 @@
-/* Self-hosted fonts (SIL OFL). No requests to Google Fonts at runtime.
-   Only the Latin and Latin Extended subsets: the game text is English with Spanish,
-   Filipino and Czech place names (ñ, á, ě, ř); Cyrillic and Vietnamese are never used. */
-@import '@fontsource/pixelify-sans/latin-400.css';
-@import '@fontsource/pixelify-sans/latin-ext-400.css';
-@import '@fontsource/pixelify-sans/latin-500.css';
-@import '@fontsource/pixelify-sans/latin-ext-500.css';
-@import '@fontsource/pixelify-sans/latin-600.css';
-@import '@fontsource/pixelify-sans/latin-ext-600.css';
-@import '@fontsource/pixelify-sans/latin-700.css';
-@import '@fontsource/pixelify-sans/latin-ext-700.css';
-@import '@fontsource/nunito/latin-600.css';
-@import '@fontsource/nunito/latin-ext-600.css';
-@import '@fontsource/nunito/latin-700.css';
-@import '@fontsource/nunito/latin-ext-700.css';
-@import '@fontsource/nunito/latin-800.css';
-@import '@fontsource/nunito/latin-ext-800.css';
+/* VT323 by Peter Hull (SIL OFL), self-hosted: no requests to Google Fonts at runtime.
+   Only Latin and Latin Extended: the game text is English and Filipino with Spanish and
+   Czech place names (ñ, á, ě, ř). VT323 has one weight; never fake bold (SRS v2.3 §5.3). */
+@import '@fontsource/vt323/latin-400.css';
+@import '@fontsource/vt323/latin-ext-400.css';

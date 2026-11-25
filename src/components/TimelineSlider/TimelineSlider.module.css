@@ -1,35 +1,21 @@
+/* §5.5: a slim strip (about 64 px) under the map: title, track, More. Expanded adds the
+   hint and the era labels underneath. */
 .panel {
-  padding: 16px 20px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 4px 12px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0 16px;
+  padding: 4px 16px;
 }
 
 .title {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.hint {
-  font-family: var(--font-display);
-  font-size: 15px;
-  color: var(--muted);
+  font-size: var(--fs-small);
 }
 
 /* Tall invisible area around the 18 px track so it is easy to touch. */
 .hit {
-  padding: 26px 14px 13px;
-  margin: 0 -14px;
+  padding: 22px 14px 8px;
   touch-action: none;
   cursor: pointer;
 }
@@ -74,22 +60,54 @@
 .value {
   position: absolute;
   left: 50%;
-  bottom: calc(100% + 8px);
+  bottom: calc(100% + 4px);
   transform: translateX(-50%);
   padding: 0 4px;
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 700;
+  font-size: var(--fs-small);
+  line-height: 1;
   color: var(--ink);
   background: var(--card);
+}
+
+.toggle {
+  min-height: 44px;
+  padding: 0 12px;
+  font-size: var(--fs-small);
+  color: var(--ink);
+  background: var(--card-warm);
+  border: 2px solid var(--ink);
+  cursor: pointer;
+}
+
+.more {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 0 8px;
+}
+
+.more[hidden] {
+  display: none;
+}
+
+.hint {
+  font-size: var(--fs-small);
+  color: var(--muted);
 }
 
 .eras {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 6px;
-  font-family: var(--font-display);
-  font-size: 14px;
+  gap: 6px 12px;
+  font-size: var(--fs-small);
   color: var(--muted);
+}
+
+@media (max-width: 640px) {
+  .panel {
+    gap: 0 8px;
+    padding: 4px 10px;
+  }
 }

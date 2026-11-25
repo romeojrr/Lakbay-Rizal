@@ -10,7 +10,7 @@ import styles from './DramatizedTag.module.css';
 export default function DramatizedTag() {
   const [open, setOpen] = useState(false);
   return (
-    <span className={styles.wrap}>
+    <span className={styles.wrap} data-guide="line-tag">
       <button
         type="button"
         className={styles.tag}

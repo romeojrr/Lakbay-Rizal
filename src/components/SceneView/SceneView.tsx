@@ -16,7 +16,7 @@ export default function SceneView({ stop, speaker }: SceneViewProps) {
   const anchor = speaker ? stop.scene.speakerAnchors?.[speaker] : undefined;
   return (
     <WoodFrame>
-      <div className={styles.scene}>
+      <div className={`skeleton ${styles.scene}`} data-guide="scene">
         <img className={`pix ${styles.image}`} src={asset(stop.scene.image)} alt={stop.scene.alt} />
         <h1 className={styles.badge}>
           {t('stop.badge', { place: stop.place.label, year: stop.year })}

@@ -1,0 +1,8 @@
+.slot {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  min-width: 24px;
+  min-height: 24px;
+  color: var(--card-warm);
+}

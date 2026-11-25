@@ -50,6 +50,7 @@ export default function ClusterPin({
         top: `calc(${group.point.y}% - ${size}px)`,
       }}
       aria-label={name}
+      data-guide={group.members.some((m) => m.state === 'current') ? 'pin-current' : undefined}
       aria-expanded={group.kind === 'cluster' ? expanded : undefined}
       aria-controls={controls}
       onClick={onActivate}

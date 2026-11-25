@@ -36,14 +36,11 @@
 
 .title {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 700;
+  font-size: var(--fs-h3);
 }
 
 .meta {
-  font-family: var(--font-display);
-  font-size: 14px;
+  font-size: var(--fs-small);
   color: var(--muted);
 }
 
@@ -82,15 +79,13 @@
 }
 
 .fields dt {
-  font-family: var(--font-display);
-  font-size: 13px;
+  font-size: var(--fs-small);
   color: var(--muted);
 }
 
 .fields dd {
   margin: 0;
-  font-size: 17px;
-  font-weight: 800;
+  font-size: var(--fs-small);
 }
 
 .bar {
@@ -106,9 +101,7 @@
 
 .subtitle {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 700;
+  font-size: var(--fs-small);
 }
 
 .badges {
@@ -125,9 +118,7 @@
   align-items: center;
   min-height: 44px;
   padding: 6px 16px;
-  font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 700;
+  font-size: var(--fs-small);
   text-decoration: none;
   color: var(--ink);
   background: var(--card);

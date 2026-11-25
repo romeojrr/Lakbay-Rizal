@@ -30,7 +30,7 @@ export default function QuizRun({ stop, content }: QuizRunProps) {
   const promptRef = useRef<HTMLParagraphElement>(null);
   const feedbackRef = useRef<HTMLHeadingElement>(null);
   const rewardRef = useRef<HTMLHeadingElement>(null);
-  const started = useRef(false);
+  const previous = useRef({ index, picked, reward });
 
   const question = questions[index];
   const total = questions.length;
@@ -38,11 +38,11 @@ export default function QuizRun({ stop, content }: QuizRunProps) {
   const isLast = index === total - 1;
 
   // Move focus to whatever just changed, so keyboard and screen-reader users follow along.
+  // Only on a real change (not on mount, which React may run twice).
   useEffect(() => {
-    if (!started.current) {
-      started.current = true;
-      return;
-    }
+    const before = previous.current;
+    previous.current = { index, picked, reward };
+    if (before.index === index && before.picked === picked && before.reward === reward) return;
     if (reward) rewardRef.current?.focus();
     else if (picked) feedbackRef.current?.focus();
     else promptRef.current?.focus();

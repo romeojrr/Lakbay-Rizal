@@ -12,7 +12,12 @@ const MODES: JourneyMode[] = ['guided', 'free'];
 /** Guided journey vs Free explore (GD-1, GD-2, FR-18). */
 export default function ModeToggle({ mode, onChange }: ModeToggleProps) {
   return (
-    <div className={styles.toggle} role="group" aria-labelledby="mode-label">
+    <div
+      className={styles.toggle}
+      role="group"
+      aria-labelledby="mode-label"
+      data-guide="mode-toggle"
+    >
       <span id="mode-label" className={styles.label}>
         {t('mode.label')}
       </span>

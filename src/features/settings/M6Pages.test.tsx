@@ -115,7 +115,7 @@ describe('Credits (FR-72)', () => {
     renderAt('/credits');
     expect(await screen.findByRole('heading', { level: 1, name: 'Credits' })).toBeVisible();
     expect(screen.getByText('Original pixel art by the RIZLIFE team.')).toBeVisible();
-    expect(screen.getByText(/Pixelify Sans and Nunito.*SIL Open Font License/)).toBeVisible();
+    expect(screen.getByText('VT323 by Peter Hull, under the SIL Open Font License.')).toBeVisible();
     expect(screen.getByText(/global-land-mask.*GLOBE 1-km/)).toBeVisible();
     const sources = screen.getByRole('region', { name: 'Sources' });
     expect(within(sources).getAllByRole('listitem')).toHaveLength(content.sources.length);

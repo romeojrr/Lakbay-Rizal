@@ -23,15 +23,12 @@
 }
 
 .name {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 700;
+  font-size: var(--fs-small);
   text-align: center;
 }
 
 .year {
-  font-family: var(--font-display);
-  font-size: 14px;
+  font-size: var(--fs-small);
   color: var(--muted);
 }
 
@@ -49,9 +46,7 @@
   top: -12px;
   right: -10px;
   padding: 2px 8px;
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 700;
+  font-size: var(--fs-small);
   color: var(--ink);
   background: var(--accent);
   border: var(--border);
@@ -68,14 +63,11 @@
 }
 
 .question {
-  font-family: var(--font-display);
-  font-size: 34px;
-  font-weight: 700;
+  font-size: var(--fs-h2);
   color: var(--pin-locked-dot);
 }
 
 .lockedYear {
-  font-family: var(--font-display);
-  font-size: 14px;
+  font-size: var(--fs-small);
   color: var(--muted);
 }

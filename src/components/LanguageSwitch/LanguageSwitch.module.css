@@ -1,0 +1,10 @@
+.slot {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 8px;
+  font-size: var(--fs-small);
+  color: var(--card-warm);
+  border: 2px solid var(--ink-line);
+}

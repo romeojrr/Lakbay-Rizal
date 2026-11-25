@@ -11,7 +11,7 @@ interface RegionTabsProps {
 
 export default function RegionTabs({ regions, nextRegion }: RegionTabsProps) {
   return (
-    <nav aria-label={t('nav.regions')} className={styles.nav}>
+    <nav aria-label={t('nav.regions')} className={styles.nav} data-guide="region-tabs">
       <ul className={styles.list}>
         {regions.map((region) => (
           <li key={region.id}>

@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: var(--fs-small);
   color: #ffffff;
   border: var(--border);
   box-shadow: 3px 3px 0 var(--ink);
@@ -27,12 +27,10 @@
 }
 
 .name {
-  font-size: 13px;
-  font-weight: 800;
+  font-size: var(--fs-small);
 }
 
 .count {
-  font-family: var(--font-display);
-  font-size: 13px;
+  font-size: var(--fs-small);
   color: var(--muted);
 }

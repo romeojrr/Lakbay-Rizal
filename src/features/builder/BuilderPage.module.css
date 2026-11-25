@@ -35,19 +35,18 @@
   flex-direction: column;
   gap: 2px;
   padding: 8px 12px;
-  font-family: var(--font-display);
   background: rgba(246, 240, 225, 0.94);
   border: var(--border);
 }
 
 .title {
   margin: 0;
-  font-size: 20px;
+  font-size: var(--fs-body);
   line-height: 1.2;
 }
 
 .subtitle {
-  font-size: 14px;
+  font-size: var(--fs-small);
   color: var(--muted);
 }
 
@@ -56,9 +55,7 @@
   right: 14px;
   top: 14px;
   padding: 8px 12px;
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 700;
+  font-size: var(--fs-small);
   color: var(--card-warm);
   background: var(--ink);
   border: 3px solid var(--card-warm);
@@ -86,17 +83,13 @@
 }
 
 .bannerText {
-  font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 700;
+  font-size: var(--fs-body);
   color: var(--chip-exile);
 }
 
 .bannerLink {
   padding: 8px 12px;
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 700;
+  font-size: var(--fs-small);
   text-decoration: none;
   color: var(--ink);
   background: var(--accent);
@@ -125,16 +118,13 @@
 }
 
 .who {
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 700;
+  font-size: var(--fs-small);
   color: var(--speaker);
 }
 
 .text {
   margin: 0;
-  font-size: 19px;
-  font-weight: 700;
+  font-size: var(--fs-body);
   line-height: 1.45;
 }
 
@@ -155,16 +145,13 @@
 
 .panelTitle {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 700;
+  font-size: var(--fs-small);
 }
 
 .restart {
   min-height: 44px;
   padding: 4px 10px;
-  font-family: var(--font-display);
-  font-size: 14px;
+  font-size: var(--fs-small);
   color: var(--muted);
   background: transparent;
   border: 2px solid #a39a8c;
@@ -189,8 +176,7 @@
 
 .hint {
   margin: 0;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: var(--fs-small);
   color: var(--muted);
 }
 
@@ -205,8 +191,7 @@
 
 .noticeTitle {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: 24px;
+  font-size: var(--fs-h3);
 }
 
 @media (max-width: 640px) {
@@ -217,7 +202,7 @@
   }
 
   .title {
-    font-size: 15px;
+    font-size: var(--fs-small);
   }
 
   .subtitle {
@@ -228,7 +213,7 @@
     right: 8px;
     top: 8px;
     padding: 4px 8px;
-    font-size: 13px;
+    font-size: var(--fs-small);
   }
 
   .banner {
@@ -241,12 +226,12 @@
   }
 
   .bannerText {
-    font-size: 14px;
+    font-size: var(--fs-small);
   }
 
   .bannerLink {
     padding: 4px 8px;
-    font-size: 13px;
+    font-size: var(--fs-small);
   }
 
   .message {
@@ -255,6 +240,6 @@
   }
 
   .text {
-    font-size: 17px;
+    font-size: var(--fs-small);
   }
 }

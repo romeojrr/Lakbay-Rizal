@@ -1,14 +1,16 @@
 .nav {
-  flex: 1 1 360px;
   min-width: 0;
 }
 
+/* One line that scrolls sideways when there is no room (slim top bar, phones; §5.5). */
 .list {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 6px;
   margin: 0;
-  padding: 0;
+  padding: 4px 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
   list-style: none;
 }
 
@@ -16,9 +18,8 @@
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  padding: 8px 14px;
-  font-family: var(--font-display);
-  font-size: 16px;
+  padding: 4px 14px;
+  font-size: var(--fs-small);
   white-space: nowrap;
   text-decoration: none;
   color: var(--card-warm);
@@ -49,18 +50,4 @@
   color: var(--ink);
   background: var(--accent);
   border-color: var(--accent);
-}
-
-/* SRS §5.2: at ≤ 640 px the tabs scroll sideways instead of wrapping. */
-@media (max-width: 640px) {
-  .nav {
-    flex-basis: 100%;
-  }
-
-  .list {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding: 4px;
-    margin: -4px;
-  }
 }

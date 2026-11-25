@@ -106,7 +106,9 @@ describe('Quiz (FR-40 to FR-44)', () => {
     expect(s.stamps).toEqual(['berlin-1887']);
     expect(s.items).toEqual(['noli-me-tangere']);
     expect(s.newStamp).toBe('berlin-1887');
-    expect(screen.getByRole('link', { name: /Passport · 1\/25/ })).toBeVisible();
+    expect(
+      within(screen.getByRole('banner')).getByRole('link', { name: /Passport · 1\/25/ }),
+    ).toBeVisible();
   });
 
   it('asks to finish the story first', async () => {

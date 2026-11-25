@@ -64,7 +64,8 @@ export function sanitizeProgress(raw: unknown, defaults: Progress): Progress | n
   if (
     (settings.textSize !== 'normal' && settings.textSize !== 'large') ||
     !['system', 'on', 'off'].includes(settings.reduceMotion) ||
-    typeof settings.showVerifyNotes !== 'boolean'
+    typeof settings.showVerifyNotes !== 'boolean' ||
+    typeof settings.panelCollapsed !== 'boolean'
   ) {
     return null;
   }

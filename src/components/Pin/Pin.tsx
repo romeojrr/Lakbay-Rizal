@@ -56,6 +56,7 @@ export default function Pin({ group, compact, onLocked }: PinProps) {
       className={className}
       style={style}
       aria-label={pinName(stop, state)}
+      data-guide={state === 'current' ? 'pin-current' : undefined}
     >
       {content}
     </Link>

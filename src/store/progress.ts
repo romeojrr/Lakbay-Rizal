@@ -25,6 +25,8 @@ export interface Progress {
     textSize: 'normal' | 'large';
     reduceMotion: 'system' | 'on' | 'off';
     showVerifyNotes: boolean;
+    /** v2.3 §5.5: the map's side panel is folded to a rail. Older saves default to false. */
+    panelCollapsed: boolean;
   };
 }
 
@@ -40,7 +42,12 @@ export function initialProgress(): Progress {
     builder: { school: false, clinic: false, water: false },
     seenIntro: false,
     newStamp: undefined,
-    settings: { textSize: 'normal', reduceMotion: 'system', showVerifyNotes: false },
+    settings: {
+      textSize: 'normal',
+      reduceMotion: 'system',
+      showVerifyNotes: false,
+      panelCollapsed: false,
+    },
   };
 }
 

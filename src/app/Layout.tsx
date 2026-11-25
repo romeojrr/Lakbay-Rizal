@@ -1,39 +1,27 @@
 import { useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import RegionTabs from '../components/RegionTabs/RegionTabs';
+import BottomNav from '../components/BottomNav/BottomNav';
 import Toast from '../components/Toast/Toast';
+import TopBar from '../components/TopBar/TopBar';
 import { getNextStop } from '../content/selectors';
 import { t } from '../i18n/t';
-import { asset } from '../lib/asset';
 import { consumeLoadProblem, useProgress } from '../store/progress';
+import { useUi } from '../store/ui';
 import styles from './Layout.module.css';
 import { useRootData } from './useRootData';
 
 const NOTICE_MS = 6000;
 
-function PassportIcon() {
-  return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 8 8"
-      shapeRendering="crispEdges"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <rect x="1" y="0" width="6" height="8" fill="var(--ink)" />
-      <rect x="3" y="2" width="2" height="2" fill="var(--gold)" />
-      <rect x="2" y="5" width="4" height="1" fill="var(--gold)" />
-    </svg>
-  );
-}
-
+/** App shell (SRS v2.3 §5.5): slim top bar, page, footer (desktop) or bottom navigation (phones). */
 export default function Layout() {
   const { content, stops } = useRootData();
   const stamps = useProgress((s) => s.stamps);
   const completed = useProgress((s) => s.completed);
+  const lastRegion = useUi((s) => s.lastRegion);
   const nextRegion = getNextStop(stops, { completed })?.region;
   const earned = stops.filter((s) => stamps.includes(s.id)).length;
+  const mapRegion = lastRegion ?? nextRegion ?? content.regions[0]?.id ?? 'philippines';
+
   // §8.5: tell the player once if their saved progress could not be read.
   const [notice, setNotice] = useState(() =>
     consumeLoadProblem() ? t('progress.resetNotice') : null,
@@ -44,7 +32,7 @@ export default function Layout() {
     return () => clearTimeout(timer);
   }, [notice]);
 
-  // FR-71: text size and reduce motion apply to the whole page (see global.css).
+  // FR-71: text size and reduce motion apply to the whole page (see tokens.css, global.css).
   const { textSize, reduceMotion } = useProgress((s) => s.settings);
   useEffect(() => {
     const root = document.documentElement;
@@ -54,30 +42,12 @@ export default function Layout() {
 
   return (
     <>
-      <header className={styles.header}>
-        <div className={styles.inner}>
-          <Link to="/" className={styles.logo}>
-            <img
-              className={`pix ${styles.logoSprite}`}
-              src={asset('assets/sprites/rizal_adult_suit.png')}
-              alt=""
-              width={24}
-              height={55}
-            />
-            <span className={styles.logoText}>{t('app.logo')}</span>
-          </Link>
-          <RegionTabs regions={content.regions} nextRegion={nextRegion} />
-          <div className={styles.actions}>
-            <Link to="/scenes" className={styles.navLink}>
-              {t('nav.scenes')}
-            </Link>
-            <Link to="/passport" className={`${styles.navLink} ${styles.passport}`}>
-              <PassportIcon />
-              {t('nav.passport', { done: earned, total: stops.length })}
-            </Link>
-          </div>
-        </div>
-      </header>
+      <TopBar
+        regions={content.regions}
+        nextRegion={nextRegion}
+        earned={earned}
+        total={stops.length}
+      />
       <main className={styles.main}>
         <Outlet />
       </main>
@@ -87,6 +57,7 @@ export default function Layout() {
           <Link to="/credits">{t('footer.credits')}</Link>
         </nav>
       </footer>
+      <BottomNav mapRegion={mapRegion} earned={earned} total={stops.length} />
       {notice && <Toast message={notice} />}
     </>
   );

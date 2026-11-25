@@ -1,8 +1,7 @@
 .chip {
   display: inline-block;
   padding: 2px 8px;
-  font-family: var(--font-display);
-  font-size: 13px;
+  font-size: var(--fs-small);
   color: #ffffff;
   border: 2px solid var(--ink);
   white-space: nowrap;
