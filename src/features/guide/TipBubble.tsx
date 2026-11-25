@@ -5,7 +5,7 @@ import { t } from '../../i18n/t';
 import { useReducedMotion } from '../../lib/useReducedMotion';
 import { useProgress } from '../../store/progress';
 import { useUi } from '../../store/ui';
-import CloseUpPortrait from '../story/CloseUpPortrait';
+import Portrait from '../../components/Portrait/Portrait';
 import styles from './TipBubble.module.css';
 
 const SHOW_MS = 8000;
@@ -56,15 +56,7 @@ export default function TipBubble() {
     <div className={styles.corner} aria-live="polite">
       {tip && !touring && !onFinalStop && (
         <div className={`${styles.tip} ${still ? 'motion-fade' : styles.pop}`}>
-          {rizal?.portrait && (
-            <CloseUpPortrait
-              sheet={rizal.portrait}
-              name={rizal.name}
-              mood={tip.mood}
-              talking={false}
-              still={still}
-            />
-          )}
+          <Portrait character={rizal} />
           <p className={styles.text}>
             <span className="visually-hidden">{t('guide.tipLabel')}: </span>
             {tip.text}

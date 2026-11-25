@@ -24,9 +24,9 @@ export interface QuizResult {
   hintOpened: boolean;
 }
 
-/** Store version 2 (SRS v2.3 §8.4). Version-1 saves are upgraded in migrations.ts. */
+/** Store version 3 (v2.3 §8.4, with music on by default). Older saves are upgraded in migrations.ts. */
 export interface Progress {
-  version: 2;
+  version: 3;
   mode: JourneyMode;
   visited: string[];
   completed: string[];
@@ -80,7 +80,7 @@ export function defaultSettings(): Progress['settings'] {
     panelCollapsed: false,
     lang: browserLanguage(),
     sound: true,
-    music: false,
+    music: true,
     volume: DEFAULT_VOLUME,
     autoplay: false,
   };
@@ -88,7 +88,7 @@ export function defaultSettings(): Progress['settings'] {
 
 export function initialProgress(): Progress {
   return {
-    version: 2,
+    version: 3,
     mode: 'guided',
     visited: [],
     completed: [],

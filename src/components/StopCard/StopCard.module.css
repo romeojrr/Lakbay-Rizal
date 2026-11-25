@@ -58,6 +58,7 @@
   background: var(--accent);
   border: var(--border);
   box-shadow: var(--shadow-button);
+  border-radius: var(--radius);
 }
 
 .secondary {
@@ -68,5 +69,5 @@
 .enter:active,
 .secondary:active {
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 var(--ink);
+  box-shadow: var(--shadow-button);
 }

@@ -36,7 +36,7 @@ test('export → reset → import restores the progress exactly', async ({ page 
   await page.getByRole('button', { name: 'Download save code' }).click();
   expect((await download).suggestedFilename()).toMatch(/\.lakbay$/);
   const code = await page.getByLabel('Your save code').inputValue();
-  expect(code).toMatch(/^LR2\./);
+  expect(code).toMatch(/^LR3\./);
   await expectNoSeriousA11yIssues(page, 'settings with a save code');
 
   await page.getByRole('button', { name: 'Reset progress' }).click();

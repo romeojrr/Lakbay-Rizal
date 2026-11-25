@@ -4,7 +4,7 @@
 import { isLang, type Lang } from '../i18n/language';
 import type { Progress, StampGrade } from './progress';
 
-export const CURRENT_VERSION = 2;
+export const CURRENT_VERSION = 3;
 
 type Migration = (state: unknown) => unknown;
 
@@ -25,8 +25,18 @@ export function migrateV1toV2(state: unknown): unknown {
   return isObject(state) ? { ...state, version: 2 } : state;
 }
 
+/**
+ * v2 → v3: the game now has its own music, on by default. Version 2 saves all say
+ * `music: false` only because there was no music to switch on, so it is switched on.
+ */
+export function migrateV2toV3(state: unknown): unknown {
+  if (!isObject(state)) return state;
+  const settings = isObject(state.settings) ? state.settings : {};
+  return { ...state, version: 3, settings: { ...settings, music: true } };
+}
+
 /** MIGRATIONS[n] upgrades a version-n save to version n + 1. */
-export const MIGRATIONS: Record<number, Migration> = { 1: migrateV1toV2 };
+export const MIGRATIONS: Record<number, Migration> = { 1: migrateV1toV2, 2: migrateV2toV3 };
 
 /** Upgrades a saved state to CURRENT_VERSION, or returns null if that is not possible. */
 export function migrateProgress(state: unknown, fromVersion: number): unknown {

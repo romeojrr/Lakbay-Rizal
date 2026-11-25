@@ -9,6 +9,7 @@
   overflow: hidden;
   border: var(--border);
   box-shadow: var(--shadow-panel);
+  border-radius: var(--radius);
 }
 
 .scene {
@@ -29,7 +30,8 @@
 .card {
   position: relative;
   z-index: 1;
-  max-width: 640px;
+  width: 100%;
+  max-width: 760px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,10 +39,11 @@
   padding: 26px 28px;
   text-align: center;
   background: var(--dialogue-bg);
-  border: 4px solid var(--ink);
+  border: var(--border);
   box-shadow:
-    inset 0 0 0 3px var(--gold),
+    inset 0 0 0 2px var(--gold),
     var(--shadow-panel);
+  border-radius: var(--radius);
 }
 
 .prompt {
@@ -73,6 +76,7 @@
   border: var(--border);
   box-shadow: var(--shadow-button);
   cursor: pointer;
+  border-radius: var(--radius);
 }
 
 .option:hover:not(:disabled) {
@@ -94,6 +98,7 @@
   color: var(--ink);
   background: var(--card-warm);
   border: var(--border);
+  border-radius: var(--radius);
 }
 
 .right {
@@ -123,4 +128,13 @@
     flex-basis: 100%;
     font-size: var(--fs-small);
   }
+}
+
+/* Answers and feedback inside the card read left to right. */
+.body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
 }

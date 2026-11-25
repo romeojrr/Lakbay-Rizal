@@ -4,8 +4,9 @@
   gap: 12px;
   padding: 10px;
   background: var(--card);
-  border: 2px solid var(--ink);
+  border: var(--border-thin);
   list-style: none;
+  border-radius: var(--radius);
 }
 
 .built {
@@ -20,7 +21,8 @@
   align-items: center;
   justify-content: center;
   background: #cfe6b0;
-  border: 2px solid var(--ink);
+  border: var(--border-thin);
+  border-radius: var(--radius);
 }
 
 .thumb img {
@@ -58,19 +60,21 @@
   color: var(--ink);
   background: var(--accent);
   border: var(--border);
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: var(--shadow-button);
   cursor: pointer;
+  border-radius: var(--radius);
 }
 
 .build:active {
   transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0 var(--ink);
+  box-shadow: var(--shadow-button);
 }
 
 .done {
   color: #ffffff;
   background: var(--success);
-  border: 2px solid var(--ink);
+  border: var(--border-thin);
+  border-radius: var(--radius);
 }
 
 .short {

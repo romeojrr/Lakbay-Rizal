@@ -16,8 +16,9 @@
   font-size: var(--fs-small);
   color: #ffffff;
   border: var(--border);
-  box-shadow: 3px 3px 0 var(--ink);
+  box-shadow: var(--shadow-button);
   opacity: 0.4;
+  border-radius: var(--radius);
 }
 
 .complete .swatch {

@@ -28,6 +28,7 @@
   height: 16px;
   background: var(--card);
   border: var(--border);
+  border-radius: var(--radius);
 }
 
 .fill {
@@ -40,10 +41,9 @@
   color: var(--muted);
 }
 
-/* v2.3: the question card, answers and feedback in one column (max 760 px). */
+/* The dimmed scene with the centred quiz card (v2.2 layout); the card itself is 760 px max. */
 .card {
   width: 100%;
-  max-width: 760px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -106,6 +106,7 @@
   background: var(--card);
   border: var(--border);
   cursor: pointer;
+  border-radius: var(--radius);
 }
 
 /* §5.6: a wrong answer gives a 2 px shake (none with reduced motion). */
@@ -140,11 +141,12 @@
   border: var(--border);
   box-shadow: var(--shadow-button);
   cursor: pointer;
+  border-radius: var(--radius);
 }
 
 .action:active {
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 var(--ink);
+  box-shadow: var(--shadow-button);
 }
 
 .notice {
@@ -167,7 +169,8 @@
   font-size: var(--fs-small);
   color: var(--ink);
   background: var(--gold);
-  border: 2px solid var(--ink);
+  border: var(--border-thin);
+  border-radius: var(--radius);
 }
 
 /* §3.7: Rizal's reaction, one bubble at a time, under the card. */
@@ -191,8 +194,9 @@
   font-size: var(--fs-small);
   line-height: 1.35;
   background: var(--card);
-  border: 3px solid var(--ink);
+  border: var(--border);
   box-shadow: var(--shadow-button);
+  border-radius: var(--radius);
 }
 
 .pop {
@@ -233,9 +237,10 @@
   width: 6px;
   height: 6px;
   background: var(--gold);
-  border: 1px solid var(--ink);
+  border: var(--border-thin);
   opacity: 0;
   animation: sparkle 520ms ease-out;
+  border-radius: var(--radius);
 }
 
 @keyframes sparkle {

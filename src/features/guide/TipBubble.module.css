@@ -16,10 +16,11 @@
   padding: 10px 10px 10px 12px;
   color: var(--ink);
   background: var(--dialogue-bg);
-  border: 4px solid var(--ink);
+  border: var(--border);
   box-shadow:
-    inset 0 0 0 3px var(--gold),
+    inset 0 0 0 2px var(--gold),
     var(--shadow-panel);
+  border-radius: var(--radius);
 }
 
 .tip > :first-child {
@@ -39,9 +40,10 @@
   font-size: var(--fs-small);
   color: var(--ink);
   background: transparent;
-  border: 2px solid var(--ink);
+  border: var(--border-thin);
   cursor: pointer;
   pointer-events: auto;
+  border-radius: var(--radius);
 }
 
 .pop {

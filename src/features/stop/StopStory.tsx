@@ -1,12 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import BackLink from '../../components/BackLink/BackLink';
-import InfoDrawer from '../../components/InfoDrawer/InfoDrawer';
 import ReadMoreDialog from '../../components/ReadMoreDialog/ReadMoreDialog';
 import SourceCard from '../../components/SourceCard/SourceCard';
 import type { Content, PlayableStop } from '../../content/schemas';
 import { t } from '../../i18n/t';
 import { useLanguage } from '../../i18n/useLanguage';
-import { cx } from '../../lib/cx';
 import { useSceneFit } from '../../lib/useSceneFit';
 import { useGame } from '../../game/useGame';
 import { useProgress } from '../../store/progress';
@@ -34,7 +32,6 @@ interface StopStoryProps {
 export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
   const story = stop;
   const [readMoreOpen, setReadMoreOpen] = useState(false);
-  const [infoOpen, setInfoOpen] = useState(false);
   const [atEnd, setAtEnd] = useState(false);
   const stageRef = useRef<HTMLDivElement>(null);
   const fit = useSceneFit(stageRef, SCENE.w, SCENE.h, FRAME_CHROME);
@@ -44,7 +41,6 @@ export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
   const lang = useLanguage();
   const finished = visited || atEnd;
   const hasQuiz = stop.quiz.length > 0;
-  const closeInfo = useCallback(() => setInfoOpen(false), []);
 
   // GD-3: reaching the last step marks the stop visited (and read in this language, §3.10);
   // chapters read are counted (§3.8). GD-6: the final stop has no quiz; it completes quietly.
@@ -83,59 +79,43 @@ export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
         }
       : undefined;
 
+  // Stop screen (v2.2 layout, improved): the scene with the dialogue box under it on the
+  // left; This stop, the actions and the sources on the right. Phones: the cards go below.
   return (
-    <div className={cx(styles.screen, infoOpen && styles.infoOpen)}>
+    <div className={styles.screen}>
       <div className={styles.toolbar}>
         <BackLink fallback={`/region/${stop.region}`} label={t('stop.backToMap')} />
-        {/* Phones: switch between the story and the info cards under the scene. */}
-        <div className={styles.views} role="group" aria-label={t('stop.view')}>
-          <button type="button" aria-pressed={!infoOpen} onClick={closeInfo}>
-            {t('stop.story')}
-          </button>
-          <button type="button" aria-pressed={infoOpen} onClick={() => setInfoOpen(true)}>
-            {t('stop.info')}
-          </button>
-        </div>
-        {/* Desktop: open the Info drawer over the scene. */}
-        <button
-          type="button"
-          className={styles.infoToggle}
-          aria-expanded={infoOpen}
-          aria-controls="stop-info"
-          onClick={() => setInfoOpen(!infoOpen)}
-        >
-          {t('stop.info')}
-        </button>
       </div>
-      <div ref={stageRef} className={cx(styles.stage, fit.overlay && styles.overlay)}>
-        <StoryPlayer
-          story={story}
-          characters={content.characters}
-          sources={content.sources}
-          quiet={isFinal}
-          endLink={endLink}
-          width={fit.width}
-          onProgress={onProgress}
-          textClassName={styles.dialogue}
-          overlay={fit.overlay}
-        />
-        <InfoDrawer id="stop-info" open={infoOpen} onClose={closeInfo}>
+      <div className={styles.layout}>
+        <div ref={stageRef} className={styles.stage}>
+          <StoryPlayer
+            story={story}
+            characters={content.characters}
+            sources={content.sources}
+            quiet={isFinal}
+            endLink={endLink}
+            width={fit.width}
+            onProgress={onProgress}
+            textClassName={styles.dialogue}
+          />
+        </div>
+        <aside className={styles.cards} aria-label={t('stop.infoTitle')}>
           <StopFacts
             stop={stop}
             item={stop.rewards.item ? content.items[stop.rewards.item] : undefined}
           />
+          <StopActions
+            stop={stop}
+            finished={finished}
+            isFinal={isFinal}
+            onReadMore={() => {
+              game.readMore(stop.id);
+              setReadMoreOpen(true);
+            }}
+          />
           <SourceCard refs={stop.sources} sources={content.sources} />
-        </InfoDrawer>
+        </aside>
       </div>
-      <StopActions
-        stop={stop}
-        finished={finished}
-        isFinal={isFinal}
-        onReadMore={() => {
-          game.readMore(stop.id);
-          setReadMoreOpen(true);
-        }}
-      />
       <ReadMoreDialog
         stop={story}
         sources={content.sources}

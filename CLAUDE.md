@@ -12,7 +12,7 @@ New build: follow SRS §11 (M0 → M8). **App already built from v2.2: follow th
 - **Static only.** No backend, database, login, analytics or third-party requests at runtime. Progress lives in `localStorage` (`lakbay-rizal:v1`; store version 2 from v2.3, with a migration).
 - **Accessible by default.** Real `<button>`/`<a>` elements, visible focus, 4.5:1 text contrast, alt text from content, reduced-motion support.
 - **Respectful ending.** No violence shown; no game-over states; the final stop follows SRS GD-6.
-- UI copy is short plain English for students (and Filipino from `i18n`). **All text uses VT323** (SRS §5.3 type scale; never fake bold; never below 18 px).
+- UI copy is short plain English for students (and Filipino from `i18n`). **Reading text (stories, dialogue, questions, longer passages) uses Nunito; the interface (headings, buttons, tabs, labels) uses VT323** — never set long reading text in the pixel font (owner decision, 2026-11-26). SRS §5.3 type scale for both; never fake bold; VT323 never below 18 px.
 - Every UI string goes through `t()`; Filipino falls back to English per string. Show the "Draft translation" badge while `fil` files have `status: "draft"`.
 - Portraits: `assets/portraits/<id>.png`, 4 × 6 frames of 64 px (SRS §7.10). Integer scale only.
 - Motion: `transform`/`opacity` only; every animation has a reduced-motion fallback (SRS §5.6). The final stop has no celebration, guide or sound.

@@ -71,7 +71,7 @@ describe('saving (FR-70)', () => {
   it('saves to localStorage and loads it back', async () => {
     useProgress.getState().complete(stop('berlin-1887'));
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '{}');
-    expect(saved.version).toBe(2);
+    expect(saved.version).toBe(3);
     expect(saved.state.stamps).toEqual(['berlin-1887']);
     expect(saved.state).not.toHaveProperty('complete');
 
@@ -92,7 +92,7 @@ describe('saving (FR-70)', () => {
   });
 
   it('treats a save with the wrong shape as damaged', async () => {
-    const bad = { state: { ...initialProgress(), stamps: 'berlin' }, version: 2 };
+    const bad = { state: { ...initialProgress(), stamps: 'berlin' }, version: 3 };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(bad));
     await useProgress.persist.rehydrate();
     expect(useProgress.getState().stamps).toEqual([]);
@@ -172,14 +172,25 @@ const V1_SAVE = {
   },
 };
 
-describe('store version 2 (SRS v2.3 §8.4)', () => {
+describe('store version 3 (SRS v2.3 §8.4; music on by default)', () => {
+  it('a version-2 save gets music switched on, and keeps everything else', () => {
+    const v2 = {
+      ...initialProgress(),
+      version: 2,
+      xp: 120,
+      settings: { ...initialProgress().settings, music: false },
+    };
+    const migrated = sanitizeProgress(migrateProgress(v2, 2), initialProgress());
+    expect(migrated).toMatchObject({ version: 3, xp: 120, settings: { music: true } });
+  });
+
   it('upgrades a version-1 save, keeping everything the player had', async () => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(V1_SAVE));
     await useProgress.persist.rehydrate();
     const state = useProgress.getState();
     expect(consumeLoadProblem()).toBe(false);
     expect(state).toMatchObject({
-      version: 2,
+      version: 3,
       mode: 'free',
       visited: ['calamba-1861', 'binan-1869'],
       completed: ['calamba-1861'],
@@ -208,14 +219,14 @@ describe('store version 2 (SRS v2.3 §8.4)', () => {
         panelCollapsed: true,
         lang: 'en',
         sound: true,
-        music: false,
+        music: true,
         volume: 0.7,
         autoplay: false,
       },
     });
-    // The next save is written as version 2.
+    // The next save is written as version 3.
     useProgress.getState().visit('ateneo-1872');
-    expect(JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '{}').version).toBe(2);
+    expect(JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '{}').version).toBe(3);
   });
 
   it('gives an upgraded save the browser language (§3.10)', () => {
@@ -276,6 +287,6 @@ describe('store version 2 (SRS v2.3 §8.4)', () => {
 
   it('cannot migrate from version 0 or skip to an unknown version', () => {
     expect(migrateProgress(V1_SAVE.state, 0)).toBeNull();
-    expect(migrateProgress(V1_SAVE.state, 3)).toBeNull();
+    expect(migrateProgress(V1_SAVE.state, 4)).toBeNull();
   });
 });

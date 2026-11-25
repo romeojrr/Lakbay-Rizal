@@ -116,7 +116,11 @@ describe('Credits (FR-72)', () => {
     renderAt('/credits');
     expect(await screen.findByRole('heading', { level: 1, name: 'Credits' })).toBeVisible();
     expect(screen.getByText('Original pixel art by the RIZLIFE team.')).toBeVisible();
-    expect(screen.getByText('VT323 by Peter Hull, under the SIL Open Font License.')).toBeVisible();
+    expect(
+      screen.getByText(
+        'VT323 by Peter Hull and Nunito by Vernon Adams, both under the SIL Open Font License.',
+      ),
+    ).toBeVisible();
     expect(screen.getByText(/global-land-mask.*GLOBE 1-km/)).toBeVisible();
     const sources = screen.getByRole('region', { name: 'Sources' });
     expect(within(sources).getAllByRole('listitem')).toHaveLength(content.sources.length);
@@ -136,7 +140,6 @@ describe("Rizal's tour (FR-4, FR-84, SRS v2.3 §3.7)", () => {
     const card = await screen.findByRole('dialog', { name: 'Tour with José Rizal' });
     expect(within(card).getByText('Step 1 of 14')).toBeVisible();
     expect(card).toHaveAccessibleDescription(/^Good day! I am José Rizal/);
-    expect(within(card).getByRole('img', { name: 'Portrait of José Rizal, happy' })).toBeVisible();
     await user.click(within(card).getByRole('button', { name: 'Next' }));
     expect(await screen.findByText('Step 2 of 14', undefined, { timeout: 3000 })).toBeVisible();
     await user.click(screen.getByRole('button', { name: 'Skip tour' }));

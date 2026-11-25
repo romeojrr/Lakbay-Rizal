@@ -41,7 +41,7 @@ const step = () => useUi.getState().storyStep['calamba-1861'] ?? 0;
 const CALAMBA_CHAPTER_3 = 10;
 
 describe('Story player — Calamba (FR-80, SRS v2.3 §3.6)', { timeout: 15_000 }, () => {
-  it('plays chapter by chapter: title card, narration, close-up line, fact', async () => {
+  it('plays chapter by chapter: title card, narration, spoken line, fact', async () => {
     freeAndStill();
     renderAt('/stop/calamba-1861');
     expect(await screen.findByRole('heading', { level: 1, name: 'Calamba · 1861' })).toBeVisible();
@@ -56,8 +56,8 @@ describe('Story player — Calamba (FR-80, SRS v2.3 §3.6)', { timeout: 15_000 }
     ).toBeInTheDocument();
     await next();
     await next();
-    // The line: Teodora's close-up (happy row), her name, the Dramatized tag, the "…" bubble.
-    expect(screen.getByRole('img', { name: 'Portrait of Teodora Alonso, happy' })).toBeVisible();
+    // The line: her name, the Dramatized tag, the "…" bubble; no close-up portrait.
+    expect(screen.queryByRole('img', { name: /^Portrait of/ })).toBeNull();
     expect(within(player()).getByText('Teodora Alonso')).toBeVisible();
     const tag = screen.getByRole('button', { name: 'Dramatized' });
     expect(tag).toHaveAccessibleDescription('Based on real events. The exact words are imagined.');
@@ -73,30 +73,29 @@ describe('Story player — Calamba (FR-80, SRS v2.3 §3.6)', { timeout: 15_000 }
     expect(within(player()).getByText('Chapter 2 of 4', { selector: 'span' })).toBeInTheDocument();
   });
 
-  it('chapter 3 zooms to Teodora, and her moth line is Recorded', async () => {
+  it('chapter 3: the whole scene (no camera zoom), and her moth line is Recorded', async () => {
     freeAndStill();
     useUi.setState({ storyStep: { 'calamba-1861': CALAMBA_CHAPTER_3 } });
     renderAt('/stop/calamba-1861');
     expect(await screen.findByRole('heading', { level: 2, name: 'The young moth' })).toBeVisible();
     const camera = player().querySelector('[data-zoom]') as HTMLElement;
-    expect(camera.dataset.zoom).toBe('1.6');
-    expect(camera.style.transform).toMatch(/^translate\(-46\.8\d*%, -55\.6\d*%\) scale\(1\.6\)$/);
+    expect(camera.dataset.zoom).toBe('1');
 
     await next();
     await next();
     await next();
-    expect(screen.getByRole('img', { name: 'Portrait of Teodora Alonso, happy' })).toBeVisible();
+    expect(within(player()).getByText('Teodora Alonso')).toBeVisible();
     const recorded = screen.getByRole('button', { name: 'Recorded' });
     expect(recorded).toHaveAccessibleDescription(
       "Real words, from a published source. Source: Rizal's Own Story of His Life",
     );
-    // Her anchor (60.5 %, 58 %) seen through the camera.
+    // Her anchor (60.5 %, 58 %), on the whole scene.
     const bubble = screen.getByText('…').parentElement as HTMLElement;
-    expect(parseFloat(bubble.style.left)).toBeCloseTo(50, 1);
-    expect(parseFloat(bubble.style.top)).toBeCloseTo(37.2, 1);
+    expect(parseFloat(bubble.style.left)).toBeCloseTo(60.5, 1);
+    expect(parseFloat(bubble.style.top)).toBeCloseTo(58, 1);
 
     await next();
-    expect(screen.getByRole('img', { name: 'Portrait of José, surprised' })).toBeVisible();
+    expect(within(player()).getByText('José')).toBeVisible();
     expect(screen.getByRole('button', { name: 'Dramatized' })).toBeVisible();
   });
 
@@ -177,37 +176,23 @@ describe('Story player — Calamba (FR-80, SRS v2.3 §3.6)', { timeout: 15_000 }
 });
 
 describe('Stop page — Berlin (M3)', () => {
-  it('Info drawer: this stop, item reward and sources from content (FR-32, v2.3 §5.5)', async () => {
+  it('info cards beside the story: this stop, item reward, sources (FR-32)', async () => {
     const user = userEvent.setup();
     useProgress.setState({ mode: 'free' });
     renderAt('/stop/berlin-1887');
     await screen.findByRole('heading', { level: 1, name: 'Berlin · 1887' });
+    const cards = screen.getByRole('complementary', { name: 'About this stop' });
+    expect(cards.querySelector('[data-guide="sources-card"]')).not.toBeNull();
+    expect(within(cards).getByText('Berlin, Kingdom of Prussia (German Empire)')).toBeVisible();
+    expect(within(cards).getByText('Berlin, Germany')).toBeVisible();
+    expect(within(cards).getByText('Noli Me Tangere')).toBeVisible();
 
-    // The cards live in the Info drawer, closed at first but present for the guide.
-    expect(document.querySelector('[data-guide="sources-card"]')).not.toBeNull();
-    expect(screen.queryByRole('heading', { name: 'Sources' })).toBeNull();
-    const toggle = screen.getByRole('button', { name: 'Info', expanded: false });
-    await user.click(toggle);
-    expect(toggle).toHaveAttribute('aria-expanded', 'true');
-    const drawer = screen.getByRole('region', { name: 'About this stop' });
-    expect(drawer).toHaveFocus();
-
-    expect(within(drawer).getByText('Berlin, Kingdom of Prussia (German Empire)')).toBeVisible();
-    expect(within(drawer).getByText('Berlin, Germany')).toBeVisible();
-    expect(within(drawer).getByText('Noli Me Tangere')).toBeVisible();
-
-    const sources = within(drawer).getByRole('heading', { name: 'Sources' })
+    const sources = within(cards).getByRole('heading', { name: 'Sources' })
       .parentElement as HTMLElement;
     expect(within(sources).getAllByRole('listitem')).toHaveLength(2);
-    expect(within(sources).getByText(/Rizal–Blumentritt Correspondence/)).toBeVisible();
     await user.click(within(sources).getByRole('button', { name: 'Show all 7 sources' }));
     expect(within(sources).getAllByRole('listitem')).toHaveLength(7);
     expect(within(sources).getByText('ch. VI, "The Period of Preparation"')).toBeVisible();
-
-    // Esc closes the drawer and returns focus to the Info button.
-    await user.keyboard('{Escape}');
-    expect(screen.queryByRole('region', { name: 'About this stop' })).toBeNull();
-    expect(toggle).toHaveFocus();
   });
 
   it('Read more: the summary, then and today, the date and every source (FR-33, §3.6)', async () => {

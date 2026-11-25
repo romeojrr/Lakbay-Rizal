@@ -17,6 +17,7 @@
   border: var(--border);
   box-shadow: var(--shadow-button);
   cursor: pointer;
+  border-radius: var(--radius);
 }
 
 .cancel {

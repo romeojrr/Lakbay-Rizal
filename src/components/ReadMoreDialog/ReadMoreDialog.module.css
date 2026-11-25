@@ -9,7 +9,8 @@
 .facts div {
   padding: 8px 10px;
   background: var(--card-warm);
-  border: 2px solid var(--ink);
+  border: var(--border-thin);
+  border-radius: var(--radius);
 }
 
 .facts dt {

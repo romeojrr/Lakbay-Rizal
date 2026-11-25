@@ -102,13 +102,13 @@ test('a version-1 save keeps its stamps and is saved again as version 2 (§8.4)'
   const saved = await page.evaluate(() =>
     JSON.parse(localStorage.getItem('lakbay-rizal:v1') ?? '{}'),
   );
-  expect(saved.version).toBe(2);
+  expect(saved.version).toBe(3);
   expect(saved.state).toMatchObject({
-    version: 2,
+    version: 3,
     stamps: ['calamba-1861'],
     items: ['moth-story'],
     xp: 0,
     tourDone: false,
-    settings: { textSize: 'large', lang: 'en', sound: true, music: false },
+    settings: { textSize: 'large', lang: 'en', sound: true, music: true },
   });
 });

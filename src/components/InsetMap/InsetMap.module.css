@@ -13,6 +13,7 @@
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border: var(--border);
+  border-radius: var(--radius);
 }
 
 .image {
@@ -26,8 +27,9 @@
   position: absolute;
   width: 14px;
   height: 14px;
-  border: 3px solid var(--ink);
+  border: var(--border);
   box-shadow: 0 0 0 2px #ffffff;
+  border-radius: var(--radius);
 }
 
 .list {

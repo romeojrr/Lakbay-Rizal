@@ -83,26 +83,21 @@ describe('App shell v2.3 (§5.5)', () => {
     expect(within(more).getByRole('link', { name: 'Scenes' })).toHaveAttribute('href', '/scenes');
   });
 
-  it('the map side panel folds to a rail and remembers it', async () => {
-    const user = userEvent.setup();
+  it('map screen: the map, the side panel beside it, the timeline across the bottom', async () => {
     renderAt('/region/europe');
-    const hide = await screen.findByRole('button', { name: 'Hide panel' });
-    expect(hide).toHaveAttribute('aria-expanded', 'true');
-    await user.click(hide);
-    expect(screen.getByRole('button', { name: 'Show panel' })).toHaveAttribute(
-      'aria-expanded',
-      'false',
-    );
-    expect(useProgress.getState().settings.panelCollapsed).toBe(true);
+    const panel = await screen.findByRole('complementary', { name: 'Stops in this region' });
+    expect(within(panel).getByRole('group', { name: 'Journey mode' })).toBeVisible();
+    expect(within(panel).getByRole('heading', { name: 'Journey' })).toBeVisible();
+    expect(screen.queryByRole('button', { name: 'Hide panel' })).toBeNull();
   });
 
-  it('the timeline strip expands to show the era labels', async () => {
+  it('the timeline shows the era labels, and can be made smaller', async () => {
     const user = userEvent.setup();
     renderAt('/region/europe');
-    const more = await screen.findByRole('button', { name: 'More', expanded: false });
-    expect(screen.getByText('1882 · Europe')).not.toBeVisible();
-    await user.click(more);
+    const less = await screen.findByRole('button', { name: 'Less', expanded: true });
     expect(screen.getByText('1882 · Europe')).toBeVisible();
+    await user.click(less);
+    expect(screen.getByText('1882 · Europe')).not.toBeVisible();
   });
 
   it('map screen has every guide target (§3.7)', async () => {

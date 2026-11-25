@@ -23,6 +23,7 @@
   background: var(--card-warm);
   border: var(--border);
   box-shadow: var(--shadow-panel);
+  border-radius: var(--radius);
 }
 
 .banner {
@@ -59,9 +60,10 @@
   font-size: var(--fs-small);
   color: var(--ink);
   background: transparent;
-  border: 2px solid var(--ink);
+  border: var(--border-thin);
   cursor: pointer;
   pointer-events: auto;
+  border-radius: var(--radius);
 }
 
 .slide {

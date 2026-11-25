@@ -7,7 +7,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  /* VT323 has one weight: never let the browser fake bold or italic (SRS v2.3 §5.3). */
+  /* Never let the browser fake bold or italic: VT323 has one weight, Nunito ships its own. */
   font-synthesis: none;
 }
 
@@ -16,7 +16,10 @@ body {
   min-height: 100vh;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font);
+  /* Reading text (stories, dialogue, passages) is Nunito; the interface is VT323 (below). */
+  font-family: var(--font-read);
+  font-size-adjust: var(--read-adjust);
+  line-height: 1.5;
   font-size: var(--fs-body);
   font-weight: 400;
   line-height: var(--line-height);
@@ -159,4 +162,24 @@ a {
   main {
     padding: 0 !important;
   }
+}
+
+/* The pixel font for the game's interface: headings, buttons, tabs, navigation, labels. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+label,
+legend,
+dt,
+nav,
+header,
+[role='tab'],
+.pixel {
+  font-family: var(--font-pixel);
+  font-size-adjust: none;
+  line-height: 1.3;
 }

@@ -3,8 +3,9 @@
   padding: 2px 8px;
   font-size: var(--fs-small);
   color: #ffffff;
-  border: 2px solid var(--ink);
+  border: var(--border-thin);
   white-space: nowrap;
+  border-radius: var(--radius);
 }
 
 .study {

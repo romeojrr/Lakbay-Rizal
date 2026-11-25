@@ -51,15 +51,24 @@
   --wrong: #f6c3bd;
 
   /* Shape */
-  --border: 3px solid var(--ink);
-  --shadow-panel: 6px 6px 0 var(--ink);
-  --shadow-button: 4px 4px 0 var(--ink);
-  --radius: 0;
+  /* Soft style (owner decision 2026-11-26): thin warm-brown lines, small blurred shadows,
+     6 px corners. The pixel art itself stays square. */
+  --line: #6b5a48;
+  --border: 2px solid var(--line);
+  --border-thin: 1px solid var(--line);
+  --shadow-panel: 0 6px 18px rgba(31, 26, 36, 0.12), 0 1px 3px rgba(31, 26, 36, 0.1);
+  --shadow-button: 0 2px 6px rgba(31, 26, 36, 0.16);
+  --radius: 6px;
 
   /* Type — SRS v2.3 §5.3: VT323 for all text, one weight, never below 18 px */
-  --font: 'VT323', monospace;
-  --font-display: var(--font);
-  --font-body: var(--font);
+  --font-pixel: 'VT323', monospace;
+  --font-read: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font: var(--font-pixel);
+  --font-display: var(--font-pixel);
+  --font-body: var(--font-read);
+  /* Nunito's letters are much taller than VT323's at the same size: this keeps the shared
+     type scale looking the same in both (22 px token ≈ 18 px Nunito). */
+  --read-adjust: 0.4;
   --fs-small: 18px;
   --fs-body: 22px;
   --fs-h3: 28px;

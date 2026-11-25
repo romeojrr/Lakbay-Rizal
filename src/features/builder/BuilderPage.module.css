@@ -37,6 +37,7 @@
   padding: 8px 12px;
   background: rgba(246, 240, 225, 0.94);
   border: var(--border);
+  border-radius: var(--radius);
 }
 
 .title {
@@ -76,10 +77,11 @@
   padding: 12px 16px;
   white-space: nowrap;
   background: var(--dialogue-bg);
-  border: 4px solid var(--ink);
+  border: var(--border);
   box-shadow:
-    inset 0 0 0 3px var(--gold),
+    inset 0 0 0 2px var(--gold),
     var(--shadow-panel);
+  border-radius: var(--radius);
 }
 
 .bannerText {
@@ -94,6 +96,7 @@
   color: var(--ink);
   background: var(--accent);
   border: var(--border);
+  border-radius: var(--radius);
 }
 
 /* Message box */
@@ -103,10 +106,11 @@
   align-items: flex-start;
   padding: 18px 20px;
   background: var(--dialogue-bg);
-  border: 4px solid var(--ink);
+  border: var(--border);
   box-shadow:
-    inset 0 0 0 3px var(--gold),
+    inset 0 0 0 2px var(--gold),
     var(--shadow-panel);
+  border-radius: var(--radius);
 }
 
 .messageBody {

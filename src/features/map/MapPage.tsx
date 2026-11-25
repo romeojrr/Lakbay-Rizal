@@ -7,7 +7,6 @@ import MapView from '../../components/MapView/MapView';
 import ModeToggle from '../../components/ModeToggle/ModeToggle';
 import Panel from '../../components/Panel/Panel';
 import RegionTabs from '../../components/RegionTabs/RegionTabs';
-import SidePanel from '../../components/SidePanel/SidePanel';
 import StopCard from '../../components/StopCard/StopCard';
 import TimelineSlider from '../../components/TimelineSlider/TimelineSlider';
 import Toast from '../../components/Toast/Toast';
@@ -15,7 +14,6 @@ import { REGION_IDS } from '../../content/constants';
 import type { RegionId } from '../../content/schemas';
 import { getNextStop } from '../../content/selectors';
 import { t } from '../../i18n/t';
-import { cx } from '../../lib/cx';
 import { useProgress } from '../../store/progress';
 import { useUi } from '../../store/ui';
 import {
@@ -46,8 +44,6 @@ export default function MapPage() {
   const setLastRegion = useUi((s) => s.setLastRegion);
   const timelineExpanded = useUi((s) => s.timelineExpanded);
   const setTimelineExpanded = useUi((s) => s.setTimelineExpanded);
-  const panelCollapsed = useProgress((s) => s.settings.panelCollapsed);
-  const setSettings = useProgress((s) => s.setSettings);
   const navigate = useNavigate();
   const location = useLocation();
   const insetRef = useRef<HTMLDivElement>(null);
@@ -112,13 +108,14 @@ export default function MapPage() {
     }
   };
 
-  // §5.5 map screen: grid of map | side panel (collapsible), timeline strip under the map.
+  // Map screen (v2.2 layout, improved): the map on the left, a side panel (mode, next stop,
+  // journey) on the right, the timeline across the bottom. Phones: the panel goes below.
   return (
     <div className={styles.screen}>
       <div className={styles.phoneTabs}>
         <RegionTabs regions={content.regions} nextRegion={nextStop?.region} />
       </div>
-      <div className={cx(styles.grid, panelCollapsed && styles.collapsed)}>
+      <div className={styles.grid}>
         <section className={styles.mapArea} aria-label={t('map.section')}>
           <div
             className={styles.mapBox}
@@ -141,19 +138,8 @@ export default function MapPage() {
               onOpenInset={openInset}
             />
           </div>
-          <div ref={timelineRef}>
-            <TimelineSlider
-              value={year}
-              onChange={changeYear}
-              expanded={timelineExpanded}
-              onToggleExpanded={setTimelineExpanded}
-            />
-          </div>
         </section>
-        <SidePanel
-          collapsed={panelCollapsed}
-          onToggleCollapsed={() => setSettings({ panelCollapsed: !panelCollapsed })}
-        >
+        <aside className={styles.panel} aria-label={t('panel.label')}>
           <ModeToggle mode={mode} onChange={setMode} />
           {region.inset && insetGroup && (
             <InsetMap
@@ -171,7 +157,15 @@ export default function MapPage() {
             />
           )}
           {mapStops.length > 0 && <JourneyList members={mapStops} onLocked={showLocked} />}
-        </SidePanel>
+        </aside>
+        <div ref={timelineRef} className={styles.timeline}>
+          <TimelineSlider
+            value={year}
+            onChange={changeYear}
+            expanded={timelineExpanded}
+            onToggleExpanded={setTimelineExpanded}
+          />
+        </div>
       </div>
       <Toast message={message} />
     </div>

@@ -55,6 +55,7 @@
   font-size: var(--fs-small);
   background: var(--card);
   border: var(--border);
+  border-radius: var(--radius);
 }
 
 .segment input:checked + span {
@@ -86,7 +87,8 @@
 .danger {
   padding: 14px 16px;
   background: var(--card-warm);
-  border: 2px solid var(--ink);
+  border: var(--border-thin);
+  border-radius: var(--radius);
 }
 
 .reset {
@@ -98,6 +100,7 @@
   border: var(--border);
   box-shadow: var(--shadow-button);
   cursor: pointer;
+  border-radius: var(--radius);
 }
 
 /* §3.9 save code */
@@ -115,8 +118,9 @@
   word-break: break-all;
   color: var(--ink);
   background: var(--card);
-  border: 3px solid var(--ink);
+  border: var(--border);
   resize: vertical;
+  border-radius: var(--radius);
 }
 
 .row {

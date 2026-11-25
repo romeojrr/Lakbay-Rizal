@@ -17,6 +17,7 @@
 .scene {
   position: relative;
   border: var(--border);
+  border-radius: var(--radius);
 }
 
 .image {
@@ -48,6 +49,7 @@
   color: var(--ink);
   background: var(--card-warm);
   border: var(--border);
+  border-radius: var(--radius);
 }
 
 .info {
@@ -107,6 +109,7 @@
   background: var(--accent);
   border: var(--border);
   box-shadow: var(--shadow-button);
+  border-radius: var(--radius);
 }
 
 .list {
@@ -138,6 +141,7 @@
   border: var(--border);
   box-shadow: var(--shadow-button);
   cursor: pointer;
+  border-radius: var(--radius);
 }
 
 .selected {
@@ -149,7 +153,8 @@
   width: 112px;
   flex-shrink: 0;
   aspect-ratio: 16 / 9;
-  border: 2px solid var(--ink);
+  border: var(--border-thin);
+  border-radius: var(--radius);
 }
 
 .itemText {

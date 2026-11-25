@@ -3,7 +3,7 @@ import type { Character, Source } from '../../content/schemas';
 import type { StopV3 } from '../../content/schemas.v3';
 import { t } from '../../i18n/t';
 import LineTag from '../../components/LineTag/LineTag';
-import CloseUpPortrait from './CloseUpPortrait';
+import Portrait from '../../components/Portrait/Portrait';
 import FactCard from './FactCard';
 import { stepText, type Step } from './steps';
 import styles from './StoryPanel.module.css';
@@ -37,7 +37,7 @@ function Typed({ text, shown }: { text: string; shown: number }) {
 
 /** SRS v2.3 §3.6: the parchment box with the current step: title card, narration, line or fact. */
 export default function StoryPanel(props: StoryPanelProps) {
-  const { story, step, stepKey, shown, typing, still, quiet, characters, sources } = props;
+  const { story, step, stepKey, shown, still, characters, sources } = props;
   const textRef = useRef<HTMLDivElement>(null);
   const previousKey = useRef(stepKey);
   const chapter = story.chapters[step.chapter];
@@ -67,19 +67,9 @@ export default function StoryPanel(props: StoryPanelProps) {
     const line = chapter?.lines[step.line];
     const character = line ? characters[line.speaker] : undefined;
     const isNarrator = line?.speaker === 'narrator';
-    const showPortrait = !quiet && !isNarrator && character?.portrait && line;
     body = (
       <div className={styles.line}>
-        {showPortrait && (
-          <CloseUpPortrait
-            key={stepKey}
-            sheet={character.portrait as string}
-            name={character.name}
-            mood={line.mood}
-            talking={typing}
-            still={still}
-          />
-        )}
+        <Portrait character={character} />
         <div className={styles.lineBody}>
           <p className={styles.speaker}>{character?.name ?? line?.speaker}</p>
           <p className={styles.text}>

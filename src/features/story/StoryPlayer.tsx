@@ -103,7 +103,6 @@ export default function StoryPlayer(props: StoryPlayerProps) {
         scene={story.scene}
         place={story.place.label}
         year={story.year}
-        camera={chapter?.camera}
         bubbleAt={bubbleAt}
         bubbleKey={stepKey}
         still={still}

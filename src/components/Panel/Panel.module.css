@@ -3,4 +3,5 @@
   border: var(--border);
   box-shadow: var(--shadow-panel);
   min-width: 0;
+  border-radius: var(--radius);
 }

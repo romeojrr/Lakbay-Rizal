@@ -38,8 +38,9 @@
   font-size: var(--fs-small);
   color: var(--ink);
   background: var(--card);
-  border: 3px solid var(--ink);
+  border: var(--border);
   cursor: pointer;
+  border-radius: var(--radius);
 }
 
 .filter button[aria-pressed='true'] {
@@ -70,7 +71,8 @@
   gap: 12px;
   padding: 10px 12px;
   background: var(--card);
-  border: 3px solid var(--ink);
+  border: var(--border);
+  border-radius: var(--radius);
 }
 
 .year {
@@ -83,7 +85,8 @@
   width: 96px;
   height: 54px;
   background: var(--track);
-  border: 2px solid var(--ink);
+  border: var(--border-thin);
+  border-radius: var(--radius);
 }
 
 .body {
@@ -128,7 +131,8 @@
 .next {
   padding: 0 6px;
   background: var(--accent);
-  border: 2px solid var(--ink);
+  border: var(--border-thin);
+  border-radius: var(--radius);
 }
 
 .locked {

@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, type ReactNode } from 'react';
 import { asset } from '../../lib/asset';
 import styles from './QuizQuestion.module.css';
 
@@ -6,11 +6,13 @@ interface QuizQuestionProps {
   prompt: string;
   sceneImage: string;
   stampIcon: string;
+  /** The answers and feedback, inside the same card. */
+  children?: ReactNode;
 }
 
-/** The question over the dimmed scene (Quiz.dc.html). The answers come below (FR-81). */
+/** The quiz card, centred over a dimmed copy of the scene (Quiz.dc.html, v2.2 layout). */
 const QuizQuestion = forwardRef<HTMLParagraphElement, QuizQuestionProps>(function QuizQuestion(
-  { prompt, sceneImage, stampIcon },
+  { prompt, sceneImage, stampIcon, children },
   ref,
 ) {
   return (
@@ -21,6 +23,7 @@ const QuizQuestion = forwardRef<HTMLParagraphElement, QuizQuestionProps>(functio
         <p ref={ref} id="quiz-prompt" className={styles.prompt} tabIndex={-1}>
           {prompt}
         </p>
+        <div className={styles.body}>{children}</div>
       </div>
     </div>
   );

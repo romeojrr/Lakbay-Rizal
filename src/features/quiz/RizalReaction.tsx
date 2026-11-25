@@ -1,7 +1,7 @@
 import type { Character } from '../../content/schemas';
 import type { Guide } from '../../content/schemas.v3';
 import { useReducedMotion } from '../../lib/useReducedMotion';
-import CloseUpPortrait from '../story/CloseUpPortrait';
+import Portrait from '../../components/Portrait/Portrait';
 import styles from './QuizPage.module.css';
 
 export type ReactionKind = keyof Guide['reactions'];
@@ -39,13 +39,7 @@ export default function RizalReaction({
   if (!line || !rizal?.portrait) return null;
   return (
     <div className={styles.reaction} key={reaction.key}>
-      <CloseUpPortrait
-        sheet={rizal.portrait}
-        name={rizal.name}
-        mood={line.mood}
-        talking={false}
-        still={still}
-      />
+      <Portrait character={rizal} />
       <p className={`${styles.bubble} ${still ? 'motion-fade' : styles.pop}`}>{line.text}</p>
     </div>
   );

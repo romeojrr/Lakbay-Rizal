@@ -5,5 +5,5 @@ import styles from './Chip.module.css';
 
 /** Theme label, e.g. "Writing", in its theme color. */
 export default function Chip({ theme }: { theme: Theme }) {
-  return <span className={cx(styles.chip, styles[theme])}>{t(`themes.${theme}`)}</span>;
+  return <span className={cx('pixel', styles.chip, styles[theme])}>{t(`themes.${theme}`)}</span>;
 }

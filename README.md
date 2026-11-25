@@ -156,4 +156,4 @@ Lighthouse's mobile test simulates a slow 4G phone; under it the largest image a
 
 ## Licences and credits
 
-Pixel art: original, by the RIZLIFE team. Sound effects are generated in code (no audio files). Font: VT323 by Peter Hull (SIL Open Font License), self-hosted. Map coastlines: the `global-land-mask` package (GLOBE 1-km data). The in-game Credits page lists every source.
+Pixel art: original, by the RIZLIFE team. Sound effects are generated in code (no audio files). Fonts: VT323 by Peter Hull and Nunito by Vernon Adams (SIL Open Font License), self-hosted. Map coastlines: the `global-land-mask` package (GLOBE 1-km data). The in-game Credits page lists every source.

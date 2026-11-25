@@ -1,6 +1,6 @@
-// U1 / FR-91 (SRS v2.3 §5.3, §5.5): layout at 360, 768, 1440 and 1920 px and landscape.
-// No sideways scroll, VT323 everywhere (never below 18 px, never bold), the v2.2 look kept,
-// the scene at a whole-number scale, and screenshots of every width for review.
+// Layout at 360, 768, 1440 and 1920 px and landscape (owner decisions 2026-11-26): the v2.2
+// layout (map | panel with the timeline below; scene + dialogue | info cards; panels below
+// on phones), Nunito for reading text and VT323 for the interface, and the soft style.
 import { expect, test, type Page } from '@playwright/test';
 import { skipIntroOnFreshProfile } from './helpers';
 
@@ -61,7 +61,9 @@ async function expectNoSideScroll(page: Page) {
 }
 
 for (const [width, height] of WIDTHS) {
-  test(`${width} × ${height}: map and stop fit, VT323 ≥ 18 px, screenshots`, async ({ page }) => {
+  test(`${width} × ${height}: no sideways scroll; Nunito to read, VT323 for the interface`, async ({
+    page,
+  }) => {
     await page.setViewportSize({ width, height });
     for (const size of ['normal', 'large'] as const) {
       await page.goto('/settings');
@@ -78,8 +80,12 @@ for (const [width, height] of WIDTHS) {
         await expectNoSideScroll(page);
 
         const styles = await textStyles(page);
+        // Only the two fonts; the pixel font never below 18 px; only weights the fonts have.
         const wrong = styles.filter(
-          (s) => !s.family.includes('VT323') || s.size < 18 || s.weight > 400,
+          (s) =>
+            !/VT323|Nunito/.test(s.family) ||
+            (s.family.includes('VT323') && (s.size < 18 || s.weight > 400)) ||
+            ![400, 700].includes(s.weight),
         );
         expect(wrong, `${name} at ${width}px (${size})`).toEqual([]);
 
@@ -93,116 +99,80 @@ for (const [width, height] of WIDTHS) {
   });
 }
 
-test('FR-91: at 1440 px the scene is 3× (1152 px) — at least 70 % of the width', async ({
+test('reading text is Nunito; headings and buttons are VT323', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/stop/berlin-1887');
+  await page.getByRole('button', { name: 'Next ▶' }).click();
+  const narration = page.locator('[data-step="narration"] p').first();
+  await expect(narration).toHaveCSS('font-family', /Nunito/);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveCSS('font-family', /VT323/);
+  await expect(page.getByRole('button', { name: 'Next ▶' })).toHaveCSS('font-family', /VT323/);
+});
+
+test('map: the side panel beside the map, the timeline across the bottom', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/region/europe');
+  const panelRole = { name: 'Stops in this region' };
+  const map = await page.locator('[data-guide="map"]').boundingBox();
+  const panel = await page.getByRole('complementary', panelRole).boundingBox();
+  const timeline = await page.locator('[data-guide="timeline"]').boundingBox();
+  if (!map || !panel || !timeline) throw new Error('missing');
+  expect(panel.x).toBeGreaterThan(map.x + map.width - 1);
+  expect(timeline.y).toBeGreaterThan(map.y + map.height - 1);
+  expect(timeline.width).toBeGreaterThan(map.width);
+
+  // Phones: the panel goes below the map.
+  await page.setViewportSize({ width: 360, height: 740 });
+  const phoneMap = await page.locator('[data-guide="map"]').boundingBox();
+  const phonePanel = await page.getByRole('complementary', panelRole).boundingBox();
+  if (!phoneMap || !phonePanel) throw new Error('missing');
+  expect(phonePanel.y).toBeGreaterThan(phoneMap.y + phoneMap.height - 1);
+});
+
+test('stop: scene and dialogue box on the left, info cards on the right; below on phones', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/stop/berlin-1887');
-  const img = page.locator('[data-guide="scene"] img');
-  await expect(img).toBeVisible();
-  const box = await img.boundingBox();
-  expect(box?.width).toBe(1152);
-  expect(box?.height).toBe(648);
-});
-
-test('1920 px: the scene is 4× (1536 px); 768 px fills the width instead of 1×', async ({
-  page,
-}) => {
-  await page.setViewportSize({ width: 1920, height: 1080 });
-  await page.goto('/stop/berlin-1887');
-  const img = page.locator('[data-guide="scene"] img');
-  expect((await img.boundingBox())?.width).toBe(1536);
-
-  await page.setViewportSize({ width: 768, height: 1024 });
-  await expect.poll(async () => (await img.boundingBox())?.width ?? 0).toBeGreaterThan(600);
-});
-
-test('the v2.2 colours, borders and hard shadows are kept', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/region/europe');
-  await expect(page.getByRole('heading', { level: 1, name: 'Europe' })).toBeVisible();
-  const look = await page.evaluate(() => {
-    const css = (sel: string) => {
-      const el = document.querySelector(sel);
-      return el ? getComputedStyle(el) : null;
-    };
-    const header = css('header');
-    const passport = css('[data-guide="passport-button"]');
-    const panel = css('[data-guide="timeline"]');
-    const active = css('[data-guide="region-tabs"] [aria-current="page"]');
-    return {
-      headerBg: header?.backgroundColor,
-      headerBorder: header?.borderBottom,
-      passportBg: passport?.backgroundColor,
-      panelBorder: panel?.border,
-      panelShadow: panel?.boxShadow,
-      panelRadius: panel?.borderRadius,
-      activeTab: active?.backgroundColor,
-      pageBg: getComputedStyle(document.body).backgroundColor,
-    };
-  });
-  expect(look).toEqual({
-    headerBg: 'rgb(31, 26, 36)',
-    headerBorder: '4px solid rgb(107, 74, 43)',
-    passportBg: 'rgb(217, 164, 65)',
-    panelBorder: '3px solid rgb(31, 26, 36)',
-    panelShadow: 'rgb(31, 26, 36) 6px 6px 0px 0px',
-    panelRadius: '0px',
-    activeTab: 'rgb(232, 137, 43)',
-    pageBg: 'rgb(244, 238, 223)',
-  });
-});
-
-test('slim bars: 56 px on desktop, 48 px and bottom navigation on phones', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/region/europe');
-  const bar = page.locator('header > div');
-  expect((await bar.boundingBox())?.height).toBe(56);
-  await expect(page.getByRole('navigation', { name: 'Main' })).toBeHidden();
+  const cardsRole = { name: 'About this stop' };
+  const scene = await page.locator('[data-guide="scene"]').boundingBox();
+  const text = await page.locator('[data-step]').boundingBox();
+  const cards = await page.getByRole('complementary', cardsRole).boundingBox();
+  if (!scene || !text || !cards) throw new Error('missing');
+  expect(text.y).toBeGreaterThanOrEqual(scene.y + scene.height - 1);
+  expect(cards.x).toBeGreaterThan(scene.x + scene.width - 1);
+  expect(scene.width / scene.height).toBeCloseTo(16 / 9, 1);
 
   await page.setViewportSize({ width: 360, height: 740 });
-  expect((await bar.boundingBox())?.height).toBe(48);
-  await expect(page.getByRole('navigation', { name: 'Main' })).toBeVisible();
+  const phoneText = await page.locator('[data-step]').boundingBox();
+  const phoneCards = await page.getByRole('complementary', cardsRole).boundingBox();
+  if (!phoneText || !phoneCards) throw new Error('missing');
+  expect(phoneCards.y).toBeGreaterThan(phoneText.y);
 });
 
-test('the collapsed side panel is remembered after a refresh', async ({ page }) => {
+test('the soft style: rounded cards, thin borders, blurred shadows', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/region/europe');
-  await page.getByRole('button', { name: 'Hide panel' }).click();
-  await expect(page.getByRole('link', { name: 'Enter Barcelona ▶' })).toBeHidden();
-  await page.reload();
-  await expect(page.getByRole('button', { name: 'Show panel' })).toBeVisible();
-  const rail = await page
-    .getByRole('complementary', { name: 'Stops in this region' })
-    .boundingBox();
-  expect(rail?.width).toBeLessThanOrEqual(48);
-});
-
-test('phone: the bottom sheet changes height from its handle', async ({ page }) => {
-  await page.setViewportSize({ width: 360, height: 740 });
-  await page.goto('/region/europe');
-  const sheet = page.getByRole('complementary', { name: 'Stops in this region' });
-  const small = (await sheet.boundingBox())?.height ?? 0;
-  await page.getByRole('button', { name: /Resize panel/ }).click();
-  await expect.poll(async () => (await sheet.boundingBox())?.height ?? 0).toBeGreaterThan(small);
-});
-
-test('stop Info: drawer on desktop, Story | Info on phones', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/stop/berlin-1887');
-  await page.getByRole('button', { name: 'Info', expanded: false }).click();
-  const drawer = page.getByRole('region', { name: 'About this stop' });
-  await expect(drawer).toBeVisible();
-  await expect(drawer.locator('[data-guide="sources-card"]')).toBeVisible();
-  await page.keyboard.press('Escape');
-  await expect(drawer).toBeHidden();
-
-  await page.setViewportSize({ width: 360, height: 740 });
-  await page.getByRole('button', { name: 'Info', pressed: false }).click();
-  await expect(page.locator('[data-guide="sources-card"]')).toBeVisible();
-  await expect(page.locator('[data-step]')).toBeHidden();
-  await page.getByRole('button', { name: 'Story', pressed: false }).click();
-  await expect(page.locator('[data-step]')).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  const look = await page.evaluate(() =>
+    [...document.querySelectorAll('main aside > *')]
+      .map((el) => getComputedStyle(el))
+      .filter((cs) => cs.borderTopWidth !== '0px')
+      .map((cs) => ({
+        radius: cs.borderTopLeftRadius,
+        width: cs.borderTopWidth,
+        shadow: cs.boxShadow,
+      })),
+  );
+  expect(look.length).toBeGreaterThan(0);
+  for (const card of look) {
+    expect(parseFloat(card.width)).toBeLessThanOrEqual(2);
+    // No hard offset shadow (an un-blurred shadow ends in "0px" blur).
+    expect(card.shadow).not.toMatch(/\) -?\d+px -?\d+px 0px/);
+  }
+  expect(look.some((card) => card.radius === '6px')).toBe(true);
+  // The header keeps the v2.2 colours.
+  await expect(page.getByRole('banner')).toHaveCSS('background-color', 'rgb(31, 26, 36)');
 });
 
 function testInfo() {

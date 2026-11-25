@@ -6,7 +6,7 @@ import { useReducedMotion } from '../../lib/useReducedMotion';
 import { useProgress } from '../../store/progress';
 import { useUi } from '../../store/ui';
 import { buildSteps } from '../story/steps';
-import CloseUpPortrait from '../story/CloseUpPortrait';
+import Portrait from '../../components/Portrait/Portrait';
 import styles from './Tour.module.css';
 import { useTourTarget } from './useTourTarget';
 
@@ -155,15 +155,7 @@ export default function Tour() {
         aria-describedby="tour-text"
         tabIndex={-1}
       >
-        {rizal?.portrait && (
-          <CloseUpPortrait
-            sheet={rizal.portrait}
-            name={rizal.name}
-            mood={step.mood}
-            talking={false}
-            still={still}
-          />
-        )}
+        <Portrait character={rizal} />
         <div className={styles.body}>
           <p className={styles.count}>
             {t('guide.step', { n: index + 1, total: guide.tour.length })}

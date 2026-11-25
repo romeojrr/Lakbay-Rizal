@@ -40,7 +40,7 @@ export default function Pin({ group, compact, onLocked, index = 0, arriving }: P
   const content = (
     <>
       <PinGlyph color={pinColor(stop, state)} dot={dot} big={big} />
-      <span className={styles.label}>{state === 'locked' ? '?' : stop.place.label}</span>
+      <span className={`pixel ${styles.label}`}>{state === 'locked' ? '?' : stop.place.label}</span>
     </>
   );
 

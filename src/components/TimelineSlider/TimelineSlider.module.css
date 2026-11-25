@@ -25,6 +25,7 @@
   height: 18px;
   background: var(--track);
   border: var(--border);
+  border-radius: var(--radius);
 }
 
 .fill {
@@ -75,8 +76,9 @@
   font-size: var(--fs-small);
   color: var(--ink);
   background: var(--card-warm);
-  border: 2px solid var(--ink);
+  border: var(--border-thin);
   cursor: pointer;
+  border-radius: var(--radius);
 }
 
 .more {

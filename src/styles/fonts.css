@@ -1,5 +1,12 @@
-/* VT323 by Peter Hull (SIL OFL), self-hosted: no requests to Google Fonts at runtime.
-   Only Latin and Latin Extended: the game text is English and Filipino with Spanish and
-   Czech place names (ñ, á, ě, ř). VT323 has one weight; never fake bold (SRS v2.3 §5.3). */
+/* Self-hosted fonts: no requests to Google Fonts at runtime.
+   - VT323 by Peter Hull (SIL OFL): the pixel font for the game's interface (headings, buttons,
+     tabs, labels). One weight; never fake bold.
+   - Nunito by Vernon Adams (SIL OFL): smooth and rounded, for everything people read
+     (stories, dialogue, questions, longer passages). Real 400 and 700 weights.
+   Only Latin and Latin Extended: English and Filipino with Spanish and Czech place names. */
 @import '@fontsource/vt323/latin-400.css';
 @import '@fontsource/vt323/latin-ext-400.css';
+@import '@fontsource/nunito/latin-400.css';
+@import '@fontsource/nunito/latin-ext-400.css';
+@import '@fontsource/nunito/latin-700.css';
+@import '@fontsource/nunito/latin-ext-700.css';

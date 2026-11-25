@@ -16,7 +16,7 @@ async function nextUntilChapter(page: Page, title: string) {
   await expect(heading).toBeVisible();
 }
 
-test('Calamba plays 4 chapters: camera, typing close-ups, Recorded tag (FR-80)', async ({
+test('Calamba plays 4 chapters: typing text, Recorded tag, no close-ups (FR-80)', async ({
   page,
 }) => {
   await page.goto('/stop/calamba-1861');
@@ -34,24 +34,17 @@ test('Calamba plays 4 chapters: camera, typing close-ups, Recorded tag (FR-80)',
   expect(paragraph).toMatch(/^José Protasio Rizal Mercado y Alonso Realonda/);
   expect(paragraph).toMatch(/watches over the town\.$/);
 
-  // Chapter 3: the camera moves to Teodora (zoom 1.6).
+  // Chapter 3: the whole scene stays in view (no camera zoom, no close-ups).
   await nextUntilChapter(page, 'The young moth');
   const camera = player.locator('[data-zoom]');
-  await expect(camera).toHaveAttribute('data-zoom', '1.6');
-  await expect
-    .poll(() => camera.evaluate((el) => getComputedStyle(el).transform))
-    .toMatch(/^matrix\(1\.6, 0, 0, 1\.6, /);
-
-  // Her portrait talks while the line types, then rests; the moth line is Recorded.
+  await expect(camera).toHaveAttribute('data-zoom', '1');
   await next(page).click(); // paragraph 1
   await next(page).click();
   await next(page).click(); // paragraph 2
   await next(page).click();
   await next(page).click(); // the line starts typing
-  const portrait = page.getByRole('img', { name: 'Portrait of Teodora Alonso, happy' });
-  await expect(portrait).toBeVisible();
-  await expect(portrait).toHaveAttribute('data-frame', 'talk');
-  await expect(portrait).toHaveAttribute('data-frame', /idle|blink/, { timeout: 5000 });
+  await expect(player.getByText('Teodora Alonso')).toBeVisible();
+  await expect(page.getByRole('img', { name: /^Portrait of/ })).toHaveCount(0);
   const recorded = page.getByRole('button', { name: 'Recorded' });
   await recorded.click();
   await expect(
@@ -63,9 +56,9 @@ test('Calamba plays 4 chapters: camera, typing close-ups, Recorded tag (FR-80)',
 
   // Keyboard: ← back, → next.
   await page.keyboard.press('ArrowLeft');
-  await expect(portrait).toBeHidden();
+  await expect(recorded).toBeHidden();
   await page.keyboard.press('ArrowRight');
-  await expect(portrait).toBeVisible();
+  await expect(recorded).toBeVisible();
 
   await finishStory(page);
   await expect(page.getByRole('link', { name: 'Take the quiz ▶' })).toHaveAttribute(
@@ -115,14 +108,11 @@ test('Read more: summary, then and today, date and sources (FR-33)', async ({ pa
   await expect(page).toHaveURL(/\/region\/europe$/);
 });
 
-test('the text box sits below the scene on small screens, over it on wide ones', async ({
-  page,
-}, testInfo) => {
+test('the dialogue box sits under the scene at every width', async ({ page }) => {
   await page.goto('/stop/calamba-1861');
   const scene = await page.getByRole('img', { name: /Teodora Alonso reads/ }).boundingBox();
   const box = await page.locator('[data-step]').boundingBox();
   expect(scene && box).toBeTruthy();
   const overlap = (scene?.y ?? 0) + (scene?.height ?? 0) - (box?.y ?? 0);
-  if (testInfo.project.name === 'mobile') expect(overlap).toBeLessThanOrEqual(0);
-  else expect(overlap).toBeGreaterThan(0);
+  expect(overlap).toBeLessThanOrEqual(0);
 });

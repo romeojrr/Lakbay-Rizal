@@ -176,34 +176,35 @@ export default function QuizRun({ stop, content }: QuizRunProps) {
             prompt={question.prompt}
             sceneImage={stop.scene.image}
             stampIcon={stop.rewards.stamp.icon}
-          />
-          <p className={styles.pick}>{t(INSTRUCTION[question.type])}</p>
-          <AnswerInput
-            key={`${question.id}:${attempt}`}
-            question={question}
-            status={status}
-            onAnswer={answer}
-          />
-          {status !== 'answering' && (
-            <Feedback
-              ref={feedbackRef}
-              right={status === 'right'}
-              explain={question.explain}
-              source={source?.short ?? question.sourceId}
-              hint={question.hint}
-              hintOpen={hintOpen}
-              onShowHint={() => setHintOpen(true)}
-              actionLabel={
-                status === 'wrong'
-                  ? t('quiz.tryAgain')
-                  : isLast
-                    ? t('quiz.finish')
-                    : t('quiz.nextQuestion')
-              }
-              onAction={status === 'wrong' ? tryAgain : next}
-              xp={gained}
+          >
+            <p className={styles.pick}>{t(INSTRUCTION[question.type])}</p>
+            <AnswerInput
+              key={`${question.id}:${attempt}`}
+              question={question}
+              status={status}
+              onAnswer={answer}
             />
-          )}
+            {status !== 'answering' && (
+              <Feedback
+                ref={feedbackRef}
+                right={status === 'right'}
+                explain={question.explain}
+                source={source?.short ?? question.sourceId}
+                hint={question.hint}
+                hintOpen={hintOpen}
+                onShowHint={() => setHintOpen(true)}
+                actionLabel={
+                  status === 'wrong'
+                    ? t('quiz.tryAgain')
+                    : isLast
+                      ? t('quiz.finish')
+                      : t('quiz.nextQuestion')
+                }
+                onAction={status === 'wrong' ? tryAgain : next}
+                xp={gained}
+              />
+            )}
+          </QuizQuestion>
         </div>
       )}
       {reaction && (status !== 'answering' || reward) && (

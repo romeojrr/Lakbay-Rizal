@@ -1,8 +1,9 @@
 // SRS v2.3 §3.11 sound. Effects are short square/triangle-wave blips made with the Web Audio
-// API (no files, no licences). Music is optional: public/audio/music/<region>.ogg, if the team
-// adds CC0 loops; missing files mean no music and no error. Nothing plays before the player's
-// first click or key press (browser autoplay rules), and the final stop is silent (GD-6).
-import { useEffect } from 'react';
+// API (no files, no licences). Music is the game's own chiptune loops (music.ts), one per
+// region, on by default and quiet. Nothing plays before the player's first click or key press
+// (browser autoplay rules), and the final stop is silent (GD-6).
+import { useEffect, useState } from 'react';
+import { playTune, type Player } from './music';
 import { useProgress } from '../store/progress';
 
 export type Effect = 'page' | 'tick' | 'correct' | 'wrong' | 'stamp' | 'achievement' | 'build';
@@ -35,9 +36,25 @@ let context: AudioContext | null = null;
 let unlocked = false;
 let quiet = false;
 
-/** The final stop (GD-6) and tests switch sound off here. */
+let music: { region: string; player: Player } | null = null;
+const listeners = new Set<() => void>();
+
+function audio(): AudioContext | null {
+  if (typeof AudioContext === 'undefined') return null;
+  context ??= new AudioContext();
+  return context;
+}
+
+/** The final stop (GD-6) switches all sound off here; music stops at once. */
 export function setQuiet(value: boolean): void {
   quiet = value;
+  if (value) stopMusic();
+  listeners.forEach((listener) => listener());
+}
+
+function stopMusic() {
+  music?.player.stop();
+  music = null;
 }
 
 /** Call once at start: sound is allowed from the first click or key press on. */
@@ -45,6 +62,7 @@ export function unlockOnFirstGesture(): () => void {
   const unlock = () => {
     unlocked = true;
     void context?.resume();
+    listeners.forEach((listener) => listener());
   };
   window.addEventListener('pointerdown', unlock, { once: true });
   window.addEventListener('keydown', unlock, { once: true });
@@ -58,7 +76,8 @@ export function play(effect: Effect): void {
   const { sound, volume } = useProgress.getState().settings;
   if (!sound || quiet || !unlocked || volume <= 0 || typeof AudioContext === 'undefined') return;
   try {
-    context ??= new AudioContext();
+    const context = audio();
+    if (!context) return;
     const start = context.currentTime + 0.01;
     for (const note of EFFECTS[effect]) {
       const osc = context.createOscillator();
@@ -77,28 +96,34 @@ export function play(effect: Effect): void {
   }
 }
 
-/** Optional music: a region's loop if the file exists and Music is on (default off). */
+/** The region's loop while Music is on (after the first click; never on the final stop). */
 export function useMusic(region: string | undefined): void {
-  const { music, volume } = useProgress((s) => s.settings);
+  const on = useProgress((s) => s.settings.music && s.settings.volume > 0);
+  const volume = useProgress((s) => s.settings.volume);
+  const [ready, setReady] = useState(unlocked && !quiet);
+
   useEffect(() => {
-    if (!region || !music || quiet) return;
-    let audio: HTMLAudioElement | null = null;
-    let cancelled = false;
-    const src = `${import.meta.env.BASE_URL}audio/music/${region}.ogg`;
-    fetch(src, { method: 'HEAD' })
-      .then((response) => {
-        if (cancelled || !response.ok) return;
-        audio = new Audio(src);
-        audio.loop = true;
-        audio.volume = 0.3 * volume;
-        const start = () => void audio?.play().catch(() => undefined);
-        if (unlocked) start();
-        else window.addEventListener('pointerdown', start, { once: true });
-      })
-      .catch(() => undefined);
+    const update = () => setReady(unlocked && !quiet);
+    listeners.add(update);
     return () => {
-      cancelled = true;
-      audio?.pause();
+      listeners.delete(update);
     };
-  }, [region, music, volume]);
+  }, []);
+
+  useEffect(() => {
+    if (!region || !on || !ready) {
+      stopMusic();
+      return;
+    }
+    if (music?.region === region) return;
+    stopMusic();
+    const context = audio();
+    const player = context
+      ? playTune(context, region, useProgress.getState().settings.volume)
+      : null;
+    if (player) music = { region, player };
+  }, [region, on, ready]);
+
+  useEffect(() => music?.player.setVolume(volume), [volume]);
+  useEffect(() => () => stopMusic(), []);
 }

@@ -23,6 +23,7 @@
   border: var(--border);
   box-shadow: var(--shadow-button);
   cursor: pointer;
+  border-radius: var(--radius);
 }
 
 .option:hover:not(:disabled) {
@@ -48,6 +49,7 @@
   color: var(--ink);
   background: var(--card-warm);
   border: var(--border);
+  border-radius: var(--radius);
 }
 
 /* FR-41: right is dark green with ✓, wrong light red with ✗ (lightness differs, not only hue). */
@@ -74,6 +76,7 @@
   border: var(--border);
   box-shadow: var(--shadow-button);
   cursor: pointer;
+  border-radius: var(--radius);
 }
 
 .check:disabled {
@@ -136,6 +139,7 @@
   cursor: grab;
   touch-action: none;
   user-select: none;
+  border-radius: var(--radius);
 }
 
 /* Match: two columns. */
@@ -186,9 +190,10 @@
   font-size: var(--fs-body);
   color: var(--ink);
   background: var(--card);
-  border: 3px solid var(--ink);
-  box-shadow: 2px 2px 0 var(--ink);
+  border: var(--border);
+  box-shadow: var(--shadow-button);
   cursor: pointer;
+  border-radius: var(--radius);
 }
 
 .segment:hover:not(:disabled) {
@@ -213,4 +218,17 @@
   .segment {
     font-size: var(--fs-small);
   }
+}
+
+/* Answers are reading text: Nunito, like the question (owner decision 2026-11-26). */
+.option,
+.segment {
+  font-family: var(--font-read);
+  font-size-adjust: var(--read-adjust);
+  line-height: 1.4;
+}
+
+.mark {
+  font-family: var(--font-pixel);
+  font-size-adjust: none;
 }

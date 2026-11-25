@@ -52,7 +52,7 @@ interface UiState {
 export const useUi = create<UiState>()((set) => ({
   lastRegion: null,
   timelineYear: null,
-  timelineExpanded: false,
+  timelineExpanded: true,
   pendingFocus: null,
   travel: null,
   unsaved: false,

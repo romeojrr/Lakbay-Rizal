@@ -1,4 +1,6 @@
 .back {
+  font-family: var(--font-pixel);
+  font-size-adjust: none;
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -9,9 +11,10 @@
   background: var(--card);
   border: var(--border);
   box-shadow: var(--shadow-button);
+  border-radius: var(--radius);
 }
 
 .back:active {
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 var(--ink);
+  box-shadow: var(--shadow-button);
 }

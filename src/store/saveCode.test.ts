@@ -29,7 +29,7 @@ describe('save code (§3.9)', () => {
     });
     const before = saved();
     const code = encodeSave(useProgress.getState());
-    expect(code).toMatch(/^LR2\.[A-Za-z0-9_-]+\.[0-9A-Z]{4}$/);
+    expect(code).toMatch(/^LR3\.[A-Za-z0-9_-]+\.[0-9A-Z]{4}$/);
 
     useProgress.getState().reset();
     expect(saved()).not.toEqual(before);
@@ -55,7 +55,7 @@ describe('save code (§3.9)', () => {
     expect(decodeSave(changed)).toEqual({ error: 'checksum' });
     expect(decodeSave(`LR9.${payload}.${sum}`)).toEqual({ error: 'newer' });
     const junk = 'bm90IGpzb24';
-    expect(decodeSave(`LR2.${junk}.${checksum(junk)}`)).toEqual({ error: 'damaged' });
+    expect(decodeSave(`LR3.${junk}.${checksum(junk)}`)).toEqual({ error: 'damaged' });
   });
 
   it('upgrades a code saved by an older version', () => {
@@ -70,7 +70,7 @@ describe('save code (§3.9)', () => {
       .replace(/=+$/, '');
     const result = decodeSave(`LR1.${payload}.${checksum(payload)}`);
     expect('progress' in result && result.progress).toMatchObject({
-      version: 2,
+      version: 3,
       stamps: ['calamba-1861'],
       xp: 0,
     });

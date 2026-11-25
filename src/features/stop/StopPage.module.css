@@ -1,46 +1,25 @@
-/* §5.5 stop screen: full-width scene (max 1600 px), Info drawer, actions underneath.
-   Colours, borders and cards are the v2.2 ones (Story.dc.html). */
+/* Stop screen (v2.2 layout, improved): scene + dialogue box | info cards (max 1440 px).
+   Container queries put the cards under the story when the content area is narrow. */
 .screen {
-  max-width: 1600px;
+  max-width: 1440px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  container: stopscreen / inline-size;
 }
 
 .toolbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
 }
 
-.infoToggle,
-.views button {
-  min-height: 44px;
-  padding: 4px 16px;
-  font-size: var(--fs-small);
-  color: var(--ink);
-  background: var(--card);
-  border: var(--border);
-  cursor: pointer;
-}
-
-.infoToggle {
-  box-shadow: var(--shadow-button);
-}
-
-.infoToggle[aria-expanded='true'],
-.views button[aria-pressed='true'] {
-  background: var(--accent);
-}
-
-.views {
-  display: none;
-}
-
-.views button + button {
-  border-left: 0;
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  align-items: start;
+  gap: 24px;
 }
 
 .stage {
@@ -48,47 +27,20 @@
   min-width: 0;
 }
 
+.cards {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .dialogue {
-  margin-top: 12px;
+  margin-top: 14px;
 }
 
-/* Wide scenes: the text box sits over the bottom of the scene (§3.6, §5.5). */
-.overlay .dialogue {
-  position: absolute;
-  left: 50%;
-  bottom: 18px;
-  z-index: 2;
-  width: min(960px, calc(100% - 48px));
-  margin: 0;
-  transform: translateX(-50%);
-}
-
-/* Phones held sideways: a slimmer text box so most of the scene stays visible. */
-@media (orientation: landscape) and (max-height: 500px) {
-  .overlay .dialogue {
-    bottom: 8px;
-    width: calc(100% - 24px);
-  }
-}
-
-/* Phones: Story | Info switch; the info view replaces the text box under the scene. */
-@media (max-width: 640px) {
-  .views {
-    display: flex;
-  }
-
-  .infoToggle {
-    display: none;
-  }
-
-  .infoOpen .dialogue {
-    display: none;
-  }
-
-  .overlay .dialogue {
-    left: 8px;
-    right: 8px;
-    bottom: 8px;
+@container stopscreen (max-width: 960px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -136,7 +88,8 @@
   gap: 4px;
   padding: 10px;
   background: var(--card-warm);
-  border: 2px solid var(--ink);
+  border: var(--border-thin);
+  border-radius: var(--radius);
 }
 
 .place dt {
@@ -167,6 +120,7 @@
   justify-content: center;
   background: var(--card-warm);
   border: var(--border);
+  border-radius: var(--radius);
 }
 
 .itemText {
@@ -198,6 +152,9 @@
 .primary,
 .secondary,
 .disabled {
+  /* Actions are interface: the pixel font, like the buttons beside them. */
+  font-family: var(--font-pixel);
+  font-size-adjust: none;
   flex: 1;
   min-height: 52px;
   display: flex;
@@ -208,6 +165,7 @@
   text-decoration: none;
   color: var(--ink);
   border: var(--border);
+  border-radius: var(--radius);
 }
 
 .primary {
@@ -224,7 +182,7 @@
 .primary:active,
 .secondary:active {
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 var(--ink);
+  box-shadow: var(--shadow-button);
 }
 
 .disabled {

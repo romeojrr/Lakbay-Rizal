@@ -6,6 +6,7 @@
   background: var(--card);
   border: var(--border);
   box-shadow: var(--shadow-panel);
+  border-radius: var(--radius);
 }
 
 .dialog::backdrop {
@@ -36,8 +37,9 @@
   font-size: var(--fs-small);
   color: var(--card-warm);
   background: var(--ink);
-  border: 3px solid var(--ink);
+  border: var(--border);
   cursor: pointer;
+  border-radius: var(--radius);
 }
 
 .body {

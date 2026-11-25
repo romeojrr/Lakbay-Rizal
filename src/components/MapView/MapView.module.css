@@ -95,13 +95,13 @@
   padding: 3px 8px;
   font-size: var(--fs-small);
   background: var(--card-warm);
-  border: 2px solid var(--ink);
+  border: var(--border-thin);
 }
 
 .legendSwatch {
   width: 10px;
   height: 10px;
-  border: 2px solid var(--ink);
+  border: var(--border-thin);
 }
 
 .zoom {

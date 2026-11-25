@@ -1,5 +1,5 @@
-/* §5.5 map screen: CSS grid map | panel. The map takes all remaining width; the panel is
-   340 px and folds to a 48 px rail. Container queries handle narrow content areas. */
+/* Map screen (v2.2 layout, improved): map | side panel, the timeline across the bottom.
+   Container queries put the panel under the map when the content area is narrow. */
 .screen {
   container: mapscreen / inline-size;
 }
@@ -7,24 +7,34 @@
 .grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) var(--panel-w);
+  grid-template-areas:
+    'map panel'
+    'timeline timeline';
   align-items: start;
-  gap: 24px;
-}
-
-.collapsed {
-  grid-template-columns: minmax(0, 1fr) var(--rail-w);
+  gap: 20px 24px;
 }
 
 .mapArea {
+  grid-area: map;
+  min-width: 0;
+}
+
+.panel {
+  grid-area: panel;
   min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
+.timeline {
+  grid-area: timeline;
+  min-width: 0;
+}
+
 /* Fit the map to the screen height too, keeping its shape (--ratio = width / height). */
 .mapBox {
-  width: min(100%, calc((100dvh - var(--topbar-h) - 180px) * var(--ratio)));
+  width: min(100%, calc((100dvh - var(--topbar-h) - 220px) * var(--ratio)));
   min-width: min(100%, 320px);
   margin: 0 auto;
 }
@@ -43,17 +53,24 @@
   font-size: var(--fs-h3);
 }
 
-/* Narrow content area (tablets): panel goes under the map. */
+/* Narrow content area (tablets, phones): map, timeline, then the panel below. */
 @container mapscreen (max-width: 760px) {
-  .grid,
-  .collapsed {
+  .grid {
     grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'map'
+      'timeline'
+      'panel';
+  }
+
+  .mapBox {
+    width: 100%;
+    min-width: 0;
   }
 }
 
-/* Phones: region tabs sit above the map; the panel is a bottom sheet (SidePanel). */
+/* Phones: the region tabs sit above the map, on the header's dark strip. */
 @media (max-width: 640px) {
-  /* Same dark strip as the header, so the tab colours stay as in v2.2. */
   .phoneTabs {
     display: block;
     margin: -16px -16px 12px;
@@ -61,16 +78,5 @@
     overflow-x: auto;
     background: var(--ink);
     border-bottom: 4px solid var(--wood);
-  }
-
-  .grid,
-  .collapsed {
-    grid-template-columns: minmax(0, 1fr);
-    padding-bottom: 140px; /* room for the peeking sheet */
-  }
-
-  .mapBox {
-    width: 100%;
-    min-width: 0;
   }
 }

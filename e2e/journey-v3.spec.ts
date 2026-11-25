@@ -7,12 +7,12 @@ import { finishStory, horizontalOverflow } from './helpers';
 import { playQuiz } from './quiz';
 
 async function playCalamba(page: Page) {
-  // 2. Calamba: 4 chapters; chapter 3 frames Teodora; her moth line is Recorded.
+  // 2. Calamba: 4 chapters; chapter 3 shows the whole scene; her moth line is Recorded.
   await page.goto('/stop/calamba-1861');
   const next = page.getByRole('button', { name: 'Next ▶' });
   const moth = page.getByRole('heading', { level: 2, name: 'The young moth' });
   for (let i = 0; i < 40 && !(await moth.isVisible()); i++) await next.click();
-  await expect(page.locator('[data-zoom]')).toHaveAttribute('data-zoom', '1.6');
+  await expect(page.locator('[data-zoom]')).toHaveAttribute('data-zoom', '1');
   for (
     let i = 0;
     i < 8 && !(await page.getByRole('button', { name: 'Recorded' }).isVisible());

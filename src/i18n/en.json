@@ -339,7 +339,7 @@
     "replayHelp": "Rizal shows you around the game again.",
     "soundEffects": "Sound effects",
     "volume": "Volume",
-    "musicHelp": "Music plays only if the team has added music files."
+    "musicHelp": "Short tunes for each region, made for this game. Quiet, and off on the final stop."
   },
   "credits": {
     "title": "Credits",
@@ -348,7 +348,7 @@
     "art": "Art",
     "artText": "Original pixel art by the RIZLIFE team.",
     "fonts": "Fonts",
-    "fontsText": "VT323 by Peter Hull, under the SIL Open Font License.",
+    "fontsText": "VT323 by Peter Hull and Nunito by Vernon Adams, both under the SIL Open Font License.",
     "maps": "Map data",
     "mapsText": "Coastlines come from the land mask in the global-land-mask package, which is derived from GLOBE 1-km elevation data.",
     "sources": "Sources",

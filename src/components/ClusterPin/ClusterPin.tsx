@@ -62,7 +62,7 @@ export default function ClusterPin({
         {count}
       </span>{' '}
       {/* The space keeps the visible text "2 Paris" matching the name "2 Paris stops". */}
-      <span className={styles.label}>{hidePlace ? '?' : place}</span>
+      <span className={`pixel ${styles.label}`}>{hidePlace ? '?' : place}</span>
     </button>
   );
 }

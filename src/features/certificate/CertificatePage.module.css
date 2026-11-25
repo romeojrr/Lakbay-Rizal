@@ -28,7 +28,8 @@
   font-size: var(--fs-body);
   color: var(--ink);
   background: var(--card);
-  border: 3px solid var(--ink);
+  border: var(--border);
+  border-radius: var(--radius);
 }
 
 .help {
@@ -44,6 +45,7 @@
   border: var(--border);
   box-shadow: var(--shadow-button);
   cursor: pointer;
+  border-radius: var(--radius);
 }
 
 .certificate {
@@ -77,7 +79,7 @@
 
 .player {
   font-size: var(--fs-h2) !important;
-  border-bottom: 2px solid var(--ink);
+  border-bottom: 1px solid var(--line);
 }
 
 .brand {

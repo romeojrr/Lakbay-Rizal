@@ -17,27 +17,23 @@
   image-rendering: pixelated;
 }
 
-/* "Saved" fades in, then out (§3.9). */
+/* "Saved" shows for 1.2 s (§3.9), always at full contrast, then goes in one step. */
 .saved {
   white-space: nowrap;
-  animation: saved 1200ms ease-out forwards;
-}
-
-.hidden {
-  display: none;
+  animation: saved 1200ms step-end forwards;
 }
 
 @keyframes saved {
   0% {
-    opacity: 0;
-  }
-  20%,
-  80% {
     opacity: 1;
   }
   100% {
     opacity: 0;
   }
+}
+
+.hidden {
+  display: none;
 }
 
 .failed {
