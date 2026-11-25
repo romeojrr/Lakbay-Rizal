@@ -2,7 +2,7 @@
 
 *Lakbay* is Filipino for "journey" or "travel". Working title before 25 Nov 2026: Rizal Atlas.
 
-**Version:** 2.2 · **Date:** 25 November 2026 · **Project:** RIZLIFE – Lakbay Rizal
+**Version:** 2.3 · **Date:** 25 November 2026 (v2.3 adds: 600+ word stories in chapters, close-up portraits, college-level quiz types, gamification, Rizal as guide, save safety, Filipino language, VT323 font, layout and motion upgrades; see §11b for the upgrade path) · **Project:** RIZLIFE – Lakbay Rizal
 **Prepared for:** Claude Code (build agent) and the RIZLIFE developer
 **Status:** Approved for build. Historical content is a **draft that must be fact-checked** (see §13).
 
@@ -18,14 +18,21 @@ lakbay-rizal-starter/
   CLAUDE.md              ← short working rules (read it too)
   assets/                ← finished pixel art to ship (scenes, sprites, maps, builder, icons)
   art-tools/             ← Python scripts that generated the art; use them to make new scenes
-  content/stops.seed.json← all 25 stops, written and illustrated (status: draft)
+  content/stops.seed.json← v2 content (kept for reference; replaced by stops.v3.json)
+  content/stops.v3.json  ← v2.3 content: all 25 stops in 4 chapters, 5 mixed quiz questions each (status: draft)
+  content/i18n/          ← en.ui.json, fil.ui.json, fil.stops.json, fil.guide.json, fil.gamification.json (Filipino = draft)
+  content/guide.json     ← Rizal's walkthrough, tips and quiz reactions
+  content/gamification.json ← XP, ranks, achievements
+  assets/portraits/      ← 24 close-up portrait sheets (§7.10)
+  prompts/               ← ready prompts for the v2.3 upgrade milestones U1–U8 (§11b)
+  UPGRADE.md             ← how to apply v2.3 to an app already built from v2.2
   content/sources.json   ← the bibliography in machine-readable form (60 entries)
   reference/mockup/      ← the approved UI mockup pages (layout reference, not runnable code)
 ```
 
 **How to work**
 
-1. Build in the milestone order in §11. Finish each milestone's acceptance checks before starting the next.
+1. Build in the milestone order in §11. Finish each milestone's acceptance checks before starting the next. If the app was already built from v2.2, follow the upgrade milestones U1–U8 in §11b instead.
 2. After each milestone, run `npm run lint`, `npm run typecheck`, `npm test`, and `npm run build`. Fix every failure before moving on.
 3. **Never invent historical facts.** Use only the text in `content/`. If a screen needs content that does not exist yet, show a clearly marked placeholder (`[TO WRITE]`) and list it in `docs/CONTENT_TODO.md`.
 4. **Never mix art styles.** Every new image must follow the art bible in §7. Generate new scenes with `art-tools/` (§7.9). Do not use AI image generators, stock photos, or other games' assets.
@@ -42,11 +49,11 @@ lakbay-rizal-starter/
 This document describes everything Lakbay Rizal must do and how it must look, so it can be built without further meetings.
 
 ### 1.2 The product in one paragraph
-Lakbay Rizal is a single-player, browser-based story game. The player follows Rizal stop by stop across the Philippines, Asia, Europe and America. Each stop opens a hand-crafted pixel-art scene of that place in that year, a short dialogue that tells what happened there, and a two-question quiz. Correct answers earn a passport stamp and a keepsake item. A timeline slider shows his whole life at a glance. One stop, Dapitan, includes a small builder mini-game where the player helps Rizal build the school, clinic and water system he made in exile. No accounts and no database: progress is saved in the browser.
+Lakbay Rizal is a single-player, browser-based story game. The player follows Rizal stop by stop across the Philippines, Asia, Europe and America. Each stop opens a hand-crafted pixel-art scene of that place in that year, an illustrated story in four chapters with close-up conversations (600–800 words), and a five-question quiz that asks the player to think like a historian. Correct answers earn a passport stamp and a keepsake item. A timeline slider shows his whole life at a glance. Rizal himself guides new players through the game, and the player earns XP, ranks and achievements along the way. One stop, Dapitan, includes a small builder mini-game where the player helps Rizal build the school, clinic and water system he made in exile. No accounts and no database: progress is saved in the browser.
 
 ### 1.3 Goals (from the approved proposal)
 - See **where** each event happened.
-- Read each event as a **short story** (about 100–150 words).
+- Read each event as an **illustrated story** (600–800 words in four chapters; a 100–150-word summary stays available).
 - Explore **freely** or follow the **guided journey**.
 - Use **accurate sources**, cited on every stop.
 - Work well on **phones** in class, and on desktop.
@@ -99,14 +106,14 @@ Lakbay Rizal is a single-player, browser-based story game. The player follows Ri
 
 ### 3.1 Core loop
 ```
-World / Region map → pick a stop (pin) → Scene + dialogue → Quiz (2 questions)
-   → Rewards (stamp, item, builder materials) → next stop unlocks → back to map
+World / Region map → pick a stop (pin) → Story in 4 chapters (scene, camera, close-ups) → Quiz (5 questions, mixed types)
+   → Rewards (gold/silver stamp, item, builder materials, XP) → travel animation → next stop unlocks → back to map
 ```
 
 ### 3.2 Progression rules
 - **GD-1** Stops have an `order` (1–25, chronological). In **Guided journey** mode only the next unfinished stop is open; later stops show as locked "?" pins.
 - **GD-2** In **Free explore** mode every stop is open. A toggle on the map switches modes. Default: Guided.
-- **GD-3** A stop counts as **visited** when its dialogue is finished, and **completed** when the quiz is passed (both questions correct, unlimited retries).
+- **GD-3** A stop counts as **visited** when its last chapter is reached, and **completed** when every quiz question has been answered correctly (unlimited retries; gold stamp for ≥ 4 of 5 right on the first try, silver otherwise, §3.8).
 - **GD-4** Completing a stop gives its stamp, its item (if any) and its materials (if any). Rewards are given once.
 - **GD-5** Wrong answers show a hint. Never show a "fail" or "game over" screen anywhere.
 - **GD-6** The final stop (Bagumbayan, 30 Dec 1896) is handled with respect: **no quiz**, no celebration effects, a quiet closing scene. Finishing its dialogue completes the stop and adds a plain final page to the passport (no "New!" tag, no reward animation), then an "Epilogue" card links to the full timeline and the credits.
@@ -138,11 +145,61 @@ Stop 23 (Dapitan) includes a top-down builder after the dialogue:
 - Finishing all three gives the Dapitan stamp. A "Restart builder" button resets only the builder.
 - The clinic sprite (`assets/builder/clinic.png`, 60 × 52) is the octagonal *Casa Redonda* on stilts (bamboo, wood and nipa), matching the Dapitan scene. It has a small painted board with an eye on it, not a modern medical cross. It is 4 px taller than the old placeholder: anchor it by its bottom edge.
 
-### 3.6 Dialogue
-- Lines are shown one at a time in an RPG-style box: speaker portrait, speaker name, text, progress dots, **Next** button.
-- A small "…" bubble appears above the speaking character in the scene.
-- Speaker types: a person (with portrait), **Narrator** (book icon), **Did you know?** (fact).
-- Any line that puts words in a real person's mouth is a **dramatization**. Every scene with dramatized lines shows a small "Dramatized" tag with a tooltip: "Based on real events. The exact words are imagined."
+### 3.6 Story player (chapters, close-ups and dialogue) — v2.3
+Each stop is a short illustrated story in **4 chapters** (600–800 words of narration in total). The player reads it one step at a time:
+
+```
+Chapter title card → narration paragraphs (one per step) → dialogue lines (one per step, with close-up)
+→ "Did you know?" fact (if any) → next chapter … → "Take the quiz"
+```
+- **Camera.** Each chapter has `camera: {x, y, zoom}` (percent of the scene, zoom 1–1.6). When a chapter starts, the scene pans and zooms smoothly to that point over 1.2 s (CSS `transform`, ease-in-out). `zoom: 1` = the full scene. With reduced motion: no pan, just a 200 ms cross-fade.
+- **Narration box.** A parchment panel over the lower part of the scene (desktop) or below it (≤ 640 px). Text appears with a typewriter effect (about 40 characters per second); pressing Next, Space, Enter or tapping once shows the whole paragraph, a second press goes on.
+- **Close-up dialogue.** For a line, the speaker's **portrait** (§7.10) slides in from the side (180 ms): 128 × 128 (2×) on desktop and tablets, 64 × 64 or 128 × 128 on phones depending on the space (integer scale only). The portrait plays its **talk frames** (columns 2 and 3, alternating at 8 fps) while the text types, then rests on the idle frame and **blinks** (column 1 for 120 ms) every 3–6 s at random. The portrait row is the line's `mood`.
+- **Speaker indicator.** If `onScene` is true, a small "…" bubble bobs above the speaker's anchor in the scene. Off-scene speakers (letters, memories, Paciano) show only the portrait.
+- **Line tags.** A line with `recorded` shows a small green **Recorded** tag (tooltip: "Real words, from a published source." + the source's short title). Every other line shows a grey **Dramatized** tag (tooltip: "Based on real events. The exact words are imagined."). The narrator never has a tag.
+- **Did you know?** A small card with a lightbulb icon, the fact text and the source's short title.
+- **Controls.** Next / Back, a chapter progress bar ("Chapter 2 of 4"), **Auto-play** (advances 1.5 s after each step finishes), **Skip to the end** (jumps to the last step; the stop still counts as visited), keyboard: → / Space / Enter = next, ← = back, A = auto-play.
+- **Read more** now opens the stop's 100–150-word summary (`story`), the place then/today, the date, and the full source list.
+- The final stop (GD-6) uses the same player but: no portraits slide in (the narrator speaks), slower typewriter (25 cps), no auto-play, no "Take the quiz" button; the last step shows the Epilogue card.
+
+### 3.7 Rizal as guide (walkthrough) — v2.3
+Replaces the 3-card intro (FR-4). The guide is **Rizal himself**, speaking in first person from a close-up portrait. It is a framing device: the guide's words are written by the team and never shown as "Recorded".
+- **Tour** (`content/guide.json → tour`, 14 steps): runs on first visit and from Settings → "Replay the tour". Each step dims the page, cuts a rounded "spotlight" around the element whose `data-guide` attribute equals the step's `target` (null = a centred card), and shows Rizal's portrait (mood from the step) with a speech panel and **Next / Skip tour** buttons. `next: "click-target"` waits for the player to click the highlighted element. The tour moves between routes as the steps say (`route`).
+- Required `data-guide` ids: `map`, `region-tabs`, `timeline`, `mode-toggle`, `pin-current`, `scene`, `line-tag`, `sources-card`, `quiz-button`, `xp-bar`, `passport-button`, `save-indicator`.
+- **Tips** (`tips`): one-time hints the first time a screen opens (quiz, passport, journal, builder, gallery, settings), on rank-up, and when private mode is detected (§3.9). Shown as a small portrait + bubble in a corner; auto-hide after 8 s or on click.
+- **Reactions** (`reactions`): after each quiz answer Rizal's portrait (small, by the question card) shows a random line from `correct` / `wrong`, `streak` at 5 and 10, `perfect` after a perfect stop. Never more than one bubble at a time.
+- The guide never appears on the final stop.
+- Everything the guide says comes from `guide.json` (and `i18n/fil.guide.json`), not from code.
+
+### 3.8 Gamification — v2.3
+All numbers live in `content/gamification.json`.
+- **XP.** Correct on first try 20, second try 10, later 5; −5 if a hint was opened (never below 0 for a question); +5 per chapter read; +5 for opening Read more; +25 every 5-answer streak; +30 for a perfect stop; +40 per builder project.
+- **Streak.** Consecutive first-try correct answers across stops. Shown as a flame meter by the XP bar; a wrong answer resets it (no other penalty).
+- **Stamps.** Gold if at least 4 of 5 questions were right on the first try, silver otherwise. A stop can be retried from its page to upgrade silver to gold. Still no fail screen (GD-5).
+- **Ranks** (by total XP): Estudyante 0 → Bachiller 400 → Manlalakbay 1000 → Manunulat 1800 → Ilustrado 2800. The rank shows beside the XP bar and on the passport; rank-up triggers a banner and Rizal's `rank-up` tip.
+- **Achievements**: 14 badges in `gamification.json` (rules are listed there). Shown in a new **Achievements** tab of the Passport, each with the item icon named in the file. Unlocking shows a toast. The `journey-end` badge is quiet: no toast, no sound (GD-6).
+- **Certificate**: when all 24 quiz stops are completed, the Passport shows **Print certificate**: a print-ready page (A4 / Letter, print CSS) with the player's typed name (stored locally only), rank, stamp count (gold/silver), date and the game logo. Uses the browser's print dialog (Save as PDF works).
+
+### 3.9 Saving and refresh safety — v2.3
+Answer to "Can we warn players before they lose progress on refresh?": a normal refresh does **not** lose progress, because the game saves to `localStorage` after every change. Progress is lost only when browser data is cleared, in a private window, or on another device. So:
+1. **Save indicator.** After every save, a small disk icon + "Saved" fades in at the top bar for 1.2 s (`data-guide="save-indicator"`). If a save fails (quota or blocked storage), it turns into a red "Not saved" button that opens a dialog explaining why and offering the save code.
+2. **Warn only when something is really unsaved.** Register `beforeunload` **only** while a quiz is in progress (an answer is checked but the stop is not finished) or the player is typing their certificate name. The browser shows its own "Leave site?" box; browsers do not allow custom text. Never warn on ordinary pages.
+3. **Persist.** Call `navigator.storage.persist()` once after the first completed stop (if supported) so the browser does not clear the save automatically.
+4. **Private mode.** At start-up, test-write a key; if it fails, or `navigator.storage.estimate()` reports a tiny quota, show a banner: "You're in a private window, so your progress will be erased when you close it. Download a save code to keep it." plus Rizal's `private-mode` tip.
+5. **Save code.** Settings → **Download save code** gives (a) a short text code (base64url of the progress JSON + a 4-character checksum + version, copyable) and (b) a `.lakbay` file download. **Load save code** accepts either. Invalid or newer-version codes show a friendly error and change nothing. Achievement `safe-traveller` unlocks on first download.
+6. **Reminder.** After every 5 completed stops, or 7 days after the last download, a gentle toast suggests downloading a save code. Can be turned off in Settings.
+
+### 3.10 Language (English / Filipino) — v2.3
+- A language switch (EN | FIL) sits in the top bar and Settings. Default: the browser language if it starts with `fil` or `tl`, otherwise English. Saved in progress settings.
+- UI strings: `src/i18n/en.json` and `fil.json` (seeded from `content/i18n/en.ui.json` and `fil.ui.json`; keep any keys the app already has).
+- Content: `content/i18n/fil.stops.json` mirrors `stops.v3.json` (same order and counts), `fil.guide.json`, `fil.gamification.json`. If a Filipino string is missing, fall back to English for that string only.
+- Every Filipino content file has `"status": "draft"`. While it is draft, show a small "Draft translation" badge next to the language switch, with a tooltip: "Written by AI, being checked by the RIZLIFE team." Remove the badge when the team sets `"status": "reviewed"`.
+- Reading any stop in both languages unlocks the `bilingual` achievement.
+
+### 3.11 Sound — v2.3
+- **Sound effects** are generated in code with the Web Audio API (short square/triangle-wave blips: page turn, typewriter tick every 3rd character, correct chime, wrong buzz, stamp thud, achievement jingle, build thump). No audio files needed, so no licensing risk.
+- **Music** is optional: if the team adds CC0 chiptune loops to `public/audio/music/<region>.ogg` (for example from Kenney or OpenGameArt, CC0 only, credited), each region plays its loop at low volume. If the files are missing, there is no music and no error.
+- Settings: Sound on/off (default on), Music on/off (default off), volume. Nothing plays before the player's first click (browser autoplay rules). The final stop plays no sound effects or music.
 
 ---
 
@@ -157,7 +214,7 @@ Each requirement has an acceptance check (AC) that must be testable.
 | FR-1 | A top bar shows: logo (Rizal sprite + "LAKBAY RIZAL"), region tabs (Philippines, Asia, Europe, America), **Scenes** link, **Passport · n/25** button. | MUST | All items visible at 1440 px; at 360 px the tabs wrap or scroll horizontally, no overflow. |
 | FR-2 | Routes: `/` (map, last region), `/region/:id`, `/stop/:id`, `/stop/:id/quiz`, `/passport`, `/journal`, `/scenes`, `/dapitan/build`, `/credits`, `/settings`. | MUST | Each URL loads directly and survives a page refresh on the hosting provider (configure SPA fallback). |
 | FR-3 | Back links on every inner page return to the place the player came from. | MUST | Navigate map → stop → quiz → back → back lands on the map with the same region. |
-| FR-4 | First visit shows a 3-card intro (what the game is, how to play, Guided vs Free). Skippable; never shown again unless reset. | SHOULD | Intro appears once on a fresh profile. |
+| FR-4 | First visit runs Rizal's guided tour (§3.7), replacing the old 3-card intro. Skippable; replayable from Settings. | MUST | Tour appears once on a fresh profile. |
 
 ### 4.2 Maps and pins
 | ID | Requirement | Priority | Acceptance check |
@@ -184,14 +241,14 @@ Each requirement has an acceptance check (AC) that must be testable.
 | FR-30 | Large scene image (16:9, pixelated) in a wooden frame, with place · year badge top-left. | MUST | Matches `Story.dc.html` layout. |
 | FR-31 | Dialogue box overlaps the bottom of the scene (desktop) / sits below it (mobile), per §3.6. | MUST | Next steps through lines; last line shows **Replay** and unlocks Quiz. |
 | FR-32 | Side panel: **This stop** (Then / Today place names, theme chip), **Item reward** card, **Source** card (full citation, page numbers), **Read more** button. | MUST | Source text comes from content; if missing, shows `[Source needed]` in red-brown and the stop is excluded from the production build (see FR-62). |
-| FR-33 | **Read more** opens a panel with the 100–150-word story text, and optional longer text, images credits. | MUST | Panel is a dialog with focus trap and Esc to close. |
+| FR-33 | **Read more** opens a panel with the 100–150-word summary (`story`), place then/today, date and the full source list (§3.6). | MUST | Panel is a dialog with focus trap and Esc to close. |
 | FR-34 | The scene shows the speaking character indicator ("…") at the coordinates given in content. | SHOULD | Indicator moves when the speaker changes. |
 | FR-35 | "Dramatized" tag per §3.6. | MUST | Shown on stops whose dialogue has `dramatized: true`. |
 
 ### 4.5 Quiz
 | ID | Requirement | Priority | Acceptance check |
 |---|---|---|---|
-| FR-40 | Two multiple-choice questions per stop, four options each, shown one at a time with a progress bar. | MUST | Content drives the count; works with 1–5 questions. |
+| FR-40 | Five questions per stop of mixed types (§6.2b, FR-81), shown one at a time with a progress bar. | MUST | Content drives the count; works with 1–6 questions. |
 | FR-41 | Picking an answer marks it right (green + ✓) or wrong (light red + ✗) and reveals the right one; colors differ in lightness, not only hue. | MUST | Contrast check passes; icons present. |
 | FR-42 | Wrong answer shows the question's hint and lets the player try again. | MUST | No penalty, no lives. |
 | FR-43 | After all questions are right: reward card (stamp + item + materials) with **Open passport** and **Back to map** buttons. | MUST | Progress store updated exactly once. |
@@ -222,8 +279,26 @@ Each requirement has an acceptance check (AC) that must be testable.
 |---|---|---|---|
 | FR-70 | Progress saved automatically to `localStorage` key `lakbay-rizal:v1` (schema §8.5), with versioned migrations. | MUST | Refresh keeps progress; corrupt data resets safely with a notice. |
 | FR-71 | Settings: text size (Normal / Large), reduce motion (follows OS by default), Guided/Free, show verify notes (team), **Reset progress** (with confirm dialog). | MUST | — |
-| FR-72 | Credits page: team members, sources list (all citations from content), art credits ("Original pixel art by the RIZLIFE team"), fonts (Pixelify Sans, Nunito — SIL OFL), map data note (land mask from the `global-land-mask` package, which is derived from GLOBE 1-km data). | MUST | — |
+| FR-72 | Credits page: team members, sources list (all citations from content), art credits ("Original pixel art by the RIZLIFE team"), fonts (VT323 by Peter Hull — SIL OFL), map data note (land mask from the `global-land-mask` package, which is derived from GLOBE 1-km data). | MUST | — |
 | FR-73 | Language: all UI strings in `src/i18n/en.json` so a Filipino version can be added later. | SHOULD | No hard-coded UI strings in components (lint rule or test). |
+
+---
+
+### 4.10 New requirements in v2.3
+| ID | Requirement | Priority | Acceptance check |
+|---|---|---|---|
+| FR-80 | Story player per §3.6: chapters, camera pan/zoom, narration typewriter, close-up portraits with talk and blink frames, Recorded/Dramatized tags, facts, auto-play, skip, keyboard. | MUST | Calamba plays 4 chapters; the camera moves to Teodora in chapter 3; her portrait talks while text types; the moth line shows "Recorded". |
+| FR-81 | Quiz types per §6.2b: `mcq`, `multi`, `order` (drag or tap-to-swap, keyboard: select + arrow keys), `match` (tap left then right; keyboard: Enter on each), `error` (tap the wrong segment, then the correction is shown). Each shows `explain` and the source's short title after a correct answer. | MUST | All 5 types appear and work by mouse, touch and keyboard (Playwright). |
+| FR-82 | Shuffle options, items and right-hand match column per attempt; answers are checked by id. `order` never starts already in the right order. | MUST | Unit tests. |
+| FR-83 | XP, streak, gold/silver stamps, ranks, achievements, toasts per §3.8; all numbers from `gamification.json`. | MUST | Seeded progress test reaches Bachiller at 400 XP. |
+| FR-84 | Rizal guide tour, tips and reactions per §3.7. | MUST | Fresh profile runs the tour; Skip ends it; Settings can replay it. |
+| FR-85 | Save safety per §3.9 (indicator, warn-only-when-dirty, persist, private-mode banner, save code export/import, reminders). | MUST | Refresh on map: no warning. Refresh mid-quiz: browser warning. Export → reset → import restores progress exactly. |
+| FR-86 | Language switch and Filipino content per §3.10, with per-string fallback and the draft badge. | MUST | Switching language changes UI and story text without a reload; missing strings fall back to English. |
+| FR-87 | Certificate per §3.8. | SHOULD | Print preview fits one page. |
+| FR-88 | `/timeline` page: all 25 stops in date order as a vertical list (thumbnail, date, place then/today, status, stamp), filterable by theme and region. | SHOULD | Keyboard and screen-reader friendly. |
+| FR-89 | Motion catalogue per §5.6, all respecting reduced motion. | MUST | With reduced motion on, no element moves more than a fade. |
+| FR-90 | Sound per §3.11. | SHOULD | Muted until first click; toggles persist. |
+| FR-91 | Layout v2.3 per §5.5 (slim header, bottom navigation on phones, full-bleed scenes, collapsible side panels). | MUST | No horizontal scroll from 360 to 1920 px; scene uses ≥ 70 % of the viewport width at 1440 px. |
 
 ---
 
@@ -267,10 +342,10 @@ The approved look is the mockup in `reference/mockup/` (open the `.dc.html` file
 | Border | `3px solid var(--ink)` | All panels and buttons |
 | Shadow | `6px 6px 0 var(--ink)` (panels), `4px 4px 0` (buttons) | Hard pixel shadow, never blurred |
 | Radius | `0` | Everything is square |
-| Font · display | **Pixelify Sans** 400–700 | Titles, buttons, labels, numbers |
-| Font · body | **Nunito** 600–800 | Story text, dialogue, long copy |
+| Font · all text | **VT323** (one weight; self-host `@fontsource/vt323`) | Everything: titles, buttons, story, dialogue. VT323 has no bold: show hierarchy with size and colour, never fake bold |
+| Type scale (Normal / Large) | Body 22 / 26 px (phones 20 / 24), line-height 1.3; small 18 / 22; h3 28; h2 36; h1 48 (phones 36); letter-spacing 0.01em | Large = Settings → Text size. Never below 18 px |
 
-Never set long reading text in the pixel font.
+v2.3: the team chose **VT323 for all text** for readability with a pixel look. Keep paragraphs ≤ 68 characters wide and line-height ≥ 1.3 so long stories stay comfortable to read.
 
 ### 5.4 Components
 `PixelButton` (primary / secondary / disabled), `Panel`, `WoodFrame`, `Chip` (theme), `RegionTabs`, `MapView` (image + pins + path + overlays), `Pin`, `ClusterPin`, `InsetMap`, `TimelineSlider`, `StopCard`, `JourneyList`, `SceneView`, `DialogueBox`, `Portrait`, `SourceCard`, `ReadMoreDialog`, `QuizQuestion`, `RewardCard`, `PassportBook`, `StampCard`, `ThemeBadge`, `BuilderScene`, `ResourceTile`, `ProjectCard`, `Toast`, `ConfirmDialog`.
@@ -279,12 +354,39 @@ Portrait crop: show the sprite at 3× inside a 72 × 72 box, offset so the head 
 
 ---
 
+### 5.5 Layout v2.3 — use the space
+The v2.2 mockups stay the visual reference for colours, borders and components; v2.3 changes how space is used:
+- **App shell:** a slim top bar (56 px desktop, 48 px phone): logo, region tabs (desktop), XP bar + rank, save indicator, language switch, Passport button. On phones (≤ 640 px) the region tabs move into the map screen and a **bottom navigation bar** (Map · Timeline · Passport · Journal · More) replaces top links; it respects `env(safe-area-inset-bottom)`.
+- **Map screen:** CSS grid `map | panel`. The map takes all remaining width; the side panel (Next stop + Journey list) is 340 px and **collapsible** to a 48 px rail (remember the choice). The timeline is a slim strip under the map (64 px), expandable. On phones the panel becomes a bottom sheet (drag handle, three heights).
+- **Stop screen:** the scene is **full-bleed** within the content area (max 1600 px wide), scaled to the largest integer multiple that fits (fallback: `pixelated` non-integer). The narration/dialogue box overlays the bottom 30 % of the scene on desktop. This stop / Item / Sources cards move into a right drawer (desktop, toggle "Info") or a tab under the scene (phone). Landscape phones show the scene full-screen with the text box overlaid.
+- **Quiz screen:** centred card (max 760 px) over the dimmed scene; Rizal's small portrait for reactions sits at the card's top-left corner; XP gain floats up from the card.
+- **Passport:** two-page spread on desktop with tabs: Stamps · Achievements · Rank; single page with tabs on phones.
+- Use CSS grid and container queries (not fixed breakpoints only). Keep touch targets ≥ 44 px. Use skeleton placeholders (pixel-pattern shimmer, static with reduced motion) while JSON and images load.
+
+### 5.6 Motion catalogue — v2.3
+All motion uses `transform` / `opacity` only, ≤ 400 ms unless stated, and switches to a 150–200 ms fade when reduced motion is on.
+| Where | Motion |
+|---|---|
+| Route change | Pixel "iris" wipe (a stepped circle mask, 8 steps, 320 ms) |
+| Map | Pins drop in on first view (staggered 30 ms); current pin pulses (scale 1→1.08, 1.6 s loop); hover lifts 2 px; region change pans the map; **travel animation** after a stop is completed: a small ship (sea legs) or train (land legs) sprite moves along the path to the next pin (1.5 s), then the pin unlocks with a "pop" |
+| Timeline | Year label rolls like an odometer while scrubbing |
+| Story player | Camera pan/zoom (§3.6), portrait slide-in, talk/blink frames via CSS `steps()` on the sprite sheet, "…" bubble bob, typewriter text, chapter title card fades in with a 1 px underline draw |
+| Ambient scene effects (CSS/canvas overlay, ≤ 40 particles) | Rain: binan-1869 · Petals: japan-1888 · Snow: brussels-1890 · Falling leaves: madrid-1882 · Dust motes in light: london-1888, ghent-1891 · Candle flicker (brightness 0.95–1.0): fortsantiago-1896 · Water glints: dapitan-1892 · none: bagumbayan-1896 |
+| Quiz | Card flips in; correct: green flash + 12 pixel sparkles; wrong: 2-px shake + red outline; streak flame grows; XP number counts up |
+| Rewards | Stamp "slam" onto the passport page (scale 1.4 → 1, ink splat, 1 small shake); achievement toast slides in from the top-right; rank-up banner unrolls |
+| Builder | Building rises from the ground with a dust puff; materials count down |
+| Final stop | No sparkles, no confetti, no slam; only slow fades |
+
+---
+
 ## 6. Content specification
 
 ### 6.1 Files
 ```
 public/content/
-  stops.json        ← all stops (seed: content/stops.seed.json)
+  stops.json        ← all stops (v2.3: from content/stops.v3.json)
+  guide.json, gamification.json
+  i18n/fil.stops.json, i18n/fil.guide.json, i18n/fil.gamification.json
   regions.json      ← map bounds, image paths, inset definitions
   characters.json   ← speakers: name, sprite, portrait crop
   items.json        ← keepsake items
@@ -330,8 +432,53 @@ Rules enforced by validation:
 - `quiz[].answer` must match one option id.
 - `order` values are unique and continuous.
 
+### 6.2b Stop schema v3 (content v3, SRS v2.3) — replaces the `dialogue` and `quiz` parts of §6.2
+`content/stops.v3.json` keeps every v2 field (`id`, `order`, `region`, `dateLabel`, `year`, `place`, `theme`, `title`, `teaser`, `story` = the 100–150-word summary for Read more, `scene`, `rewards`, `sources`, `status`, `verifyNotes`) and adds:
+```ts
+type Mood = 'neutral' | 'happy' | 'sad' | 'serious' | 'surprised' | 'thinking';
+type Skill = 'recall' | 'chronology' | 'cause' | 'analysis' | 'source';
+
+interface Line {
+  speaker: string;                 // character id or 'narrator'
+  text: string;                    // ≤ 25 words
+  mood: Mood;                      // portrait row
+  onScene: boolean;                // true → show the "…" bubble at scene.speakerAnchors[speaker]
+  recorded?: { sourceId: string }; // present only when the words are quoted from a published source
+}
+interface Chapter {
+  id: string;                      // 'c1'..'c4'
+  title: string;                   // ≤ 40 chars
+  camera: { x: number; y: number; zoom: number };   // % of scene; zoom 1–1.6
+  narration: string[];             // paragraphs
+  lines: Line[];                   // 0–4
+  fact?: { text: string; sourceId: string };
+}
+type Question =
+  | { id: string; type: 'mcq';   skill: Skill; prompt: string; options: {id: string; text: string}[]; answer: string;   explain: string; sourceId: string; hint: string }
+  | { id: string; type: 'multi'; skill: Skill; prompt: string; options: {id: string; text: string}[]; answers: string[]; explain: string; sourceId: string; hint: string }
+  | { id: string; type: 'order'; skill: Skill; prompt: string; items: {id: string; text: string}[];   answer: string[];  explain: string; sourceId: string; hint: string }   // items listed in the correct order; shuffle for display
+  | { id: string; type: 'match'; skill: Skill; prompt: string; left: {id: string; text: string}[]; right: {id: string; text: string}[]; pairs: Record<string, string>; explain: string; sourceId: string; hint: string }
+  | { id: string; type: 'error'; skill: Skill; prompt: string; segments: {id: string; text: string}[]; answer: string; correction: string; explain: string; sourceId: string; hint: string };
+
+interface StopV3 extends Omit<Stop, 'dialogue' | 'quiz'> {
+  contentVersion: 3;
+  wordCount: number;               // narration words, computed by the content script
+  chapters: Chapter[];             // 4
+  dialogue: { dramatized: true };  // kept for the v2 "Dramatized" rule
+  quiz: Question[];                // 5 (0 for bagumbayan-1896)
+}
+```
+Characters gain `portrait: '/assets/portraits/<id>.png'` and, for speakers without a scene sprite, `offscreenOnly: true` (`paciano`, `taviel`, `luis-taviel`).
+
+Validation (add to `validate-content`):
+- 4 chapters; narration ≥ 600 words (error for `verified`, warning for `draft`); each line ≤ 25 words; moods valid.
+- Every `speaker` exists in `characters` (or is `narrator`) and has a portrait file; `onScene: true` only if the speaker has an anchor.
+- Every `sourceId` (lines, facts, questions) exists in `sources.json`.
+- Quiz: 5 questions (0 for the final stop); `mcq` has 4 options and a valid answer; `multi` has 2+ answers but not all options; `order` 3–5 items; `match` 3–4 pairs; `error` answer is one segment id and `correction` is not empty.
+- `fil.stops.json` has the same stops, chapter counts, paragraph arrays, line counts (in order), fact presence, question counts and option/item/pair/segment counts as `stops.v3.json`.
+
 ### 6.3 The 25 stops
-All 25 stops are written in `content/stops.seed.json`: story, scene, dialogue, two quiz questions (none for the final stop), rewards, sources and verify notes. **Every stop is `draft`:** the team must check each one against two sources (§14) before it becomes `verified`.
+All 25 stops are written in `content/stops.v3.json` (v2.3): a 100–150-word summary, four chapters (15,400 words of narration in total), 144 dialogue lines (16 of them quoted from public-domain sources), 120 quiz questions (none for the final stop), rewards, sources and verify notes. A Filipino draft of everything is in `content/i18n/`. **Every stop is `draft`:** the team must check each one against two sources (§14) before it becomes `verified`.
 
 | # | id | Year(s) | Then → Today | Region | Theme | What happens (outline) |
 |---|---|---|---|---|---|---|
@@ -367,6 +514,16 @@ All 25 stops are written in `content/stops.seed.json`: story, scene, dialogue, t
 - When sources disagree on a date, use the date both sources agree on, or write "about 1886", and add a `verifyNotes` entry.
 - Dialogue: at most 5 lines per stop, ≤ 25 words per line, marked `dramatized: true` whenever a real person speaks.
 - Quiz questions test the story text only, never outside knowledge.
+
+---
+
+### 6.4b Writing rules for content v3
+- **600–800 words of narration per stop, in 4 chapters.** Plain English, short sentences, every Spanish or Tagalog word explained the first time.
+- Each chapter: a title (≤ 40 chars), 1–3 paragraphs, 0–4 dialogue lines (≤ 25 words each), optional "Did you know?" fact with a source.
+- A line may be `recorded` only if its words are quoted (in a published English translation, ideally public domain) from the cited source. Everything else is dramatized and must be fair to the record; a teacher approves dramatized lines before `verified`.
+- **College-level quiz:** 5 questions per stop, mixing types (at least one `order` or `match`, at least one `error`, at least one `cause`/`analysis`/`source` question). Every answer must be findable in that stop's chapter text. Every question has an `explain` (why the answer is right) and a `hint` that points back to the text without giving the answer.
+- Where sources disagree, say so in the text and name them (several stops do this on purpose: they teach source criticism). Record the disagreement in §14.4 and in `verifyNotes`.
+- Respect GD-6: the final stop is quiet, factual and non-graphic.
 
 ---
 
@@ -484,6 +641,16 @@ A team member may hand-polish any PNG in Aseprite or LibreSprite, as long as it 
 
 ---
 
+### 7.10 Close-up portraits — v2.3
+Every speaking character has a portrait sheet in `assets/portraits/<characterId>.png`, made by `art-tools/portraits.py` (same skin ramps and clothing colours as the scene sprites, light from the upper left, selective outlines).
+- **Sheet:** 256 × 384 px = 4 columns × 6 rows of 64 × 64 frames. Columns: 0 idle, 1 blink, 2 talk (mouth half open), 3 talk (mouth open). Rows: 0 neutral, 1 happy, 2 sad, 3 serious, 4 surprised, 5 thinking.
+- **Display:** integer scale only (2× = 128 px on desktop; 1× or 2× on phones), `image-rendering: pixelated`, shown inside a 3 px ink frame on the parchment colour. Use `background-position` with `steps()` for frame changes. Portraits face viewer-left; mirror with `scaleX(-1)` when the portrait sits on the right of the text box.
+- 24 sheets: rizal, rizal-dapitan, rizal-young, jose-boy, jose-child, teodora, teodora-older, paciano, viola, jesuit, pupil, justiniano, dominican, gentleman, de-wecker, ullmer, blumentritt, seiko, luna, nellie, printer, member, taviel, luis-taviel. The narrator has no portrait (book icon).
+- Likeness: the portraits follow the approved sprites (§7.3) and written descriptions (e.g. Rizal's own description of Maestro Justiniano: tall, thin, long neck, sharp nose). **Paciano, both Taviel de Andrade brothers, the Jesuit, the Dominican, the printer, the pupil and the Liga member are artist's impressions**; the team should compare Rizal, Teodora, Blumentritt, Luna, Viola and Seiko with period photographs and adjust colours or hair in `SPECS` if needed (§13).
+- To change one: edit its entry in `SPECS` in `portraits.py`, run `python3 portraits.py`, check `out/portraits_contact.png`, copy the PNG to `public/assets/portraits/`.
+
+---
+
 ## 8. Technical architecture
 
 ### 8.1 Stack
@@ -543,6 +710,19 @@ interface Progress {
   newStamp?: string;         // cleared when passport is opened
   settings: { textSize: 'normal' | 'large'; reduceMotion: 'system' | 'on' | 'off'; showVerifyNotes: boolean };
 }
+// v2.3 (store version 2, with a migration from 1):
+interface ProgressV2 extends Omit<Progress, 'version' | 'settings'> {
+  version: 2;
+  xp: number; streak: number; bestStreak: number;
+  stampGrade: Record<string, 'gold' | 'silver'>;
+  quizStats: { typeCorrect: Record<string, number>; skillCorrect: Record<string, number> };
+  chaptersRead: Record<string, number>; readMoreOpened: string[];
+  achievements: string[]; seenTips: string[]; tourDone: boolean;
+  readIn: Record<string, ('en' | 'fil')[]>;
+  save: { lastExportAt?: string; remindersOn: boolean; persisted?: boolean };
+  certificateName?: string;
+  settings: Progress['settings'] & { lang: 'en' | 'fil'; sound: boolean; music: boolean; volume: number; autoplay: boolean };
+}
 ```
 Actions: `visit(id)`, `complete(id)` (idempotent; grants rewards once), `build(project)`, `resetBuilder()`, `setMode()`, `reset()`.
 
@@ -586,7 +766,7 @@ Pin anchor: the pin's bottom tip sits on the coordinate (`left: calc(x% − 40px
 ---
 
 ## 10. Out of scope (ideas for later)
-Audio narration · Filipino-language version (i18n is ready) · teacher dashboard / class codes · on-site AR "visit Rizal sites" mode · multiplayer · accounts or cloud saves.
+Audio narration (voice) · teacher dashboard / class codes · on-site AR "visit Rizal sites" mode · multiplayer · accounts or cloud saves.
 
 ---
 
@@ -603,6 +783,21 @@ Audio narration · Filipino-language version (i18n is ready) · teacher dashboar
 | **M6 Gallery, settings, credits** | `/scenes`, settings (text size, motion, mode, verify notes, reset), credits, intro cards, 404 page | All FR-55, FR-70–73 checks pass |
 | **M7 All stops** | Wire in Asia + America maps, all 25 scenes, stamps and item icons (already in `assets/`); run `validate-content` on all 25 stops | Every stop plays end to end in preview mode; validation passes |
 | **M8 Polish & release** | PWA offline, a11y audit fixes, Lighthouse ≥ 90, deploy config (SPA fallback), README for the team | §12 e2e passes on a preview deploy built with `INCLUDE_DRAFTS=true`; the production deploy shows only verified stops |
+
+---
+
+### 11b Upgrade milestones for v2.3 (the app is already built to v2.2)
+Run these **after** M0–M8. Each has a ready prompt in `prompts/U<n>.md`; paste it into Claude Code in **plan mode**, approve the plan, then let it build. After each: `npm run lint && npm run typecheck && npm test && npm run build`, play-test with `INCLUDE_DRAFTS=true`, commit, `/clear`.
+| Milestone | Deliverables | Done when |
+|---|---|---|
+| **U1 Look & layout** | VT323 everywhere (self-hosted `@fontsource/vt323`), new type scale (§5.3), slim header, bottom nav on phones, collapsible panels, full-bleed scene, container queries (§5.5) | 360/768/1440/1920 screenshots show no overflow; text readable at "Normal" and "Large" |
+| **U2 Content v3 + language** | Zod schema v3 (§6.2b), import `content/stops.v3.json` and the `content/i18n/*` files into `public/content/`, validation (incl. the EN/FIL mirror check), language switch with fallback and draft badge (§3.10) | `validate-content` passes; switching EN/FIL changes all text |
+| **U3 Story player** | §3.6 in full: chapters, camera, typewriter, portraits with talk/blink, tags, facts, auto-play, skip, keyboard, final-stop variant | FR-80 checks pass |
+| **U4 Quiz engine v3** | Five question types (§6.2b, FR-81/82), explanations, hints, per-question source line | FR-81 Playwright test for every type |
+| **U5 Gamification** | XP, streak, gold/silver stamps, ranks, achievements, toasts, passport tabs, Rizal reactions (§3.7–3.8) | FR-83 seeded tests |
+| **U6 Rizal guide** | Tour with spotlight, tips, `data-guide` ids, replay from Settings (§3.7) | FR-84 |
+| **U7 Save safety + extras** | §3.9 in full, certificate (§3.8), `/timeline` page (FR-88) | FR-85/87/88 |
+| **U8 Motion, sound, release** | §5.6 motion catalogue, ambient effects, §3.11 sound, reduced-motion audit, axe, Lighthouse ≥ 90, update e2e (§12b), deploy preview | All checks green on the preview deploy |
 
 ---
 
@@ -624,6 +819,20 @@ Run against a build made with `INCLUDE_DRAFTS=true`, because the seed stops are 
 
 ---
 
+### 12b End-to-end additions for v2.3 (`e2e/journey-v3.spec.ts`)
+1. Fresh profile → Rizal tour starts → step through 3 steps → Skip → tour ends; Settings → Replay the tour works.
+2. Open Calamba (Free mode) → 4 chapters play; chapter 3 camera targets Teodora; a "Recorded" tag is visible on her line.
+3. Quiz: answer one question of each type present (order by keyboard, match by taps, error by tapping a segment, multi, mcq); wrong answer shows hint, right answer shows explanation; XP increases.
+4. Finish with ≥ 4 first-try answers → gold stamp; passport shows it; achievement toast for `first-steps`.
+5. Mid-quiz refresh triggers `beforeunload`; refresh on the map does not.
+6. Settings → Download save code → Reset progress → Load save code → progress identical (deep-equal of the store).
+7. Switch to FIL → story and UI in Filipino; "Draft translation" badge visible; switch back.
+8. Repeat 2–4 at 360 × 740 and in landscape 740 × 360.
+9. Reduced motion on: no transform animations run (check computed `animation-name: none` on animated classes).
+10. Final stop: no quiz, no guide, no sound, no sparkles; Epilogue card shown.
+
+---
+
 ## 13. Open items for the RIZLIFE team (content)
 These must be resolved before a stop can be marked `verified`. Claude Code should list any new ones it finds in `docs/CONTENT_TODO.md`.
 - Check every date and fact in `content/stops.seed.json` against two sources from §14 (at least one Tier 1 or Tier 2), and fill in page numbers.
@@ -633,7 +842,11 @@ These must be resolved before a stop can be marked `verified`. Claude Code shoul
 - Rizal's own description of his three Dapitan houses (letter to Blumentritt, 19 Dec 1893): square, hexagonal, octagonal — confirm which house served as clinic, school and dormitory for the builder labels.
 - The water system: dam and aqueduct details for the builder fact text.
 - Look at each scene next to a period photo or drawing of the place and list any detail to fix (record the reference in `sources.json` as `kind: "art-reference"`). The scenes follow written descriptions; none was traced from a photo.
-- Work through every stop's `verifyNotes` (each stop has 2–4).
+- Work through every stop's `verifyNotes` (v2.3: each stop has 3–7).
+- **v2.3:** read all 25 four-chapter stories and 120 questions against the sources; check that every quiz answer is in the chapter text.
+- **v2.3:** have a fluent Filipino teacher review `content/i18n/fil.*.json`, then set `status: "reviewed"`. The 16 `recorded` lines are translated from English translations: replace them with a published Filipino translation where one exists (e.g. of *Mi Último Adiós*), and cite it.
+- **v2.3:** compare the portraits of Rizal, Teodora, Blumentritt, Luna, Viola and Seiko with period photographs (§7.10).
+- **v2.3:** a teacher approves the neutral wording on the retraction and marriage questions in fortsantiago-1896.
 
 ---
 
@@ -819,6 +1032,13 @@ Rizal's own childhood memoir (`own-story`, Project Gutenberg #48438) covers Cala
 | Where the *Fili* was finished | Biarritz, 29 March 1891 (Rizal's letter to Blumentritt, per Zaide); Ocampo says he finished the clean copy in Brussels in April 1891. | The seed says he finished the *manuscript* in Biarritz. Add Ocampo's point to Read more after checking. |
 | Who took *Mi Último Adiós* out of the stove | Most sources: his sister Trinidad carried the stove home and the family found the poem. Craig (1913, ch. XI) mentions a Dapitan schoolboy. | The seed names only Trinidad and "the family". |
 | Arrival in Hong Kong | Evening of 19 November 1891 (chronologies) or 20 November. | The seed uses 20 November; confirm in `epistolario`. |
+| Names of the Ateneo "empires" (v2.3) | Rizal's memoir (Craig's 1918 translation) says Romans and Greeks; Zaide and most textbooks say Romans and Carthaginians. | The story names both and uses the difference in a source question. |
+| Prize for *El consejo de los dioses* (1880) (v2.3) | Russell & Rodriguez: taken from him once the judges learned he was Filipino; Zaide: he received it, amid Spanish resentment. | The story gives both accounts. |
+| Year of the Liceo poetry prize (v2.3) | Most sources 1879; Craig (1913) 1877. | Use 1879. |
+| Age when sent to Biñan (v2.3) | Rizal's memoir: nine; the usual date (June 1869) makes him about eight. | The story gives the year only. |
+| Where *El Filibusterismo* was begun (v2.3) | Craig: Calamba, October 1887. Some summaries: London, 1888. | The story follows Craig; confirm in `epistolario`. |
+| Date in the *Fili* dedication (v2.3) | The printed dedication says the three priests were executed on 28 February 1872; the execution was on 17 February. | The Ghent stop teaches this as a source slip (spot-the-error question). |
+| Who carried the stove home (v2.3) | Most sources: Trinidad. Craig (1913, ch. XI): a Dapitan schoolboy brought it to the family. | The story says the family found the poem at home. |
 
 ### 14.5 What still needs a person
 - Page numbers for every book citation (the books are print-only).

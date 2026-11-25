@@ -1,0 +1,51 @@
+{
+ "_readme": "Filipino DRAFT of guide.json (same ids). Needs review.",
+ "lang": "fil",
+ "status": "draft",
+ "tour": {
+  "t1": "Magandang araw! Ako si José Rizal. Maligayang pagdating sa Lakbay Rizal. Halika, samahan mo akong maglakbay sa mga lugar na aking tinirhan, pinag-aralan at pinagsulatan.",
+  "t2": "Ito ang mapa. Bawat pin ay isang lugar sa aking paglalakbay, mula sa Calamba, kung saan ako isinilang noong 1861, hanggang Maynila noong 1896.",
+  "t3": "Tinawid ng aking paglalakbay ang apat na rehiyon: ang Pilipinas, Asya, Europa at Amerika. Lumipat-lipat ka sa kanila rito.",
+  "t4": "I-slide ang mga taon upang sundan ang aking landas ayon sa pagkakasunod. Tatlumpu't limang taon, dalawampu't limang hinto.",
+  "t5": "Sa Guided mode, isa-isang nagbubukas ang mga hinto. Sa Free mode, makapupunta ka kahit saan. Iminumungkahi ko ang Guided sa una mong paglalakbay.",
+  "t6": "Ang kumikinang na pin ang susunod mong hinto: ang Calamba. Pindutin mo ito, at magsisimula tayo.",
+  "t7": "Bawat hinto ay kuwentong may mga kabanata. Basahin ang bawat bahagi, saka pindutin ang Susunod. Kapag may nagsasalita, makikita mo siya nang malapitan.",
+  "t8": "Ang linyang may markang \"Totoong salita\" ay mula sa aking mga sulatin. Ang may markang \"Isinadula\" ay guni-guni, ngunit batay sa totoong pangyayari.",
+  "t9": "Narito ang mga aklat at liham na pinagmulan ng bawat kuwento. Ang mabuting mag-aaral, gaya ng mabuting historyador, ay sumusuri ng sanggunian.",
+  "t10": "Pagkatapos ng kuwento, may maikling pagsusulit. Mag-aayos ka ng mga pangyayari, magtutugma ng mga pangalan, at maghahanap pa ng mali. Mag-isip ka gaya ng historyador!",
+  "t11": "Ang tamang sagot ay may katumbas na XP, tatak at alaala. Sumagot nang tama nang sunud-sunod upang bumuo ng streak. Magsimula bilang Estudyante; magtapos bilang Ilustrado.",
+  "t12": "Iniingatan ng iyong pasaporte ang bawat tatak na makukuha mo. Iniingatan ng iyong talaarawan ang bawat alaala. Dalawin mo sila nang madalas.",
+  "t13": "Kusang nai-save ang iyong paglalakbay sa browser na ito. Abangan ang tandang ito. Para makasiguro, mag-download ng save code mula sa Settings tuwing ilang hinto.",
+  "t14": "Iyan lang ang kailangan mo. Ang aking ina ang una kong guro, at dito nagsisimula ang aking kuwento. Tayo na?"
+ },
+ "tips": {
+  "quiz-first": "Basahing mabuti ang bawat tanong. Kung naiipit ka, ituturo ka ng pahiwatig pabalik sa kuwento. Nasa mga kabanatang binasa mo ang bawat sagot.",
+  "passport-first": "Ang una mong tatak! Marami akong naipon sa sarili kong pasaporte. Dalawampu't apat pa ang naghihintay.",
+  "journal-first": "Ikinukuwento ng mga alaala ang aking buhay sa pamamagitan ng mga bagay: isang pluma, isang aklat, isang tiket. Pindutin ang isa upang mabasa ito.",
+  "builder-first": "Sa Dapitan, nagtayo ako ng paaralan, klinika at sistema ng tubig kasama ang aking mga mag-aaral. Ikaw naman ngayon. Gamitin ang mga materyales na naipon mo sa paglalakbay.",
+  "gallery-first": "Narito ang bawat tagpong nabuksan mo. Tingnang mabuti: iginuhit ang bawat isa mula sa mga paglalarawan ng tunay na lugar at taon.",
+  "settings-first": "Dito mo mababago ang laki ng teksto at ang wika, mababawasan ang galaw, at makapagda-download o makapaglo-load ng save code.",
+  "private-mode": "Mukhang nasa private window ka. Mabubura ang iyong progreso pagsara mo nito. Mag-download ng save code upang maingatan ito.",
+  "rank-up": "Bagong ranggo! Minsan akong maliit na batang nasa dulo ng hanay sa Ateneo. Tingnan mo kung gaano ka na kalayo."
+ },
+ "reactions": {
+  "correct": [
+   "Sobresaliente! Napakahusay.",
+   "Tamang-tama. Maingat kang bumasa.",
+   "Ganiyan nga ang sinasabi ng mga sanggunian.",
+   "Magaling. Ipagmamalaki ka ng aking mga guro."
+  ],
+  "wrong": [
+   "Hindi pa. Tingnan muli; nasa kuwento ang sagot.",
+   "Kahit ako'y nagsimula sa dulo ng hanay. Subukan muli.",
+   "Basahin ang pahiwatig, saka subukan muli. Dalawang beses sumusuri ang historyador."
+  ],
+  "streak": [
+   "Lima nang sunud-sunod! Nagiging emperador ka na ng klaseng ito.",
+   "Sampu nang sunud-sunod! Papalakpakan ka maging ni Padre Bech."
+  ],
+  "perfect": [
+   "Perpektong iskor. Karapat-dapat iyan sa medalya, at narito na."
+  ]
+ }
+}

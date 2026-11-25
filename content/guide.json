@@ -1,0 +1,64 @@
+{
+  "_readme": "Rizal's walkthrough (SRS v2.3 §3.7). Shown on first visit and from Settings > 'Replay the tour'. Each step: target = data-guide id of the element to highlight (null = centred card), route = page it runs on, mood = portrait row, text <= 32 words, next = 'button' or 'click-target'. The guide is a framing device: Rizal's real words appear only in stops, marked 'recorded'. Never show the guide on the final stop (GD-6).",
+  "speaker": "rizal",
+  "tour": [
+    {"id": "t1", "route": "/", "target": null, "mood": "happy", "next": "button",
+     "text": "Good day! I am José Rizal. Welcome to Lakbay Rizal, \"Rizal's journey\". Come, travel with me through the places where I lived, studied and wrote."},
+    {"id": "t2", "route": "/", "target": "map", "mood": "neutral", "next": "button",
+     "text": "This is the map. Each pin marks a place on my journey, from Calamba, where I was born in 1861, to Manila in 1896."},
+    {"id": "t3", "route": "/", "target": "region-tabs", "mood": "thinking", "next": "button",
+     "text": "My travels crossed four regions: the Philippines, Asia, Europe and America. Switch between them here."},
+    {"id": "t4", "route": "/", "target": "timeline", "mood": "neutral", "next": "button",
+     "text": "Slide through the years to follow my path in order. Thirty-five years, twenty-five stops."},
+    {"id": "t5", "route": "/", "target": "mode-toggle", "mood": "neutral", "next": "button",
+     "text": "In Guided mode, stops open one at a time. In Free mode, you may go anywhere. I suggest Guided for your first journey."},
+    {"id": "t6", "route": "/", "target": "pin-current", "mood": "happy", "next": "click-target",
+     "text": "The glowing pin is your next stop: Calamba. Tap it, and we begin."},
+    {"id": "t7", "route": "/stop/calamba-1861", "target": "scene", "mood": "neutral", "next": "button",
+     "text": "Every stop is a story in chapters. Read each part, then press Next. When someone speaks, you will see them up close."},
+    {"id": "t8", "route": "/stop/calamba-1861", "target": "line-tag", "mood": "serious", "next": "button",
+     "text": "A line marked \"Recorded\" uses my real words, from my own writings. Lines marked \"Dramatized\" are imagined, but based on real events."},
+    {"id": "t9", "route": "/stop/calamba-1861", "target": "sources-card", "mood": "thinking", "next": "button",
+     "text": "Here are the books and letters each story comes from. A good student, like a good historian, checks the sources."},
+    {"id": "t10", "route": "/stop/calamba-1861", "target": "quiz-button", "mood": "happy", "next": "button",
+     "text": "After the story comes a short quiz. You will order events, match names, and even find mistakes. Think like a historian!"},
+    {"id": "t11", "route": "/stop/calamba-1861", "target": "xp-bar", "mood": "happy", "next": "button",
+     "text": "Right answers earn experience points, stamps and keepsakes. Answer well in a row to build a streak. Begin as an Estudyante; finish as an Ilustrado."},
+    {"id": "t12", "route": "/stop/calamba-1861", "target": "passport-button", "mood": "neutral", "next": "button",
+     "text": "Your passport keeps every stamp you earn. Your journal keeps every keepsake. Visit them often."},
+    {"id": "t13", "route": "/stop/calamba-1861", "target": "save-indicator", "mood": "serious", "next": "button",
+     "text": "Your journey saves itself in this browser. Watch for this sign. To be safe, download a save code from Settings every few stops."},
+    {"id": "t14", "route": "/stop/calamba-1861", "target": null, "mood": "happy", "next": "button",
+     "text": "That is all you need. My mother was my first teacher, and this is where my story begins. Shall we?"}
+  ],
+  "tips": {
+    "quiz-first": {"mood": "thinking", "text": "Read each question carefully. If you are stuck, the hint points you back to the story. Every answer is in the chapters you just read."},
+    "passport-first": {"mood": "happy", "text": "Your first stamp! I collected many in my own passport. Twenty-four more are waiting."},
+    "journal-first": {"mood": "neutral", "text": "Keepsakes tell my story through objects: a pen, a book, a ticket. Tap one to read about it."},
+    "builder-first": {"mood": "happy", "text": "In Dapitan I built a school, a clinic and a water system with my pupils. Now it is your turn. Use the materials you earned on the journey."},
+    "gallery-first": {"mood": "neutral", "text": "Every scene you unlock is kept here. Look closely: each one was drawn from descriptions of the real place and year."},
+    "settings-first": {"mood": "serious", "text": "Here you can change the text size and language, turn motion down, and download or load a save code."},
+    "private-mode": {"mood": "serious", "text": "You seem to be in a private window. Your progress will be erased when you close it. Download a save code to keep it."},
+    "rank-up": {"mood": "happy", "text": "A new rank! I was once a small boy at the end of the line at the Ateneo. Look how far you have come."}
+  },
+  "reactions": {
+    "correct": [
+      {"mood": "happy", "text": "Sobresaliente! Excellent."},
+      {"mood": "happy", "text": "Exactly right. You read carefully."},
+      {"mood": "happy", "text": "Just as the sources say."},
+      {"mood": "happy", "text": "Well done. My teachers would be proud."}
+    ],
+    "wrong": [
+      {"mood": "thinking", "text": "Not quite. Look again; the answer is in the story."},
+      {"mood": "neutral", "text": "Even I began at the end of the line. Try once more."},
+      {"mood": "thinking", "text": "Read the hint, then try again. A historian checks twice."}
+    ],
+    "streak": [
+      {"mood": "surprised", "text": "Five in a row! You are becoming emperor of this class."},
+      {"mood": "happy", "text": "Ten in a row! Even Father Bech would applaud."}
+    ],
+    "perfect": [
+      {"mood": "happy", "text": "A perfect score. That deserves a medal, and here it is."}
+    ]
+  }
+}

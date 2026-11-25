@@ -48,3 +48,6 @@ Each writes `out/scene_<name>.png` (ship this) and `out/prev_<name>.png` (3× pr
 - `terrain.py`: renders a region map from real coastlines (`global-land-mask`). `lakes=[polygon]` paints lakes the dataset misses (Laguna de Bay is done this way).
 - `gen_map.py` (Europe), `gen_ph.py` (Philippines + Manila inset), `gen_asia_america.py` (Asia and America; the Great Lakes are drawn with `lakes=`), `gen_dapitan.py` (top-down builder art), `gen_clinic.py` (the octagonal Casa Redonda clinic), `gen_icons.py` (first 8 stamps), `gen_icons2.py` (the other 17 stamps and all 24 item icons).
 - `gen_asia_america.py` prints each town's pixel position in % — the app computes pins from lat/lon itself (SRS §8.6), so these are only for checking.
+
+## Portraits (v2.3)
+`python3 portraits.py` draws the 24 close-up portrait sheets into `out/portraits/` (256 × 384: 4 frames × 6 moods of 64 × 64; see SRS §7.10) and a contact sheet `out/portraits_contact.png`. Requires `pillow numpy matplotlib`. To adjust a character, edit its entry in `SPECS` and run the script again.
