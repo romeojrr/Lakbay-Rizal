@@ -67,6 +67,11 @@ export function createRoutes(loader: RootLoader = rootLoader): RouteObject[] {
         { path: 'scenes', lazy: page(() => import('../features/gallery/GalleryPage')) },
         { path: 'settings', lazy: page(() => import('../features/settings/SettingsPage')) },
         { path: 'credits', lazy: page(() => import('../features/credits/CreditsPage')) },
+        { path: 'timeline', lazy: page(() => import('../features/timeline/TimelinePage')) },
+        {
+          path: 'certificate',
+          lazy: page(() => import('../features/certificate/CertificatePage')),
+        },
         { path: '*', Component: NotFoundPage },
       ],
     },

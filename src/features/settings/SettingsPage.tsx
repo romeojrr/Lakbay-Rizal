@@ -12,6 +12,7 @@ import { useProgress, type Progress } from '../../store/progress';
 import { useUi } from '../../store/ui';
 import styles from './SettingsPage.module.css';
 import { useTip } from '../guide/TipBubble';
+import SaveCodePanel from './SaveCodePanel';
 
 type Settings = Progress['settings'];
 
@@ -159,6 +160,7 @@ export default function SettingsPage() {
           {t('settings.replayTour')}
         </button>
       </div>
+      <SaveCodePanel />
       <div className={styles.danger}>
         <h2 className={styles.legend}>{t('settings.reset')}</h2>
         <p className={styles.help}>{t('settings.resetHelp')}</p>

@@ -139,7 +139,7 @@ After the first visit a service worker keeps the whole game (pages, art, fonts, 
 
 ## Saved progress
 
-Progress is stored in the browser under the key `lakbay-rizal:v1` (store version 2 since v2.3; older saves are upgraded automatically). If a save cannot be read, the game keeps a copy under `lakbay-rizal:v1:corrupt`, starts fresh and tells the player. To change what is saved, bump the version and add a migration in `src/store/migrations.ts`. Players can reset everything from **Settings → Reset progress**.
+Progress is stored in the browser under the key `lakbay-rizal:v1` (store version 2 since v2.3; older saves are upgraded automatically). If a save cannot be read, the game keeps a copy under `lakbay-rizal:v1:corrupt`, starts fresh and tells the player. To change what is saved, bump the version and add a migration in `src/store/migrations.ts`. Players can reset everything from **Settings → Reset progress**, and copy their progress to another device (or keep a backup) with **Settings → Save code** (a short code or a `.lakbay` file). The game warns before leaving the page only in the middle of a quiz.
 
 ## Quality checks (last run 25 November 2026)
 

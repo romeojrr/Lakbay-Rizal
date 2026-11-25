@@ -148,3 +148,26 @@ a {
 :root[data-motion='on'] .motion-fade {
   animation-duration: 200ms !important;
 }
+
+/* FR-87: printing shows only the page content (the certificate), on one sheet. */
+@page {
+  margin: 12mm;
+}
+
+@media print {
+  header,
+  nav,
+  footer,
+  [data-no-print],
+  [aria-live] {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+}

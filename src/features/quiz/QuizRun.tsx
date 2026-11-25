@@ -6,6 +6,7 @@ import type { Content, PlayableStop, Question } from '../../content/schemas';
 import { t } from '../../i18n/t';
 import { useRootData } from '../../app/useRootData';
 import { useGame } from '../../game/useGame';
+import { useUi } from '../../store/ui';
 import Feedback from './Feedback';
 import RizalReaction, { pickReaction, type Reaction, type ReactionKind } from './RizalReaction';
 import ChoiceInput, { type Status } from './inputs/ChoiceInput';
@@ -80,6 +81,13 @@ export default function QuizRun({ stop, content }: QuizRunProps) {
     else if (status !== 'answering') feedbackRef.current?.focus();
     else promptRef.current?.focus();
   }, [index, status, reward]);
+
+  // §3.9: once an answer is checked and until the reward, leaving would lose the quiz.
+  const inProgress = !reward && (results.length > 0 || status !== 'answering');
+  useEffect(() => {
+    useUi.getState().setUnsaved(inProgress);
+    return () => useUi.getState().setUnsaved(false);
+  }, [inProgress]);
 
   if (!question) return null;
 

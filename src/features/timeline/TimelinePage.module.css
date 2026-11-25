@@ -1,0 +1,174 @@
+/* FR-88 /timeline: a vertical list in v2.2 cards (white, 3 px ink border). */
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--fs-h2);
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+}
+
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.filterLabel {
+  min-width: 70px;
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
+
+.filter button {
+  min-height: 44px;
+  padding: 2px 12px;
+  font-size: var(--fs-small);
+  color: var(--ink);
+  background: var(--card);
+  border: 3px solid var(--ink);
+  cursor: pointer;
+}
+
+.filter button[aria-pressed='true'] {
+  background: var(--accent);
+}
+
+.count {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-left: 4px solid var(--wood);
+  padding-left: 14px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 110px 96px minmax(0, 1fr) 56px;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--card);
+  border: 3px solid var(--ink);
+}
+
+.year {
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
+
+.thumb {
+  display: block;
+  width: 96px;
+  height: 54px;
+  background: var(--track);
+  border: 2px solid var(--ink);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.name {
+  margin: 0;
+  font-size: var(--fs-body);
+}
+
+.name a {
+  color: var(--ink);
+}
+
+.place {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-small);
+}
+
+.completed {
+  color: var(--success);
+}
+
+.visited,
+.open {
+  color: var(--ink);
+}
+
+.next {
+  padding: 0 6px;
+  background: var(--accent);
+  border: 2px solid var(--ink);
+}
+
+.locked {
+  color: var(--muted);
+}
+
+.stamp,
+.noStamp {
+  width: 52px;
+  height: 52px;
+}
+
+.noStamp {
+  border: 2px dashed var(--line-soft);
+}
+
+@media (max-width: 640px) {
+  .item {
+    grid-template-columns: 80px minmax(0, 1fr);
+    grid-template-areas:
+      'year year'
+      'thumb body';
+  }
+
+  .year {
+    grid-area: year;
+  }
+
+  .thumb {
+    grid-area: thumb;
+    width: 80px;
+    height: 45px;
+  }
+
+  .body {
+    grid-area: body;
+  }
+
+  .stamp,
+  .noStamp {
+    display: none;
+  }
+}

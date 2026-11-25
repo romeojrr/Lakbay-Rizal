@@ -6,3 +6,59 @@
   min-height: 24px;
   color: var(--card-warm);
 }
+
+.slot {
+  gap: 6px;
+  font-size: var(--fs-small);
+}
+
+.disk {
+  color: var(--ink-line);
+  image-rendering: pixelated;
+}
+
+/* "Saved" fades in, then out (§3.9). */
+.saved {
+  white-space: nowrap;
+  animation: saved 1200ms ease-out forwards;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes saved {
+  0% {
+    opacity: 0;
+  }
+  20%,
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.failed {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 10px;
+  font-size: var(--fs-small);
+  color: #ffffff;
+  background: #9c2a1f;
+  border: 2px solid var(--card-warm);
+  cursor: pointer;
+}
+
+.failed .disk {
+  color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .saved {
+    display: none;
+  }
+}

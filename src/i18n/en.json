@@ -416,7 +416,17 @@
   "certificate": {
     "title": "Certificate of Journey",
     "print": "Print certificate",
-    "name": "Your name"
+    "name": "Your name",
+    "intro": "This certifies that",
+    "journey": "has followed José Rizal's journey across the Philippines, Asia, Europe and America, from Calamba to Bagumbayan.",
+    "rank": "Rank: {rank}",
+    "stamps": "Stamps: {gold} gold and {silver} silver",
+    "date": "Date: {date}",
+    "namePlaceholder": "Type your name",
+    "nameHelp": "Your name stays on this device only.",
+    "back": "◀ Back to passport",
+    "notYet": "Complete all {n} quiz stops to earn the certificate.",
+    "save": "Save name"
   },
   "save": {
     "saved": "Saved",
@@ -426,7 +436,32 @@
     "importBad": "That save code could not be read",
     "reminder": "It's been a while. Download a save code to keep your progress safe.",
     "private": "Private window: progress will be erased when you close it.",
-    "unsaved": "You are in the middle of a quiz. Leave anyway?"
+    "unsaved": "You are in the middle of a quiz. Leave anyway?",
+    "autoSave": "Your progress saves itself in this browser.",
+    "notSaved": "Not saved",
+    "notSavedTitle": "Your progress is not being saved",
+    "notSavedBody": "This browser did not let the game save (its storage is full or blocked). Your progress will be lost when you close this page. Download a save code to keep it.",
+    "getCode": "Get a save code in Settings",
+    "title": "Save code",
+    "help": "Your progress is saved in this browser. A save code keeps a copy you can load on another device or after clearing the browser.",
+    "codeLabel": "Your save code",
+    "copy": "Copy code",
+    "copied": "Copied",
+    "download": "Download .lakbay file",
+    "loadLabel": "Paste a save code",
+    "loadFile": "Or choose a .lakbay file",
+    "load": "Load this code",
+    "confirmLoad": "Replace your progress on this device with the progress in this code?",
+    "loadErrEmpty": "Paste a save code first.",
+    "loadErrFormat": "That does not look like a Lakbay Rizal save code.",
+    "loadErrChecksum": "Part of that save code is missing or changed. Copy the whole code again.",
+    "loadErrNewer": "That save code comes from a newer version of the game. Update the page and try again.",
+    "loadErrDamaged": "That save code could not be read. Nothing was changed.",
+    "reminders": "Remind me to download a save code",
+    "privateTitle": "Private window",
+    "privateBody": "You are in a private window, so your progress will be erased when you close it. Download a save code to keep it.",
+    "privateAction": "Get a save code",
+    "dismiss": "Close"
   },
   "a11y": {
     "portrait": "Portrait of {name}, {mood}",
@@ -453,5 +488,19 @@
     "tryIt": "Do it for me",
     "tipLabel": "Tip from José Rizal",
     "close": "Close tip"
+  },
+  "timelinePage": {
+    "title": "Timeline",
+    "theme": "Theme",
+    "region": "Region",
+    "all": "All",
+    "count": "Showing {n} of {total} stops",
+    "place": "{then} → {today}",
+    "completed": "Completed",
+    "visited": "Story read",
+    "next": "Your next stop",
+    "open": "Open",
+    "locked": "Locked",
+    "stamp": "Stamp earned"
   }
 }

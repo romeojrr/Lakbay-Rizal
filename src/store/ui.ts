@@ -4,9 +4,16 @@ import { create } from 'zustand';
 import type { RegionId } from '../content/schemas';
 
 /** §3.8: an achievement toast or a rank-up banner, shown one after another. */
-export type Celebration = { kind: 'achievement'; id: string } | { kind: 'rank'; id: string };
+export type Celebration =
+  | { kind: 'achievement'; id: string }
+  | { kind: 'rank'; id: string }
+  /** §3.9: suggest downloading a save code. */
+  | { kind: 'reminder'; id: 'stops' | 'days' };
 
 interface UiState {
+  /** §3.9: something is not saved yet (a quiz in progress, a name being typed). */
+  unsaved: boolean;
+  setUnsaved: (unsaved: boolean) => void;
   /** §3.7 the guided tour: running, and at which step. */
   tour: { active: boolean; step: number };
   /** The tour has been offered this visit (so it does not start twice). */
@@ -45,6 +52,8 @@ export const useUi = create<UiState>()((set) => ({
   timelineYear: null,
   timelineExpanded: false,
   pendingFocus: null,
+  unsaved: false,
+  setUnsaved: (unsaved) => set({ unsaved }),
   tour: { active: false, step: 0 },
   tourOffered: false,
   startTour: () => set({ tour: { active: true, step: 0 }, tourOffered: true, tip: null }),

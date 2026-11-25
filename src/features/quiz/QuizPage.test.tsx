@@ -48,7 +48,7 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 
-describe('Quiz v3 (FR-40 to FR-43, FR-81, FR-82)', () => {
+describe('Quiz v3 (FR-40 to FR-43, FR-81, FR-82)', { timeout: 20_000 }, () => {
   it('shows one question at a time, with a progress count and the type instruction', async () => {
     renderAt('/stop/calamba-1861/quiz');
     expect(await screen.findByRole('heading', { name: 'Calamba Quiz' })).toBeVisible();

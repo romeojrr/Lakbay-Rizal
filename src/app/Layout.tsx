@@ -4,6 +4,7 @@ import BottomNav from '../components/BottomNav/BottomNav';
 import Celebrations from '../components/Celebrations/Celebrations';
 import TipBubble from '../features/guide/TipBubble';
 import Tour from '../features/guide/Tour';
+import SaveGuard from '../features/save/SaveGuard';
 import Toast from '../components/Toast/Toast';
 import TopBar from '../components/TopBar/TopBar';
 import { getNextStop } from '../content/selectors';
@@ -64,6 +65,7 @@ export default function Layout() {
         earned={earned}
         total={stops.length}
       />
+      <SaveGuard />
       <main className={styles.main}>
         <Outlet />
       </main>

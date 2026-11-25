@@ -99,3 +99,42 @@
   box-shadow: var(--shadow-button);
   cursor: pointer;
 }
+
+/* §3.9 save code */
+.codeBox {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.code {
+  width: 100%;
+  padding: 8px;
+  font: inherit;
+  font-size: var(--fs-small);
+  word-break: break-all;
+  color: var(--ink);
+  background: var(--card);
+  border: 3px solid var(--ink);
+  resize: vertical;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.file {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: var(--fs-small);
+}
+
+.error {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: #9c2a1f;
+}

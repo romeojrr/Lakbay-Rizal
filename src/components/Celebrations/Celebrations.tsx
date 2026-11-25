@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useRootData } from '../../app/useRootData';
 import { t } from '../../i18n/t';
 import { asset } from '../../lib/asset';
@@ -47,6 +48,21 @@ export default function Celebrations() {
         </div>
       );
     }
+  } else if (current?.kind === 'reminder') {
+    body = (
+      <div className={`${styles.toast} ${still ? 'motion-fade' : styles.slide}`}>
+        <p className={styles.text}>
+          <span>{t('save.reminder')}</span>
+          <Link to="/settings#save-code" onClick={dismiss}>
+            {t('save.getCode')}
+          </Link>
+        </p>
+        <button type="button" className={styles.close} onClick={dismiss}>
+          <span aria-hidden="true">✕</span>
+          <span className="visually-hidden">{t('celebrate.close')}</span>
+        </button>
+      </div>
+    );
   } else if (current?.kind === 'rank') {
     const rank = gamification.ranks.find((r) => r.id === current.id);
     if (rank) {

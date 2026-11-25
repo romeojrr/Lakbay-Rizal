@@ -7,6 +7,7 @@ import type { Stop } from '../content/schemas';
 import type { JourneyMode } from '../content/selectors';
 import { browserLanguage, type Lang } from '../i18n/language';
 import { CURRENT_VERSION, migrateProgress, sanitizeProgress } from './migrations';
+import { useSaveStatus } from './saveStatus';
 
 export const STORAGE_KEY = 'lakbay-rizal:v1';
 export const CORRUPT_KEY = `${STORAGE_KEY}:corrupt`;
@@ -116,7 +117,7 @@ export function initialProgress(): Progress {
 }
 
 /** The saved fields, in order (everything in the store except the actions). */
-const PROGRESS_KEYS = Object.keys(initialProgress()) as (keyof Progress)[];
+export const PROGRESS_KEYS = Object.keys(initialProgress()) as (keyof Progress)[];
 
 interface ProgressActions {
   setMode: (mode: JourneyMode) => void;
@@ -197,8 +198,10 @@ const storage: PersistStorage<Progress> = {
   setItem(name, value) {
     try {
       localStorage.setItem(name, JSON.stringify(value));
+      useSaveStatus.getState().report(true);
     } catch {
-      // Quota or private mode: progress lives for this visit only.
+      // Quota or blocked storage: progress lives for this visit only (§3.9: "Not saved").
+      useSaveStatus.getState().report(false);
     }
   },
   removeItem(name) {

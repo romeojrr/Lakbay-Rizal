@@ -50,7 +50,7 @@ export default function StopActions({ stop, finished, isFinal, onReadMore }: Sto
           </h2>
           <p className={styles.epilogueText}>{t('stop.epilogueBody')}</p>
           <div className={styles.epilogueLinks}>
-            <Link to={`/region/${stop.region}`}>{t('stop.epilogueTimeline')}</Link>
+            <Link to="/timeline">{t('stop.epilogueTimeline')}</Link>
             <Link to="/credits">{t('stop.epilogueCredits')}</Link>
           </div>
         </Panel>

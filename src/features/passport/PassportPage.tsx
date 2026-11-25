@@ -11,6 +11,7 @@ import { useProgress } from '../../store/progress';
 import { AchievementsPanel, RankPanel } from './AchievementsPanel';
 import styles from './PassportPage.module.css';
 import PassportTabs from './PassportTabs';
+import { quizStopIds } from '../certificate/CertificatePage';
 import { useTip } from '../guide/TipBubble';
 
 /** /passport — an open leather passport: traveller page and stamp page (FR-50 to FR-52). */
@@ -94,6 +95,11 @@ export default function PassportPage() {
         <Link className={styles.journal} to="/journal">
           {t('passport.journal')}
         </Link>
+        {quizStopIds(stops).every((id) => completed.includes(id)) && (
+          <Link className={styles.journal} to="/certificate">
+            {t('certificate.print')}
+          </Link>
+        )}
       </section>
 
       <section className={`${styles.page} ${styles.stampsPage}`} aria-labelledby="stamps-title">

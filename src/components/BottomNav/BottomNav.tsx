@@ -59,13 +59,11 @@ export default function BottomNav({ mapRegion, earned, total }: BottomNavProps) 
             label={t('nav.map')}
             current={pathname.startsWith('/region')}
           />
-          {/* The /timeline page arrives in U7; until then this opens the map's timeline. */}
           <Item
-            to={map}
-            state={{ openTimeline: true }}
+            to="/timeline"
             icon={<TimelineIcon />}
             label={t('nav.timeline')}
-            current={false}
+            current={pathname === '/timeline'}
           />
           <Item
             to="/passport"
