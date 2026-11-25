@@ -34,6 +34,11 @@
   --line-soft: #e4dcc8;
   --track: #efe7d3;
 
+  /* Story page */
+  --dialogue-bg: #fffdf6;
+  --speaker: #a4521a; /* mockup #B8601A darkened to pass 4.5:1 */
+  --source-needed: #9c3b1f;
+
   /* Quiz feedback */
   --success: #23703a;
   --wrong: #f6c3bd;

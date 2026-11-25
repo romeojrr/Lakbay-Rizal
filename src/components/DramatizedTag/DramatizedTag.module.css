@@ -1,0 +1,49 @@
+.wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--gold);
+  border: 3px solid var(--ink);
+  cursor: help;
+  min-height: 36px;
+}
+
+.tip {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 3;
+  width: max-content;
+  max-width: 240px;
+  padding: 8px 10px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--card-warm);
+  background: var(--ink);
+  border: 2px solid var(--card-warm);
+  visibility: hidden;
+}
+
+@media (max-width: 640px) {
+  .tag {
+    min-height: 0;
+    padding: 2px 6px;
+    font-size: 12px;
+    border-width: 2px;
+  }
+}
+
+.wrap:hover .tip,
+.tag:focus-visible + .tip,
+.open {
+  visibility: visible;
+}

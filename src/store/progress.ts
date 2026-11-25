@@ -39,9 +39,15 @@ export function initialProgress(): Progress {
 
 interface ProgressActions {
   setMode: (mode: JourneyMode) => void;
+  /** GD-3: a stop is visited once its dialogue is finished. Safe to call twice. */
+  visit: (stopId: string) => void;
 }
 
 export const useProgress = create<Progress & ProgressActions>()((set) => ({
   ...initialProgress(),
   setMode: (mode) => set({ mode }),
+  visit: (stopId) =>
+    set((state) =>
+      state.visited.includes(stopId) ? state : { visited: [...state.visited, stopId] },
+    ),
 }));

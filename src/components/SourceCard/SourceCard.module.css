@@ -1,0 +1,68 @@
+.card {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.missing {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--source-needed);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.citation {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.detail {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.link {
+  align-self: flex-start;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.more {
+  align-self: flex-start;
+  min-height: 44px;
+  padding: 4px 0;
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--ink);
+  text-decoration: underline;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}

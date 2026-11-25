@@ -1,0 +1,22 @@
+.box {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: var(--track);
+  border: var(--border);
+}
+
+.sprite {
+  position: absolute;
+  max-width: none;
+}
+
+.book {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  width: 42px;
+  height: 42px;
+}

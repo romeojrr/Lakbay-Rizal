@@ -5,6 +5,7 @@ import type { Content, Stop } from '../content/schemas';
 import { getVisibleStops, shouldIncludeDrafts } from '../content/selectors';
 import HomeRedirect from '../features/map/HomeRedirect';
 import MapPage from '../features/map/MapPage';
+import StopPage from '../features/stop/StopPage';
 import ContentError from './ContentError';
 import Layout from './Layout';
 import LoadingScreen from './LoadingScreen';
@@ -46,6 +47,7 @@ export function createRoutes(loader: RootLoader = rootLoader): RouteObject[] {
       children: [
         { index: true, Component: HomeRedirect },
         { path: 'region/:regionId', Component: MapPage },
+        { path: 'stop/:stopId', Component: StopPage },
         { path: '*', Component: BlankPage },
       ],
     },

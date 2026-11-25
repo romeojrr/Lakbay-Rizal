@@ -1,0 +1,209 @@
+/* Layout from Story.dc.html */
+.page {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.top {
+  flex: 1 1 100%;
+  margin-bottom: -8px;
+}
+
+.story {
+  flex: 999 1 560px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.aside {
+  flex: 1 1 320px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cardTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* This stop */
+.facts {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.factsHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.stopTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.dates {
+  margin: -6px 0 0;
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.places {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+}
+
+.place {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px;
+  background: var(--card-warm);
+  border: 2px solid var(--ink);
+}
+
+.place dt {
+  font-family: var(--font-display);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.place dd {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+/* Item reward */
+.item {
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.itemIcon {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--card-warm);
+  border: var(--border);
+}
+
+.itemText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.itemLabel {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.itemName {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.primary,
+.secondary,
+.disabled {
+  flex: 1;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--ink);
+  border: var(--border);
+}
+
+.primary {
+  background: var(--accent);
+  box-shadow: var(--shadow-button);
+}
+
+.secondary {
+  background: var(--card);
+  box-shadow: var(--shadow-button);
+  cursor: pointer;
+}
+
+.primary:active,
+.secondary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.disabled {
+  color: var(--muted);
+  background: var(--line-soft);
+  border-color: #a39a8c;
+}
+
+/* Final stop (GD-6) */
+.epilogue {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.epilogueText {
+  margin: 0;
+}
+
+.epilogueLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font-weight: 800;
+}
+
+/* Not found / locked */
+.notice {
+  max-width: 560px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.noticeTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 24px;
+}

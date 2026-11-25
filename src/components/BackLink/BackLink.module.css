@@ -1,0 +1,18 @@
+.back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 6px 14px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--card);
+  border: var(--border);
+  box-shadow: var(--shadow-button);
+}
+
+.back:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink);
+}

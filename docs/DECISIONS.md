@@ -41,4 +41,15 @@ One line per judgment call: date — decision — reason.
 - 2026-11-25 — Theme chips use darker backgrounds for Study (#2C5FB8) and Cause (#B23A2B). — White and ink text both fall below 4.5:1 on the SRS theme colors; pins and swatches keep the original colors.
 - 2026-11-25 — `/` redirects to the last region viewed, or the region of the next stop. — FR-2 "map, last region"; a redirect also highlights the right tab.
 - 2026-11-25 — Not built yet: the "↖ Hong Kong · locked" off-map hint from Philippines.dc.html. — Not in the FR list; can be added in M7 with the Asia map.
+- 2026-11-25 — Stop page keeps the normal header (with region tabs) and puts "◀ Back to map" above the scene; the mockup puts the back link in the header instead. — One shared header is simpler; the back link is still the first thing on the page.
+- 2026-11-25 — Back links go back one step in the browser history when the visit has one, else to the stop's region map. — FR-3: map → stop → quiz → back → back must land on the same map.
+- 2026-11-25 — The narrator's portrait is a pixel-SVG book, not `characters.narrator.icon` (the Bagumbayan sampaguita). — SRS §3.6 says "Narrator (book icon)"; a flower from the final stop on every stop would be confusing.
+- 2026-11-25 — Default portrait crop: sprite at 3×, centred (+3 px), top −18 px for sprites 60 px or taller, −3 px for small children; `characters[].portrait` overrides it. — Gives the mockup's exact crop for 34 × 78 sprites and keeps child faces in frame.
+- 2026-11-25 — The "…" bubble's bottom centre sits on the speaker anchor. — Anchors are near each speaker's head in the art.
+- 2026-11-25 — Speaker names use #A4521A (mockup #B8601A is 4.37:1); the locked Quiz button uses --muted text. — 4.5:1 contrast.
+- 2026-11-25 — The Sources card shows the first two citations and a "Show all N sources" button; online sources get a "Read online" link (opens a new tab). — Berlin has 7 sources; all seven at once make the panel very long. Links are navigation, not runtime requests (NFR-5).
+- 2026-11-25 — The stop title (e.g. "The Noli is printed") and date range appear in the "This stop" card; the scene badge (h1) shows place · year as in the mockup. — The mockup has no place for the title; players should still see it.
+- 2026-11-25 — Read more uses the native `<dialog>` with an added Tab/Shift+Tab cycle. — Native modals let Tab escape to the browser UI; FR-33 asks for a focus trap.
+- 2026-11-25 — A locked stop opened by URL (Guided) shows "This stop is still locked" with a link to the next stop; outline stops show "coming soon". — FR-18.
+- 2026-11-25 — On the final stop (no quiz) the Epilogue card (timeline + credits links) appears once the dialogue is finished. Completing the stop and the plain passport page come with the progress actions in M4. — GD-6.
 - 2026-11-25 — Playwright now builds with INCLUDE_DRAFTS=true. The production "Content coming soon" check is a unit test for now; the second e2e build arrives with the §12 test in M8. — Two builds in one Playwright run need extra setup.
