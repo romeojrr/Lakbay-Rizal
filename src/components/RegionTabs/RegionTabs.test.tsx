@@ -36,6 +36,16 @@ describe('RegionTabs', () => {
     ]);
   });
 
+  it('marks the region of the next stop for everyone, including screen readers', () => {
+    render(
+      <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <RegionTabs regions={regions} nextRegion="asia" />
+      </MemoryRouter>,
+    );
+    expect(screen.getByRole('link', { name: 'Asia, your next stop is here' })).toBeVisible();
+    expect(screen.getByRole('link', { name: 'Europe' })).toBeVisible();
+  });
+
   it('marks only the current region tab', () => {
     renderAt('/region/europe');
     expect(screen.getByRole('link', { name: 'Europe' })).toHaveAttribute('aria-current', 'page');

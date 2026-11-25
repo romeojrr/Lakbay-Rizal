@@ -1,13 +1,15 @@
 import { NavLink } from 'react-router-dom';
-import type { Region } from '../../content/schemas';
+import type { Region, RegionId } from '../../content/schemas';
 import { t } from '../../i18n/t';
 import styles from './RegionTabs.module.css';
 
 interface RegionTabsProps {
   regions: readonly Pick<Region, 'id' | 'label'>[];
+  /** Region of the player's next stop; its tab gets a small marker. */
+  nextRegion?: RegionId;
 }
 
-export default function RegionTabs({ regions }: RegionTabsProps) {
+export default function RegionTabs({ regions, nextRegion }: RegionTabsProps) {
   return (
     <nav aria-label={t('nav.regions')} className={styles.nav}>
       <ul className={styles.list}>
@@ -20,6 +22,12 @@ export default function RegionTabs({ regions }: RegionTabsProps) {
               }
             >
               {region.label}
+              {region.id === nextRegion && (
+                <>
+                  <span className={styles.marker} aria-hidden="true" />
+                  <span className="visually-hidden">{t('nav.nextHere')}</span>
+                </>
+              )}
             </NavLink>
           </li>
         ))}

@@ -30,6 +30,20 @@
   border-color: var(--card-warm);
 }
 
+/* Marks the region of the next stop. */
+.marker {
+  width: 10px;
+  height: 10px;
+  margin-left: 8px;
+  background: var(--gold);
+  border: 2px solid var(--card-warm);
+}
+
+.active .marker {
+  background: var(--card-warm);
+  border-color: var(--ink);
+}
+
 .active,
 .active:hover {
   color: var(--ink);

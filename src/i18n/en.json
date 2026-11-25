@@ -8,6 +8,7 @@
   },
   "nav": {
     "regions": "Regions",
+    "nextHere": ", your next stop is here",
     "scenes": "Scenes",
     "passport": "Passport · {done}/{total}"
   },

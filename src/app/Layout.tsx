@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import RegionTabs from '../components/RegionTabs/RegionTabs';
 import Toast from '../components/Toast/Toast';
+import { getNextStop } from '../content/selectors';
 import { t } from '../i18n/t';
 import { asset } from '../lib/asset';
 import { consumeLoadProblem, useProgress } from '../store/progress';
@@ -30,6 +31,8 @@ function PassportIcon() {
 export default function Layout() {
   const { content, stops } = useRootData();
   const stamps = useProgress((s) => s.stamps);
+  const completed = useProgress((s) => s.completed);
+  const nextRegion = getNextStop(stops, { completed })?.region;
   const earned = stops.filter((s) => stamps.includes(s.id)).length;
   // §8.5: tell the player once if their saved progress could not be read.
   const [notice, setNotice] = useState(() =>
@@ -63,7 +66,7 @@ export default function Layout() {
             />
             <span className={styles.logoText}>{t('app.logo')}</span>
           </Link>
-          <RegionTabs regions={content.regions} />
+          <RegionTabs regions={content.regions} nextRegion={nextRegion} />
           <div className={styles.actions}>
             <Link to="/scenes" className={styles.navLink}>
               {t('nav.scenes')}
