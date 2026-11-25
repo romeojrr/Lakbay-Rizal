@@ -3,6 +3,8 @@ import { loadContent } from '../content/loader';
 import { isPreviewMode } from '../content/preview';
 import type { Content, Stop } from '../content/schemas';
 import { getVisibleStops, shouldIncludeDrafts } from '../content/selectors';
+import HomeRedirect from '../features/map/HomeRedirect';
+import MapPage from '../features/map/MapPage';
 import ContentError from './ContentError';
 import Layout from './Layout';
 import LoadingScreen from './LoadingScreen';
@@ -25,7 +27,7 @@ export async function rootLoader(): Promise<RootData> {
   return { content, stops: getVisibleStops(content.stops, includeDrafts) };
 }
 
-/** Placeholder page until the map (M2) and other screens arrive. */
+/** Placeholder for routes that later milestones build (stop, passport, scenes…). */
 function BlankPage() {
   return null;
 }
@@ -42,7 +44,8 @@ export function createRoutes(loader: RootLoader = rootLoader): RouteObject[] {
       errorElement: <ContentError />,
       HydrateFallback: LoadingScreen,
       children: [
-        { index: true, Component: BlankPage },
+        { index: true, Component: HomeRedirect },
+        { path: 'region/:regionId', Component: MapPage },
         { path: '*', Component: BlankPage },
       ],
     },

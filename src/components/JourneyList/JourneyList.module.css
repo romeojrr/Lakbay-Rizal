@@ -1,0 +1,16 @@
+.panel {
+  padding: 16px 18px;
+}
+
+.title {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

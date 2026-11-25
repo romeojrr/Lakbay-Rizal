@@ -1,0 +1,37 @@
+.toggle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.buttons {
+  display: flex;
+}
+
+.button {
+  min-height: 44px;
+  padding: 6px 14px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--ink);
+  background: var(--card);
+  border: var(--border);
+  cursor: pointer;
+}
+
+.button + .button {
+  border-left: 0;
+}
+
+.button[aria-pressed='true'] {
+  font-weight: 700;
+  background: var(--accent);
+}

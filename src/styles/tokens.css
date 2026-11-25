@@ -21,6 +21,19 @@
   --theme-exile: #2a9d8f;
   --theme-exile-chip: #1f7a6f;
 
+  /* Theme chip backgrounds: darkened where white text would fall below 4.5:1 */
+  --chip-study: #2c5fb8;
+  --chip-travel: #e8892b; /* with ink text */
+  --chip-writing: #8b5cd6;
+  --chip-cause: #b23a2b;
+  --chip-exile: #1f7a6f;
+
+  /* Map */
+  --pin-locked: #b8b0a2;
+  --pin-locked-dot: #8a8274;
+  --line-soft: #e4dcc8;
+  --track: #efe7d3;
+
   /* Quiz feedback */
   --success: #23703a;
   --wrong: #f6c3bd;

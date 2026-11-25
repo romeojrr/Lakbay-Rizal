@@ -1,0 +1,30 @@
+.chip {
+  display: inline-block;
+  padding: 2px 8px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  color: #ffffff;
+  border: 2px solid var(--ink);
+  white-space: nowrap;
+}
+
+.study {
+  background: var(--chip-study);
+}
+
+.travel {
+  background: var(--chip-travel);
+  color: var(--ink);
+}
+
+.writing {
+  background: var(--chip-writing);
+}
+
+.cause {
+  background: var(--chip-cause);
+}
+
+.exile {
+  background: var(--chip-exile);
+}

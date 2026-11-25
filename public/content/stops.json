@@ -6,6 +6,7 @@
     "dateLabel": "19 June 1861",
     "year": 1861,
     "place": {
+      "label": "Calamba",
       "then": "Calamba, Laguna",
       "today": "Calamba City, Laguna",
       "lat": 14.2136,
@@ -154,6 +155,7 @@
     "dateLabel": "1869–1870",
     "year": 1869,
     "place": {
+      "label": "Biñan",
       "then": "Biñan, Laguna",
       "today": "Biñan City, Laguna",
       "lat": 14.34,
@@ -304,6 +306,7 @@
     "dateLabel": "June 1872 – March 1877",
     "year": 1872,
     "place": {
+      "label": "Ateneo",
       "then": "Ateneo Municipal, Calle Arzobispo, Intramuros, Manila",
       "today": "Intramuros, Manila (the school later moved; now Ateneo de Manila University)",
       "lat": 14.5906,
@@ -451,6 +454,7 @@
     "dateLabel": "1877–1882",
     "year": 1877,
     "place": {
+      "label": "Santo Tomas",
       "then": "University of Santo Tomas, Intramuros",
       "today": "Intramuros, Manila (UST later moved to Sampaloc)",
       "lat": 14.592,
@@ -592,6 +596,7 @@
     "dateLabel": "June–Sept 1882",
     "year": 1882,
     "place": {
+      "label": "Barcelona",
       "then": "Barcelona, Spain",
       "today": "Barcelona, Spain",
       "lat": 41.39,
@@ -737,6 +742,7 @@
     "dateLabel": "Sept 1882 – 1885",
     "year": 1882,
     "place": {
+      "label": "Madrid",
       "then": "Universidad Central, Calle de San Bernardo, Madrid",
       "today": "Calle de San Bernardo 49, Madrid, Spain",
       "lat": 40.4253,
@@ -879,6 +885,7 @@
     "dateLabel": "Nov 1885 – Feb 1886",
     "year": 1885,
     "place": {
+      "label": "Paris",
       "then": "Paris, France",
       "today": "Paris, France",
       "lat": 48.86,
@@ -1016,6 +1023,7 @@
     "dateLabel": "February–August 1886",
     "year": 1886,
     "place": {
+      "label": "Heidelberg",
       "then": "Heidelberg, Grand Duchy of Baden",
       "today": "Heidelberg, Germany",
       "lat": 49.4,
@@ -1153,6 +1161,7 @@
     "dateLabel": "April–June 1886",
     "year": 1886,
     "place": {
+      "label": "Wilhelmsfeld",
       "then": "Wilhelmsfeld, Baden",
       "today": "Wilhelmsfeld, Germany",
       "lat": 49.47,
@@ -1295,6 +1304,7 @@
     "dateLabel": "August–October 1886",
     "year": 1886,
     "place": {
+      "label": "Leipzig",
       "then": "Leipzig, Kingdom of Saxony",
       "today": "Leipzig, Germany",
       "lat": 51.34,
@@ -1428,6 +1438,7 @@
     "dateLabel": "Nov 1886 – May 1887",
     "year": 1887,
     "place": {
+      "label": "Berlin",
       "then": "Berlin, Kingdom of Prussia (German Empire)",
       "today": "Berlin, Germany",
       "lat": 52.52,
@@ -1574,6 +1585,7 @@
     "dateLabel": "13–17 May 1887",
     "year": 1887,
     "place": {
+      "label": "Leitmeritz",
       "then": "Leitmeritz, Bohemia (Austria-Hungary)",
       "today": "Litoměřice, Czech Republic",
       "lat": 50.53,
@@ -1723,6 +1735,7 @@
     "dateLabel": "Aug 1887 – Feb 1888",
     "year": 1887,
     "place": {
+      "label": "Calamba",
       "then": "Calamba, Laguna",
       "today": "Calamba City, Laguna",
       "lat": 14.21,
@@ -1868,6 +1881,7 @@
     "dateLabel": "28 Feb – 13 Apr 1888",
     "year": 1888,
     "place": {
+      "label": "Tokyo",
       "then": "Tokyo, Japan",
       "today": "Tokyo, Japan",
       "lat": 35.68,
@@ -2009,6 +2023,7 @@
     "dateLabel": "28 Apr – 16 May 1888",
     "year": 1888,
     "place": {
+      "label": "United States",
       "then": "San Francisco to New York, USA",
       "today": "USA",
       "lat": 37.77,
@@ -2146,6 +2161,7 @@
     "dateLabel": "May 1888 – March 1889",
     "year": 1888,
     "place": {
+      "label": "London",
       "then": "London, England",
       "today": "London, United Kingdom",
       "lat": 51.51,
@@ -2283,6 +2299,7 @@
     "dateLabel": "1889–1890",
     "year": 1889,
     "place": {
+      "label": "Paris",
       "then": "Paris, France",
       "today": "Paris, France",
       "lat": 48.86,
@@ -2424,6 +2441,7 @@
     "dateLabel": "1890",
     "year": 1890,
     "place": {
+      "label": "Brussels",
       "then": "Brussels, Belgium",
       "today": "Brussels, Belgium",
       "lat": 50.85,
@@ -2557,6 +2575,7 @@
     "dateLabel": "February–March 1891",
     "year": 1891,
     "place": {
+      "label": "Biarritz",
       "then": "Biarritz, France",
       "today": "Biarritz, France",
       "lat": 43.48,
@@ -2693,6 +2712,7 @@
     "dateLabel": "July–September 1891",
     "year": 1891,
     "place": {
+      "label": "Ghent",
       "then": "Ghent, Belgium",
       "today": "Ghent, Belgium",
       "lat": 51.05,
@@ -2835,6 +2855,7 @@
     "dateLabel": "Nov 1891 – June 1892",
     "year": 1891,
     "place": {
+      "label": "Hong Kong",
       "then": "Hong Kong (British colony)",
       "today": "Hong Kong, China",
       "lat": 22.28,
@@ -2977,6 +2998,7 @@
     "dateLabel": "26 June – 17 July 1892",
     "year": 1892,
     "place": {
+      "label": "Tondo",
       "then": "Tondo, Manila",
       "today": "Tondo, Manila",
       "lat": 14.62,
@@ -3119,6 +3141,7 @@
     "dateLabel": "July 1892 – July 1896",
     "year": 1892,
     "place": {
+      "label": "Dapitan",
       "then": "Dapitan and Talisay, Mindanao",
       "today": "Dapitan City, Zamboanga del Norte",
       "lat": 8.6556,
@@ -3260,6 +3283,7 @@
     "dateLabel": "3 Nov – 29 Dec 1896",
     "year": 1896,
     "place": {
+      "label": "Fort Santiago",
       "then": "Fort Santiago, Intramuros",
       "today": "Fort Santiago, Intramuros, Manila",
       "lat": 14.595,
@@ -3402,6 +3426,7 @@
     "dateLabel": "30 December 1896",
     "year": 1896,
     "place": {
+      "label": "Bagumbayan",
       "then": "Bagumbayan, Manila",
       "today": "Rizal Park (Luneta), Manila",
       "lat": 14.583,

@@ -34,7 +34,14 @@ const MaterialsSchema = z.strictObject({
   tools: count.optional(),
 });
 
-const PlaceSchema = z.strictObject({ then: text, today: text, lat: latitude, lon: longitude });
+const PlaceSchema = z.strictObject({
+  /** Short name for pins, cards and lists, e.g. "Berlin". */
+  label: text.max(16, 'must be 16 characters or fewer'),
+  then: text,
+  today: text,
+  lat: latitude,
+  lon: longitude,
+});
 
 const AnchorSchema = z.strictObject({ x: percent, y: percent });
 

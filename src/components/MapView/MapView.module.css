@@ -1,0 +1,224 @@
+.frame {
+  position: relative;
+  overflow: hidden;
+  border: var(--border);
+  background: var(--track);
+}
+
+.viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  scrollbar-width: none;
+}
+
+.viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.zoomed {
+  overflow: auto;
+  cursor: grab;
+}
+
+.zoomed:active {
+  cursor: grabbing;
+}
+
+.layer {
+  position: relative;
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  user-select: none;
+}
+
+.traveller {
+  position: absolute;
+  z-index: 3;
+  width: 34px;
+  height: 78px;
+  pointer-events: none;
+  filter: drop-shadow(3px 3px 0 rgba(31, 26, 36, 0.35));
+}
+
+/* Overlays */
+.titleBox {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 12px;
+  font-family: var(--font-display);
+  background: rgba(246, 240, 225, 0.94);
+  border: var(--border);
+  pointer-events: none;
+}
+
+.regionName {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.years {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.legend {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  z-index: 6;
+  max-width: calc(100% - 100px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  background: var(--card-warm);
+  border: 2px solid var(--ink);
+}
+
+.legendSwatch {
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--ink);
+}
+
+.zoom {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.zoomButton {
+  width: 44px;
+  height: 44px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--card-warm);
+  border: var(--border);
+  cursor: pointer;
+}
+
+.zoomButton:disabled {
+  color: var(--pin-locked-dot);
+  cursor: default;
+}
+
+/* Cluster pop-up list */
+.clusterList {
+  position: absolute;
+  z-index: 7;
+  width: 220px;
+  padding: 4px 12px;
+  background: var(--card);
+  border: var(--border);
+  box-shadow: var(--shadow-button);
+}
+
+.clusterRows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* "Content coming soon" (FR-62) */
+.empty {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 8;
+  width: min(420px, calc(100% - 32px));
+  transform: translate(-50%, -50%);
+  padding: 16px 18px;
+  background: var(--card);
+  border: var(--border);
+  box-shadow: var(--shadow-panel);
+}
+
+.emptyTitle {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-size: 24px;
+}
+
+.emptyBody {
+  margin: 0;
+}
+
+/* Region switch from the timeline (SRS §3.4); the global reduced-motion rule turns it off. */
+.slide-left {
+  animation: slideFromLeft 320ms ease-out;
+}
+
+.slide-right {
+  animation: slideFromRight 320ms ease-out;
+}
+
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .titleBox {
+    left: 8px;
+    top: 8px;
+    padding: 4px 8px;
+  }
+
+  .regionName {
+    font-size: 16px;
+  }
+
+  .years {
+    font-size: 12px;
+  }
+
+  .legend {
+    display: none;
+  }
+
+  .zoom {
+    right: 8px;
+    bottom: 8px;
+  }
+}

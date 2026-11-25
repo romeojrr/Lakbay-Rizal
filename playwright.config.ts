@@ -22,8 +22,10 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'], viewport: { width: 360, height: 740 }, hasTouch: true },
     },
   ],
+  // The seed stops are drafts, so test a build that includes them (SRS §12, FR-62).
   webServer: {
     command: `npm run build && npm run preview -- --port ${PORT} --strictPort`,
+    env: { ...(process.env as Record<string, string>), INCLUDE_DRAFTS: 'true' },
     url: `http://localhost:${PORT}`,
     reuseExistingServer: !process.env.CI,
     timeout: 180_000,

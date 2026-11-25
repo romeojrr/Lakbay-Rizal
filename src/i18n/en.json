@@ -10,5 +10,65 @@
     "regions": "Regions",
     "scenes": "Scenes",
     "passport": "Passport · {done}/{total}"
+  },
+  "themes": {
+    "study": "Study",
+    "travel": "Travel",
+    "writing": "Writing",
+    "cause": "Cause",
+    "exile": "Exile"
+  },
+  "map": {
+    "section": "Map",
+    "imageAlt": "Pixel map of {region}",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "legend": "Themes",
+    "lockedMessage": "Finish the previous stop first.",
+    "comingSoonTitle": "Content coming soon",
+    "comingSoonBody": "The team is still checking the history for these stops. Please come back later.",
+    "notFoundTitle": "That place is not on the map",
+    "backToMap": "Back to the map"
+  },
+  "pin": {
+    "done": "{place}, {year}, completed",
+    "current": "{place}, {year}, current stop",
+    "open": "{place}, {year}, open",
+    "locked": "Locked stop, {year}",
+    "cluster": "{place}, {count} stops",
+    "inset": "{place}, {count} stops, show the close-up map",
+    "lockedCluster": "{count} locked stops"
+  },
+  "status": {
+    "done": "Done",
+    "current": "Now",
+    "open": "Open",
+    "locked": "Locked"
+  },
+  "card": {
+    "next": "Next stop",
+    "now": "Now",
+    "comingUp": "Coming up",
+    "title": "{place} · {year}",
+    "enter": "Enter {place} ▶",
+    "goToNext": "Go to your next stop: {place}",
+    "regionDone": "You have finished every stop in {region}."
+  },
+  "journey": {
+    "title": "Journey"
+  },
+  "mode": {
+    "label": "Journey mode",
+    "guided": "Guided",
+    "free": "Free explore"
+  },
+  "timeline": {
+    "title": "Timeline",
+    "hint": "Slide to travel through the years",
+    "label": "Year",
+    "childhood": "Childhood",
+    "school": "School",
+    "europe": "Europe",
+    "exile": "Exile"
   }
 }

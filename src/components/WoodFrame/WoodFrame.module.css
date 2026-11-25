@@ -1,0 +1,14 @@
+.frame {
+  background: var(--wood);
+  padding: 8px;
+  border: var(--border);
+  box-shadow:
+    inset 0 0 0 2px var(--wood-light),
+    var(--shadow-panel);
+}
+
+@media (max-width: 640px) {
+  .frame {
+    padding: 5px;
+  }
+}

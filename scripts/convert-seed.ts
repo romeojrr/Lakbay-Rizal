@@ -10,13 +10,49 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = join(root, 'public', 'content');
 const force = process.argv.includes('--force');
 
+interface SeedStop {
+  id: string;
+  order: number;
+  place: Record<string, unknown>;
+}
+
 interface Seed {
   characters: Record<string, unknown>;
   items: Record<string, unknown>;
   builder: unknown;
   regions: Record<string, Record<string, unknown>>;
-  stops: { order: number }[];
+  stops: SeedStop[];
 }
+
+// Short place names for pins and lists (place.label). Taken from each stop's place.then;
+// the seed has no short name, and cutting place.then at a comma gives poor labels.
+const PLACE_LABELS: Record<string, string> = {
+  'calamba-1861': 'Calamba',
+  'binan-1869': 'Biñan',
+  'ateneo-1872': 'Ateneo',
+  'ust-1877': 'Santo Tomas',
+  'barcelona-1882': 'Barcelona',
+  'madrid-1882': 'Madrid',
+  'paris-1885': 'Paris',
+  'heidelberg-1886': 'Heidelberg',
+  'wilhelmsfeld-1886': 'Wilhelmsfeld',
+  'leipzig-1886': 'Leipzig',
+  'berlin-1887': 'Berlin',
+  'leitmeritz-1887': 'Leitmeritz',
+  'calamba-1887': 'Calamba',
+  'japan-1888': 'Tokyo',
+  'usa-1888': 'United States',
+  'london-1888': 'London',
+  'paris-1889': 'Paris',
+  'brussels-1890': 'Brussels',
+  'biarritz-1891': 'Biarritz',
+  'ghent-1891': 'Ghent',
+  'hongkong-1891': 'Hong Kong',
+  'manila-1892': 'Tondo',
+  'dapitan-1892': 'Dapitan',
+  'fortsantiago-1896': 'Fort Santiago',
+  'bagumbayan-1896': 'Bagumbayan',
+};
 
 const readJson = (path: string): unknown => JSON.parse(readFileSync(join(root, path), 'utf8'));
 const seed = readJson('content/stops.seed.json') as Seed;
@@ -30,8 +66,12 @@ const regions = REGION_ORDER.map((id) => {
   return { id, ...region };
 });
 
+const stops = [...seed.stops]
+  .sort((a, b) => a.order - b.order)
+  .map((stop) => ({ ...stop, place: { label: PLACE_LABELS[stop.id] ?? '', ...stop.place } }));
+
 const files: Record<string, unknown> = {
-  stops: [...seed.stops].sort((a, b) => a.order - b.order),
+  stops,
   regions,
   characters: seed.characters,
   items: seed.items,
