@@ -14,6 +14,8 @@ interface FeedbackProps {
   onShowHint: () => void;
   actionLabel: string;
   onAction: () => void;
+  /** §3.8: XP earned by this answer (0 = none to show). */
+  xp: number;
 }
 
 /**
@@ -27,6 +29,7 @@ const Feedback = forwardRef<HTMLHeadingElement, FeedbackProps>(function Feedback
       <h2 ref={ref} tabIndex={-1} className={right ? styles.correct : styles.wrong}>
         {right ? t('quiz.correct') : t('quiz.wrong')}
       </h2>
+      {props.xp > 0 && <span className={styles.xpGain}>{t('xp.gain', { n: props.xp })}</span>}
       {right ? (
         <div className={styles.explain}>
           <p>{t('quiz.explainLine', { label: t('quiz.explain'), text: explain })}</p>

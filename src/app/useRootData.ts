@@ -1,5 +1,5 @@
 import { useRouteLoaderData } from 'react-router-dom';
-import { localizeContent } from '../content/localize';
+import { localizeContent, localizeGamification, localizeGuide } from '../content/localize';
 import type { FilContent } from '../content/schemas.v3';
 import { getTranslations } from '../content/translations';
 import { useLanguage } from '../i18n/useLanguage';
@@ -12,7 +12,12 @@ function localize(data: RootData, translations: FilContent): RootData {
   if (cache?.data === data && cache.translations === translations) return cache.result;
   const content = localizeContent(data.content, translations);
   const byId = new Map(content.stops.map((stop) => [stop.id, stop]));
-  const result = { content, stops: data.stops.map((stop) => byId.get(stop.id) ?? stop) };
+  const result = {
+    content,
+    stops: data.stops.map((stop) => byId.get(stop.id) ?? stop),
+    guide: localizeGuide(data.guide, translations['i18n/fil.guide']),
+    gamification: localizeGamification(data.gamification, translations['i18n/fil.gamification']),
+  };
   cache = { data, translations, result };
   return result;
 }

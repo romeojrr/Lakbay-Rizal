@@ -27,7 +27,8 @@
   "xp": {
     "label": "XP",
     "amount": "{xp} {label}",
-    "gain": "+{n} XP"
+    "gain": "+{n} XP",
+    "toRank": "XP to {rank}"
   },
   "lang": {
     "en": "English",
@@ -239,7 +240,21 @@
     "stampsTitle": "Stamps",
     "new": "New!",
     "lockedStamp": "Stamp not earned yet, {year}",
-    "journal": "Open journal ▶"
+    "journal": "Open journal ▶",
+    "tabs": "Passport sections",
+    "tabStamps": "Stamps",
+    "tabAchievements": "Achievements",
+    "tabRank": "Rank",
+    "achievementsCount": "{done} of {total} achievements",
+    "locked": "Not unlocked yet",
+    "rankNow": "Your rank",
+    "xpTotal": "{xp} XP",
+    "toNext": "{n} XP to {rank}",
+    "topRank": "The highest rank",
+    "rankReached": "reached",
+    "rankAt": "from {xp} XP",
+    "gold": "Gold",
+    "silver": "Silver"
   },
   "journal": {
     "title": "Journal",
@@ -423,5 +438,9 @@
     "serious": "serious",
     "surprised": "surprised",
     "thinking": "thinking"
+  },
+  "celebrate": {
+    "achievement": "{label}: {title}",
+    "close": "Close"
   }
 }

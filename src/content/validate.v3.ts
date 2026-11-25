@@ -2,6 +2,7 @@
 // §3.10, §6.2b mirror check) and the portrait sheets (§7.10): Zod schemas first, then the
 // cross-file rules. Run after the main files have passed (it needs their stops and names).
 import type { z } from 'zod';
+import { parseRule } from '../game/rules';
 import {
   BUILDER_PROJECTS,
   FIL_CONTENT_FILES,
@@ -182,6 +183,13 @@ class V3Checker {
       this.error(file, `achievements › ${id}`, 'this achievement id is used more than once');
     }
     achievements.forEach((achievement, i) => {
+      if (!parseRule(achievement.rule)) {
+        this.error(
+          file,
+          `achievements[${i}] (${achievement.id}).rule`,
+          `"${achievement.rule}" is not a rule the game understands (see src/game/rules.ts)`,
+        );
+      }
       if (achievement.icon !== null && !(achievement.icon in this.base.items)) {
         this.error(
           file,

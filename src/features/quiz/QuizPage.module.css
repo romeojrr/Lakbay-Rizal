@@ -160,3 +160,48 @@
   margin: 0;
   font-size: var(--fs-h3);
 }
+
+/* §3.8: "+20 XP" next to Correct!. */
+.xpGain {
+  padding: 0 8px;
+  font-size: var(--fs-small);
+  color: var(--ink);
+  background: var(--gold);
+  border: 2px solid var(--ink);
+}
+
+/* §3.7: Rizal's reaction, one bubble at a time, under the card. */
+.reaction {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reaction > :first-child {
+  --s: 1;
+}
+
+.bubble {
+  position: relative;
+  margin: 0;
+  padding: 10px 14px;
+  font-size: var(--fs-small);
+  line-height: 1.35;
+  background: var(--card);
+  border: 3px solid var(--ink);
+  box-shadow: var(--shadow-button);
+}
+
+.pop {
+  animation: pop-in 180ms ease-out;
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}

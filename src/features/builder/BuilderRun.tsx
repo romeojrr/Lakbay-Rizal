@@ -9,6 +9,7 @@ import ResourceTile from '../../components/ResourceTile/ResourceTile';
 import { BUILDER_PROJECTS, MATERIALS } from '../../content/constants';
 import type { BuilderProject, Content, PlayableStop } from '../../content/schemas';
 import { t } from '../../i18n/t';
+import { useGame } from '../../game/useGame';
 import { useProgress } from '../../store/progress';
 import { availableMaterials, builtCount, isBuilt, isTownComplete, shortfall } from './builderModel';
 import styles from './BuilderPage.module.css';
@@ -36,12 +37,14 @@ export default function BuilderRun({ stop, content }: BuilderRunProps) {
   const done = builtCount(builder, progress);
   const townDone = isTownComplete(builder, progress);
 
+  const game = useGame();
   const buildProject = (project: BuilderProject) => {
-    progress.build(project);
+    game.build(project); // §3.8: +XP per project
     const fact = builder.projects[project].fact;
     const next = { builder: { ...progress.builder, [project]: true } };
     if (isTownComplete(builder, next)) {
       progress.complete(stop); // §3.5: all three projects give the Dapitan stamp (once).
+      game.check();
       setMessage({ who: 'fact', text: `${fact} ${t('builder.townComplete')}` });
     } else {
       setMessage({ who: 'fact', text: fact });

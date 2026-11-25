@@ -1,7 +1,8 @@
 // Fetches public/content/*.json once and keeps it in memory (SRS §8.3).
 // In development the content is validated again so mistakes show up in the console.
-import { CONTENT_FILES, type ContentFileName } from './constants';
+import { CONTENT_FILES, V3_CONTENT_FILES, type ContentFileName } from './constants';
 import type { Content } from './schemas';
+import type { ContentV3 } from './schemas.v3';
 
 export class ContentLoadError extends Error {
   override name = 'ContentLoadError';
@@ -17,9 +18,37 @@ export function loadContent(fetchImpl: typeof fetch = fetch): Promise<Content> {
   return cache;
 }
 
+let gameCache: Promise<ContentV3> | null = null;
+
+/** guide.json and gamification.json (SRS v2.3 §3.7, §3.8). */
+export function loadGameContent(fetchImpl: typeof fetch = fetch): Promise<ContentV3> {
+  gameCache ??= Promise.all(V3_CONTENT_FILES.map((name) => fetchJson(fetchImpl, name)))
+    .then(async ([guide, gamification]) => {
+      if (import.meta.env.DEV) {
+        const { GuideFileSchema, GamificationFileSchema } = await import('./schemas.v3');
+        for (const [name, schema, value] of [
+          ['guide', GuideFileSchema, guide],
+          ['gamification', GamificationFileSchema, gamification],
+        ] as const) {
+          const result = schema.safeParse(value);
+          if (!result.success) {
+            throw new ContentLoadError(`${name}.json is invalid: ${result.error.message}`);
+          }
+        }
+      }
+      return { guide, gamification } as ContentV3;
+    })
+    .catch((error: unknown) => {
+      gameCache = null;
+      throw error;
+    });
+  return gameCache;
+}
+
 /** For tests. */
 export function clearContentCache(): void {
   cache = null;
+  gameCache = null;
 }
 
 async function fetchContent(fetchImpl: typeof fetch): Promise<Content> {
@@ -43,7 +72,10 @@ async function fetchContent(fetchImpl: typeof fetch): Promise<Content> {
   return raw as unknown as Content;
 }
 
-async function fetchJson(fetchImpl: typeof fetch, name: ContentFileName): Promise<unknown> {
+async function fetchJson(
+  fetchImpl: typeof fetch,
+  name: ContentFileName | (typeof V3_CONTENT_FILES)[number],
+): Promise<unknown> {
   const url = `${import.meta.env.BASE_URL}content/${name}.json`;
   let response: Response;
   try {

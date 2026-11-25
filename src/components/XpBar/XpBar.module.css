@@ -29,3 +29,45 @@
     width: 40px;
   }
 }
+
+.rank {
+  font-size: var(--fs-small);
+  white-space: nowrap;
+  color: var(--gold);
+}
+
+/* §3.8 streak flame: grows at 5 and 10 in a row (whole-pixel steps). */
+.streak {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  min-width: 28px;
+  font-size: var(--fs-small);
+}
+
+.flame {
+  image-rendering: pixelated;
+}
+
+.cold .flame {
+  opacity: 0.45;
+}
+
+@container topbar (max-width: 1000px) {
+  .rank {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .rank {
+    display: none;
+  }
+}
+
+/* Very narrow phones: the number and the flame stay; the bar makes room (§5.5). */
+@media (max-width: 420px) {
+  .track {
+    display: none;
+  }
+}

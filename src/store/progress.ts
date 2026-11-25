@@ -46,6 +46,8 @@ export interface Progress {
   chaptersRead: Record<string, number>;
   readMoreOpened: string[];
   achievements: string[];
+  /** Stops whose quiz was answered all right on the first try (`sobresaliente`). */
+  perfectStops: string[];
   seenTips: string[];
   tourDone: boolean;
   /** Stop id → the languages it was read in (the `bilingual` achievement, §3.10). */
@@ -103,6 +105,7 @@ export function initialProgress(): Progress {
     chaptersRead: {},
     readMoreOpened: [],
     achievements: [],
+    perfectStops: [],
     seenTips: [],
     tourDone: false,
     readIn: {},

@@ -13,10 +13,12 @@ interface StampCardProps {
   isNew: boolean;
   /** The final stop's page: plain, untilted, never "New!" (GD-6). */
   plain: boolean;
+  /** §3.8: gold or silver; none for stamps earned before v2.3 or without a quiz. */
+  grade?: 'gold' | 'silver';
 }
 
 /** One passport stamp: landmark icon, place and year, or "?" and the year if not earned. */
-export default function StampCard({ stop, earned, isNew, plain }: StampCardProps) {
+export default function StampCard({ stop, earned, isNew, plain, grade }: StampCardProps) {
   const icon = stop.rewards.stamp.icon;
   if (!earned || !icon) {
     return (
@@ -42,6 +44,11 @@ export default function StampCard({ stop, earned, isNew, plain }: StampCardProps
         </span>
         <span className={styles.year}>{stop.year}</span>
       </div>
+      {grade && !plain && (
+        <span className={grade === 'gold' ? styles.gold : styles.silver}>
+          {grade === 'gold' ? t('passport.gold') : t('passport.silver')}
+        </span>
+      )}
       {isNew && !plain && <span className={styles.new}>{t('passport.new')}</span>}
     </li>
   );

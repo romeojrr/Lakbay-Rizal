@@ -52,5 +52,6 @@ export function realContentV3(): ContentV3 & FilContent {
 
 /** What the root loader returns, from the real files. `stops` defaults to every stop. */
 export function rootData(content: Content = realContent(), stops?: Stop[]): RootData {
-  return { content, stops: stops ?? content.stops };
+  const { guide, gamification } = realContentV3();
+  return { content, stops: stops ?? content.stops, guide, gamification };
 }

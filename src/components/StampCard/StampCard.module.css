@@ -71,3 +71,23 @@
   font-size: var(--fs-small);
   color: var(--muted);
 }
+
+/* §3.8 grade ribbon under the stamp; the word carries the meaning. */
+.gold,
+.silver {
+  display: block;
+  margin: 4px auto 0;
+  width: fit-content;
+  padding: 0 6px;
+  font-size: var(--fs-small);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+}
+
+.gold {
+  background: var(--gold);
+}
+
+.silver {
+  background: #d6d3cc;
+}

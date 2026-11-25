@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import BottomNav from '../components/BottomNav/BottomNav';
+import Celebrations from '../components/Celebrations/Celebrations';
 import Toast from '../components/Toast/Toast';
 import TopBar from '../components/TopBar/TopBar';
 import { getNextStop } from '../content/selectors';
@@ -59,6 +60,7 @@ export default function Layout() {
       </footer>
       <BottomNav mapRegion={mapRegion} earned={earned} total={stops.length} />
       {notice && <Toast message={notice} />}
+      <Celebrations />
     </>
   );
 }

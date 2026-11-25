@@ -115,6 +115,7 @@ export function sanitizeProgress(raw: unknown, defaults: Progress): Progress | n
   const lists = {
     readMoreOpened: raw.readMoreOpened ?? defaults.readMoreOpened,
     achievements: raw.achievements ?? defaults.achievements,
+    perfectStops: raw.perfectStops ?? defaults.perfectStops,
     seenTips: raw.seenTips ?? defaults.seenTips,
   };
   if (!Object.values(lists).every(isStringArray)) return null;
@@ -157,6 +158,7 @@ export function sanitizeProgress(raw: unknown, defaults: Progress): Progress | n
     chaptersRead,
     readMoreOpened: unique(lists.readMoreOpened as string[]),
     achievements: unique(lists.achievements as string[]),
+    perfectStops: unique(lists.perfectStops as string[]),
     seenTips: unique(lists.seenTips as string[]),
     tourDone,
     readIn: Object.fromEntries(

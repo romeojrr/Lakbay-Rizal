@@ -3,7 +3,14 @@
 import { create } from 'zustand';
 import type { RegionId } from '../content/schemas';
 
+/** §3.8: an achievement toast or a rank-up banner, shown one after another. */
+export type Celebration = { kind: 'achievement'; id: string } | { kind: 'rank'; id: string };
+
 interface UiState {
+  celebrations: Celebration[];
+  celebrate: (item: Celebration) => void;
+  /** Removes the celebration that has been shown. */
+  dismissCelebration: () => void;
   lastRegion: RegionId | null;
   /** null = follow the player's next stop. */
   timelineYear: number | null;
@@ -27,6 +34,9 @@ export const useUi = create<UiState>()((set) => ({
   timelineYear: null,
   timelineExpanded: false,
   pendingFocus: null,
+  celebrations: [],
+  celebrate: (item) => set((s) => ({ celebrations: [...s.celebrations, item] })),
+  dismissCelebration: () => set((s) => ({ celebrations: s.celebrations.slice(1) })),
   storyStep: {},
   setStoryStep: (stopId, step) => set((s) => ({ storyStep: { ...s.storyStep, [stopId]: step } })),
   setLastRegion: (lastRegion) => set({ lastRegion }),

@@ -8,11 +8,16 @@ import { getThemeProgress, isFinalStop } from '../../content/selectors';
 import { t } from '../../i18n/t';
 import { asset } from '../../lib/asset';
 import { useProgress } from '../../store/progress';
+import { AchievementsPanel, RankPanel } from './AchievementsPanel';
 import styles from './PassportPage.module.css';
+import PassportTabs from './PassportTabs';
 
 /** /passport — an open leather passport: traveller page and stamp page (FR-50 to FR-52). */
 export default function PassportPage() {
-  const { content, stops } = useRootData();
+  const { content, stops, gamification } = useRootData();
+  const grades = useProgress((s) => s.stampGrade);
+  const achievements = useProgress((s) => s.achievements);
+  const xp = useProgress((s) => s.xp);
   const stamps = useProgress((s) => s.stamps);
   const completed = useProgress((s) => s.completed);
   const markPassportSeen = useProgress((s) => s.markPassportSeen);
@@ -93,17 +98,32 @@ export default function PassportPage() {
         <h2 id="stamps-title" className={styles.title}>
           {t('passport.stampsTitle')}
         </h2>
-        <ol className={styles.grid}>
-          {playable.map((stop) => (
-            <StampCard
-              key={stop.id}
-              stop={stop}
-              earned={earned.has(stop.id)}
-              isNew={stop.id === newStamp}
-              plain={isFinalStop(stop, stops)}
-            />
-          ))}
-        </ol>
+        <PassportTabs
+          panels={{
+            stamps: (
+              <ol className={styles.grid}>
+                {playable.map((stop) => (
+                  <StampCard
+                    key={stop.id}
+                    stop={stop}
+                    earned={earned.has(stop.id)}
+                    isNew={stop.id === newStamp}
+                    plain={isFinalStop(stop, stops)}
+                    grade={grades[stop.id]}
+                  />
+                ))}
+              </ol>
+            ),
+            achievements: (
+              <AchievementsPanel
+                gamification={gamification}
+                content={content}
+                unlocked={achievements}
+              />
+            ),
+            rank: <RankPanel gamification={gamification} xp={xp} />,
+          }}
+        />
       </section>
     </div>
   );

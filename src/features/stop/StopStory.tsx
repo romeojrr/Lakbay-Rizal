@@ -8,6 +8,7 @@ import { t } from '../../i18n/t';
 import { useLanguage } from '../../i18n/useLanguage';
 import { cx } from '../../lib/cx';
 import { useSceneFit } from '../../lib/useSceneFit';
+import { useGame } from '../../game/useGame';
 import { useProgress } from '../../store/progress';
 import { chaptersReadAt, buildSteps } from '../story/steps';
 import StoryPlayer from '../story/StoryPlayer';
@@ -37,7 +38,8 @@ export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
   const stageRef = useRef<HTMLDivElement>(null);
   const fit = useSceneFit(stageRef, SCENE.w, SCENE.h, FRAME_CHROME);
   const visited = useProgress((s) => s.visited.includes(stop.id));
-  const { visit, complete, markRead, markChaptersRead } = useProgress.getState();
+  const { visit, complete, markRead } = useProgress.getState();
+  const game = useGame();
   const lang = useLanguage();
   const finished = visited || atEnd;
   const hasQuiz = stop.quiz.length > 0;
@@ -47,15 +49,16 @@ export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
   // chapters read are counted (§3.8). GD-6: the final stop has no quiz; it completes quietly.
   const onProgress = useCallback(
     (index: number, total: number) => {
-      markChaptersRead(stop.id, chaptersReadAt(buildSteps(story.chapters), index));
+      game.chaptersRead(stop, chaptersReadAt(buildSteps(story.chapters), index), isFinal);
       const end = index === total - 1;
       setAtEnd(end);
       if (!end) return;
       visit(stop.id);
       markRead(stop.id, lang);
       if (isFinal && !hasQuiz) complete(stop, { quiet: true });
+      game.check(); // `bilingual`, and the quiet `journey-end` (GD-6)
     },
-    [stop, story.chapters, lang, isFinal, hasQuiz, visit, markRead, markChaptersRead, complete],
+    [stop, story.chapters, lang, isFinal, hasQuiz, visit, markRead, complete, game],
   );
 
   // §5.5: a phone held sideways shows the scene full-screen (the top bar scrolls away).
@@ -121,7 +124,10 @@ export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
         stop={stop}
         finished={finished}
         isFinal={isFinal}
-        onReadMore={() => setReadMoreOpen(true)}
+        onReadMore={() => {
+          game.readMore(stop.id);
+          setReadMoreOpen(true);
+        }}
       />
       <ReadMoreDialog
         stop={story}

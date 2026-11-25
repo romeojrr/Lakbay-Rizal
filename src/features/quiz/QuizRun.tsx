@@ -4,8 +4,10 @@ import QuizQuestion from '../../components/QuizQuestion/QuizQuestion';
 import RewardCard from '../../components/RewardCard/RewardCard';
 import type { Content, PlayableStop, Question } from '../../content/schemas';
 import { t } from '../../i18n/t';
-import { useProgress } from '../../store/progress';
+import { useRootData } from '../../app/useRootData';
+import { useGame } from '../../game/useGame';
 import Feedback from './Feedback';
+import RizalReaction, { pickReaction, type Reaction, type ReactionKind } from './RizalReaction';
 import ChoiceInput, { type Status } from './inputs/ChoiceInput';
 import ErrorInput from './inputs/ErrorInput';
 import MatchInput from './inputs/MatchInput';
@@ -47,7 +49,10 @@ function AnswerInput(props: { question: Question; status: Status; onAnswer: (a: 
  * Every attempt is shuffled again (FR-82). First-try results decide the stamp (§3.8).
  */
 export default function QuizRun({ stop, content }: QuizRunProps) {
-  const finishQuiz = useProgress((s) => s.finishQuiz);
+  const game = useGame();
+  const { guide, gamification } = useRootData();
+  const [gained, setGained] = useState(0);
+  const [reaction, setReaction] = useState<Reaction | null>(null);
   const [index, setIndex] = useState(0);
   const [attempt, setAttempt] = useState(1);
   const [prepared, setPrepared] = useState(() => stop.quiz.map((q) => prepare(q)));
@@ -76,9 +81,17 @@ export default function QuizRun({ stop, content }: QuizRunProps) {
 
   if (!question) return null;
 
+  const react = (kind: ReactionKind, streak?: number) =>
+    setReaction({ kind, index: pickReaction(guide, kind, streak), key: Date.now() });
+
   const answer = (given: Answer) => {
     const right = isCorrect(question, given);
     setStatus(right ? 'right' : 'wrong');
+    // §3.8 XP and streak; §3.7 Rizal reacts (a streak of 5 or 10 beats a plain "correct").
+    const outcome = game.answer(stop, question, right, attempt, hintOpen);
+    setGained(outcome.xp);
+    if (outcome.streakMilestone) react('streak', outcome.streakMilestone);
+    else react(right ? 'correct' : 'wrong');
     if (right) {
       setResults((list) => [
         ...list,
@@ -109,8 +122,11 @@ export default function QuizRun({ stop, content }: QuizRunProps) {
       return;
     }
     // FR-43: the progress store is updated once; a better grade replaces a silver stamp.
-    const grade = stampGrade(results);
-    setReward({ fresh: finishQuiz(stop, results, grade), grade });
+    const grade = stampGrade(results, gamification.quizPass);
+    const { fresh, perfect } = game.finishQuiz(stop, results, grade);
+    setReward({ fresh, grade });
+    if (perfect) react('perfect');
+    else setReaction(null);
   };
 
   const done = index + (status === 'right' || reward ? 1 : 0);
@@ -173,9 +189,17 @@ export default function QuizRun({ stop, content }: QuizRunProps) {
                     : t('quiz.nextQuestion')
               }
               onAction={status === 'wrong' ? tryAgain : next}
+              xp={gained}
             />
           )}
         </div>
+      )}
+      {reaction && (status !== 'answering' || reward) && (
+        <RizalReaction
+          guide={guide}
+          rizal={content.characters[guide.speaker]}
+          reaction={reaction}
+        />
       )}
     </div>
   );

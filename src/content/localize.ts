@@ -2,7 +2,14 @@
 // English content is never changed. Any Filipino string that is missing or empty keeps the
 // English one, string by string. Ids, numbers, images and sources always stay English.
 import type { Content, Question, Stop } from './schemas';
-import type { FilContent, FilStop } from './schemas.v3';
+import type {
+  FilContent,
+  FilGamification,
+  FilGuide,
+  FilStop,
+  Gamification,
+  Guide,
+} from './schemas.v3';
 
 /** The Filipino string, or the English one when there is none. */
 const pick = (fil: string | undefined, en: string): string =>
@@ -128,4 +135,47 @@ function localizeQuestion(question: Question, fil: FilQuestion | undefined): Que
         correction: pick(fil.correction, question.correction),
       };
   }
+}
+
+/** Rizal's guide lines in Filipino (§3.7); moods, targets and routes stay. */
+export function localizeGuide(guide: Guide, fil: FilGuide | undefined): Guide {
+  if (!fil) return guide;
+  const reactions = { ...guide.reactions };
+  for (const kind of Object.keys(reactions) as (keyof Guide['reactions'])[]) {
+    reactions[kind] = guide.reactions[kind].map((line, i) => ({
+      ...line,
+      text: pick(fil.reactions?.[kind]?.[i], line.text),
+    }));
+  }
+  return {
+    ...guide,
+    tour: guide.tour.map((step) => ({ ...step, text: pick(fil.tour?.[step.id], step.text) })),
+    tips: Object.fromEntries(
+      Object.entries(guide.tips).map(([id, tip]) => [
+        id,
+        { ...tip, text: pick(fil.tips?.[id], tip.text) },
+      ]),
+    ),
+    reactions,
+  };
+}
+
+/** Achievement titles and descriptions and rank meanings in Filipino (§3.8). */
+export function localizeGamification(
+  gamification: Gamification,
+  fil: FilGamification | undefined,
+): Gamification {
+  if (!fil) return gamification;
+  return {
+    ...gamification,
+    ranks: gamification.ranks.map((rank) => ({
+      ...rank,
+      meaning: pick(fil.ranks?.[rank.id], rank.meaning),
+    })),
+    achievements: gamification.achievements.map((a) => ({
+      ...a,
+      title: pick(fil.achievements?.[a.id]?.title, a.title),
+      desc: pick(fil.achievements?.[a.id]?.desc, a.desc),
+    })),
+  };
 }
