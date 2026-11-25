@@ -11,6 +11,8 @@ export type Celebration =
   | { kind: 'reminder'; id: 'stops' | 'days' };
 
 interface UiState {
+  /** §5.6: after completing `from`, the traveller goes to `to` on the map. */
+  travel: { from: string; to: string } | null;
   /** §3.9: something is not saved yet (a quiz in progress, a name being typed). */
   unsaved: boolean;
   setUnsaved: (unsaved: boolean) => void;
@@ -52,6 +54,7 @@ export const useUi = create<UiState>()((set) => ({
   timelineYear: null,
   timelineExpanded: false,
   pendingFocus: null,
+  travel: null,
   unsaved: false,
   setUnsaved: (unsaved) => set({ unsaved }),
   tour: { active: false, step: 0 },

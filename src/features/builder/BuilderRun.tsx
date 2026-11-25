@@ -14,6 +14,7 @@ import { useProgress } from '../../store/progress';
 import { availableMaterials, builtCount, isBuilt, isTownComplete, shortfall } from './builderModel';
 import styles from './BuilderPage.module.css';
 import { useTip } from '../guide/TipBubble';
+import { play } from '../../lib/sound';
 
 interface Message {
   who: 'narrator' | 'fact';
@@ -42,6 +43,7 @@ export default function BuilderRun({ stop, content }: BuilderRunProps) {
   const game = useGame();
   const buildProject = (project: BuilderProject) => {
     game.build(project); // §3.8: +XP per project
+    play('build'); // §3.11
     const fact = builder.projects[project].fact;
     const next = { builder: { ...progress.builder, [project]: true } };
     if (isTownComplete(builder, next)) {

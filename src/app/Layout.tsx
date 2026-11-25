@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import BottomNav from '../components/BottomNav/BottomNav';
 import Celebrations from '../components/Celebrations/Celebrations';
+import RouteIris from '../components/RouteIris/RouteIris';
 import TipBubble from '../features/guide/TipBubble';
 import Tour from '../features/guide/Tour';
 import SaveGuard from '../features/save/SaveGuard';
@@ -13,6 +14,7 @@ import { consumeLoadProblem, useProgress } from '../store/progress';
 import { useUi } from '../store/ui';
 import styles from './Layout.module.css';
 import { useRootData } from './useRootData';
+import { unlockOnFirstGesture, useMusic } from '../lib/sound';
 
 const NOTICE_MS = 6000;
 
@@ -49,6 +51,13 @@ export default function Layout() {
     ui.startTour();
   }, [openedOn, stops]);
 
+  // §3.11: sound is allowed from the first click; music follows the region on screen.
+  useEffect(() => unlockOnFirstGesture(), []);
+  const regionOnScreen =
+    /^\/region\/([a-z]+)/.exec(pathname)?.[1] ??
+    stops.find((s) => pathname.startsWith(`/stop/${s.id}`))?.region;
+  useMusic(regionOnScreen);
+
   // FR-71: text size and reduce motion apply to the whole page (see tokens.css, global.css).
   const { textSize, reduceMotion } = useProgress((s) => s.settings);
   useEffect(() => {
@@ -80,6 +89,7 @@ export default function Layout() {
       <Celebrations />
       <TipBubble />
       <Tour />
+      <RouteIris />
     </>
   );
 }

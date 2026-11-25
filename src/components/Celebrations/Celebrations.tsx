@@ -7,6 +7,7 @@ import { useReducedMotion } from '../../lib/useReducedMotion';
 import { useTip } from '../../features/guide/TipBubble';
 import { useUi } from '../../store/ui';
 import styles from './Celebrations.module.css';
+import { play } from '../../lib/sound';
 
 const SHOW_MS = 4500;
 
@@ -25,6 +26,7 @@ export default function Celebrations() {
 
   useEffect(() => {
     if (!current) return;
+    if (current.kind !== 'reminder') play('achievement'); // §3.11
     const timer = window.setTimeout(dismiss, SHOW_MS);
     return () => window.clearTimeout(timer);
   }, [current, dismiss]);

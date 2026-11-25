@@ -91,3 +91,19 @@
 .silver {
   background: #d6d3cc;
 }
+
+/* §5.6: the newest stamp slams onto the page. */
+.slam .inner {
+  animation: slam 420ms ease-out;
+}
+
+@keyframes slam {
+  0% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

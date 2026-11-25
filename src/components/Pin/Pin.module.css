@@ -104,3 +104,51 @@
   width: 36px;
   height: 36px;
 }
+
+/* §5.6 map motion: pins drop in on a region's first view (30 ms apart), the current pin
+   pulses, and a pin lifts 2 px on hover. Transform only. */
+.dropIn .pin > svg {
+  animation: drop 320ms ease-out backwards;
+  animation-delay: calc(var(--i, 0) * 30ms);
+}
+
+@keyframes drop {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+}
+
+.pin > svg {
+  transition: transform 120ms ease-out;
+  transform-origin: 50% 100%;
+}
+
+.pin:hover > svg {
+  transform: translateY(-2px);
+}
+
+.current > svg {
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+/* After a stop is completed, the next pin pops when the traveller arrives. */
+.pop > svg {
+  animation: pop 260ms ease-out backwards;
+  animation-delay: var(--pop-delay, 0ms);
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.4);
+  }
+  70% {
+    transform: scale(1.15);
+  }
+}

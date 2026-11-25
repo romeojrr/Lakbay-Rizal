@@ -3,6 +3,7 @@ import { t } from '../../i18n/t';
 import { asset } from '../../lib/asset';
 import { cx } from '../../lib/cx';
 import WoodFrame from '../WoodFrame/WoodFrame';
+import Ambient, { type AmbientKind } from './Ambient';
 import { cameraView, onScreen, type Camera } from './camera';
 import styles from './SceneView.module.css';
 
@@ -20,6 +21,8 @@ interface SceneViewProps {
   still?: boolean;
   /** The text box covers the bottom of the scene: frame the camera's point above it. */
   covered?: boolean;
+  /** §5.6 ambient effect over the scene (rain, petals, …). */
+  ambient?: AmbientKind;
 }
 
 /** With the text box over the bottom ~40 % of the scene, the open area is centred here. */
@@ -35,6 +38,7 @@ export default function SceneView({
   bubbleKey,
   still,
   covered,
+  ambient,
 }: SceneViewProps) {
   const view = cameraView(camera, covered ? COVERED_FOCUS_Y : 50);
   const bubble = bubbleAt ? onScreen(view, bubbleAt) : undefined;
@@ -53,6 +57,7 @@ export default function SceneView({
         >
           <img className={`pix ${styles.image}`} src={asset(scene.image)} alt={scene.alt} />
         </div>
+        <Ambient kind={ambient} />
         <h1 className={styles.badge}>{t('stop.badge', { place, year })}</h1>
         {bubble && bubble.x >= 0 && bubble.x <= 100 && bubble.y >= 0 && bubble.y <= 100 && (
           <span

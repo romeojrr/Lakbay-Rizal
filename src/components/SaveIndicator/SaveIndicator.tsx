@@ -59,7 +59,7 @@ export default function SaveIndicator() {
       <Disk />
       {state === 'saved' && (
         // A new key on every save replays the fade (1.2 s, ending invisible).
-        <span key={count} className={styles.saved} aria-hidden="true">
+        <span key={count} className={`${styles.saved} motion-ok`} aria-hidden="true">
           {t('save.saved')}
         </span>
       )}

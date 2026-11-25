@@ -336,7 +336,10 @@
     "sound": "Sound",
     "music": "Music",
     "replayTour": "Replay the tour",
-    "replayHelp": "Rizal shows you around the game again."
+    "replayHelp": "Rizal shows you around the game again.",
+    "soundEffects": "Sound effects",
+    "volume": "Volume",
+    "musicHelp": "Music plays only if the team has added music files."
   },
   "credits": {
     "title": "Credits",

@@ -57,6 +57,16 @@ test('pins stay on their towns when zoomed (FR-16)', async ({ page }) => {
   await page.getByRole('button', { name: 'Zoom in' }).click();
   await page.getByRole('button', { name: 'Zoom in' }).click();
   await expect(page.getByRole('button', { name: 'Zoom in' })).toBeDisabled();
+  // No hover lift and no drop-in still running (§5.6 motion) while measuring.
+  await page.mouse.move(0, 0);
+  await page.evaluate(() =>
+    Promise.all(
+      document
+        .getAnimations()
+        .filter((a) => a.effect?.getTiming().iterations !== Infinity)
+        .map((a) => a.finished.catch(() => undefined)),
+    ),
+  );
 
   const offset = await page.evaluate(() => {
     const map = document.querySelector<HTMLImageElement>('img[alt="Pixel map of Europe"]');

@@ -205,3 +205,46 @@
     transform: scale(0.96);
   }
 }
+
+/* §5.6: correct → green flash and 12 pixel sparkles. */
+.feedback {
+  position: relative;
+}
+
+.correct {
+  animation: flash 320ms steps(3);
+}
+
+@keyframes flash {
+  from {
+    opacity: 0.4;
+  }
+}
+
+.sparkles {
+  position: absolute;
+  left: 60px;
+  top: 28px;
+  pointer-events: none;
+}
+
+.sparkles span {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  border: 1px solid var(--ink);
+  opacity: 0;
+  animation: sparkle 520ms ease-out;
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy));
+  }
+}

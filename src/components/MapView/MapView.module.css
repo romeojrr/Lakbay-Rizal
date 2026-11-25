@@ -216,3 +216,12 @@
     bottom: 8px;
   }
 }
+
+/* §5.6 travel sprite: its bottom centre sits on the pin's point. */
+.vehicle {
+  position: absolute;
+  z-index: 5;
+  width: 48px;
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+}

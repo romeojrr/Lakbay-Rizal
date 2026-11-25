@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { Region } from '../../content/schemas';
 import type { PinGroup, TravelPath } from '../../features/map/mapModel';
 import { t } from '../../i18n/t';
@@ -7,6 +7,9 @@ import { cx } from '../../lib/cx';
 import { projectToPercent } from '../../lib/projection';
 import ClusterPin from '../ClusterPin/ClusterPin';
 import Pin from '../Pin/Pin';
+import pinStyles from '../Pin/Pin.module.css';
+import { useUi } from '../../store/ui';
+import TravelSprite, { groupOf } from './TravelSprite';
 import WoodFrame from '../WoodFrame/WoodFrame';
 import ClusterList from './ClusterList';
 import MapOverlays from './MapOverlays';
@@ -28,6 +31,9 @@ interface MapViewProps {
   onOpenInset: () => void;
 }
 
+/** Regions whose pins have dropped in this visit (§5.6 "on first view"). */
+const droppedRegions = new Set<string>();
+
 /** Region map: pixel image, travel path, pins and overlays (FR-10 to FR-16). */
 export default function MapView({
   region,
@@ -47,6 +53,13 @@ export default function MapView({
   const open = groups.find((g) => g.key === openCluster);
   const listId = (group: PinGroup) => `cluster-${group.key}`;
   const route = region.route?.map(([lat, lon]) => projectToPercent(lat, lon, region));
+  // §5.6: pins drop in on a region's first view this visit.
+  const [dropIn] = useState(() => !droppedRegions.has(region.id));
+  useEffect(() => {
+    droppedRegions.add(region.id);
+  }, [region.id]);
+  const travel = useUi((s) => s.travel);
+  const arriving = travel ? groupOf(groups, travel.to) : undefined;
 
   return (
     <WoodFrame className={cx(slideFrom && styles[`slide-${slideFrom}`])}>
@@ -60,7 +73,7 @@ export default function MapView({
           {...handlers}
         >
           <div
-            className={styles.layer}
+            className={cx(styles.layer, dropIn && pinStyles.dropIn)}
             style={{ width: `${zoom * 100}%`, aspectRatio: `${region.w} / ${region.h}` }}
           >
             <img
@@ -70,9 +83,17 @@ export default function MapView({
               draggable={false}
             />
             <MapPath path={path} route={route} />
-            {groups.map((group) =>
+            <TravelSprite region={region.id} groups={groups} />
+            {groups.map((group, index) =>
               group.kind === 'single' ? (
-                <Pin key={group.key} group={group} compact={compact} onLocked={onLocked} />
+                <Pin
+                  key={group.key}
+                  group={group}
+                  compact={compact}
+                  onLocked={onLocked}
+                  index={index}
+                  arriving={arriving === group}
+                />
               ) : (
                 <ClusterPin
                   key={group.key}

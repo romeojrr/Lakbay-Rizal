@@ -16,6 +16,7 @@ import OrderInput from './inputs/OrderInput';
 import { isCorrect, prepare, stampGrade, type Answer, type QuestionResult } from './quizModel';
 import styles from './QuizPage.module.css';
 import { useTip } from '../guide/TipBubble';
+import { play } from '../../lib/sound';
 
 interface QuizRunProps {
   stop: PlayableStop;
@@ -97,6 +98,7 @@ export default function QuizRun({ stop, content }: QuizRunProps) {
   const answer = (given: Answer) => {
     const right = isCorrect(question, given);
     setStatus(right ? 'right' : 'wrong');
+    play(right ? 'correct' : 'wrong'); // §3.11
     // §3.8 XP and streak; §3.7 Rizal reacts (a streak of 5 or 10 beats a plain "correct").
     const outcome = game.answer(stop, question, right, attempt, hintOpen);
     setGained(outcome.xp);

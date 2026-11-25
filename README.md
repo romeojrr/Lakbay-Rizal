@@ -128,7 +128,7 @@ See [docs/CONTENT_TODO.md](docs/CONTENT_TODO.md). The game shows `[TO WRITE]` wh
 The site is plain static files in `dist/`. Every host needs one rule: **all paths load `index.html`**, so links like `/stop/berlin-1887` work after a refresh. This is already set up for three hosts.
 
 - **Netlify** — `netlify.toml` is ready. Connect the repository; the production site shows verified stops only, while **deploy previews and branch deploys include drafts**.
-- **Vercel** — `vercel.json` is ready. To show drafts on preview deployments, add `INCLUDE_DRAFTS = true` under _Settings → Environment Variables → Preview_.
+- **Vercel** — `vercel.json` is ready. Preview deployments (any branch other than the production one) include drafts automatically; production shows verified stops only unless `INCLUDE_DRAFTS = true` is set for Production.
 - **GitHub Pages** — run the _Deploy to GitHub Pages_ workflow from the Actions tab (first set _Settings → Pages → Source_ to _GitHub Actions_). Tick _include drafts_ for a test site. The build sets `BASE_PATH` so the site works at `https://<user>.github.io/<repository>/`, and writes `404.html` for deep links.
 
 `.github/workflows/ci.yml` runs lint, type checks, unit tests, the build and the browser tests on every push and pull request.
@@ -141,18 +141,19 @@ After the first visit a service worker keeps the whole game (pages, art, fonts, 
 
 Progress is stored in the browser under the key `lakbay-rizal:v1` (store version 2 since v2.3; older saves are upgraded automatically). If a save cannot be read, the game keeps a copy under `lakbay-rizal:v1:corrupt`, starts fresh and tells the player. To change what is saved, bump the version and add a migration in `src/store/migrations.ts`. Players can reset everything from **Settings → Reset progress**, and copy their progress to another device (or keep a backup) with **Settings → Save code** (a short code or a `.lakbay` file). The game warns before leaving the page only in the middle of a quiz.
 
-## Quality checks (last run 25 November 2026)
+## Quality checks (last run 25 November 2026, v2.3)
 
-| Check                                  | Result                                                                                                                                   |
-| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Unit tests                             | 158 passing                                                                                                                              |
-| Browser tests (1440 px and 360 px)     | All passing: SRS §12 journey, every stop end to end, offline play, production "Content coming soon", accessibility scans of every screen |
-| Accessibility (axe, WCAG 2.1 AA)       | No serious or critical issues on any screen                                                                                              |
-| Lighthouse (median of 3, drafts build) | Performance 94–99 and Accessibility 100 on mobile and desktop for the map, a stop and the passport                                       |
-| First-load JavaScript                  | about 85 KB gzipped (budget 300 KB)                                                                                                      |
+| Check                                  | Result                                                                                                                  |
+| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Unit tests                             | 268 passing                                                                                                             |
+| Browser tests (1440 px and 360 px)     | 126 passing: SRS §12 and §12b journeys, every stop end to end, all quiz types, tour, save codes, Filipino, offline play |
+| Accessibility (axe, WCAG 2.1 AA)       | No serious or critical issues on any screen                                                                             |
+| Lighthouse (median of 3, drafts build) | Performance 92–94 mobile and 99 desktop, Accessibility 100, for the map, a stop and the passport                        |
+| First-load JavaScript                  | about 97 KB gzipped (budget 300 KB)                                                                                     |
+| Reduced motion                         | No CSS animation runs except short fades (checked by a browser test)                                                    |
 
-Lighthouse's mobile test simulates a slow 4G phone; under it the largest image appears after about 2.6–3.0 seconds. On a real mid-range phone over normal 4G it is faster.
+Lighthouse's mobile test simulates a slow 4G phone; under it the largest image appears after about 3 seconds. On a real mid-range phone over normal 4G it is faster.
 
 ## Licences and credits
 
-Pixel art: original, by the RIZLIFE team. Font: VT323 by Peter Hull (SIL Open Font License), self-hosted. Map coastlines: the `global-land-mask` package (GLOBE 1-km data). The in-game Credits page lists every source.
+Pixel art: original, by the RIZLIFE team. Sound effects are generated in code (no audio files). Font: VT323 by Peter Hull (SIL Open Font License), self-hosted. Map coastlines: the `global-land-mask` package (GLOBE 1-km data). The in-game Credits page lists every source.

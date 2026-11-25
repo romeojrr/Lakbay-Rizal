@@ -106,29 +106,28 @@ a {
   }
 }
 
-/* FR-71 reduce motion: follows the device unless set to On or Off in Settings. */
+/* FR-71 / FR-89 reduce motion: follows the device unless set to On or Off in Settings.
+   Nothing moves: animations are switched off and transitions are instant. The only
+   exceptions are short opacity fades (.motion-fade, .motion-ok), as SRS v2.3 §5.6 asks. */
 @media (prefers-reduced-motion: reduce) {
-  :root:not([data-motion='off']) *,
+  :root:not([data-motion='off']) *:not(.motion-fade, .motion-ok),
   :root:not([data-motion='off']) *::before,
   :root:not([data-motion='off']) *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+    animation-name: none !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
 }
 
-:root[data-motion='on'] *,
+:root[data-motion='on'] *:not(.motion-fade, .motion-ok),
 :root[data-motion='on'] *::before,
 :root[data-motion='on'] *::after {
-  animation-duration: 0.01ms !important;
-  animation-iteration-count: 1 !important;
+  animation-name: none !important;
   transition-duration: 0.01ms !important;
   scroll-behavior: auto !important;
 }
 
-/* SRS v2.3 §5.6: with reduced motion, things that would move fade in instead (200 ms).
-   These selectors outrank the reduced-motion reset above, so the fade keeps its length. */
+/* SRS v2.3 §5.6: with reduced motion, things that would move fade in instead (200 ms). */
 .motion-fade {
   animation: motion-fade 200ms ease-out;
 }
@@ -137,16 +136,6 @@ a {
   from {
     opacity: 0;
   }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  :root:not([data-motion='off']) .motion-fade {
-    animation-duration: 200ms !important;
-  }
-}
-
-:root[data-motion='on'] .motion-fade {
-  animation-duration: 200ms !important;
 }
 
 /* FR-87: printing shows only the page content (the certificate), on one sheet. */

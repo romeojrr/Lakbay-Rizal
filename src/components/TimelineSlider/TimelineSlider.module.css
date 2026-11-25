@@ -111,3 +111,19 @@
     padding: 4px 10px;
   }
 }
+
+/* §5.6: the year rolls like an odometer while scrubbing. */
+.value {
+  overflow: hidden;
+}
+
+.roll {
+  display: inline-block;
+  animation: roll 160ms ease-out;
+}
+
+@keyframes roll {
+  from {
+    transform: translateY(100%);
+  }
+}

@@ -91,3 +91,25 @@
 .silver {
   background: #d6d3cc;
 }
+
+/* §5.6: the stamp slams down (scale 1.4 → 1, one small shake). */
+.stamp {
+  animation: slam 420ms ease-out;
+}
+
+@keyframes slam {
+  0% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  55% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(-2px);
+  }
+  85% {
+    transform: translateX(2px);
+  }
+}

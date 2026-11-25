@@ -138,3 +138,16 @@
   font-size: var(--fs-small);
   color: #9c2a1f;
 }
+
+.range {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: var(--fs-small);
+}
+
+.range input {
+  width: min(240px, 60vw);
+  min-height: 44px;
+  accent-color: var(--accent);
+}

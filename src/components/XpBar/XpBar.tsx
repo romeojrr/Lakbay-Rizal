@@ -2,6 +2,7 @@ import { useRootData } from '../../app/useRootData';
 import { nextRank, rankFor } from '../../game/rules';
 import { t } from '../../i18n/t';
 import { cx } from '../../lib/cx';
+import { useCountUp } from '../../lib/useCountUp';
 import { useProgress } from '../../store/progress';
 import styles from './XpBar.module.css';
 
@@ -29,6 +30,7 @@ function Flame({ size }: { size: number }) {
 export default function XpBar() {
   const { gamification } = useRootData();
   const xp = useProgress((s) => s.xp);
+  const shown = useCountUp(xp);
   const streak = useProgress((s) => s.streak);
   const rank = rankFor(xp, gamification.ranks);
   const next = nextRank(xp, gamification.ranks);
@@ -38,7 +40,7 @@ export default function XpBar() {
   return (
     <div className={styles.xp} data-guide="xp-bar">
       <span className={styles.rank}>{rank.title}</span>
-      <span className={styles.label}>{t('xp.amount', { xp, label: t('xp.label') })}</span>
+      <span className={styles.label}>{t('xp.amount', { xp: shown, label: t('xp.label') })}</span>
       <span
         className={styles.track}
         role="progressbar"

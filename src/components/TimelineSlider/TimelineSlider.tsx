@@ -107,7 +107,9 @@ export default function TimelineSlider({
             onKeyDown={onKeyDown}
           >
             <span className={styles.value} aria-hidden="true">
-              {value}
+              <span key={value} className={styles.roll}>
+                {value}
+              </span>
             </span>
           </div>
         </div>

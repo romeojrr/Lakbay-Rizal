@@ -2,6 +2,7 @@ import { forwardRef } from 'react';
 import Panel from '../../components/Panel/Panel';
 import { t } from '../../i18n/t';
 import { cx } from '../../lib/cx';
+import { useReducedMotion } from '../../lib/useReducedMotion';
 import styles from './QuizPage.module.css';
 
 interface FeedbackProps {
@@ -24,8 +25,25 @@ interface FeedbackProps {
  */
 const Feedback = forwardRef<HTMLHeadingElement, FeedbackProps>(function Feedback(props, ref) {
   const { right, explain, source, hint, hintOpen } = props;
+  // §5.6: sparkles move, so none with reduced motion.
+  const sparkles = !useReducedMotion();
   return (
     <Panel className={cx(styles.feedback, !right && styles.shake)} role="status">
+      {right && sparkles && (
+        <span className={styles.sparkles} aria-hidden="true">
+          {Array.from({ length: 12 }, (_, i) => (
+            <span
+              key={i}
+              style={
+                {
+                  '--dx': `${Math.round(Math.cos((i / 12) * 2 * Math.PI) * 48)}px`,
+                  '--dy': `${Math.round(Math.sin((i / 12) * 2 * Math.PI) * 28)}px`,
+                } as React.CSSProperties
+              }
+            />
+          ))}
+        </span>
+      )}
       <h2 ref={ref} tabIndex={-1} className={right ? styles.correct : styles.wrong}>
         {right ? t('quiz.correct') : t('quiz.wrong')}
       </h2>

@@ -15,6 +15,7 @@ import StoryPlayer from '../story/StoryPlayer';
 import StopActions from './StopActions';
 import StopFacts from './StopFacts';
 import styles from './StopPage.module.css';
+import { setQuiet } from '../../lib/sound';
 
 const SCENE = { w: 384, h: 216 };
 /** WoodFrame (8 px padding + 3 px border) and the scene's own 3 px border, on both sides. */
@@ -60,6 +61,12 @@ export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
     },
     [stop, story.chapters, lang, isFinal, hasQuiz, visit, markRead, complete, game],
   );
+
+  // GD-6 / §3.11: the final stop plays no sound effects or music.
+  useEffect(() => {
+    setQuiet(isFinal);
+    return () => setQuiet(false);
+  }, [isFinal]);
 
   // §5.5: a phone held sideways shows the scene full-screen (the top bar scrolls away).
   useEffect(() => {

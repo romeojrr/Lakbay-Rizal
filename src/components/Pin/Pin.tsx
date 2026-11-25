@@ -6,6 +6,10 @@ import PinGlyph, { PIN_SIZE } from './PinGlyph';
 import { pinColor, pinName } from './pinLook';
 
 interface PinProps {
+  /** Order on the map, for the staggered drop-in (§5.6). */
+  index?: number;
+  /** The traveller is arriving here: the pin pops (§5.6). */
+  arriving?: boolean;
   group: PinGroup;
   /** Hide labels except on the current or highlighted pin (small maps). */
   compact: boolean;
@@ -13,7 +17,7 @@ interface PinProps {
 }
 
 /** One stop on the map: a link when open, a button that explains the lock otherwise (FR-12, FR-13, FR-18). */
-export default function Pin({ group, compact, onLocked }: PinProps) {
+export default function Pin({ group, compact, onLocked, index = 0, arriving }: PinProps) {
   const { stop, state } = group.lead;
   const big = state === 'current';
   const { h } = big ? PIN_SIZE.big : PIN_SIZE.small;
@@ -25,11 +29,14 @@ export default function Pin({ group, compact, onLocked }: PinProps) {
     group.dimmed && styles.dimmed,
     group.highlighted && styles.highlighted,
     compact && styles.compact,
+    arriving && styles.pop,
   );
   const style = {
     left: `calc(${group.point.x}% - 40px)`,
     top: `calc(${group.point.y}% - ${h}px)`,
-  };
+    '--i': index,
+    '--pop-delay': arriving ? '1500ms' : '0ms',
+  } as React.CSSProperties;
   const content = (
     <>
       <PinGlyph color={pinColor(stop, state)} dot={dot} big={big} />

@@ -12,7 +12,8 @@
 
 .toast,
 .banner {
-  pointer-events: auto;
+  /* Never in the way: clicks go through to the page; only Close takes them. */
+  pointer-events: none;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -28,6 +29,10 @@
   margin: 0 auto;
   background: var(--gold);
   transform-origin: top;
+}
+
+.text a {
+  pointer-events: auto;
 }
 
 .text {
@@ -56,6 +61,7 @@
   background: transparent;
   border: 2px solid var(--ink);
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .slide {

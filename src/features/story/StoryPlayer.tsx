@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { AMBIENT } from '../../components/SceneView/Ambient';
 import SceneView from '../../components/SceneView/SceneView';
 import type { Character, PlayableStop, Source } from '../../content/schemas';
 import { t } from '../../i18n/t';
@@ -10,6 +11,7 @@ import StoryPanel from './StoryPanel';
 import { useStoryKeys } from './useStoryKeys';
 import { useTypewriter } from './useTypewriter';
 import styles from './StoryPanel.module.css';
+import { play } from '../../lib/sound';
 
 /** §3.6: about 40 characters a second; slower and quieter on the final stop (GD-6). */
 const CPS = 40;
@@ -68,6 +70,19 @@ export default function StoryPlayer(props: StoryPlayerProps) {
 
   useEffect(() => onProgress(index, steps.length), [index, steps.length, onProgress]);
 
+  // §3.11: a page turn for each step, a typewriter tick every 3rd character.
+  const first = useRef(true);
+  useEffect(() => {
+    if (first.current) {
+      first.current = false;
+      return;
+    }
+    play('page');
+  }, [index]);
+  useEffect(() => {
+    if (!typer.done && typer.shown > 0 && typer.shown % 3 === 0) play('tick');
+  }, [typer.shown, typer.done]);
+
   // Auto-play: the next step 1.5 s after this one has finished typing.
   useEffect(() => {
     if (!autoplay || quiet || !typer.done || atEnd) return;
@@ -93,6 +108,7 @@ export default function StoryPlayer(props: StoryPlayerProps) {
         bubbleKey={stepKey}
         still={still}
         covered={props.overlay}
+        ambient={quiet ? undefined : AMBIENT[story.id]}
       />
       <div className={props.textClassName}>
         <div className={styles.box}>

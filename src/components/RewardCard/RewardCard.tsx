@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MATERIALS } from '../../content/constants';
 import type { Item, PlayableStop } from '../../content/schemas';
@@ -6,6 +6,7 @@ import { t } from '../../i18n/t';
 import { asset } from '../../lib/asset';
 import Panel from '../Panel/Panel';
 import styles from './RewardCard.module.css';
+import { play } from '../../lib/sound';
 
 interface RewardCardProps {
   stop: PlayableStop;
@@ -21,6 +22,10 @@ const RewardCard = forwardRef<HTMLHeadingElement, RewardCardProps>(function Rewa
   { stop, item, fresh, grade },
   ref,
 ) {
+  // §3.11: the stamp lands with a thud (once, when it is new).
+  useEffect(() => {
+    if (fresh) play('stamp');
+  }, [fresh]);
   const stamp = t('reward.stamp', { place: stop.place.label });
   const materials = MATERIALS.flatMap((m) => {
     const amount = stop.rewards.materials?.[m];

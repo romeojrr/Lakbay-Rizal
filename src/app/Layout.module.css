@@ -1,6 +1,9 @@
 /* Page area under the slim top bar (§5.5). Each screen sets its own width limit. */
 .main {
   max-width: 1920px;
+  /* At least one screen tall, so the footer starts below the fold and does not jump
+     while a page loads (NFR-1 layout shift). */
+  min-height: calc(100vh - var(--topbar-h));
   margin: 0 auto;
   padding: 24px;
 }

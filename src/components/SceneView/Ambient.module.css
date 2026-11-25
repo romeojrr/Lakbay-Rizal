@@ -1,0 +1,120 @@
+/* §5.6 ambient scene effects: pixel squares moved by transform only, ≤ 40 particles. */
+.layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  container-type: size;
+}
+
+.layer span {
+  position: absolute;
+  top: -8%;
+  display: block;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* Rain: thin diagonal streaks falling fast. */
+.rain span {
+  width: 2px;
+  height: 10px;
+  background: rgba(214, 226, 240, 0.7);
+  animation-name: fall-slant;
+}
+
+/* Petals: pink squares drifting down and sideways. */
+.petals span {
+  width: 4px;
+  height: 4px;
+  background: #f2b8c6;
+  animation-name: drift;
+}
+
+/* Snow: white squares falling slowly. */
+.snow span {
+  width: 3px;
+  height: 3px;
+  background: #ffffff;
+  animation-name: drift;
+}
+
+/* Falling leaves: autumn orange. */
+.leaves span {
+  width: 5px;
+  height: 3px;
+  background: #c8702a;
+  animation-name: drift;
+}
+
+/* Dust motes in the light: tiny, slow, rising and falling. */
+.dust span {
+  width: 2px;
+  height: 2px;
+  background: rgba(255, 240, 200, 0.75);
+  animation-name: float;
+}
+
+/* Water glints: sparkles that blink in place. */
+.glints span {
+  width: 3px;
+  height: 3px;
+  background: #ffffff;
+  animation-name: glint;
+}
+
+@keyframes fall-slant {
+  to {
+    transform: translate(-40px, 120cqh);
+  }
+}
+
+@keyframes drift {
+  50% {
+    transform: translate(18px, 55cqh);
+  }
+  to {
+    transform: translate(-6px, 115cqh);
+  }
+}
+
+@keyframes float {
+  50% {
+    transform: translate(6px, -12px);
+  }
+}
+
+@keyframes glint {
+  0%,
+  70%,
+  100% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 1;
+  }
+}
+
+/* Candle flicker: a faint shade over the cell, brightness 0.95–1.0. */
+.candle {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: #000000;
+  opacity: 0;
+  pointer-events: none;
+  animation: flicker 1.8s steps(6) infinite;
+}
+
+@keyframes flicker {
+  30% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.02;
+  }
+  80% {
+    opacity: 0.04;
+  }
+}

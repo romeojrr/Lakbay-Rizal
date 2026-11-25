@@ -98,6 +98,9 @@ export function makeGame(content: Content, rules: Gamification): Game {
 
     finishQuiz: withSettle((stop, results, grade) => {
       const fresh = store.getState().finishQuiz(stop, results, grade);
+      // §5.6: the traveller heads for the next stop on the map.
+      const next = content.stops.find((s) => s.order === stop.order + 1);
+      if (fresh && next) useUi.setState({ travel: { from: stop.id, to: next.id } });
       const perfect = results.length > 0 && results.every((r) => r.attempts === 1);
       if (fresh && perfect) {
         store.setState((s) => ({ perfectStops: [...s.perfectStops, stop.id] }));

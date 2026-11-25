@@ -34,7 +34,7 @@ export default function StampCard({ stop, earned, isNew, plain, grade }: StampCa
   const tilt = plain ? 0 : (TILTS[(stop.order - 1) % TILTS.length] ?? 0);
   return (
     <li
-      className={cx(styles.stamp, plain && styles.plain)}
+      className={cx(styles.stamp, plain && styles.plain, isNew && !plain && styles.slam)}
       style={{ transform: `rotate(${tilt}deg)` }}
     >
       <div className={styles.inner} style={{ borderColor: `var(--theme-${stop.theme})` }}>
