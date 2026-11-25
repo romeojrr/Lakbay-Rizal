@@ -11,9 +11,11 @@ import { useProgress } from '../../store/progress';
 import { AchievementsPanel, RankPanel } from './AchievementsPanel';
 import styles from './PassportPage.module.css';
 import PassportTabs from './PassportTabs';
+import { useTip } from '../guide/TipBubble';
 
 /** /passport — an open leather passport: traveller page and stamp page (FR-50 to FR-52). */
 export default function PassportPage() {
+  useTip('passport-first'); // §3.7: a one-time hint from Rizal
   const { content, stops, gamification } = useRootData();
   const grades = useProgress((s) => s.stampGrade);
   const achievements = useProgress((s) => s.achievements);

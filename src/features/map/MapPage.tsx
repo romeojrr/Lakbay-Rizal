@@ -18,7 +18,6 @@ import { t } from '../../i18n/t';
 import { cx } from '../../lib/cx';
 import { useProgress } from '../../store/progress';
 import { useUi } from '../../store/ui';
-import IntroDialog from '../intro/IntroDialog';
 import {
   buildPinGroups,
   buildTravelPath,
@@ -175,7 +174,6 @@ export default function MapPage() {
         </SidePanel>
       </div>
       <Toast message={message} />
-      <IntroDialog />
     </div>
   );
 }

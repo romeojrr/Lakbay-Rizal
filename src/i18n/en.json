@@ -335,7 +335,8 @@
     "language": "Language",
     "sound": "Sound",
     "music": "Music",
-    "replayTour": "Replay the tour"
+    "replayTour": "Replay the tour",
+    "replayHelp": "Rizal shows you around the game again."
   },
   "credits": {
     "title": "Credits",
@@ -442,5 +443,15 @@
   "celebrate": {
     "achievement": "{label}: {title}",
     "close": "Close"
+  },
+  "guide": {
+    "label": "Tour with José Rizal",
+    "step": "Step {n} of {total}",
+    "next": "Next",
+    "done": "Let us begin",
+    "skip": "Skip tour",
+    "tryIt": "Do it for me",
+    "tipLabel": "Tip from José Rizal",
+    "close": "Close tip"
   }
 }

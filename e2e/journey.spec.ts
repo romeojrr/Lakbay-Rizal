@@ -13,12 +13,13 @@ async function noSideScroll(page: Page) {
 test('SRS §12: the whole journey', async ({ page }) => {
   test.setTimeout(180_000);
 
-  await test.step('1. fresh profile → intro shows → skip', async () => {
+  await test.step("1. fresh profile → Rizal's tour starts → skip", async () => {
     await page.goto('/');
-    const intro = page.getByRole('dialog', { name: 'Welcome to Lakbay Rizal' });
-    await expect(intro).toBeVisible();
-    await intro.getByRole('button', { name: 'Skip' }).click();
-    await expect(intro).toBeHidden();
+    const tour = page.getByRole('dialog', { name: 'Tour with José Rizal' });
+    await expect(tour).toBeVisible();
+    await expect(tour.getByText('Step 1 of 14')).toBeVisible();
+    await tour.getByRole('button', { name: 'Skip tour' }).click();
+    await expect(tour).toBeHidden();
   });
 
   await test.step('2. map opens on the first region; stop 1 current; later stops locked', async () => {
@@ -98,8 +99,8 @@ test('SRS §12: the whole journey', async ({ page }) => {
       .click();
     await page.goto('/');
     await page
-      .getByRole('dialog', { name: 'Welcome to Lakbay Rizal' })
-      .getByRole('button', { name: 'Skip' })
+      .getByRole('dialog', { name: 'Tour with José Rizal' })
+      .getByRole('button', { name: 'Skip tour' })
       .click();
     await expect(page).toHaveURL(/\/region\/philippines$/);
     await expect(page.getByRole('link', { name: 'Enter Calamba ▶' })).toBeVisible();

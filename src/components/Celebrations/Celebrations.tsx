@@ -3,6 +3,7 @@ import { useRootData } from '../../app/useRootData';
 import { t } from '../../i18n/t';
 import { asset } from '../../lib/asset';
 import { useReducedMotion } from '../../lib/useReducedMotion';
+import { useTip } from '../../features/guide/TipBubble';
 import { useUi } from '../../store/ui';
 import styles from './Celebrations.module.css';
 
@@ -17,6 +18,9 @@ export default function Celebrations() {
   const current = useUi((s) => s.celebrations[0]);
   const dismiss = useUi((s) => s.dismissCelebration);
   const still = useReducedMotion();
+
+  // §3.7: Rizal's rank-up tip, the first time.
+  useTip('rank-up', current?.kind === 'rank');
 
   useEffect(() => {
     if (!current) return;

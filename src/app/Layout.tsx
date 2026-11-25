@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import BottomNav from '../components/BottomNav/BottomNav';
 import Celebrations from '../components/Celebrations/Celebrations';
+import TipBubble from '../features/guide/TipBubble';
+import Tour from '../features/guide/Tour';
 import Toast from '../components/Toast/Toast';
 import TopBar from '../components/TopBar/TopBar';
 import { getNextStop } from '../content/selectors';
@@ -33,6 +35,19 @@ export default function Layout() {
     return () => clearTimeout(timer);
   }, [notice]);
 
+  // §3.7 / FR-4: the tour runs when a first visit opens (players who saw the v2.2 intro can
+  // replay it from Settings). Checked once, when the game opens: a progress reset does not
+  // start it mid-visit. Never on the final stop (GD-6).
+  const { pathname } = useLocation();
+  const [openedOn] = useState(pathname);
+  useEffect(() => {
+    const { tourDone, seenIntro } = useProgress.getState();
+    const ui = useUi.getState();
+    if (tourDone || seenIntro || ui.tourOffered) return;
+    if (openedOn === `/stop/${stops.at(-1)?.id}`) return;
+    ui.startTour();
+  }, [openedOn, stops]);
+
   // FR-71: text size and reduce motion apply to the whole page (see tokens.css, global.css).
   const { textSize, reduceMotion } = useProgress((s) => s.settings);
   useEffect(() => {
@@ -61,6 +76,8 @@ export default function Layout() {
       <BottomNav mapRegion={mapRegion} earned={earned} total={stops.length} />
       {notice && <Toast message={notice} />}
       <Celebrations />
+      <TipBubble />
+      <Tour />
     </>
   );
 }

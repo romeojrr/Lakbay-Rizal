@@ -1,8 +1,8 @@
 import { expect, type Page } from '@playwright/test';
 
 /**
- * Marks the intro (FR-4) as seen, but only on a fresh profile: once a save exists it is
- * left alone, so reloads keep the test's progress.
+ * Marks the intro (FR-4) as seen, so the v2.3 tour does not start, but only on a fresh
+ * profile: once a save exists it is left alone, so reloads keep the test's progress.
  */
 export async function skipIntroOnFreshProfile(page: Page) {
   await page.addInitScript(() => {
@@ -22,6 +22,17 @@ export async function skipIntroOnFreshProfile(page: Page) {
           materials: { bamboo: 0, stone: 0, tools: 0 },
           builder: { school: false, clinic: false, water: false },
           seenIntro: true,
+          // v2.3 tips would cover buttons for 8 s; tests of the tips clear this.
+          seenTips: [
+            'quiz-first',
+            'passport-first',
+            'journal-first',
+            'builder-first',
+            'gallery-first',
+            'settings-first',
+            'rank-up',
+            'private-mode',
+          ],
           settings: { textSize: 'normal', reduceMotion: 'system', showVerifyNotes: false },
         },
       }),

@@ -5,9 +5,11 @@ import { t } from '../../i18n/t';
 import { asset } from '../../lib/asset';
 import { useProgress } from '../../store/progress';
 import styles from './JournalPage.module.css';
+import { useTip } from '../guide/TipBubble';
 
 /** /journal — collected keepsake items with their icons (FR-53). */
 export default function JournalPage() {
+  useTip('journal-first'); // §3.7: a one-time hint from Rizal
   const { content, stops } = useRootData();
   const owned = useProgress((s) => s.items);
   const total = new Set(stops.flatMap((s) => (s.rewards.item ? [s.rewards.item] : []))).size;

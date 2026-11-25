@@ -4,6 +4,7 @@ import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { createRoutes, routerFuture, type RootLoader } from '../../app/routes';
 import { initialProgress, useProgress } from '../../store/progress';
+import { useUi } from '../../store/ui';
 import { realContent, rootData } from '../../test/content';
 
 const content = realContent();
@@ -105,7 +106,7 @@ describe('Settings (FR-71)', () => {
     await user.click(screen.getByRole('button', { name: 'Reset progress' }));
     await user.click(within(dialog).getByRole('button', { name: 'Yes, reset' }));
     expect(useProgress.getState().stamps).toEqual([]);
-    expect(useProgress.getState().seenIntro).toBe(false);
+    expect(useProgress.getState().xp).toBe(0);
     expect(screen.getByRole('status')).toHaveTextContent('Progress was reset');
   });
 });
@@ -122,36 +123,59 @@ describe('Credits (FR-72)', () => {
   });
 });
 
-describe('Intro cards (FR-4)', () => {
-  it('shows three cards on a fresh profile; choosing a mode closes it for good', async () => {
-    const user = userEvent.setup();
-    useProgress.setState({ seenIntro: false });
-    renderAt('/region/philippines');
-    const dialog = await screen.findByRole('dialog', { name: 'Welcome to Lakbay Rizal' });
-    expect(within(dialog).getByText('Card 1 of 3')).toBeVisible();
-    await user.click(within(dialog).getByRole('button', { name: 'Next ▶' }));
-    await user.click(within(dialog).getByRole('button', { name: 'Next ▶' }));
-    expect(within(dialog).getByText('Card 3 of 3')).toBeVisible();
-    await user.click(within(dialog).getByRole('button', { name: 'Explore freely' }));
+describe("Rizal's tour (FR-4, FR-84, SRS v2.3 §3.7)", () => {
+  const fresh = () => {
+    useProgress.setState({ ...initialProgress() });
+    useUi.setState({ tour: { active: false, step: 0 }, tourOffered: false });
+  };
 
-    expect(useProgress.getState().seenIntro).toBe(true);
-    expect(useProgress.getState().mode).toBe('free');
-    expect(dialog).not.toHaveAttribute('open');
+  it('runs on a fresh profile; Next moves on; Skip (or Esc) ends it for good', async () => {
+    const user = userEvent.setup();
+    fresh();
+    renderAt('/region/philippines');
+    const card = await screen.findByRole('dialog', { name: 'Tour with José Rizal' });
+    expect(within(card).getByText('Step 1 of 14')).toBeVisible();
+    expect(card).toHaveAccessibleDescription(/^Good day! I am José Rizal/);
+    expect(within(card).getByRole('img', { name: 'Portrait of José Rizal, happy' })).toBeVisible();
+    await user.click(within(card).getByRole('button', { name: 'Next' }));
+    expect(await screen.findByText('Step 2 of 14', undefined, { timeout: 3000 })).toBeVisible();
+    await user.click(screen.getByRole('button', { name: 'Skip tour' }));
+    expect(screen.queryByRole('dialog', { name: 'Tour with José Rizal' })).toBeNull();
+    expect(useProgress.getState().tourDone).toBe(true);
   });
 
-  it('Skip closes it and keeps Guided', async () => {
+  it('Esc skips it', async () => {
     const user = userEvent.setup();
-    useProgress.setState({ seenIntro: false });
+    fresh();
     renderAt('/region/philippines');
-    const dialog = await screen.findByRole('dialog', { name: 'Welcome to Lakbay Rizal' });
-    await user.click(within(dialog).getByRole('button', { name: 'Skip' }));
-    expect(useProgress.getState().seenIntro).toBe(true);
-    expect(useProgress.getState().mode).toBe('guided');
+    await screen.findByRole('dialog', { name: 'Tour with José Rizal' });
+    await user.keyboard('{Escape}');
+    expect(screen.queryByRole('dialog', { name: 'Tour with José Rizal' })).toBeNull();
+    expect(useProgress.getState().tourDone).toBe(true);
   });
 
-  it('is not shown once seen', async () => {
+  it('does not run once done, or for players who saw the v2.2 intro', async () => {
     renderAt('/region/philippines');
     await screen.findByRole('heading', { level: 1, name: 'Philippines' });
-    expect(screen.queryByRole('dialog', { name: 'Welcome to Lakbay Rizal' })).toBeNull();
+    expect(screen.queryByRole('dialog', { name: 'Tour with José Rizal' })).toBeNull();
+  });
+
+  it('Settings → Replay the tour starts it again on the map', async () => {
+    const user = userEvent.setup();
+    useProgress.setState({ tourDone: true });
+    useUi.setState({ tourOffered: true });
+    const router = renderAt('/settings');
+    await user.click(await screen.findByRole('button', { name: 'Replay the tour' }));
+    expect(await screen.findByRole('dialog', { name: 'Tour with José Rizal' })).toBeVisible();
+    expect(router.state.location.pathname).toMatch(/^\/region\//);
+  });
+
+  it('a one-time tip the first time Settings opens', async () => {
+    useProgress.setState({ tourDone: true });
+    renderAt('/settings');
+    expect(
+      await screen.findByText(/^Here you can change the text size and language/),
+    ).toBeVisible();
+    expect(useProgress.getState().seenTips).toEqual(['settings-first']);
   });
 });

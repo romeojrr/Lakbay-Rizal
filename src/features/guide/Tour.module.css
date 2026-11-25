@@ -1,0 +1,142 @@
+/* SRS v2.3 §3.7 tour: dimmed page, a rounded spotlight, Rizal's card (v2.2 parchment). */
+.layer {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(31, 26, 36, 0.62);
+}
+
+.mask {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.shade {
+  fill: rgba(31, 26, 36, 0.62);
+}
+
+.spotlight {
+  position: fixed;
+  border-radius: 10px;
+  outline: 3px solid var(--gold);
+}
+
+.blocker {
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+}
+
+.card {
+  position: fixed;
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  width: min(420px, calc(100vw - 24px));
+  padding: 14px 16px;
+  color: var(--ink);
+  background: var(--dialogue-bg);
+  border: 4px solid var(--ink);
+  box-shadow:
+    inset 0 0 0 3px var(--gold),
+    var(--shadow-panel);
+}
+
+.card:focus {
+  outline: none;
+}
+
+.card:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.centred {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card > :first-child {
+  --s: 1;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.count {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--speaker);
+}
+
+.text {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: 1.4;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.skip,
+.next {
+  min-height: 44px;
+  padding: 4px 14px;
+  font-size: var(--fs-small);
+  border: 3px solid var(--ink);
+  cursor: pointer;
+}
+
+.skip {
+  color: var(--ink);
+  background: var(--card);
+}
+
+.next {
+  color: var(--card-warm);
+  background: var(--ink);
+}
+
+.rise {
+  animation: rise 220ms ease-out;
+}
+
+.centred.rise {
+  animation: none;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* Phones: the card goes to the bottom (or top) edge, full width. */
+@media (max-width: 640px) {
+  .placed {
+    left: 12px !important;
+  }
+
+  .text {
+    font-size: var(--fs-small);
+  }
+}

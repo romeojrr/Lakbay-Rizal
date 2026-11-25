@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ConfirmDialog from '../../components/ConfirmDialog/ConfirmDialog';
 import DraftBadge from '../../components/LanguageSwitch/DraftBadge';
 import ModeToggle from '../../components/ModeToggle/ModeToggle';
@@ -11,6 +11,7 @@ import { changeLanguage, useLanguage, useRestoreFocus } from '../../i18n/useLang
 import { useProgress, type Progress } from '../../store/progress';
 import { useUi } from '../../store/ui';
 import styles from './SettingsPage.module.css';
+import { useTip } from '../guide/TipBubble';
 
 type Settings = Progress['settings'];
 
@@ -91,6 +92,8 @@ function LanguageChoice() {
 
 /** /settings — language, text size, motion, journey mode, verify notes, reset (FR-71). */
 export default function SettingsPage() {
+  useTip('settings-first'); // §3.7: a one-time hint from Rizal
+  const navigate = useNavigate();
   const mode = useProgress((s) => s.mode);
   const setMode = useProgress((s) => s.setMode);
   const showVerifyNotes = useProgress((s) => s.settings.showVerifyNotes);
@@ -141,6 +144,20 @@ export default function SettingsPage() {
           <span>{t('settings.verifyNotes')}</span>
         </label>
         <p className={styles.help}>{t('settings.verifyHelp')}</p>
+      </div>
+      <div className={styles.fieldset}>
+        <h2 className={styles.legend}>{t('settings.replayTour')}</h2>
+        <p className={styles.help}>{t('settings.replayHelp')}</p>
+        <button
+          type="button"
+          className={styles.reset}
+          onClick={() => {
+            useUi.getState().startTour();
+            navigate('/');
+          }}
+        >
+          {t('settings.replayTour')}
+        </button>
       </div>
       <div className={styles.danger}>
         <h2 className={styles.legend}>{t('settings.reset')}</h2>

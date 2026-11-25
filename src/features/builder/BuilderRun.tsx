@@ -13,6 +13,7 @@ import { useGame } from '../../game/useGame';
 import { useProgress } from '../../store/progress';
 import { availableMaterials, builtCount, isBuilt, isTownComplete, shortfall } from './builderModel';
 import styles from './BuilderPage.module.css';
+import { useTip } from '../guide/TipBubble';
 
 interface Message {
   who: 'narrator' | 'fact';
@@ -26,6 +27,7 @@ interface BuilderRunProps {
 
 /** Dapitan builder: materials, projects, the town scene and a one-sentence fact per build (§3.5). */
 export default function BuilderRun({ stop, content }: BuilderRunProps) {
+  useTip('builder-first'); // §3.7: a one-time hint from Rizal
   const builder = content.builder;
   const progress = useProgress();
   const [message, setMessage] = useState<Message>({ who: 'narrator', text: t('builder.intro') });

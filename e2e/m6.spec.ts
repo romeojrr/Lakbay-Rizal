@@ -1,21 +1,31 @@
 import { expect, test } from '@playwright/test';
 import { horizontalOverflow, openFromMenu, skipIntroOnFreshProfile } from './helpers';
 
-test('fresh profile: the intro shows once and can be skipped (SRS §12 step 1, FR-4)', async ({
+test("fresh profile: Rizal's tour runs once; Skip ends it; Settings replays it (FR-4, FR-84)", async ({
   page,
 }) => {
   await page.goto('/');
-  const intro = page.getByRole('dialog', { name: 'Welcome to Lakbay Rizal' });
-  await expect(intro).toBeVisible();
-  await expect(intro.getByText('Card 1 of 3')).toBeVisible();
-  await intro.getByRole('button', { name: 'Skip' }).click();
-  await expect(intro).toBeHidden();
+  const tour = page.getByRole('dialog', { name: 'Tour with José Rizal' });
+  await expect(tour).toBeVisible();
+  await expect(tour.getByText('Step 1 of 14')).toBeVisible();
+  await tour.getByRole('button', { name: 'Next' }).click();
+  // Step 2 shines a light on the map.
+  await expect(tour.getByText('Step 2 of 14')).toBeVisible();
+  await expect(page.locator('[data-guide="map"]')).toBeInViewport();
+  await tour.getByRole('button', { name: 'Skip tour' }).click();
+  await expect(tour).toBeHidden();
   // §12 step 2: the map opens on the first region with stop 1 current.
   await expect(page.getByRole('link', { name: 'Enter Calamba ▶' })).toBeVisible();
 
   await page.reload();
   await expect(page.getByRole('heading', { level: 1, name: 'Philippines' })).toBeVisible();
-  await expect(page.getByRole('dialog', { name: 'Welcome to Lakbay Rizal' })).toHaveCount(0);
+  await expect(page.getByRole('dialog', { name: 'Tour with José Rizal' })).toHaveCount(0);
+
+  await openFromMenu(page, 'Settings');
+  await page.getByRole('button', { name: 'Replay the tour' }).click();
+  await expect(page.getByRole('dialog', { name: 'Tour with José Rizal' })).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog', { name: 'Tour with José Rizal' })).toHaveCount(0);
 });
 
 test.describe('with the intro already seen', () => {
@@ -38,8 +48,8 @@ test.describe('with the intro already seen', () => {
 
     await page.goto('/');
     await page
-      .getByRole('dialog', { name: 'Welcome to Lakbay Rizal' })
-      .getByRole('button', { name: 'Skip' })
+      .getByRole('dialog', { name: 'Tour with José Rizal' })
+      .getByRole('button', { name: 'Skip tour' })
       .click();
     await expect(page).toHaveURL(/\/region\/philippines$/);
     await expect(page.getByRole('button', { name: 'Guided' })).toHaveAttribute(

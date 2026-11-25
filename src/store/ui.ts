@@ -7,6 +7,17 @@ import type { RegionId } from '../content/schemas';
 export type Celebration = { kind: 'achievement'; id: string } | { kind: 'rank'; id: string };
 
 interface UiState {
+  /** §3.7 the guided tour: running, and at which step. */
+  tour: { active: boolean; step: number };
+  /** The tour has been offered this visit (so it does not start twice). */
+  tourOffered: boolean;
+  startTour: () => void;
+  setTourStep: (step: number) => void;
+  endTour: () => void;
+  /** §3.7 a one-time tip in the corner. */
+  tip: string | null;
+  showTip: (id: string) => void;
+  hideTip: () => void;
   celebrations: Celebration[];
   celebrate: (item: Celebration) => void;
   /** Removes the celebration that has been shown. */
@@ -34,6 +45,14 @@ export const useUi = create<UiState>()((set) => ({
   timelineYear: null,
   timelineExpanded: false,
   pendingFocus: null,
+  tour: { active: false, step: 0 },
+  tourOffered: false,
+  startTour: () => set({ tour: { active: true, step: 0 }, tourOffered: true, tip: null }),
+  setTourStep: (step) => set((s) => ({ tour: { ...s.tour, step } })),
+  endTour: () => set({ tour: { active: false, step: 0 } }),
+  tip: null,
+  showTip: (tip) => set({ tip }),
+  hideTip: () => set({ tip: null }),
   celebrations: [],
   celebrate: (item) => set((s) => ({ celebrations: [...s.celebrations, item] })),
   dismissCelebration: () => set((s) => ({ celebrations: s.celebrations.slice(1) })),

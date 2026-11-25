@@ -9,9 +9,11 @@ import { asset } from '../../lib/asset';
 import { cx } from '../../lib/cx';
 import { useProgress } from '../../store/progress';
 import styles from './GalleryPage.module.css';
+import { useTip } from '../guide/TipBubble';
 
 /** /scenes — every scene the player has unlocked, all of them in Free mode (FR-55). */
 export default function GalleryPage() {
+  useTip('gallery-first'); // §3.7: a one-time hint from Rizal
   const { stops } = useRootData();
   const mode = useProgress((s) => s.mode);
   const completed = useProgress((s) => s.completed);

@@ -14,6 +14,7 @@ import MatchInput from './inputs/MatchInput';
 import OrderInput from './inputs/OrderInput';
 import { isCorrect, prepare, stampGrade, type Answer, type QuestionResult } from './quizModel';
 import styles from './QuizPage.module.css';
+import { useTip } from '../guide/TipBubble';
 
 interface QuizRunProps {
   stop: PlayableStop;
@@ -49,6 +50,7 @@ function AnswerInput(props: { question: Question; status: Status; onAnswer: (a: 
  * Every attempt is shuffled again (FR-82). First-try results decide the stamp (§3.8).
  */
 export default function QuizRun({ stop, content }: QuizRunProps) {
+  useTip('quiz-first'); // §3.7: a one-time hint from Rizal
   const game = useGame();
   const { guide, gamification } = useRootData();
   const [gained, setGained] = useState(0);

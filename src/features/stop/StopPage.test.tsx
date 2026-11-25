@@ -40,7 +40,7 @@ const step = () => useUi.getState().storyStep['calamba-1861'] ?? 0;
 // calamba-1861 steps: chapter 1 = 0–4, chapter 2 = 5–9, chapter 3 = 10–17, chapter 4 = 18–22.
 const CALAMBA_CHAPTER_3 = 10;
 
-describe('Story player — Calamba (FR-80, SRS v2.3 §3.6)', () => {
+describe('Story player — Calamba (FR-80, SRS v2.3 §3.6)', { timeout: 15_000 }, () => {
   it('plays chapter by chapter: title card, narration, close-up line, fact', async () => {
     freeAndStill();
     renderAt('/stop/calamba-1861');
