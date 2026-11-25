@@ -29,6 +29,9 @@
   border: var(--border);
   box-shadow: var(--shadow-button);
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
 }
 
 .details {

@@ -1,4 +1,4 @@
-import { useEffect, useRef, type KeyboardEvent, type ReactNode } from 'react';
+import { useEffect, useId, useRef, type KeyboardEvent, type ReactNode } from 'react';
 import { t } from '../../i18n/t';
 import styles from './Dialog.module.css';
 
@@ -10,15 +10,18 @@ interface DialogProps {
   onClose: () => void;
   title: string;
   children: ReactNode;
+  /** Text of the close button in the corner (default "Close"). */
+  closeLabel?: string;
 }
 
 /**
- * Modal dialog on the native <dialog> element: the page behind is inert (focus stays inside),
+ * Modal dialog on the native <dialog> element: the page behind is inert, Tab stays inside,
  * Esc closes it, and focus returns to the button that opened it.
  */
-export default function Dialog({ open, onClose, title, children }: DialogProps) {
+export default function Dialog({ open, onClose, title, children, closeLabel }: DialogProps) {
   const ref = useRef<HTMLDialogElement>(null);
   const opener = useRef<Element | null>(null);
+  const titleId = useId();
 
   useEffect(() => {
     const dialog = ref.current;
@@ -56,7 +59,7 @@ export default function Dialog({ open, onClose, title, children }: DialogProps) 
     <dialog
       ref={ref}
       className={styles.dialog}
-      aria-labelledby="dialog-title"
+      aria-labelledby={titleId}
       onKeyDown={trapTab}
       onCancel={(event) => {
         event.preventDefault();
@@ -64,11 +67,11 @@ export default function Dialog({ open, onClose, title, children }: DialogProps) 
       }}
     >
       <div className={styles.head}>
-        <h2 id="dialog-title" className={styles.title}>
+        <h2 id={titleId} className={styles.title}>
           {title}
         </h2>
         <button type="button" className={styles.close} onClick={onClose}>
-          {t('stop.close')}
+          {closeLabel ?? t('stop.close')}
         </button>
       </div>
       <div className={styles.body}>{children}</div>

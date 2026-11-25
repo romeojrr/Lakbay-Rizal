@@ -89,6 +89,8 @@ export const PlayableStopSchema = z.strictObject({
     image: assetPath,
     time: text,
     alt: text,
+    /** FR-55: three short "what you see" notes for the scene gallery. */
+    notes: z.array(text).max(3, 'use at most 3 notes').optional(),
     speakerAnchors: z.record(z.string(), AnchorSchema).optional(),
   }),
   dialogue: DialogueSchema.extend({
@@ -111,6 +113,7 @@ export const OutlineStopSchema = z.strictObject({
     image: assetPath.nullable(),
     time: z.string().nullable(),
     alt: z.string(),
+    notes: z.array(z.string()).optional(),
     speakerAnchors: z.record(z.string(), AnchorSchema).optional(),
   }),
   dialogue: DialogueSchema,

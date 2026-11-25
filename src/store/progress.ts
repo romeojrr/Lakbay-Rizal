@@ -60,6 +60,10 @@ interface ProgressActions {
   build: (project: 'school' | 'clinic' | 'water') => void;
   /** "Restart builder": clears the projects only; stamps and materials stay (SRS §3.5). */
   resetBuilder: () => void;
+  /** FR-71 settings: text size, reduce motion, verify notes. */
+  setSettings: (settings: Partial<Progress['settings']>) => void;
+  /** FR-4: the intro is shown once, until progress is reset. */
+  setSeenIntro: () => void;
   /** Starts again from nothing (Settings → Reset progress). */
   reset: () => void;
 }
@@ -154,6 +158,8 @@ export const useProgress = create<ProgressStore>()(
       markPassportSeen: () => set((s) => (s.newStamp === undefined ? s : { newStamp: undefined })),
       build: (project) => set((s) => ({ builder: { ...s.builder, [project]: true } })),
       resetBuilder: () => set({ builder: initialProgress().builder }),
+      setSettings: (settings) => set((s) => ({ settings: { ...s.settings, ...settings } })),
+      setSeenIntro: () => set({ seenIntro: true }),
       reset: () => set(initialProgress()),
     }),
     {

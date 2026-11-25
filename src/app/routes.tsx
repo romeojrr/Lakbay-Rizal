@@ -3,16 +3,20 @@ import { loadContent } from '../content/loader';
 import { isPreviewMode } from '../content/preview';
 import type { Content, Stop } from '../content/schemas';
 import { getVisibleStops, shouldIncludeDrafts } from '../content/selectors';
+import BuilderPage from '../features/builder/BuilderPage';
+import CreditsPage from '../features/credits/CreditsPage';
+import GalleryPage from '../features/gallery/GalleryPage';
+import JournalPage from '../features/journal/JournalPage';
 import HomeRedirect from '../features/map/HomeRedirect';
 import MapPage from '../features/map/MapPage';
-import BuilderPage from '../features/builder/BuilderPage';
-import JournalPage from '../features/journal/JournalPage';
 import PassportPage from '../features/passport/PassportPage';
 import QuizPage from '../features/quiz/QuizPage';
+import SettingsPage from '../features/settings/SettingsPage';
 import StopPage from '../features/stop/StopPage';
 import ContentError from './ContentError';
 import Layout from './Layout';
 import LoadingScreen from './LoadingScreen';
+import NotFoundPage from './NotFoundPage';
 
 export interface RootData {
   content: Content;
@@ -32,12 +36,7 @@ export async function rootLoader(): Promise<RootData> {
   return { content, stops: getVisibleStops(content.stops, includeDrafts) };
 }
 
-/** Placeholder for routes that later milestones build (stop, passport, scenes…). */
-function BlankPage() {
-  return null;
-}
-
-// Each milestone adds its SRS FR-2 routes under the root.
+// The routes of SRS FR-2.
 export function createRoutes(loader: RootLoader = rootLoader): RouteObject[] {
   return [
     {
@@ -56,7 +55,10 @@ export function createRoutes(loader: RootLoader = rootLoader): RouteObject[] {
         { path: 'passport', Component: PassportPage },
         { path: 'journal', Component: JournalPage },
         { path: 'dapitan/build', Component: BuilderPage },
-        { path: '*', Component: BlankPage },
+        { path: 'scenes', Component: GalleryPage },
+        { path: 'settings', Component: SettingsPage },
+        { path: 'credits', Component: CreditsPage },
+        { path: '*', Component: NotFoundPage },
       ],
     },
   ];

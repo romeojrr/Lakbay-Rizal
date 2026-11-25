@@ -69,4 +69,16 @@ One line per judgment call: date — decision — reason.
 - 2026-11-25 — The Dapitan Rizal sprite (`rizal-dapitan`) stands in the builder scene, at the mockup's size. — §7.3 approves that sprite for Dapitan; the mockup used the suit.
 - 2026-11-25 — "Need more" lists the exact shortfall for screen readers (e.g. "Needs 3 more Stone"). — The visible label alone does not say what is missing.
 - 2026-11-25 — The "stamp earned" banner overlaps the bottom of the scene on desktop and sits below it on phones. — On a 300 px scene it covered the water system.
+- 2026-11-25 — Scene gallery: "unlocked" uses the same rule as the map (completed + the next stop in Guided; all in Free). The selected scene is in the URL (`/scenes?stop=…`) so a teacher can share it. — FR-55.
+- 2026-11-25 — Added optional `scene.notes` (≤ 3) to the stop schema for the gallery's "what you see" notes; missing notes show `[TO WRITE]` and are listed in CONTENT_TODO. — FR-55; CLAUDE.md rule for missing content.
+- 2026-11-25 — Verify notes in the gallery show in development always, and in production only with Settings → "Show verify notes (team)". — FR-55.
+- 2026-11-25 — "Large" text scales the whole page with CSS `zoom: 1.15`, so layouts reflow like browser zoom. — The stylesheet uses px throughout; zoom gives larger text everywhere without rewriting every size. Checked at 360 px: no horizontal scroll.
+- 2026-11-25 — Reduce motion: "Same as my device" follows `prefers-reduced-motion`; "On" turns animations off; "Off" keeps them even if the device asks for less motion. Applied as `data-motion` on `<html>`. — FR-71.
+- 2026-11-25 — Reset progress asks in a confirm dialog, then stays on Settings with "Progress was reset" and a link to the map; the intro shows again on the next map visit. — FR-71, FR-4 ("never shown again unless reset"), §12 step 10.
+- 2026-11-25 — Settings and Credits are linked from a small footer on every page. — The header has no room; FR-2 needs both routes reachable.
+- 2026-11-25 — The intro is a 3-card modal on the map. Card 3 ends with "Start guided" or "Explore freely"; Skip keeps Guided. It only appears on map pages, not on a deep link to a stop. — FR-4; a first visit lands on the map.
+- 2026-11-25 — Credits list the team as `[TO WRITE]` (no names in content) and group all 60 sources by tier. — FR-72; no invented names.
+- 2026-11-25 — FR-73 is checked by a unit test that scans every component for hard-coded words in JSX text and in `alt`/`aria-label`/`title`/`placeholder`. — FR-73 allows "lint rule or test"; a test needs no custom ESLint plugin.
+- 2026-11-25 — Unknown URLs show a "Page not found" page inside the normal header and footer. — M6 404 page.
+- 2026-11-25 — Playwright tests mark the intro as seen on a fresh profile (`e2e/helpers.ts`), except the test of the intro itself. — The modal would otherwise cover every page in the older tests.
 - 2026-11-25 — Playwright now builds with INCLUDE_DRAFTS=true. The production "Content coming soon" check is a unit test for now; the second e2e build arrives with the §12 test in M8. — Two builds in one Playwright run need extra setup.

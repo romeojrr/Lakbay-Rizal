@@ -1,4 +1,9 @@
 import { expect, test } from '@playwright/test';
+import { skipIntroOnFreshProfile } from './helpers';
+
+test.beforeEach(async ({ page }) => {
+  await skipIntroOnFreshProfile(page);
+});
 
 test('shell shows the header with no horizontal page scroll', async ({ page }) => {
   await page.goto('/');

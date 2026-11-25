@@ -1,0 +1,64 @@
+.step {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.cardTitle {
+  margin: 6px 0 8px;
+  font-family: var(--font-display);
+  font-size: 24px;
+}
+
+.body {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+  margin: 18px 0;
+}
+
+.dot,
+.dotOn {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--ink);
+  background: #ffffff;
+}
+
+.dotOn {
+  background: var(--accent);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.primary,
+.secondary {
+  min-height: 48px;
+  padding: 8px 18px;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  border: var(--border);
+  box-shadow: var(--shadow-button);
+  cursor: pointer;
+}
+
+.primary {
+  background: var(--accent);
+}
+
+.secondary {
+  background: var(--card);
+}

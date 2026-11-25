@@ -41,6 +41,14 @@ export default function Layout() {
     return () => clearTimeout(timer);
   }, [notice]);
 
+  // FR-71: text size and reduce motion apply to the whole page (see global.css).
+  const { textSize, reduceMotion } = useProgress((s) => s.settings);
+  useEffect(() => {
+    const root = document.documentElement;
+    root.dataset.textSize = textSize;
+    root.dataset.motion = reduceMotion;
+  }, [textSize, reduceMotion]);
+
   return (
     <>
       <header className={styles.header}>
@@ -70,6 +78,12 @@ export default function Layout() {
       <main className={styles.main}>
         <Outlet />
       </main>
+      <footer className={styles.footer}>
+        <nav aria-label={t('footer.label')} className={styles.footerNav}>
+          <Link to="/settings">{t('footer.settings')}</Link>
+          <Link to="/credits">{t('footer.credits')}</Link>
+        </nav>
+      </footer>
       {notice && <Toast message={notice} />}
     </>
   );

@@ -1,4 +1,9 @@
 import { expect, test, type Page } from '@playwright/test';
+import { skipIntroOnFreshProfile } from './helpers';
+
+test.beforeEach(async ({ page }) => {
+  await skipIntroOnFreshProfile(page);
+});
 
 /** Picks the right or a wrong answer for whichever Berlin question is showing. */
 async function answerBerlin(page: Page, correctly: boolean) {
@@ -74,6 +79,8 @@ test('a damaged save is kept aside and the game starts fresh with a notice', asy
   await page.evaluate(() => localStorage.setItem('lakbay-rizal:v1', '{not json'));
   await page.reload();
   await expect(page.getByRole('status').filter({ hasText: 'could not be read' })).toBeVisible();
+  // A fresh start shows the intro again (FR-4).
+  await page.getByRole('button', { name: 'Skip' }).click();
   expect(await page.evaluate(() => localStorage.getItem('lakbay-rizal:v1:corrupt'))).toBe(
     '{not json',
   );

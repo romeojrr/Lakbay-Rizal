@@ -46,13 +46,28 @@ a {
   outline-offset: 2px;
 }
 
+/* FR-71 text size: "Large" scales the whole page like browser zoom, so layouts reflow. */
+:root[data-text-size='large'] body {
+  zoom: 1.15;
+}
+
+/* FR-71 reduce motion: follows the device unless set to On or Off in Settings. */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  :root:not([data-motion='off']) *,
+  :root:not([data-motion='off']) *::before,
+  :root:not([data-motion='off']) *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+:root[data-motion='on'] *,
+:root[data-motion='on'] *::before,
+:root[data-motion='on'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
 }

@@ -1,4 +1,9 @@
 import { expect, test } from '@playwright/test';
+import { skipIntroOnFreshProfile } from './helpers';
+
+test.beforeEach(async ({ page }) => {
+  await skipIntroOnFreshProfile(page);
+});
 
 test('Dapitan: finish dialogue → builder → clinic + water system → stamp (M5, SRS §12 step 9)', async ({
   page,

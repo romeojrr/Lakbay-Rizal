@@ -144,8 +144,12 @@ describe('Stop page — other states', () => {
     expect(screen.queryByRole('heading', { name: 'Epilogue' })).toBeNull();
 
     await user.click(screen.getByRole('button', { name: 'Next ▶' }));
-    expect(screen.getByRole('heading', { name: 'Epilogue' })).toBeVisible();
-    expect(screen.getByRole('link', { name: 'Credits' })).toHaveAttribute('href', '/credits');
+    const epilogue = screen.getByRole('heading', { name: 'Epilogue' }).parentElement as HTMLElement;
+    expect(epilogue).toBeVisible();
+    expect(within(epilogue).getByRole('link', { name: 'Credits' })).toHaveAttribute(
+      'href',
+      '/credits',
+    );
   });
 });
 

@@ -36,10 +36,25 @@ describe('Layout header', () => {
     expect(await screen.findByRole('link', { name: 'Passport · 0/0' })).toBeInTheDocument();
   });
 
-  it('renders the shell with an empty main area on any URL', async () => {
+  it('shows a 404 page inside the shell for unknown URLs', async () => {
     renderAt('/some/unknown/page', withAllStops);
     expect(await screen.findByRole('banner')).toBeInTheDocument();
-    expect(screen.getByRole('main')).toBeEmptyDOMElement();
+    const main = screen.getByRole('main');
+    expect(within(main).getByRole('heading', { name: 'Page not found' })).toBeVisible();
+    expect(within(main).getByRole('link', { name: 'Go to the map' })).toHaveAttribute('href', '/');
+  });
+
+  it('has Settings and Credits links in the footer', async () => {
+    renderAt('/some/unknown/page', withAllStops);
+    const footer = await screen.findByRole('contentinfo');
+    expect(within(footer).getByRole('link', { name: 'Settings' })).toHaveAttribute(
+      'href',
+      '/settings',
+    );
+    expect(within(footer).getByRole('link', { name: 'Credits' })).toHaveAttribute(
+      'href',
+      '/credits',
+    );
   });
 
   it('shows a friendly retry message when content cannot load', async () => {

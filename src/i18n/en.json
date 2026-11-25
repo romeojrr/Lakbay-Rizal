@@ -190,6 +190,83 @@
     "clinic": "Clinic",
     "water": "Water system"
   },
+  "gallery": {
+    "title": "Scene gallery",
+    "scene": "Scene",
+    "badge": "{n} · {place} · {year}",
+    "choose": "Choose a scene",
+    "item": "{n} · {place}",
+    "itemMeta": "{year} · {time}",
+    "whatYouSee": "What you see",
+    "toWrite": "[TO WRITE]",
+    "toVerify": "To verify",
+    "openStop": "Open this stop ▶",
+    "lockedHint": "Scenes appear here as you reach each stop."
+  },
+  "settings": {
+    "title": "Settings",
+    "textSize": "Text size",
+    "normal": "Normal",
+    "large": "Large",
+    "motion": "Reduce motion",
+    "motionHelp": "Turns off sliding and pop-in animations.",
+    "system": "Same as my device",
+    "on": "On",
+    "off": "Off",
+    "mode": "Journey mode",
+    "verifyNotes": "Show verify notes (team)",
+    "verifyHelp": "Shows what the team still has to check, in the scene gallery.",
+    "reset": "Reset progress",
+    "resetHelp": "Removes every stamp, keepsake and builder project, and starts the journey again.",
+    "resetConfirmTitle": "Reset all progress?",
+    "resetConfirmBody": "This removes every stamp, keepsake and builder project on this device. It cannot be undone.",
+    "resetConfirm": "Yes, reset",
+    "keep": "Keep my progress",
+    "cancel": "Cancel",
+    "resetDone": "Progress was reset. The journey starts again."
+  },
+  "credits": {
+    "title": "Credits",
+    "team": "Team",
+    "teamToWrite": "[TO WRITE] Names of the RIZLIFE team members.",
+    "art": "Art",
+    "artText": "Original pixel art by the RIZLIFE team.",
+    "fonts": "Fonts",
+    "fontsText": "Pixelify Sans and Nunito, both under the SIL Open Font License.",
+    "maps": "Map data",
+    "mapsText": "Coastlines come from the land mask in the global-land-mask package, which is derived from GLOBE 1-km elevation data.",
+    "sources": "Sources",
+    "sourcesIntro": "Every stop names the sources it should be checked against.",
+    "tier1": "Primary sources: Rizal's own writings",
+    "tier2": "Scholarly biographies and official bodies",
+    "tier3": "Journalism and essays",
+    "readOnline": "Read online"
+  },
+  "intro": {
+    "title": "Welcome to Lakbay Rizal",
+    "skip": "Skip",
+    "step": "Card {n} of {total}",
+    "card1Title": "A journey through Rizal's life",
+    "card1Body": "Travel stop by stop across the Philippines, Asia, Europe and America. Each stop is a pixel-art scene of that place in that year.",
+    "card2Title": "How to play",
+    "card2Body": "Open a stop on the map, read the short story in the dialogue, then answer two questions. Each stop you finish adds a stamp to your passport.",
+    "card3Title": "Guided or free?",
+    "card3Body": "Guided opens the stops in order, one at a time. Free explore opens every stop now. You can switch at any time on the map.",
+    "next": "Next ▶",
+    "back": "◀ Back",
+    "startGuided": "Start guided",
+    "startFree": "Explore freely"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "This page is not part of the journey.",
+    "home": "Go to the map"
+  },
+  "footer": {
+    "label": "More",
+    "settings": "Settings",
+    "credits": "Credits"
+  },
   "progress": {
     "resetNotice": "Your saved progress could not be read, so the journey starts fresh."
   },

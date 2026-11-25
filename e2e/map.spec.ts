@@ -1,4 +1,9 @@
 import { expect, test, type Page } from '@playwright/test';
+import { skipIntroOnFreshProfile } from './helpers';
+
+test.beforeEach(async ({ page }) => {
+  await skipIntroOnFreshProfile(page);
+});
 
 async function noHorizontalScroll(page: Page) {
   const overflow = await page.evaluate(

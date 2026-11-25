@@ -1,4 +1,9 @@
 import { expect, test } from '@playwright/test';
+import { skipIntroOnFreshProfile } from './helpers';
+
+test.beforeEach(async ({ page }) => {
+  await skipIntroOnFreshProfile(page);
+});
 
 test('Berlin plays end to end from the Europe map and back (M3)', async ({ page }) => {
   await page.goto('/region/europe');
