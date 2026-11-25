@@ -1,0 +1,16 @@
+{
+  "app": {
+    "logo": "LAKBAY RIZAL"
+  },
+  "nav": {
+    "regions": "Regions",
+    "scenes": "Scenes",
+    "passport": "Passport · {done}/{total}"
+  },
+  "regions": {
+    "philippines": "Philippines",
+    "asia": "Asia",
+    "europe": "Europe",
+    "america": "America"
+  }
+}

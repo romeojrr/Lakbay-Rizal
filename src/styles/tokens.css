@@ -1,0 +1,37 @@
+/* Design tokens — SRS §5.3. Use these instead of raw colors in components. */
+:root {
+  /* Base */
+  --ink: #1f1a24;
+  --paper: #f4eedf;
+  --card: #ffffff;
+  --card-warm: #f6f0e1;
+  --wood: #6b4a2b;
+  --wood-light: #8a6440;
+  --accent: #e8892b;
+  --gold: #d9a441;
+  --muted: #4e4658;
+  /* Header tab outline (from Main.dc.html) */
+  --ink-line: #5a5266;
+
+  /* Themes */
+  --theme-study: #3d7be0;
+  --theme-travel: #e8892b;
+  --theme-writing: #8b5cd6;
+  --theme-cause: #d9513f;
+  --theme-exile: #2a9d8f;
+  --theme-exile-chip: #1f7a6f;
+
+  /* Quiz feedback */
+  --success: #23703a;
+  --wrong: #f6c3bd;
+
+  /* Shape */
+  --border: 3px solid var(--ink);
+  --shadow-panel: 6px 6px 0 var(--ink);
+  --shadow-button: 4px 4px 0 var(--ink);
+  --radius: 0;
+
+  /* Type */
+  --font-display: 'Pixelify Sans', monospace;
+  --font-body: 'Nunito', sans-serif;
+}

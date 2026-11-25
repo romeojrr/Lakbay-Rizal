@@ -1,0 +1,13 @@
+dist
+node_modules
+public/assets
+assets
+art-tools
+reference
+content
+playwright-report
+test-results
+package-lock.json
+*.zip
+SRS.md
+CLAUDE.md

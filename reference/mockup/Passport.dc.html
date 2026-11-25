@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lakbay Rizal – Passport</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800&amp;display=swap">
+<style>
+body{margin:0;background:#F4EEDF}
+a{color:#1F1A24}a:hover{color:#000}
+.pf{font-family:'Pixelify Sans',monospace}
+.pix{image-rendering:pixelated}
+</style>
+</helmet>
+<div style="min-height:100vh;background:#F4EEDF;font-family:Nunito,sans-serif;color:#1F1A24">
+
+<header style="background:#1F1A24;color:#F6F0E1;border-bottom:4px solid #6B4A2B">
+<div style="max-width:1400px;margin:0 auto;padding:12px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px">
+<a href="Main.dc.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#F6F0E1">
+<img class="pix" src="../../assets/sprites/rizal_adult_suit.png" alt="" style="width:24px;height:55px">
+<span class="pf" style="font-size:26px;font-weight:700;letter-spacing:1px">LAKBAY RIZAL</span>
+</a>
+<a href="Main.dc.html" class="pf" style="font-size:16px;text-decoration:none;color:#F6F0E1;border:2px solid #5A5266;padding:8px 14px">◀ Back to map</a>
+<span style="flex:1"></span>
+<span class="pf" style="font-size:16px;color:#1F1A24;background:#D9A441;border:2px solid #F6F0E1;padding:8px 14px">Passport · 7/25</span>
+</div>
+</header>
+
+<main style="max-width:1240px;margin:0 auto;padding:28px 24px 40px;box-sizing:border-box">
+<div style="background:#5B3A26;border:3px solid #1F1A24;box-shadow:inset 0 0 0 3px #7A5236,8px 8px 0 #1F1A24;padding:14px;display:flex;flex-wrap:wrap;gap:6px">
+
+<section aria-label="Traveler" style="flex:1 1 320px;background:#FBF5E6;border:3px solid #1F1A24;padding:24px;display:flex;flex-direction:column;gap:18px;box-sizing:border-box">
+<div style="display:flex;align-items:center;justify-content:space-between">
+<span class="pf" style="font-size:24px;font-weight:700">Passport</span>
+<span class="pf" style="font-size:14px;color:#4E4658">No. 1861</span>
+</div>
+<div style="display:flex;gap:18px;align-items:flex-end;flex-wrap:wrap">
+<div style="width:128px;height:212px;flex-shrink:0;background:#D7E9F2;border:3px solid #1F1A24;box-shadow:4px 4px 0 #D9A441;display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;box-sizing:border-box">
+<img class="pix" src="../../assets/sprites/rizal_adult_suit.png" alt="Pixel portrait of José Rizal" style="width:85px;height:195px">
+</div>
+<div style="flex:1 1 140px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;flex-direction:column;gap:2px"><span class="pf" style="font-size:13px;color:#4E4658">Name</span><span style="font-size:18px;font-weight:800">José Rizal</span></div>
+<div style="display:flex;flex-direction:column;gap:2px"><span class="pf" style="font-size:13px;color:#4E4658">Born</span><span style="font-size:16px;font-weight:800">1861 · Calamba</span></div>
+<div style="display:flex;flex-direction:column;gap:2px"><span class="pf" style="font-size:13px;color:#4E4658">Stamps</span><span style="font-size:16px;font-weight:800">7 of 25</span></div>
+</div>
+</div>
+<div style="height:16px;background:#FFFFFF;border:3px solid #1F1A24"><div style="width:28%;height:100%;background:#E8892B"></div></div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<span class="pf" style="font-size:18px;font-weight:700">Theme badges</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ themes }}" as="t" hint-placeholder-count="5">
+<div style="flex:1 1 60px;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:{{ t.op }}">
+<div style="width:40px;height:40px;box-sizing:border-box;background:{{ t.color }};border:3px solid #1F1A24;box-shadow:3px 3px 0 #1F1A24"></div>
+<span style="font-size:13px;font-weight:800">{{ t.name }}</span>
+<span class="pf" style="font-size:13px;color:#4E4658">{{ t.count }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section aria-label="Stamps" style="flex:2 1 480px;background:#FBF5E6;border:3px solid #1F1A24;padding:24px;display:flex;flex-direction:column;gap:18px;box-sizing:border-box;min-width:0">
+<div style="display:flex;align-items:center;justify-content:space-between">
+<span class="pf" style="font-size:24px;font-weight:700">Stamps</span>
+<span class="pf" style="font-size:14px;color:#4E4658">Europe · Philippines</span>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(140px, 1fr));gap:18px">
+<sc-for list="{{ stamps }}" as="s" hint-placeholder-count="12">
+<sc-if value="{{ s.got }}" hint-placeholder-val="{{ true }}">
+<div style="position:relative;height:150px;box-sizing:border-box;background:#FFFFFF;border:3px solid #1F1A24;padding:6px;transform:rotate({{ s.tilt }});box-shadow:3px 3px 0 rgba(31,26,36,0.25)">
+<div style="height:100%;box-sizing:border-box;border:3px dashed {{ s.color }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px">
+<img class="pix" src="{{ s.icon }}" alt="" style="width:56px;height:56px">
+<span class="pf" style="font-size:16px;font-weight:700;color:{{ s.ink }}">{{ s.name }}</span>
+<span class="pf" style="font-size:14px;color:#4E4658">{{ s.year }}</span>
+</div>
+<sc-if value="{{ s.fresh }}" hint-placeholder-val="{{ false }}">
+<span class="pf" style="position:absolute;top:-12px;right:-10px;font-size:14px;font-weight:700;color:#1F1A24;background:#E8892B;border:3px solid #1F1A24;padding:2px 8px">New!</span>
+</sc-if>
+</div>
+</sc-if>
+<sc-if value="{{ s.locked }}" hint-placeholder-val="{{ false }}">
+<div style="height:150px;box-sizing:border-box;background:#EFE7D3;border:3px dashed #A39A8C;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px">
+<span class="pf" style="font-size:34px;font-weight:700;color:#8A8274">?</span>
+<span class="pf" style="font-size:14px;color:#6A6272">{{ s.year }}</span>
+</div>
+</sc-if>
+</sc-for>
+</div>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":800}}'>
+class Component extends DCLogic {
+renderVals() {
+const S = '#3D7BE0', W = '#8B5CD6', b = '../../assets/icons/stamp_';
+const got = [
+['Calamba', '1861', S, '#2C5FB8', 'calamba'], ['Biñan', '1869', S, '#2C5FB8', 'binan'],
+['Manila', '1872', S, '#2C5FB8', 'manila'], ['Madrid', '1882', S, '#2C5FB8', 'madrid'],
+['Paris', '1885', S, '#2C5FB8', 'paris'], ['Heidelberg', '1886', S, '#2C5FB8', 'heidelberg'],
+['Berlin', '1887', W, '#6A3FB8', 'berlin']
+];
+const tilts = ['-2deg', '1.5deg', '-1deg', '2deg', '-1.5deg', '1deg', '-2.5deg'];
+const stamps = got.map((g, k) => ({
+got: true, locked: false, name: g[0], year: g[1], color: g[2], ink: g[3], icon: b + g[4] + '.png', tilt: tilts[k], fresh: g[0] === 'Berlin'
+})).concat(['1887', '1888', '1891', '1892', '1896'].map((y) => ({ got: false, locked: true, year: y })));
+const themes = [
+{ name: 'Study', color: S, count: '6/8', op: 1 },
+{ name: 'Travel', color: '#E8892B', count: '0/6', op: 0.4 },
+{ name: 'Writing', color: W, count: '1/5', op: 1 },
+{ name: 'Cause', color: '#D9513F', count: '0/3', op: 0.4 },
+{ name: 'Exile', color: '#2A9D8F', count: '0/3', op: 0.4 }
+];
+return { stamps, themes };
+}
+}
+</script>
+</body>
+</html>

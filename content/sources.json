@@ -1,0 +1,655 @@
+{
+ "_readme": "Bibliography for Lakbay Rizal (SRS §14). Checked 24 Nov 2026. Add page numbers per stop in stops.json sources[].pages.",
+ "sources": [
+  {
+   "id": "epistolario",
+   "tier": 1,
+   "kind": "print",
+   "citation": "Rizal, José. Epistolario Rizalino. Compiled and edited by Teodoro M. Kalaw. 5 vols. in 6 books. Manila: Bureau of Printing, 1930–1938. (Documentos de la Biblioteca Nacional de Filipinas.)",
+   "useFor": "All dated events, from Rizal's letters (in Spanish)",
+   "where": "National Library of the Philippines; Filipinas Heritage Library (rare books)",
+   "urls": []
+  },
+  {
+   "id": "rizal-blumentritt",
+   "tier": 1,
+   "kind": "print",
+   "citation": "The Rizal–Blumentritt Correspondence. Manila: José Rizal National Centennial Commission, 1961. (Writings of José Rizal, vol. 2.) Reprinted Manila: National Historical Institute, 1992.",
+   "useFor": "Berlin 1887, Leitmeritz 1887, Dapitan (letter of 19 Dec 1893 on his three houses)",
+   "where": "University and public libraries in the Philippines",
+   "urls": []
+  },
+  {
+   "id": "reminiscences",
+   "tier": 1,
+   "kind": "print",
+   "citation": "Reminiscences and Travels of José Rizal. Translated by Encarnación Alzona. Manila: José Rizal National Centennial Commission, 1961. Later editions: National Historical Institute, 1977; National Historical Commission of the Philippines, 2011.",
+   "useFor": "Childhood, school years, travels (Rizal's diaries and memoirs in English)",
+   "where": "Philippine libraries",
+   "urls": []
+  },
+  {
+   "id": "memorias",
+   "tier": 1,
+   "kind": "print",
+   "citation": "Rizal, José. Memorias de un estudiante de Manila (his school memoir covering 1861–1881). Manila, 1949 edition; the original manuscript is kept in the Filipiniana Division of the National Library.",
+   "useFor": "Calamba, Biñan, Ateneo, UST; his mother's teaching",
+   "where": "Filipinas Heritage Library; English version inside `reminiscences`",
+   "urls": []
+  },
+  {
+   "id": "own-story",
+   "tier": 1,
+   "kind": "online",
+   "citation": "Rizal, José. Rizal's Own Story of His Life. Edited by Austin Craig. Manila: National Book Company, 1918.",
+   "useFor": "Childhood and school years in Rizal's own words (English)",
+   "where": "Project Gutenberg eBook #48438: https://www.gutenberg.org/ebooks/48438",
+   "urls": [
+    "https://www.gutenberg.org/ebooks/48438"
+   ]
+  },
+  {
+   "id": "noli",
+   "tier": 1,
+   "kind": "online",
+   "citation": "Rizal, José. Noli Me Tangere. Berlin: Berliner Buchdruckerei-Actien-Gesellschaft, 1887. English: The Social Cancer, translated by Charles Derbyshire. Manila: Philippine Education Company, 1912.",
+   "useFor": "The novel itself (Berlin stop, items)",
+   "where": "Project Gutenberg eBook #6737: https://www.gutenberg.org/ebooks/6737",
+   "urls": [
+    "https://www.gutenberg.org/ebooks/6737"
+   ]
+  },
+  {
+   "id": "fili",
+   "tier": 1,
+   "kind": "online",
+   "citation": "Rizal, José. El Filibusterismo. Gent: Boekdrukkerij F. Meyer-Van Loo, Vlaanderenstraat 66, 1891. English: The Reign of Greed, translated by Charles Derbyshire. Manila: Philippine Education Company, 1912.",
+   "useFor": "The novel itself (Ghent stop, items)",
+   "where": "Spanish: Project Gutenberg #30903 (https://www.gutenberg.org/ebooks/30903). English: Project Gutenberg #10676 (https://www.gutenberg.org/ebooks/10676)",
+   "urls": [
+    "https://www.gutenberg.org/ebooks/30903",
+    "https://www.gutenberg.org/ebooks/10676"
+   ]
+  },
+  {
+   "id": "morga-1890",
+   "tier": 1,
+   "kind": "online",
+   "citation": "Morga, Antonio de. Sucesos de las Islas Filipinas … nuevamente sacada á luz y anotada por José Rizal y precedida de un prólogo del Prof. Fernando Blumentritt. Paris: Librería de Garnier Hermanos, 1890.",
+   "useFor": "London 1888 and Paris 1889 stops",
+   "where": "University of Michigan digitized copy: https://name.umdl.umich.edu/ahz9387.0001.001",
+   "urls": [
+    "https://name.umdl.umich.edu/ahz9387.0001.001"
+   ],
+   "alsoUsedAs": [
+    "art-reference"
+   ]
+  },
+  {
+   "id": "ra-1425",
+   "tier": 1,
+   "kind": "online",
+   "citation": "Republic Act No. 1425 (Rizal Law), approved 12 June 1956. Official Gazette vol. 52, no. 6, p. 2971.",
+   "useFor": "Why the course exists (intro and credits text, not stop facts)",
+   "where": "Senate Legislative Reference: https://ldr.senate.gov.ph/legislative%2Bissuances/Republic%20Act%20No.%201425 · Supreme Court E-Library: https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/2/14242",
+   "urls": [
+    "https://ldr.senate.gov.ph/legislative%2Bissuances/Republic%20Act%20No.%201425",
+    "https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/2/14242"
+   ]
+  },
+  {
+   "id": "guerrero",
+   "tier": 2,
+   "kind": "print",
+   "citation": "Guerrero, León Ma. The First Filipino: A Biography of José Rizal. Introduction by Carlos Quirino. Manila: National Heroes Commission, 1963. xxiii, 549 pp. Later editions: Guerrero Publishing, 2007 and 2010. (First prize, Rizal Biography Contest, José Rizal National Centennial Commission, 1961.)",
+   "useFor": "Main narrative for every stop",
+   "where": "Most Philippine university libraries; in print from Guerrero Publishing",
+   "urls": []
+  },
+  {
+   "id": "zaide",
+   "tier": 2,
+   "kind": "print",
+   "citation": "Zaide, Gregorio F., and Sonia M. Zaide. José Rizal: Life, Works and Writings of a Genius, Writer, Scientist and National Hero. 2nd ed. Quezon City: All-Nations Publishing, 1999 (reprinted 2006, 2008).",
+   "useFor": "Dates, places and names for every stop; the standard course textbook",
+   "where": "Widely available; check which printing you use and cite it",
+   "urls": []
+  },
+  {
+   "id": "coates",
+   "tier": 2,
+   "kind": "print",
+   "citation": "Coates, Austin. Rizal: Philippine Nationalist and Martyr. Hong Kong: Oxford University Press, 1968. 378 pp.",
+   "useFor": "Europe and Hong Kong years; second opinion on dates",
+   "where": "Philippine university libraries",
+   "urls": []
+  },
+  {
+   "id": "retana",
+   "tier": 2,
+   "kind": "print",
+   "citation": "Retana, W. E. Vida y escritos del Dr. José Rizal. Prologue by Javier Gómez de la Serna; epilogue by Miguel de Unamuno. Madrid: Librería General de Victoriano Suárez, 1907. 512 pp.",
+   "useFor": "Early documents (Spanish); first full biography",
+   "where": "HathiTrust page images (listed by The Online Books Page, University of Pennsylvania)",
+   "urls": []
+  },
+  {
+   "id": "palma",
+   "tier": 2,
+   "kind": "print",
+   "citation": "Palma, Rafael. The Pride of the Malay Race: A Biography of José Rizal. Translated by Roman Ozaeta. New York: Prentice-Hall, 1949.",
+   "useFor": "Second opinion on dates and events",
+   "where": "Philippine university libraries",
+   "urls": []
+  },
+  {
+   "id": "craig-1913",
+   "tier": 2,
+   "kind": "online",
+   "citation": "Craig, Austin. Lineage, Life and Labors of José Rizal, Philippine Patriot. Introduction by James Alexander Robertson. Manila, 1913.",
+   "useFor": "Family background, Calamba, early photographs",
+   "where": "Project Gutenberg eBook #6867: https://www.gutenberg.org/ebooks/6867",
+   "urls": [
+    "https://www.gutenberg.org/ebooks/6867"
+   ],
+   "alsoUsedAs": [
+    "art-reference"
+   ],
+   "chapters": "Chapter for each stop is given in stops.seed.json → sources[].chapter (read on Project Gutenberg)."
+  },
+  {
+   "id": "russell-rodriguez",
+   "tier": 2,
+   "kind": "online",
+   "citation": "Russell, Charles Edward, and E. B. Rodriguez. The Hero of the Filipinos: The Story of José Rizal, Poet, Patriot and Martyr. New York: The Century Co., 1923.",
+   "useFor": "Readable overview; period photographs",
+   "where": "Project Gutenberg eBook #73848: https://www.gutenberg.org/ebooks/73848",
+   "urls": [
+    "https://www.gutenberg.org/ebooks/73848"
+   ],
+   "alsoUsedAs": [
+    "art-reference"
+   ],
+   "chapters": "Chapter for each stop is given in stops.seed.json → sources[].chapter (read on Project Gutenberg)."
+  },
+  {
+   "id": "ocampo-overcoat",
+   "tier": 2,
+   "kind": "print",
+   "citation": "Ocampo, Ambeth R. Rizal Without the Overcoat. Pasig: Anvil Publishing, 1990 (expanded editions 2000, 2012, 2018, 2022).",
+   "useFor": "Myths versus facts; everyday details (1990 National Book Award for the essay)",
+   "where": "In print from Anvil Publishing",
+   "urls": []
+  },
+  {
+   "id": "hu-berlin-2011",
+   "tier": 2,
+   "kind": "online",
+   "citation": "Houben, Vincent, Ambeth Ocampo, and Bernhard Dahm. José Rizal, Connecting the Philippines and Germany: An Overview of a Symposium Held in Berlin on 14 June 2011. Southeast Asian Studies Working Paper No. 45. Berlin: Humboldt-Universität zu Berlin.",
+   "useFor": "Rizal in Germany (Heidelberg, Wilhelmsfeld, Berlin); the annotated Morga",
+   "where": "https://www.iaaw.hu-berlin.de (Working Papers, Southeast Asia)",
+   "urls": [
+    "https://www.iaaw.hu-berlin.de"
+   ]
+  },
+  {
+   "id": "nhcp-viola",
+   "tier": 2,
+   "kind": "online",
+   "citation": "Palafox, Quennie Ann J. \"Dr. Maximo S. Viola: The Man Who First Read the Noli Me Tangere.\" National Historical Commission of the Philippines.",
+   "useFor": "Berlin 1887: Viola paid for the printing; 2,000 copies in 1887; the May–June 1887 tour",
+   "where": "http://nhcp.gov.ph/dr-maximo-s-viola-the-man-who-first-read-the-noli-me-tangere/",
+   "urls": [
+    "http://nhcp.gov.ph/dr-maximo-s-viola-the-man-who-first-read-the-noli-me-tangere/"
+   ]
+  },
+  {
+   "id": "ncca-revolution",
+   "tier": 2,
+   "kind": "online",
+   "citation": "Guerrero, Milagros C., Emmanuel N. Encarnacion, and Ramon N. Villegas. Article on the 1896 Revolution and the Katipunan. National Commission for Culture and the Arts, 16 June 2003.",
+   "useFor": "La Liga Filipina (3 July 1892, house of Doroteo Ongjunco, Ilaya St., Tondo); arrest on 6 July 1892; exile to Dapitan",
+   "where": "https://ncca.gov.ph/?p=1766",
+   "urls": [
+    "https://ncca.gov.ph/?p=1766"
+   ]
+  },
+  {
+   "id": "nhcp-dapitan-1973",
+   "tier": 2,
+   "kind": "print",
+   "citation": "The Rizal Shrine at Dapitan City. Manila: National Historical Commission, 1973.",
+   "useFor": "Dapitan houses, school, clinic, water system",
+   "where": "Filipinas Heritage Library",
+   "urls": []
+  },
+  {
+   "id": "nhi-dapitan-1993",
+   "tier": 2,
+   "kind": "print",
+   "citation": "The Rizal Shrine–Dapitan, Dapitan City, Zamboanga del Norte. Manila: National Historical Institute, c1993.",
+   "useFor": "Same as above (later guide)",
+   "where": "Filipinas Heritage Library",
+   "urls": []
+  },
+  {
+   "id": "ucm-paraninfo",
+   "tier": 2,
+   "kind": "online",
+   "citation": "Universidad Complutense de Madrid. \"Paraninfo de la Universidad Complutense de Madrid.\"",
+   "useFor": "Madrid 1882: the old Universidad Central at Calle de San Bernardo 49 and its classical façade",
+   "where": "https://www.ucm.es/cultura/paraninfo-de-la-universidad-complutense-de",
+   "urls": [
+    "https://www.ucm.es/cultura/paraninfo-de-la-universidad-complutense-de"
+   ]
+  },
+  {
+   "id": "ucm-relaciones",
+   "tier": 2,
+   "kind": "online",
+   "citation": "Universidad Complutense de Madrid. \"Escuela Profesional de Relaciones Laborales\" (history of the San Bernardo building).",
+   "useFor": "Madrid scene: university rooms around two former cloisters on San Bernardo",
+   "where": "https://www.ucm.es/cultura/escuela-profesional-de-relaciones-laborales",
+   "urls": [
+    "https://www.ucm.es/cultura/escuela-profesional-de-relaciones-laborales"
+   ]
+  },
+  {
+   "id": "fhl-ateneo",
+   "tier": 2,
+   "kind": "online",
+   "citation": "Filipinas Heritage Library. Photograph records \"Ateneo de Manila,\" call nos. AR00479, AR00516 and AR00707 (main entrance), Intramuros.",
+   "useFor": "Intramuros 1872 scene; the school on Calle del Arzobispo",
+   "where": "https://www.filipinaslibrary.org.ph/biblio/2626 · /biblio/2663 · /biblio/2854",
+   "urls": [
+    "https://www.filipinaslibrary.org.ph/biblio/2626"
+   ],
+   "alsoUsedAs": [
+    "art-reference"
+   ]
+  },
+  {
+   "id": "ocampo-conversation",
+   "tier": 3,
+   "kind": "online",
+   "citation": "Ocampo, Ambeth R. \"Conversation with Rizal.\" Philippine Daily Inquirer, Looking Back column.",
+   "useFor": "Why the Calamba house was painted green (from \"ricial\")",
+   "where": "https://opinion.inquirer.net/54859/conversation-with-rizal",
+   "urls": [
+    "https://opinion.inquirer.net/54859/conversation-with-rizal"
+   ]
+  },
+  {
+   "id": "philstar-chartreuse",
+   "tier": 3,
+   "kind": "online",
+   "citation": "\"The New Chartreuse House.\" The Philippine Star, 30 May 2009.",
+   "useFor": "Date of the green repaint; the NHI's reason",
+   "where": "https://www.philstar.com/lifestyle/modern-living/2009/05/30/472292/new-chartreuse-house",
+   "urls": [
+    "https://www.philstar.com/lifestyle/modern-living/2009/05/30/472292/new-chartreuse-house"
+   ]
+  },
+  {
+   "id": "ocampo-letters",
+   "tier": 3,
+   "kind": "online",
+   "citation": "Ocampo, Ambeth R. \"The Letters of a 'Conscious Hero'.\" Philippine Daily Inquirer.",
+   "useFor": "How Rizal's letters were published (Epistolario 1930–1938; 1961 Centennial volumes)",
+   "where": "https://opinion.inquirer.net/103694/letters-conscious-hero",
+   "urls": [
+    "https://opinion.inquirer.net/103694/letters-conscious-hero"
+   ]
+  },
+  {
+   "id": "ocampo-binan",
+   "tier": 3,
+   "kind": "online",
+   "citation": "Ocampo, Ambeth R. \"'Tears in Biñan'.\" Philippine Daily Inquirer.",
+   "useFor": "Biñan 1869: Rizal's memories of school there",
+   "where": "https://opinion.inquirer.net/60425/tears-in-binan",
+   "urls": [
+    "https://opinion.inquirer.net/60425/tears-in-binan"
+   ]
+  },
+  {
+   "id": "ocampo-agrarian",
+   "tier": 3,
+   "kind": "online",
+   "citation": "Ocampo, Ambeth R. \"Rizal's Agrarian Dispute.\" Philippine Daily Inquirer.",
+   "useFor": "Calamba 1887: the land dispute",
+   "where": "https://opinion.inquirer.net/54539/rizals-agrarian-dispute",
+   "urls": [
+    "https://opinion.inquirer.net/54539/rizals-agrarian-dispute"
+   ]
+  },
+  {
+   "id": "ocampo-brook",
+   "tier": 3,
+   "kind": "online",
+   "citation": "Ocampo, Ambeth R. \"The Murmur of a Brook in Dapitan.\" Philippine Daily Inquirer.",
+   "useFor": "Dapitan: lottery, Talisay land, the letter describing his three houses",
+   "where": "https://opinion.inquirer.net/?p=105560",
+   "urls": [
+    "https://opinion.inquirer.net/?p=105560"
+   ]
+  },
+  {
+   "id": "inq-retracing",
+   "tier": 3,
+   "kind": "online",
+   "citation": "\"Retracing Rizal's Steps.\" Inquirer Business.",
+   "useFor": "Calamba house shops; Dapitan (Casa Real, Talisay, reservoir, school, clinic)",
+   "where": "https://business.inquirer.net/272607/retracing-rizals-steps",
+   "urls": [
+    "https://business.inquirer.net/272607/retracing-rizals-steps"
+   ]
+  },
+  {
+   "id": "inq-viola",
+   "tier": 3,
+   "kind": "online",
+   "citation": "Quodala, Schatzi. \"Did You Know: Maximo Viola.\" Philippine Daily Inquirer, 22 Oct 2013.",
+   "useFor": "Viola's ₱300 loan; 2,000 copies",
+   "where": "https://newsinfo.inquirer.net/511565/did-you-know-maximo-viola",
+   "urls": [
+    "https://newsinfo.inquirer.net/511565/did-you-know-maximo-viola"
+   ]
+  },
+  {
+   "id": "inq-ateneo",
+   "tier": 3,
+   "kind": "online",
+   "citation": "\"Did You Know: Ateneo Municipal de Manila.\" Philippine Daily Inquirer.",
+   "useFor": "Ateneo founding (1865) and first site in Intramuros",
+   "where": "https://newsinfo.inquirer.net/544173/did-you-know-ateneo-municipal-de-manila",
+   "urls": [
+    "https://newsinfo.inquirer.net/544173/did-you-know-ateneo-municipal-de-manila"
+   ]
+  },
+  {
+   "id": "inq-scholars",
+   "tier": 3,
+   "kind": "online",
+   "citation": "Hidalgo, Vanessa B. \"Scholars of the Past, Torchbearers of the Future.\" Inquirer Business.",
+   "useFor": "First Ateneo building at the corner of Arzobispo and Anda streets",
+   "where": "https://business.inquirer.net/?p=216703",
+   "urls": [
+    "https://business.inquirer.net/?p=216703"
+   ]
+  },
+  {
+   "id": "inq-liga",
+   "tier": 3,
+   "kind": "online",
+   "citation": "Medina, Marielle. \"Did You Know: Rizal Founded La Liga Filipina.\" Philippine Daily Inquirer, 3 July 2018.",
+   "useFor": "La Liga date and place",
+   "where": "https://newsinfo.inquirer.net/1006343/did-you-know-604",
+   "urls": [
+    "https://newsinfo.inquirer.net/1006343/did-you-know-604"
+   ]
+  },
+  {
+   "id": "inq-fili-first",
+   "tier": 3,
+   "kind": "online",
+   "citation": "Inquirer Plus feature on the first edition of El Filibusterismo (Ghent, 1891).",
+   "useFor": "Ghent 1891: Meyer-Van Loo on Vlaanderenstraat; Valentin Ventura's help",
+   "where": "https://plus.inquirer.net/?p=374601",
+   "urls": [
+    "https://plus.inquirer.net/?p=374601"
+   ]
+  },
+  {
+   "id": "mb-morga",
+   "tier": 3,
+   "kind": "online",
+   "citation": "\"Rizal Annotates Antonio de Morga.\" Manila Bulletin, 18 March 2021.",
+   "useFor": "London 1888: research in the British Museum; Paris 1890 edition",
+   "where": "https://mb.com.ph/2021/3/18/rizal-annotates-antonio-de-morga",
+   "urls": [
+    "https://mb.com.ph/2021/3/18/rizal-annotates-antonio-de-morga"
+   ]
+  },
+  {
+   "id": "rappler-talisay",
+   "tier": 3,
+   "kind": "online",
+   "citation": "Rappler, article on Rizal's Talisay estate in Dapitan (protected landscape).",
+   "useFor": "Arrival in Dapitan on 17 July 1892; Talisay land bought for ₱4,000",
+   "where": "https://www.rappler.com/?p=1552163",
+   "urls": [
+    "https://www.rappler.com/?p=1552163"
+   ]
+  },
+  {
+   "id": "uoft-noli",
+   "tier": 3,
+   "kind": "online",
+   "citation": "University of Toronto Libraries, Spatial Humanities exhibit \"José Rizal's Noli Me Tangere.\"",
+   "useFor": "Pointer to Guerrero's account of the printing (it cites Guerrero, pp. 148–149; confirm the edition)",
+   "where": "https://spatial-humanities.library.utoronto.ca/exhibits/show/jose-rizal---s-noli-me-tangere/technology",
+   "urls": [
+    "https://spatial-humanities.library.utoronto.ca/exhibits/show/jose-rizal---s-noli-me-tangere/technology"
+   ]
+  },
+  {
+   "id": "mb-barcelona",
+   "tier": 3,
+   "kind": "online",
+   "citation": "\"A Walk to Greatness.\" Manila Bulletin, 5 January 2022.",
+   "useFor": "Barcelona 1882: arrival on 16 June 1882 and the Fonda de España (today Hotel España)",
+   "where": "https://mb.com.ph/2022/1/5/a-walk-to-greatness",
+   "urls": [
+    "https://mb.com.ph/2022/1/5/a-walk-to-greatness"
+   ]
+  },
+  {
+   "id": "inq-why-return",
+   "tier": 3,
+   "kind": "online",
+   "citation": "\"Why Did Dr. Jose Rizal Return to the Philippines?\" Inquirer Global Nation.",
+   "useFor": "Paris and Heidelberg training; return in 1887 and his mother's cataract",
+   "where": "https://globalnation.inquirer.net/?p=114720",
+   "urls": [
+    "https://globalnation.inquirer.net/?p=114720"
+   ]
+  },
+  {
+   "id": "inq-heidelberg",
+   "tier": 3,
+   "kind": "online",
+   "citation": "\"Heidelberg Still Celebrates Jose Rizal's Birthday.\" Lifestyle.INQ, Philippine Daily Inquirer.",
+   "useFor": "Heidelberg 1886: lectures under Becker and Kuehne",
+   "where": "https://lifestyle.inquirer.net/?p=3928",
+   "urls": [
+    "https://lifestyle.inquirer.net/?p=3928"
+   ]
+  },
+  {
+   "id": "inq-wilhelmsfeld",
+   "tier": 3,
+   "kind": "online",
+   "citation": "Ocampo, Ambeth R. \"Rizal in Wilhelmsfeld.\" Philippine Daily Inquirer, Looking Back column.",
+   "useFor": "Heidelberg and Wilhelmsfeld 1886; why he could attend without enrolling",
+   "where": "https://opinion.inquirer.net/?p=101681",
+   "urls": [
+    "https://opinion.inquirer.net/?p=101681"
+   ]
+  },
+  {
+   "id": "wilhelmsfeld-flyer",
+   "tier": 2,
+   "kind": "online",
+   "citation": "Gemeinde Wilhelmsfeld. \"Dr. José Rizal in Heidelberg and Wilhelmsfeld\" (English visitor flyer).",
+   "useFor": "Wilhelmsfeld 1886: the stay with Pastor Ullmer; local memorials",
+   "where": "https://www.wilhelmsfeld.de/fileadmin/Dateien/Dateien/Publisher-Flyer-EN-final_englisch.pdf",
+   "urls": [
+    "https://www.wilhelmsfeld.de/fileadmin/Dateien/Dateien/Publisher-Flyer-EN-final_englisch.pdf"
+   ]
+  },
+  {
+   "id": "guillermo-2009",
+   "tier": 2,
+   "kind": "print",
+   "citation": "Guillermo, Ramon. Translation and Revolution: A Study of Jose Rizal's Guillermo Tell. Quezon City: Ateneo de Manila University Press, 2009.",
+   "useFor": "Leipzig 1886: when and where the Tagalog Wilhelm Tell was made",
+   "where": "Philippine university libraries; Ateneo de Manila University Press",
+   "urls": []
+  },
+  {
+   "id": "mb-litomerice",
+   "tier": 3,
+   "kind": "online",
+   "citation": "\"Eating Adobo in Litoměřice.\" Manila Bulletin, 11 June 2021.",
+   "useFor": "Leitmeritz 1887: visit of 13–17 May; the Blumentritt family at the station",
+   "where": "https://mb.com.ph/2021/06/11/eating-adobo-in-litomerice",
+   "urls": [
+    "https://mb.com.ph/2021/06/11/eating-adobo-in-litomerice"
+   ]
+  },
+  {
+   "id": "inq-litomerice",
+   "tier": 3,
+   "kind": "online",
+   "citation": "\"Rizal and His 'BFF': My Finds in Czechoslovakia.\" Lifestyle.INQ, Philippine Daily Inquirer.",
+   "useFor": "Leitmeritz 1887: Rizal and Viola's signatures in the city memorial book, 16 May 1887",
+   "where": "https://lifestyle.inquirer.net/?p=261765",
+   "urls": [
+    "https://lifestyle.inquirer.net/?p=261765"
+   ]
+  },
+  {
+   "id": "ocampo-japan",
+   "tier": 3,
+   "kind": "online",
+   "citation": "Ocampo, Ambeth R. \"Rizal in Japan.\" Philippine Daily Inquirer, Looking Back column.",
+   "useFor": "Japan 1888: impressions of Japan; Usui Seiko",
+   "where": "https://opinion.inquirer.net/102447/rizal-in-japan",
+   "urls": [
+    "https://opinion.inquirer.net/102447/rizal-in-japan"
+   ]
+  },
+  {
+   "id": "ocampo-us",
+   "tier": 3,
+   "kind": "online",
+   "citation": "Ocampo, Ambeth R. \"Rizal: Unimpressed by the US.\" Philippine Daily Inquirer, Looking Back column.",
+   "useFor": "USA 1888: route and dates from his diary (28 Apr–16 May 1888)",
+   "where": "https://opinion.inquirer.net/?p=140435",
+   "urls": [
+    "https://opinion.inquirer.net/?p=140435"
+   ]
+  },
+  {
+   "id": "inq-quarantine",
+   "tier": 3,
+   "kind": "online",
+   "citation": "\"Rizal's Experience with Quarantine, 1888.\" Philippine Daily Inquirer, Opinion.",
+   "useFor": "USA 1888: the quarantine in San Francisco Bay",
+   "where": "https://opinion.inquirer.net/?p=127176",
+   "urls": [
+    "https://opinion.inquirer.net/?p=127176"
+   ]
+  },
+  {
+   "id": "foundsf-sobredo",
+   "tier": 3,
+   "kind": "online",
+   "citation": "Sobredo, James. \"José Rizal's Quarantine and the Nightmare of Imperialism.\" FoundSF (excerpted from Reclaiming San Francisco, City Lights).",
+   "useFor": "USA 1888: Rizal's letter on the quarantine and the Palace Hotel",
+   "where": "https://foundsf.org/Jos%C3%A9_Rizal%27s_Quarantine_and_the_Nightmare_of_Imperialism",
+   "urls": [
+    "https://foundsf.org/Jos%C3%A9_Rizal%27s_Quarantine_and_the_Nightmare_of_Imperialism"
+   ]
+  },
+  {
+   "id": "eh-plaque",
+   "tier": 2,
+   "kind": "online",
+   "citation": "English Heritage. \"RIZAL, Dr José (1861–1896).\" Blue Plaques (plaque erected 1983 by the Greater London Council, 37 Chalcot Crescent).",
+   "useFor": "London 1888–89: lodging with the Beckett family; research at the British Museum",
+   "where": "https://www.english-heritage.org.uk/visit/blue-plaques/jose-rizal/",
+   "urls": [
+    "https://www.english-heritage.org.uk/visit/blue-plaques/jose-rizal/"
+   ]
+  },
+  {
+   "id": "gma-paris",
+   "tier": 3,
+   "kind": "online",
+   "citation": "\"Who Called Jose Rizal 'Little Bad Boy'?\" GMA News Online, special feature.",
+   "useFor": "Paris 1889: the Kidlat Club and the Buffalo Bill show at the Exposition",
+   "where": "https://gmanetwork.com/news/specials/content/32/who-called-jose-rizal-little-bad-boy",
+   "urls": [
+    "https://gmanetwork.com/news/specials/content/32/who-called-jose-rizal-little-bad-boy"
+   ]
+  },
+  {
+   "id": "inq-belgium",
+   "tier": 3,
+   "kind": "online",
+   "citation": "Ocampo, Ambeth R. \"Rizal in Belgium.\" Philippine Daily Inquirer, Looking Back column.",
+   "useFor": "Brussels 1890: why he left Paris; writing the Fili",
+   "where": "https://opinion.inquirer.net/181719/rizal-in-belgium",
+   "urls": [
+    "https://opinion.inquirer.net/181719/rizal-in-belgium"
+   ]
+  },
+  {
+   "id": "hk-plaque",
+   "tier": 2,
+   "kind": "online",
+   "citation": "Presidential Communications (RTVM). \"Hong Kong SAR, People's Republic of China\" — text of the Hong Kong government plaque at 5 D'Aguilar Street, 9 April 2018.",
+   "useFor": "Hong Kong 1891–92: clinic at 5 D'Aguilar Street",
+   "where": "https://rtvm.gov.ph/?p=53074",
+   "urls": [
+    "https://rtvm.gov.ph/?p=53074"
+   ]
+  },
+  {
+   "id": "scmp-rednaxela",
+   "tier": 3,
+   "kind": "online",
+   "citation": "\"Stories Behind Hong Kong Street Names: Rednaxela Terrace and Its Famous Resident.\" South China Morning Post.",
+   "useFor": "Hong Kong 1891–92: home at 2 Rednaxela Terrace, Dec 1891–June 1892",
+   "where": "https://www.scmp.com/lifestyle/travel-leisure/article/1987092/stories-behind-hong-kong-street-names-rednaxela-terrace-and",
+   "urls": [
+    "https://www.scmp.com/lifestyle/travel-leisure/article/1987092/stories-behind-hong-kong-street-names-rednaxela-terrace-and"
+   ]
+  },
+  {
+   "id": "intramuros-ultimo",
+   "tier": 2,
+   "kind": "online",
+   "citation": "Intramuros Administration. Rizal Shrine, Fort Santiago — exhibit text on the alcohol stove and Mi Último Adiós.",
+   "useFor": "Fort Santiago 1896: the alcohol stove that hid the poem",
+   "where": "https://intramuros.gov.ph/mnr/",
+   "urls": [
+    "https://intramuros.gov.ph/mnr/"
+   ]
+  },
+  {
+   "id": "intramuros-execution",
+   "tier": 2,
+   "kind": "online",
+   "citation": "Intramuros Administration. Rizal Shrine, Fort Santiago — exhibit text on Rizal's last day.",
+   "useFor": "Bagumbayan 1896: time of the execution (about 7:03 a.m.)",
+   "where": "https://intramuros.gov.ph/?p=7130",
+   "urls": [
+    "https://intramuros.gov.ph/?p=7130"
+   ]
+  },
+  {
+   "id": "filipinas-last-hours",
+   "tier": 2,
+   "kind": "online",
+   "citation": "Filipinas Heritage Library. \"Rizal's Last Hours.\"",
+   "useFor": "Fort Santiago and Bagumbayan 1896: trial 26 Dec; moved to the death cell 29 Dec; the poem",
+   "where": "https://www.filipinaslibrary.org.ph/?p=1341",
+   "urls": [
+    "https://www.filipinaslibrary.org.ph/?p=1341"
+   ]
+  }
+ ]
+}

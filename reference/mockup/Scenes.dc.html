@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lakbay Rizal – Scene Gallery</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800&amp;display=swap">
+<style>
+body{margin:0;background:#F4EEDF}
+a{color:#1F1A24}a:hover{color:#000}
+.pf{font-family:'Pixelify Sans',monospace}
+.pix{image-rendering:pixelated}
+</style>
+</helmet>
+<div style="min-height:100vh;background:#F4EEDF;font-family:Nunito,sans-serif;color:#1F1A24">
+
+<header style="background:#1F1A24;color:#F6F0E1;border-bottom:4px solid #6B4A2B">
+<div style="max-width:1400px;margin:0 auto;padding:12px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px">
+<a href="Main.dc.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#F6F0E1">
+<img class="pix" src="../../assets/sprites/rizal_adult_suit.png" alt="" style="width:24px;height:55px">
+<span class="pf" style="font-size:26px;font-weight:700;letter-spacing:1px">LAKBAY RIZAL</span>
+</a>
+<a href="Main.dc.html" class="pf" style="font-size:16px;text-decoration:none;color:#F6F0E1;border:2px solid #5A5266;padding:8px 14px">◀ Back to map</a>
+<span style="flex:1"></span>
+<span class="pf" style="font-size:16px;color:#F6F0E1">Scene gallery · 25 of 25</span>
+</div>
+</header>
+
+<main style="max-width:1400px;margin:0 auto;padding:24px;display:flex;flex-wrap:wrap;gap:24px;box-sizing:border-box;align-items:flex-start">
+
+<section aria-label="Scene" style="flex:999 1 600px;min-width:0;display:flex;flex-direction:column;gap:18px">
+<div style="background:#6B4A2B;padding:8px;box-shadow:inset 0 0 0 2px #8A6440,6px 6px 0 #1F1A24;border:3px solid #1F1A24">
+<div style="position:relative;border:3px solid #1F1A24;overflow:hidden">
+<img class="pix" src="{{ cur.img }}" alt="{{ cur.alt }}" style="display:block;width:100%;aspect-ratio:16 / 9">
+<div class="pf" style="position:absolute;left:14px;top:14px;display:flex;gap:8px;flex-wrap:wrap">
+<span style="background:rgba(31,26,36,0.88);color:#F6F0E1;border:3px solid #F6F0E1;padding:6px 12px;font-size:18px;font-weight:700">{{ cur.n }} · {{ cur.place }} · {{ cur.year }}</span>
+<span style="background:#F6F0E1;color:#1F1A24;border:3px solid #1F1A24;padding:6px 12px;font-size:16px;font-weight:700">{{ cur.time }}</span>
+</div>
+</div>
+</div>
+<div style="background:#FFFFFF;border:3px solid #1F1A24;box-shadow:6px 6px 0 #1F1A24;padding:18px 20px;display:flex;flex-direction:column;gap:10px">
+<h2 class="pf" style="margin:0;font-size:28px;font-weight:700">{{ cur.title }}</h2>
+<p style="margin:0;font-size:16px;font-weight:600;line-height:1.5">{{ cur.alt }}</p>
+<p style="margin:0;font-size:14px;font-weight:700;color:#7A4A1A">To verify: {{ cur.verify }}</p>
+</div>
+</section>
+
+<aside aria-label="Choose a stop" style="flex:1 1 300px;display:flex;flex-direction:column;gap:10px;min-width:0;max-height:780px;overflow-y:auto;padding:2px 10px 10px 2px">
+<sc-for list="{{ items }}" as="s" hint-placeholder-count="8">
+<button onClick="{{ s.pick }}" style="display:flex;align-items:center;gap:12px;padding:6px;text-align:left;background:{{ s.bg }};color:#1F1A24;border:3px solid #1F1A24;box-shadow:{{ s.shadow }};cursor:pointer;font-family:Nunito,sans-serif;flex-shrink:0">
+<img class="pix" src="{{ s.img }}" alt="" style="width:112px;aspect-ratio:16 / 9;border:2px solid #1F1A24;flex-shrink:0">
+<span style="display:flex;flex-direction:column;gap:2px;min-width:0">
+<span class="pf" style="font-size:17px;font-weight:700">{{ s.n }} · {{ s.place }}</span>
+<span class="pf" style="font-size:14px;color:#4E4658">{{ s.year }} · {{ s.time }}</span>
+</span>
+</button>
+</sc-for>
+</aside>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { i: 0 }; }
+renderVals() {
+const b = '';
+const S = [
+{
+"n": 1,
+"place": "Calamba",
+"year": "1864",
+"time": "Morning",
+"title": "Born in Calamba",
+"img": "../../assets/scenes/calamba_1864.png",
+"alt": "Teodora Alonso reads to young José in front of the family bahay na bato",
+"verify": "Seventh of eleven children"
+},
+{
+"n": 2,
+"place": "Biñan",
+"year": "1869",
+"time": "Rainy afternoon",
+"title": "School in Biñan",
+"img": "../../assets/scenes/binan_1869.png",
+"alt": "Maestro Justiniano stands with his ferule in front of three pupils, José among them holding his books, inside a nipa-house classroom while rain falls outside",
+"verify": "Date he left Biñan: 17 Dec 1870 (Zaide, matches the Saturday) vs 1871 (Manila Bulletin) — see §14.4"
+},
+{
+"n": 3,
+"place": "Intramuros",
+"year": "1872",
+"time": "Midday",
+"title": "First day at the Ateneo",
+"img": "../../assets/scenes/intramuros_1872.png",
+"alt": "Young José and a Jesuit teacher outside the Ateneo Municipal",
+"verify": "Xerez Burgos detail"
+},
+{
+"n": 4,
+"place": "Intramuros (UST)",
+"year": "1879",
+"time": "Midday",
+"title": "University in Intramuros",
+"img": "../../assets/scenes/ust_1879.png",
+"alt": "Young Rizal holds his prize poem in the arcaded stone cloister of the old University of Santo Tomas, facing a Dominican friar in a white habit and black cape",
+"verify": "Year he switched to medicine (1878) and reason"
+},
+{
+"n": 5,
+"place": "Barcelona",
+"year": "1882",
+"time": "Summer morning",
+"title": "Arriving in Spain",
+"img": "../../assets/scenes/barcelona_1882.png",
+"alt": "Rizal in a bowler hat walks under plane trees on the Rambla in Barcelona beside a local gentleman, with five-storey houses and green shutters behind",
+"verify": "Arrival 16 June 1882 and Fonda de España (Manila Bulletin)"
+},
+{
+"n": 6,
+"place": "Madrid",
+"year": "1882",
+"time": "Autumn dusk",
+"title": "Student in Madrid",
+"img": "../../assets/scenes/madrid_1882.png",
+"alt": "Rizal outside the Universidad Central on Calle San Bernardo at dusk",
+"verify": "Departure date 3 May 1882"
+},
+{
+"n": 7,
+"place": "Paris",
+"year": "1885",
+"time": "Winter afternoon",
+"title": "Training as an eye doctor",
+"img": "../../assets/scenes/paris_1885.png",
+"alt": "Rizal and the bearded, grey-haired Dr. de Wecker stand in a tall Paris clinic with an eye chart, a patient's chair, a lamp on a brass stand and a glass instrument cabinet",
+"verify": "Months with de Wecker (Nov 1885–Feb 1886)"
+},
+{
+"n": 8,
+"place": "Heidelberg",
+"year": "1886",
+"time": "Spring morning",
+"title": "Spring in Heidelberg",
+"img": "../../assets/scenes/heidelberg_1886.png",
+"alt": "Rizal stands among forget-me-nots on the Neckar riverbank, with the Old Bridge, its twin-towered gate, the old town and the red sandstone castle ruin on the wooded hill behind",
+"verify": "Poem date: 22 April 1886 (most sources) vs 12 April — see §14.4"
+},
+{
+"n": 9,
+"place": "Wilhelmsfeld",
+"year": "1886",
+"time": "Summer morning",
+"title": "A village in the hills",
+"img": "../../assets/scenes/wilhelmsfeld_1886.png",
+"alt": "Rizal in a straw hat greets Pastor Karl Ullmer, in a black frock coat with a book, at the garden gate of a half-timbered vicarage with a white village church and pine woods behind",
+"verify": "Exact months of the stay (about three months; left 25 June 1886)"
+},
+{
+"n": 10,
+"place": "Leipzig",
+"year": "1886",
+"time": "Autumn evening",
+"title": "Leipzig",
+"img": "../../assets/scenes/leipzig_1886.png",
+"alt": "Rizal, in shirtsleeves with a book, stands in his rented room by a writing table with a lamp and manuscript pages; a tiled stove on one side and Leipzig's Old Town Hall tower through the window",
+"verify": "Where the Tell translation was done (Leipzig vs Wilhelmsfeld/Heidelberg) — see §14.4"
+},
+{
+"n": 11,
+"place": "Berlin",
+"year": "1887",
+"time": "Winter daylight",
+"title": "The Noli is printed",
+"img": "../../assets/scenes/berlin_1887.png",
+"alt": "Rizal and Maximo Viola inside a Berlin print works with a cylinder press",
+"verify": "Arrival month in Berlin and when Viola arrived"
+},
+{
+"n": 12,
+"place": "Leitmeritz",
+"year": "1887",
+"time": "Spring afternoon",
+"title": "Meeting Blumentritt",
+"img": "../../assets/scenes/leitmeritz_1887.png",
+"alt": "Blumentritt, bearded and in glasses, welcomes Rizal and Maximo Viola in Leitmeritz's market square, with arcaded baroque houses, a town hall with a clock and a column behind them",
+"verify": "Departure 16 vs 17 May 1887 — see §14.4"
+},
+{
+"n": 13,
+"place": "Calamba",
+"year": "1887",
+"time": "Morning",
+"title": "Home again",
+"img": "../../assets/scenes/calamba_1887.png",
+"alt": "Rizal, back from Europe, stands with his mother Doña Teodora in the clinic on the ground floor of the family house; a farmer in a salakot waits at the open door with cane fields and Mount Makiling outside",
+"verify": "Did he operate on his mother in 1887, or were the cataracts not yet ripe? Sources differ — see §14.4"
+},
+{
+"n": 14,
+"place": "Tokyo",
+"year": "1888",
+"time": "Spring afternoon",
+"title": "Spring in Japan",
+"img": "../../assets/scenes/tokyo_1888.png",
+"alt": "Rizal in a bowler hat walks with O-Sei-san in a blue kimono along a canal lined with cherry trees in bloom, past a white wall, a tiled gate, a stone lantern and a red arched bridge",
+"verify": "How much Japanese he learned and kabuki/judo details: confirm in his diary (Reminiscences)"
+},
+{
+"n": 15,
+"place": "Nevada, USA",
+"year": "1888",
+"time": "Morning",
+"title": "Across America",
+"img": "../../assets/scenes/usa_1888.png",
+"alt": "Rizal in an overcoat and bowler hat stands on a wooden station platform in Nevada beside his travel trunk, with a steam locomotive, a passenger car, a depot, a water tank and the snowy Sierra behind",
+"verify": "Length of quarantine: six vs seven days — see §14.4"
+},
+{
+"n": 16,
+"place": "London",
+"year": "1888",
+"time": "Winter day",
+"title": "The British Museum",
+"img": "../../assets/scenes/london_1888.png",
+"alt": "Rizal stands at a reading desk in the British Museum Reading Room, with Morga's old book open beside his handwritten copy, tiers of curved bookcases and the great dome with its windows above",
+"verify": "Dates of arrival (late May 1888) and departure (March 1889)"
+},
+{
+"n": 17,
+"place": "Paris",
+"year": "1889",
+"time": "Summer afternoon",
+"title": "Paris, 1889",
+"img": "../../assets/scenes/paris_1889.png",
+"alt": "Rizal in a straw boater walks with the painter Juan Luna on a gravel walk at the 1889 Paris world's fair, with the new Eiffel Tower, a domed exhibition palace with flags, crowds and chestnut trees",
+"verify": "Kidlat Club founded 19 March 1889 (letter to Blumentritt)"
+},
+{
+"n": 18,
+"place": "Brussels",
+"year": "1890",
+"time": "Winter evening",
+"title": "Brussels",
+"img": "../../assets/scenes/brussels_1890.png",
+"alt": "Rizal in shirtsleeves holds a page of his manuscript in a lamp-lit boarding-house room with flowered wallpaper, a writing desk, a washstand and an iron stove, while snow falls on Brussels gables outside",
+"verify": "Boarding house address (38 Rue Philippe de Champagne) and the Jacoby sisters' names"
+},
+{
+"n": 19,
+"place": "Biarritz",
+"year": "1891",
+"time": "Late winter morning",
+"title": "Biarritz",
+"img": "../../assets/scenes/biarritz_1891.png",
+"alt": "Rizal and Nellie Boustead stand on the terrace of the Villa Eliada, with a stone balustrade, potted palms, a white villa with a striped awning and the Bay of Biscay breaking on dark rocks",
+"verify": "Manuscript finished 29 March 1891 in Biarritz vs clean copy finished in Brussels in April (Ocampo) — see §14.4"
+},
+{
+"n": 20,
+"place": "Ghent",
+"year": "1891",
+"time": "Summer day",
+"title": "El Filibusterismo",
+"img": "../../assets/scenes/ghent_1891.png",
+"alt": "Rizal reads a proof sheet beside a printer in an apron in a small Ghent print shop with an iron hand press, type cases, proofs pinned on a line and a leaded window onto a canal with stepped gables",
+"verify": "Arrival in Ghent 5 July 1891"
+},
+{
+"n": 21,
+"place": "Hong Kong",
+"year": "1891",
+"time": "Morning",
+"title": "Hong Kong",
+"img": "../../assets/scenes/hongkong_1891.png",
+"alt": "Rizal in a light suit and straw hat stands with his mother Doña Teodora on D'Aguilar Street, Hong Kong, by his doctor's brass plate, with arcaded colonial buildings, Chinese signboards, a rickshaw, junks in the harbour and Victoria Peak behind",
+"verify": "Arrival date (19 Nov evening vs 20 Nov)"
+},
+{
+"n": 22,
+"place": "Tondo",
+"year": "1892",
+"time": "Night",
+"title": "La Liga Filipina",
+"img": "../../assets/scenes/tondo_1892.png",
+"alt": "Rizal reads the society's rules to four members standing around a long table under a hanging oil lamp in the wood-panelled upper hall of a Tondo house with capiz windows",
+"verify": "Who attended (Bonifacio; whether Mabini was there) — keep to names two sources agree on"
+},
+{
+"n": 23,
+"place": "Dapitan",
+"year": "1893",
+"time": "Golden hour",
+"title": "Teacher in exile",
+"img": "../../assets/scenes/dapitan_1893.png",
+"alt": "Rizal teaching three pupils outside his bamboo and nipa houses at Talisay",
+"verify": "Lottery details"
+},
+{
+"n": 24,
+"place": "Fort Santiago",
+"year": "1896",
+"time": "Evening",
+"title": "Fort Santiago",
+"img": "../../assets/scenes/fortsantiago_1896.png",
+"alt": "Rizal in a black suit stands in a candle-lit stone cell in Fort Santiago, with a small barred window showing the evening sky, a table holding papers, a book and a small alcohol stove, a cot and a crucifix",
+"verify": "The words to Trinidad and when the family found the poem: confirm in Trinidad's account"
+},
+{
+"n": 25,
+"place": "Bagumbayan",
+"year": "1896",
+"time": "Dawn",
+"title": "His final day",
+"img": "../../assets/scenes/bagumbayan_1896.png",
+"alt": "The empty field of Bagumbayan at dawn, with a promenade and lamp posts, coconut palms, Manila Bay calm and pale, ships at anchor and the mountains of Bataan on the horizon",
+"verify": "Time of death (about 7:03 a.m.) and wording kept non-graphic (GD-6)"
+}
+];
+const i = this.state.i;
+const cur = { ...S[i], img: b + S[i].img };
+return {
+cur,
+items: S.map((s, k) => ({ n: s.n, place: s.place, year: s.year, time: s.time, img: b + s.img,
+bg: k === i ? '#FBE3C2' : '#FFFFFF', shadow: k === i ? '4px 4px 0 #E8892B' : '4px 4px 0 #1F1A24',
+pick: () => this.setState({ i: k }) }))
+};
+}
+}
+</script>
+</body>
+</html>

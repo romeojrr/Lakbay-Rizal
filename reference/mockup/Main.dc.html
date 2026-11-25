@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lakbay Rizal – World Map</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800&amp;display=swap">
+<style>
+body{margin:0;background:#F4EEDF}
+a{color:#1F1A24}a:hover{color:#000}
+.pf{font-family:'Pixelify Sans',monospace}
+.pix{image-rendering:pixelated}
+</style>
+</helmet>
+<div style="min-height:100vh;background:#F4EEDF;font-family:Nunito,sans-serif;color:#1F1A24">
+
+<header style="background:#1F1A24;color:#F6F0E1;border-bottom:4px solid #6B4A2B">
+<div style="max-width:1400px;margin:0 auto;padding:12px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px">
+<a href="Main.dc.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#F6F0E1">
+<img class="pix" src="../../assets/sprites/rizal_adult_suit.png" alt="" style="width:24px;height:55px">
+<span class="pf" style="font-size:26px;font-weight:700;letter-spacing:1px">LAKBAY RIZAL</span>
+</a>
+<nav aria-label="Regions" style="display:flex;gap:6px;flex-wrap:wrap;flex:1 1 360px">
+<a href="Philippines.dc.html" class="pf" style="font-size:16px;padding:8px 14px;text-decoration:none;background:transparent;color:#F6F0E1;border:2px solid #5A5266">Philippines</a>
+<button class="pf" style="font-size:16px;padding:8px 14px;background:transparent;color:#F6F0E1;border:2px solid #5A5266;cursor:pointer">Asia</button>
+<button class="pf" aria-pressed="true" style="font-size:16px;padding:8px 14px;background:#E8892B;color:#1F1A24;border:2px solid #E8892B;cursor:pointer">Europe</button>
+<button class="pf" style="font-size:16px;padding:8px 14px;background:transparent;color:#F6F0E1;border:2px solid #5A5266;cursor:pointer">America</button>
+</nav>
+<div style="display:flex;align-items:center;gap:10px">
+<a href="Scenes.dc.html" class="pf" style="font-size:16px;text-decoration:none;color:#F6F0E1;border:2px solid #5A5266;padding:8px 14px">Scenes</a>
+<a href="Passport.dc.html" class="pf" style="display:flex;align-items:center;gap:8px;font-size:16px;text-decoration:none;color:#1F1A24;background:#D9A441;border:2px solid #F6F0E1;padding:8px 14px">
+<svg width="18" height="18" viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><rect x="1" y="0" width="6" height="8" fill="#1F1A24"/><rect x="3" y="2" width="2" height="2" fill="#D9A441"/><rect x="2" y="5" width="4" height="1" fill="#D9A441"/></svg>
+Passport · 7/25</a>
+</div>
+</div>
+</header>
+
+<main style="max-width:1400px;margin:0 auto;padding:24px;display:flex;flex-wrap:wrap;gap:24px;box-sizing:border-box">
+
+<section aria-label="Map" style="flex:999 1 560px;min-width:0">
+<div style="background:#6B4A2B;padding:8px;box-shadow:inset 0 0 0 2px #8A6440,6px 6px 0 #1F1A24;border:3px solid #1F1A24">
+<div style="position:relative;aspect-ratio:4 / 3;overflow:hidden;border:3px solid #1F1A24">
+<img class="pix" src="../../assets/maps/europe.png" alt="Pixel map of Europe" style="position:absolute;inset:0;width:100%;height:100%;display:block">
+<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%">
+<polyline points="63.8,20.83 65.62,29.86 30.99,25.35 36.98,37.85 27.6,62.85 40.36,27.43" fill="none" stroke="#1F1A24" stroke-width="2.5" stroke-dasharray="4 6" opacity="0.45" vector-effect="non-scaling-stroke"/>
+<polyline points="36.72,72.57 22.4,77.08 36.98,37.85 52.34,35.07 61.46,26.04 63.8,20.83" fill="none" stroke="#FFFFFF" stroke-width="7" vector-effect="non-scaling-stroke"/>
+<polyline points="36.72,72.57 22.4,77.08 36.98,37.85 52.34,35.07 61.46,26.04 63.8,20.83" fill="none" stroke="#E8892B" stroke-width="3.5" stroke-dasharray="10 5" vector-effect="non-scaling-stroke"/>
+</svg>
+
+<sc-for list="{{ pins }}" as="p" hint-placeholder-count="10">
+<a href="{{ p.href }}" aria-label="{{ p.aria }}" style="position:absolute;{{ p.pos }};display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;width:80px">
+<svg width="{{ p.w }}" height="{{ p.h }}" viewBox="0 0 10 12" shape-rendering="crispEdges" aria-hidden="true" style="filter:drop-shadow(2px 0 0 #1F1A24) drop-shadow(-2px 0 0 #1F1A24) drop-shadow(0 2px 0 #1F1A24) drop-shadow(0 -2px 0 #1F1A24) drop-shadow(3px 3px 0 rgba(31,26,36,0.35))">
+<rect x="3" y="0" width="4" height="1" fill="{{ p.color }}"/><rect x="2" y="1" width="6" height="1" fill="{{ p.color }}"/><rect x="1" y="2" width="8" height="5" fill="{{ p.color }}"/><rect x="2" y="7" width="6" height="1" fill="{{ p.color }}"/><rect x="3" y="8" width="4" height="1" fill="{{ p.color }}"/><rect x="4" y="9" width="2" height="3" fill="{{ p.color }}"/>
+<rect x="2" y="2" width="2" height="1" fill="#FFFFFF" opacity="0.55"/><rect x="4" y="3" width="2" height="2" fill="{{ p.dot }}"/>
+</svg>
+<span class="pf" style="font-size:13px;font-weight:600;white-space:nowrap;padding:1px 6px;{{ p.tag }}">{{ p.label }}</span>
+</a>
+</sc-for>
+
+<img class="pix" src="../../assets/sprites/rizal_adult_suit.png" alt="Rizal" style="position:absolute;left:calc(63.8% + 20px);top:calc(20.83% - 72px);width:33px;height:76px;filter:drop-shadow(3px 3px 0 rgba(31,26,36,0.35))">
+<span class="pf" style="position:absolute;left:calc(63.8% + 58px);top:calc(20.83% - 74px);font-size:14px;font-weight:700;background:#FFFFFF;border:3px solid #1F1A24;padding:2px 8px">!</span>
+
+<div class="pf" style="position:absolute;left:14px;top:14px;background:rgba(246,240,225,0.94);border:3px solid #1F1A24;padding:8px 12px;display:flex;flex-direction:column;gap:2px">
+<span style="font-size:20px;font-weight:700">Europe</span>
+<span style="font-size:14px;color:#4E4658">1882 – 1891</span>
+</div>
+
+<div style="position:absolute;left:14px;bottom:14px;display:flex;flex-wrap:wrap;gap:6px;max-width:calc(100% - 100px)">
+<span class="pf" style="font-size:13px;background:#F6F0E1;border:2px solid #1F1A24;padding:3px 8px;display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;background:#3D7BE0;border:2px solid #1F1A24"></span>Study</span>
+<span class="pf" style="font-size:13px;background:#F6F0E1;border:2px solid #1F1A24;padding:3px 8px;display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;background:#E8892B;border:2px solid #1F1A24"></span>Travel</span>
+<span class="pf" style="font-size:13px;background:#F6F0E1;border:2px solid #1F1A24;padding:3px 8px;display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;background:#8B5CD6;border:2px solid #1F1A24"></span>Writing</span>
+<span class="pf" style="font-size:13px;background:#F6F0E1;border:2px solid #1F1A24;padding:3px 8px;display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;background:#D9513F;border:2px solid #1F1A24"></span>Cause</span>
+<span class="pf" style="font-size:13px;background:#F6F0E1;border:2px solid #1F1A24;padding:3px 8px;display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;background:#2A9D8F;border:2px solid #1F1A24"></span>Exile</span>
+</div>
+
+<div style="position:absolute;right:14px;bottom:14px;display:flex;flex-direction:column;gap:6px">
+<button aria-label="Zoom in" class="pf" style="width:44px;height:44px;font-size:22px;font-weight:700;background:#F6F0E1;border:3px solid #1F1A24;cursor:pointer">+</button>
+<button aria-label="Zoom out" class="pf" style="width:44px;height:44px;font-size:22px;font-weight:700;background:#F6F0E1;border:3px solid #1F1A24;cursor:pointer">–</button>
+</div>
+</div>
+</div>
+</section>
+
+<aside style="flex:1 1 340px;display:flex;flex-direction:column;gap:20px;min-width:0">
+<div style="background:#FFFFFF;border:3px solid #1F1A24;box-shadow:6px 6px 0 #1F1A24">
+<img class="pix" src="../../assets/scenes/berlin_1887.png" alt="Inside the Berlin print works" style="display:block;width:100%;aspect-ratio:16 / 9;border-bottom:3px solid #1F1A24">
+<div style="padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+<span class="pf" style="font-size:14px;color:#4E4658">Next stop</span>
+<span class="pf" style="font-size:13px;color:#FFFFFF;background:#8B5CD6;border:2px solid #1F1A24;padding:2px 8px">Writing</span>
+</div>
+<h2 class="pf" style="margin:0;font-size:30px;font-weight:700;line-height:1">Berlin · 1887</h2>
+<p style="margin:0;font-size:16px;line-height:1.5;font-weight:700;color:#4E4658">His first novel gets printed.</p>
+<a href="Story.dc.html" class="pf" style="display:flex;align-items:center;justify-content:center;gap:10px;height:52px;font-size:20px;font-weight:700;text-decoration:none;color:#1F1A24;background:{{ accent }};border:3px solid #1F1A24;box-shadow:4px 4px 0 #1F1A24;margin-top:4px">Enter Berlin ▶</a>
+</div>
+</div>
+
+<div style="background:#FFFFFF;border:3px solid #1F1A24;box-shadow:6px 6px 0 #1F1A24;padding:16px 18px;display:flex;flex-direction:column;gap:4px">
+<span class="pf" style="font-size:18px;font-weight:700;margin-bottom:6px">Journey</span>
+<sc-for list="{{ journey }}" as="j" hint-placeholder-count="8">
+<div style="display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:2px dashed #E4DCC8;opacity:{{ j.op }}">
+<span style="width:14px;height:14px;flex-shrink:0;background:{{ j.color }};border:2px solid #1F1A24"></span>
+<span class="pf" style="font-size:15px;width:44px;color:#4E4658">{{ j.year }}</span>
+<span style="flex:1;font-size:15px;font-weight:800">{{ j.name }}</span>
+<span class="pf" style="font-size:13px;color:#4E4658">{{ j.status }}</span>
+</div>
+</sc-for>
+</div>
+</aside>
+
+<section aria-label="Timeline" style="flex:1 1 100%;background:#FFFFFF;border:3px solid #1F1A24;box-shadow:6px 6px 0 #1F1A24;padding:16px 20px 18px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+<span class="pf" style="font-size:18px;font-weight:700">Timeline</span>
+<span class="pf" style="font-size:15px;color:#4E4658">Slide to travel through the years</span>
+</div>
+<div style="position:relative;height:18px;background:#EFE7D3;border:3px solid #1F1A24">
+<div style="width:74.3%;height:100%;background:{{ accent }}"></div>
+<span style="position:absolute;left:0;top:0;bottom:0;width:31.4%;border-right:3px solid #1F1A24"></span>
+<span style="position:absolute;left:0;top:0;bottom:0;width:85.7%;border-right:3px solid #1F1A24"></span>
+<div role="slider" tabindex="0" aria-label="Year" aria-valuemin="1861" aria-valuemax="1896" aria-valuenow="1887" style="position:absolute;left:calc(74.3% - 14px);top:-10px;width:28px;height:32px;box-sizing:border-box;background:#1F1A24;border:3px solid #F6F0E1;outline:3px solid #1F1A24"></div>
+</div>
+<div class="pf" style="display:flex;justify-content:space-between;font-size:14px;color:#4E4658;flex-wrap:wrap;gap:6px">
+<span>1861 · Childhood</span><span>1872 · School</span><span>1882 · Europe</span><span>1892 · Exile</span><span>1896</span>
+</div>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#E8892B","options":["#E8892B","#D9A441","#3D7BE0","#2A9D8F"]},"$preview":{"width":1440,"height":1060}}'>
+class Component extends DCLogic {
+renderVals() {
+const S = '#3D7BE0', T = '#E8892B', W = '#8B5CD6', L = '#B8B0A2';
+const raw = [
+['Barcelona', 36.72, 72.57, T, 'done'], ['Madrid', 22.4, 77.08, S, 'done'], ['Paris', 36.98, 37.85, S, 'done'],
+['Heidelberg', 52.34, 35.07, S, 'done'], ['Leipzig', 61.46, 26.04, T, 'done'], ['Berlin', 63.8, 20.83, W, 'now'],
+['Leitmeritz', 65.62, 29.86, L, 'lock'], ['London', 30.99, 25.35, L, 'lock'], ['Biarritz', 27.6, 62.85, L, 'lock'], ['Ghent', 40.36, 27.43, L, 'lock']
+];
+const pins = raw.map((r) => {
+const now = r[4] === 'now', lock = r[4] === 'lock';
+const w = now ? 34 : 24, h = now ? 41 : 29;
+return {
+label: lock ? '?' : r[0], aria: r[0] + (lock ? ', locked' : now ? ', current stop' : ', visited'),
+href: now ? 'Story.dc.html' : '#', color: r[3], dot: lock ? '#8A8274' : '#FFFFFF', w, h,
+pos: 'left:calc(' + r[1] + '% - 40px);top:calc(' + r[2] + '% - ' + h + 'px)',
+tag: now ? 'background:#1F1A24;color:#FFFFFF;border:2px solid #1F1A24' : lock ? 'background:#E4DCC8;color:#4E4658;border:2px solid #8A8274' : 'background:#F6F0E1;color:#1F1A24;border:2px solid #1F1A24'
+};
+});
+const journey = [
+['1882', 'Barcelona', T, 'Done'], ['1882', 'Madrid', S, 'Done'], ['1885', 'Paris', S, 'Done'], ['1886', 'Heidelberg', S, 'Done'],
+['1886', 'Leipzig', T, 'Done'], ['1887', 'Berlin', W, 'Now'], ['1887', 'Leitmeritz', L, 'Locked'], ['1888', 'London', L, 'Locked']
+].map((j) => ({ year: j[0], name: j[1], color: j[2], status: j[3], op: j[3] === 'Locked' ? 0.55 : 1 }));
+return { pins, journey, accent: this.props.accent ?? '#E8892B' };
+}
+}
+</script>
+</body>
+</html>

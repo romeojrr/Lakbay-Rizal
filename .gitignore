@@ -1,0 +1,19 @@
+node_modules/
+dist/
+
+# Generated from assets/ by scripts/copy-assets.ts — edit assets/ instead
+public/assets/
+
+# Playwright
+playwright-report/
+test-results/
+blob-report/
+
+# Art tool output
+art-tools/out/
+art-tools/legacy-v1/out/
+__pycache__/
+
+*.zip
+*.log
+.DS_Store

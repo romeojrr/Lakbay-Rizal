@@ -1,0 +1,52 @@
+.nav {
+  flex: 1 1 360px;
+  min-width: 0;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 14px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--card-warm);
+  background: transparent;
+  border: 2px solid var(--ink-line);
+}
+
+.tab:hover {
+  border-color: var(--card-warm);
+}
+
+.active,
+.active:hover {
+  color: var(--ink);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* SRS §5.2: at ≤ 640 px the tabs scroll sideways instead of wrapping. */
+@media (max-width: 640px) {
+  .nav {
+    flex-basis: 100%;
+  }
+
+  .list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 4px;
+    margin: -4px;
+  }
+}
