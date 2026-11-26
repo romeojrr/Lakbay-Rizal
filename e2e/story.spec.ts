@@ -38,11 +38,9 @@ test('Calamba plays 4 chapters: typing text, Recorded tag, no close-ups (FR-80)'
   await nextUntilChapter(page, 'The young moth');
   const camera = player.locator('[data-zoom]');
   await expect(camera).toHaveAttribute('data-zoom', '1');
-  await next(page).click(); // paragraph 1
-  await next(page).click();
-  await next(page).click(); // paragraph 2
-  await next(page).click();
-  await next(page).click(); // the line starts typing
+  // The narration (long paragraphs come as two pages), then her line.
+  const line = player.locator('[data-step="line"]');
+  for (let i = 0; i < 16 && !(await line.isVisible()); i++) await next(page).click();
   await expect(player.getByText('Teodora Alonso')).toBeVisible();
   await expect(page.getByRole('img', { name: /^Portrait of/ })).toHaveCount(0);
   const recorded = page.getByRole('button', { name: 'Recorded' });

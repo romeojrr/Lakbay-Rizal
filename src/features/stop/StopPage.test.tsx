@@ -7,6 +7,7 @@ import { defaultCrop } from '../../components/Portrait/Portrait';
 import { initialProgress, useProgress } from '../../store/progress';
 import { useUi } from '../../store/ui';
 import { realContent, rootData } from '../../test/content';
+import { buildSteps } from '../story/steps';
 
 const content = realContent();
 const loader: RootLoader = async () => rootData(content);
@@ -37,8 +38,19 @@ const next = () => userEvent.click(screen.getByRole('button', { name: 'Next ▶'
 const player = () => screen.getByRole('region', { name: 'Story' });
 const step = () => useUi.getState().storyStep['calamba-1861'] ?? 0;
 
-// calamba-1861 steps: chapter 1 = 0–4, chapter 2 = 5–9, chapter 3 = 10–17, chapter 4 = 18–22.
-const CALAMBA_CHAPTER_3 = 10;
+// Long paragraphs are shown as two pages, so step numbers come from buildSteps.
+const calambaSteps = buildSteps(content.stops.find((s) => s.id === 'calamba-1861')?.chapters ?? []);
+const CALAMBA_CHAPTER_3 = calambaSteps.findIndex((s) => s.kind === 'title' && s.chapter === 2);
+const CALAMBA_FACT_1 = calambaSteps.findIndex((s) => s.kind === 'fact' && s.chapter === 0);
+
+/** Presses Next until the story shows a spoken line. */
+async function nextToLine() {
+  for (let i = 0; i < 8; i++) {
+    if (document.querySelector('[data-step]')?.getAttribute('data-step') === 'line') return;
+    await next();
+  }
+  throw new Error('no spoken line within 8 steps');
+}
 
 describe('Story player — Calamba (FR-80, SRS v2.3 §3.6)', { timeout: 15_000 }, () => {
   it('plays chapter by chapter: title card, narration, spoken line, fact', async () => {
@@ -54,8 +66,7 @@ describe('Story player — Calamba (FR-80, SRS v2.3 §3.6)', { timeout: 15_000 }
         selector: '.visually-hidden',
       }),
     ).toBeInTheDocument();
-    await next();
-    await next();
+    await nextToLine();
     // The line: her name, the Dramatized tag, the "…" bubble; no close-up portrait.
     expect(screen.queryByRole('img', { name: /^Portrait of/ })).toBeNull();
     expect(within(player()).getByText('Teodora Alonso')).toBeVisible();
@@ -81,9 +92,7 @@ describe('Story player — Calamba (FR-80, SRS v2.3 §3.6)', { timeout: 15_000 }
     const camera = player().querySelector('[data-zoom]') as HTMLElement;
     expect(camera.dataset.zoom).toBe('1');
 
-    await next();
-    await next();
-    await next();
+    await nextToLine();
     expect(within(player()).getByText('Teodora Alonso')).toBeVisible();
     const recorded = screen.getByRole('button', { name: 'Recorded' });
     expect(recorded).toHaveAccessibleDescription(
@@ -149,7 +158,7 @@ describe('Story player — Calamba (FR-80, SRS v2.3 §3.6)', { timeout: 15_000 }
 
   it('counts chapters read as the player passes them (§3.8)', async () => {
     freeAndStill();
-    useUi.setState({ storyStep: { 'calamba-1861': 4 } }); // chapter 1's fact, its last step
+    useUi.setState({ storyStep: { 'calamba-1861': CALAMBA_FACT_1 } }); // chapter 1's last step
     renderAt('/stop/calamba-1861');
     await screen.findByRole('heading', { level: 3, name: 'Did you know?' });
     await waitFor(() => expect(useProgress.getState().chaptersRead['calamba-1861']).toBe(1));

@@ -15,7 +15,7 @@ async function playCalamba(page: Page) {
   await expect(page.locator('[data-zoom]')).toHaveAttribute('data-zoom', '1');
   for (
     let i = 0;
-    i < 8 && !(await page.getByRole('button', { name: 'Recorded' }).isVisible());
+    i < 16 && !(await page.getByRole('button', { name: 'Recorded' }).isVisible());
     i++
   ) {
     await next.click();

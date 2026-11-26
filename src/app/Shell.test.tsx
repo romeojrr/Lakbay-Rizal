@@ -4,6 +4,7 @@ import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { initialProgress, useProgress } from '../store/progress';
 import { useUi } from '../store/ui';
+import { buildSteps } from '../features/story/steps';
 import { realContent, rootData } from '../test/content';
 import { createRoutes, routerFuture, type RootLoader } from './routes';
 
@@ -111,8 +112,10 @@ describe('App shell v2.3 (§5.5)', () => {
 
   it('stop screen has every guide target (§3.7)', async () => {
     useProgress.setState({ mode: 'free' });
-    // line-tag is on spoken lines, so open the story at its first line (step 4).
-    useUi.setState({ storyStep: { 'berlin-1887': 4 } });
+    // line-tag is on spoken lines, so open the story at its first line.
+    const berlin = realContent().stops.find((s) => s.id === 'berlin-1887');
+    const firstLine = buildSteps(berlin?.chapters ?? []).findIndex((s) => s.kind === 'line');
+    useUi.setState({ storyStep: { 'berlin-1887': firstLine } });
     renderAt('/stop/berlin-1887');
     await screen.findByRole('heading', { level: 1, name: 'Berlin · 1887' });
     for (const id of STOP_GUIDES) {
