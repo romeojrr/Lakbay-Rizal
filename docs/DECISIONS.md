@@ -227,3 +227,4 @@ One line per judgment call: date — decision — reason.
 - 2026-11-26 — Every stop's scene has a ◀ arrow left of the "Place · year" badge (owner). It always opens that stop's region map (not the browser's back), so it never lands on a quiz or an older stop; same dark plate as the badge, 44 px.
 - 2026-11-26 — Enter zoom: while the map zooms in, the entered place's own pin and name replace its group pin, at the place's own point ("Ateneo", not "Manila area"; also for a "2 Paris"-style cluster) (owner).
 - 2026-11-26 — Rizal's figure no longer stands beside the current pin on the region maps (owner); the glowing current pin marks it.
+- 2026-11-26 — Settings › Save code: one column with 14 px between every part (help, Download, the paste box with its label, Load / choose a file, the reminder), and the browser's file button in the game's button look (owner: "sticking together").

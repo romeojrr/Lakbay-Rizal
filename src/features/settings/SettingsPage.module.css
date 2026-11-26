@@ -96,10 +96,25 @@
 }
 
 /* §3.9 save code */
+/* The save code section: one column, every part with the same space around it. */
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.stack > .legend,
+.stack .help {
+  margin: 0;
+}
+
 .codeBox {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
 }
 
 .code {
@@ -118,15 +133,39 @@
 .row {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
+  align-items: flex-end;
+  gap: 12px 24px;
 }
 
 .file {
   display: inline-flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   font-size: var(--fs-small);
+}
+
+/* The browser's "Choose file" button, in the game's button look. */
+.file input {
+  font: inherit;
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
+
+.file input::file-selector-button {
+  min-height: 44px;
+  margin-right: 12px;
+  padding: 6px 14px;
+  font: inherit;
+  color: var(--ink);
+  background: var(--card);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 3px 0 var(--line-soft);
+  cursor: pointer;
+}
+
+.file input::file-selector-button:hover {
+  background: var(--card-warm);
 }
 
 .error {

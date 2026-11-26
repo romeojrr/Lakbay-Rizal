@@ -77,7 +77,11 @@ export default function SaveCodePanel() {
   };
 
   return (
-    <section id="save-code" className={styles.fieldset} aria-labelledby="save-code-title">
+    <section
+      id="save-code"
+      className={`${styles.fieldset} ${styles.stack}`}
+      aria-labelledby="save-code-title"
+    >
       <h2 id="save-code-title" className={styles.legend}>
         {t('save.title')}
       </h2>
@@ -103,17 +107,19 @@ export default function SaveCodePanel() {
         </div>
       )}
 
-      <label htmlFor="save-code-in" className={styles.help}>
-        {t('save.loadLabel')}
-      </label>
-      <textarea
-        id="save-code-in"
-        className={styles.code}
-        rows={3}
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        aria-describedby={error ? 'save-code-error' : undefined}
-      />
+      <div className={styles.codeBox}>
+        <label htmlFor="save-code-in" className={styles.help}>
+          {t('save.loadLabel')}
+        </label>
+        <textarea
+          id="save-code-in"
+          className={styles.code}
+          rows={3}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          aria-describedby={error ? 'save-code-error' : undefined}
+        />
+      </div>
       <div className={styles.row}>
         <button type="button" className={styles.reset} onClick={() => check(input)}>
           {t('save.load')}
