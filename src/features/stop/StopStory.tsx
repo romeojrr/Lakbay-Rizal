@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import BackLink from '../../components/BackLink/BackLink';
 import ReadMoreDialog from '../../components/ReadMoreDialog/ReadMoreDialog';
 import SourceCard from '../../components/SourceCard/SourceCard';
 import type { Content, PlayableStop } from '../../content/schemas';
@@ -18,6 +17,8 @@ import { setQuiet } from '../../lib/sound';
 const SCENE = { w: 384, h: 216 };
 /** WoodFrame (8 px padding + 3 px border) and the scene's own 3 px border, on both sides. */
 const FRAME_CHROME = 28;
+/** Room kept under the scene for the dialogue box. */
+const DIALOGUE_ROOM = 260;
 
 interface StopStoryProps {
   stop: PlayableStop;
@@ -34,7 +35,8 @@ export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
   const [readMoreOpen, setReadMoreOpen] = useState(false);
   const [atEnd, setAtEnd] = useState(false);
   const stageRef = useRef<HTMLDivElement>(null);
-  const fit = useSceneFit(stageRef, SCENE.w, SCENE.h, FRAME_CHROME);
+  // Scene and dialogue box fit one screen together, like the map area (shared layout).
+  const fit = useSceneFit(stageRef, SCENE.w, SCENE.h, FRAME_CHROME, DIALOGUE_ROOM);
   const visited = useProgress((s) => s.visited.includes(stop.id));
   const { visit, complete, markRead } = useProgress.getState();
   const game = useGame();
@@ -83,9 +85,6 @@ export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
   // left; This stop, the actions and the sources on the right. Phones: the cards go below.
   return (
     <div className={styles.screen}>
-      <div className={styles.toolbar}>
-        <BackLink fallback={`/region/${stop.region}`} label={t('stop.backToMap')} />
-      </div>
       <div className={styles.layout}>
         <div ref={stageRef} className={styles.stage}>
           <StoryPlayer

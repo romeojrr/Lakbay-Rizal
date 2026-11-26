@@ -1,25 +1,16 @@
-/* Stop screen (v2.2 layout, improved): scene + dialogue box | info cards (max 1440 px).
+/* Stop screen: the shared 70 / 30 layout: scene + dialogue box | info cards.
    Container queries put the cards under the story when the content area is narrow. */
 .screen {
-  max-width: 1440px;
+  max-width: var(--layout-max);
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
   container: stopscreen / inline-size;
-}
-
-.toolbar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
 }
 
 .layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 360px;
+  grid-template-columns: var(--layout-split);
   align-items: start;
-  gap: 24px;
+  gap: var(--layout-gap);
 }
 
 .stage {
@@ -28,10 +19,15 @@
 }
 
 .cards {
+  position: sticky;
+  top: calc(var(--topbar-h) + 24px);
+  max-height: var(--area-h);
+  overflow-y: auto;
   min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: 2px 6px 6px 2px;
 }
 
 .dialogue {
@@ -41,6 +37,13 @@
 @container stopscreen (max-width: 960px) {
   .layout {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cards {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    padding: 0;
   }
 }
 

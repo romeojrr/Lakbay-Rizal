@@ -47,6 +47,8 @@ export function useSceneFit(
   nativeW: number,
   nativeH: number,
   chrome = 0,
+  /** Height to leave free under the scene on the same screen (the dialogue box). */
+  reserveBelow = 0,
 ): SceneFit {
   const [fit, setFit] = useState<SceneFit>({ width: undefined, scale: 0, overlay: false });
 
@@ -59,7 +61,7 @@ export function useSceneFit(
       // Landscape phones: the scene may fill the whole screen height (§5.5).
       const availableHeight = landscapePhone
         ? window.innerHeight - 28
-        : window.innerHeight - top - 16;
+        : window.innerHeight - top - 16 - reserveBelow;
       const picture = computeSceneFit(
         el.clientWidth - chrome,
         availableHeight - chrome,
@@ -87,7 +89,7 @@ export function useSceneFit(
       window.removeEventListener('resize', measure);
       observer?.disconnect();
     };
-  }, [ref, nativeW, nativeH, chrome]);
+  }, [ref, nativeW, nativeH, chrome, reserveBelow]);
 
   return fit;
 }

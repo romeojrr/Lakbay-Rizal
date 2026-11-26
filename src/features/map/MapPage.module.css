@@ -1,33 +1,38 @@
-/* Map screen: the map and the side panel side by side, centred together as one group, so
-   there is no empty gap between them. The panel is one screen tall and scrolls on its own.
+/* Map screen: the shared 70 / 30 layout. The map area is a fixed size and the map fits
+   inside it; the side panel is one screen tall and scrolls on its own.
    Container queries put the panel under the map when the content area is narrow. */
 .screen {
   container: mapscreen / inline-size;
 }
 
 .grid {
+  max-width: var(--layout-max);
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, max-content) var(--panel-w);
-  justify-content: center;
+  grid-template-columns: var(--layout-split);
   align-items: start;
-  gap: 24px;
+  gap: var(--layout-gap);
 }
 
+/* The map area is always the same size; the region's map fits inside it, centred. */
 .mapArea {
   min-width: 0;
+  height: var(--area-h);
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  container-type: size;
 }
 
-/* As big as the screen height allows, keeping the map's shape (--ratio = width / height). */
 .mapBox {
-  width: calc((100dvh - var(--topbar-h) - 64px) * var(--ratio));
-  max-width: 100%;
-  min-width: min(100%, 320px);
+  width: min(100cqw, 100cqh * var(--ratio));
 }
 
 .panel {
   position: sticky;
-  top: calc(var(--topbar-h) + 16px);
-  max-height: calc(100dvh - var(--topbar-h) - 32px);
+  top: calc(var(--topbar-h) + 24px);
+  max-height: var(--area-h);
   overflow-y: auto;
   min-width: 0;
   display: flex;
@@ -59,14 +64,19 @@
 }
 
 /* Narrow content area (tablets, phones): the map, then the panel below it. */
-@container mapscreen (max-width: 760px) {
+@container mapscreen (max-width: 960px) {
   .grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .mapArea {
+    height: auto;
+    min-height: 0;
+    container-type: normal;
+  }
+
   .mapBox {
     width: 100%;
-    min-width: 0;
   }
 
   .panel {

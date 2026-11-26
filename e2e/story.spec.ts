@@ -104,7 +104,7 @@ test('Read more: summary, then and today, date and sources (FR-33)', async ({ pa
   ).toBeVisible();
 
   // FR-3: back returns to the map the player came from.
-  await page.getByRole('link', { name: '◀ Back to map' }).click();
+  await page.goBack(); // the browser's back button (there is no Back to map button)
   await expect(page).toHaveURL(/\/region\/europe$/);
 });
 
