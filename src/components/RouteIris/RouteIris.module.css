@@ -1,4 +1,4 @@
-/* §5.6 route change wipe: hidden at rest; the animation shows it for 480 ms. */
+/* After the landing's fly-down: a blue layer that fades away over the map. Hidden at rest. */
 .iris {
   position: fixed;
   inset: 0;

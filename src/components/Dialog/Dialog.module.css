@@ -1,12 +1,20 @@
+/* Buttons use the shared look (src/styles/buttons.css). */
+.close {
+  composes: ui-btn ui-btn-dark from global;
+}
+
 .dialog {
-  width: min(680px, calc(100% - 32px));
-  max-height: 85vh;
+  width: min(760px, calc(100% - 32px));
+  max-height: 86vh;
   padding: 0;
   color: var(--ink);
-  background: var(--card);
-  border: var(--border);
-  box-shadow: var(--shadow-panel);
-  border-radius: var(--radius);
+  background: var(--card-warm);
+  border: 3px solid #5b4330;
+  border-radius: 16px;
+  box-shadow:
+    inset 0 0 0 5px var(--card-warm),
+    inset 0 0 0 7px var(--gold),
+    0 24px 60px rgba(20, 14, 26, 0.45);
 }
 
 .dialog::backdrop {
@@ -16,34 +24,27 @@
 .head {
   position: sticky;
   top: 0;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 14px 20px;
-  background: var(--card-warm);
-  border-bottom: var(--border);
+  margin: 7px 7px 0;
+  padding: 14px 18px 12px;
+  background: linear-gradient(180deg, #fffaf0 0%, var(--card-warm) 100%);
+  border-bottom: 2px solid var(--gold);
+  border-radius: 9px 9px 0 0;
 }
 
 .title {
   margin: 0;
-  font-size: var(--fs-body);
-  line-height: 1.2;
-}
-
-.close {
-  min-height: 44px;
-  padding: 6px 14px;
-  font-size: var(--fs-small);
-  color: var(--card-warm);
-  background: var(--ink);
-  border: var(--border);
-  cursor: pointer;
-  border-radius: var(--radius);
+  font-size: var(--fs-h3);
+  line-height: 1.15;
+  letter-spacing: 1px;
 }
 
 .body {
-  padding: 18px 20px 22px;
+  padding: 18px 25px 24px;
   font-size: var(--fs-small);
   line-height: 1.6;
 }

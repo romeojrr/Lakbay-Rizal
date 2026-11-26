@@ -54,6 +54,51 @@ export const TUNES: Record<string, Tune> = {
       -6, _, _, _, -3, _, _, _,
     ],
   },
+  // Timeline: a walking tune that steps forward, year by year.
+  timeline: {
+    bpm: 112,
+    stepBeats: 0.5,
+    root: 64, // E
+    scale: MINOR,
+    leadWave: 'triangle',
+    // prettier-ignore
+    lead: [
+      0, _, 2, _, 4, _, 3, 2,
+      4, _, 5, _, 4, _, _, _,
+      2, _, 4, _, 6, _, 5, 4,
+      5, _, 4, _, 2, _, _, _,
+    ],
+    // prettier-ignore
+    bass: [
+      -7, _, -3, _, -7, _, -3, _,
+      -5, _, -1, _, -5, _, -1, _,
+      -6, _, -2, _, -6, _, -2, _,
+      -4, _, -3, _, -7, _, _, _,
+    ],
+  },
+  // Scenes: a gentle music-box tune for looking at the pictures.
+  scenes: {
+    bpm: 96,
+    stepBeats: 0.5,
+    root: 72, // C
+    scale: MAJOR_PENTA,
+    leadWave: 'sine',
+    pluck: true,
+    // prettier-ignore
+    lead: [
+      0, 2, 4, _, 3, _, 2, _,
+      1, 2, 3, _, 2, _, _, _,
+      0, 2, 4, _, 5, _, 4, _,
+      3, 2, 1, _, 0, _, _, _,
+    ],
+    // prettier-ignore
+    bass: [
+      -5, _, _, _, -3, _, _, _,
+      -4, _, _, _, -2, _, _, _,
+      -5, _, _, _, -3, _, _, _,
+      -4, _, _, _, -5, _, _, _,
+    ],
+  },
   // Settings: a calm, slow, plucked tune.
   settings: {
     bpm: 76,
