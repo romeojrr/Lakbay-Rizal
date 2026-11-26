@@ -41,12 +41,12 @@
   overflow-y: auto; /* only if even the smallest size does not fit */
 }
 
-/* The box is wide here: longer lines need less shrinking. */
-.boxFill .text {
-  max-width: 96ch;
-  font-size: var(--fit-fs, var(--fs-body));
+/* The text uses the box's whole width, so long paragraphs need less shrinking. */
+.boxFill p {
+  max-width: none;
 }
 
+.boxFill .text,
 .boxFill .factText {
   font-size: var(--fit-fs, var(--fs-body));
 }
