@@ -197,8 +197,12 @@
 
 /* Rizal's little window: sky, a warm sun, a strip of ground. */
 .portrait {
+  /* Rizal's height and his feet's lift: the bubble sits just above his head. */
+  --rizal-h: 234px;
+  --feet: 20px;
   position: relative;
-  min-height: 340px;
+  order: -1; /* first on screen, last for the keyboard (after "Begin the journey") */
+  min-height: 400px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -235,20 +239,70 @@
   position: relative;
   z-index: 1;
   width: 102px;
-  height: 234px;
-  margin-bottom: 20px;
-  animation: breathe 3.2s ease-in-out infinite;
-  will-change: transform;
+  height: var(--rizal-h);
+  display: block;
 }
 
-/* A slow, gentle sway: standing, breathing — not a jump. */
-@keyframes breathe {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-3px);
+/* Rizal stands still (owner, 2026-11-26); a click on him makes him talk. */
+.talk {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 var(--feet);
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.talk:hover .rizal {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9));
+}
+
+/* His speech bubble, over the sky just above his head (it grows upward), its tail pointing
+   down at him. */
+.say {
+  position: absolute;
+  bottom: calc(var(--feet) + var(--rizal-h) + 14px);
+  left: 12px;
+  right: 12px;
+  z-index: 2;
+  margin: 0;
+  max-width: none;
+  padding: 9px 12px;
+  font-size: var(--fs-small);
+  line-height: 1.35;
+  text-align: center;
+  color: var(--ink);
+  background: var(--card);
+  border: var(--border);
+  border-radius: 14px;
+  box-shadow: 0 8px 18px rgba(31, 26, 36, 0.18);
+  pointer-events: none;
+  transform-origin: 50% 100%;
+}
+
+.say::after {
+  content: '';
+  position: absolute;
+  left: calc(50% - 7px);
+  bottom: -9px;
+  width: 14px;
+  height: 14px;
+  background: var(--card);
+  border-right: var(--border);
+  border-bottom: var(--border);
+  transform: rotate(45deg);
+}
+
+.sayPop {
+  animation: say-pop 360ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes say-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.9);
   }
 }
 
@@ -480,12 +534,12 @@
   }
 
   .portrait {
-    min-height: 260px;
+    --rizal-h: 156px;
+    min-height: 330px;
   }
 
   .rizal {
     width: 68px;
-    height: 156px;
   }
 }
 
@@ -498,13 +552,34 @@
   }
 
   .portrait {
-    min-height: 120px;
+    --rizal-h: 78px;
+    --feet: 12px;
+    min-height: 136px;
+    justify-content: flex-start;
+    padding-left: 24px;
   }
 
   .rizal {
     width: 34px;
-    height: 78px;
-    margin-bottom: 12px;
+  }
+
+  /* Phones: the bubble beside him, its tail pointing left. */
+  .say {
+    top: 12px;
+    bottom: auto;
+    left: 76px;
+    right: 14px;
+    text-align: left;
+    transform-origin: 0 50%;
+  }
+
+  .say::after {
+    left: -9px;
+    bottom: auto;
+    top: 22px;
+    border-right: 0;
+    border-bottom: var(--border);
+    border-left: var(--border);
   }
 
   .sun {

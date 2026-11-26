@@ -11,7 +11,7 @@ import { playTune, type Player } from './music';
 import { useProgress } from '../store/progress';
 
 export type Effect =
-  'page' | 'tick' | 'correct' | 'wrong' | 'stamp' | 'achievement' | 'build' | 'whoosh';
+  'page' | 'tick' | 'correct' | 'wrong' | 'stamp' | 'achievement' | 'build' | 'whoosh' | 'talk';
 
 interface Tone {
   kind: 'tone';
@@ -54,6 +54,28 @@ const EFFECTS: Record<Effect, () => Voice[]> = {
   // A page turning: a short brush of paper.
   page: () => [
     n({ at: 0, length: 0.11, gain: 0.35, filter: 'bandpass', freq: 2600, freqTo: 1300, q: 0.9 }),
+  ],
+  // Rizal talks on the welcome card: three soft, quick blips, like a voice.
+  talk: () => [
+    t({ freq: 523, glideTo: 587, at: 0, length: 0.07, wave: 'triangle', gain: 0.22, cutoff: 1800 }),
+    t({
+      freq: 659,
+      glideTo: 622,
+      at: 0.08,
+      length: 0.07,
+      wave: 'triangle',
+      gain: 0.2,
+      cutoff: 1800,
+    }),
+    t({
+      freq: 587,
+      glideTo: 698,
+      at: 0.16,
+      length: 0.09,
+      wave: 'triangle',
+      gain: 0.2,
+      cutoff: 1800,
+    }),
   ],
   // The typewriter: a tiny tap, a little different each time.
   tick: () => [

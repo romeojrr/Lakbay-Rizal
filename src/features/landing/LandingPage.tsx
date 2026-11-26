@@ -4,12 +4,12 @@ import { useRootData } from '../../app/useRootData';
 import LanguageSwitch from '../../components/LanguageSwitch/LanguageSwitch';
 import { getNextStop } from '../../content/selectors';
 import { t } from '../../i18n/t';
-import { asset } from '../../lib/asset';
 import { play } from '../../lib/sound';
 import { useReducedMotion } from '../../lib/useReducedMotion';
 import { useProgress } from '../../store/progress';
 import { useUi } from '../../store/ui';
 import styles from './Landing.module.css';
+import RizalSays from './RizalSays';
 import { flyFrames, worldPoint } from './world';
 import WorldView from './WorldView';
 
@@ -25,7 +25,7 @@ const ZOOM = 10;
  * it is a short fade. "Continue" goes straight to the map for players with saved progress.
  */
 export default function LandingPage() {
-  const { stops, content } = useRootData();
+  const { stops, content, guide } = useRootData();
   const completed = useProgress((s) => s.completed);
   const started = useProgress((s) => s.visited.length > 0 || s.completed.length > 0);
   const sound = useProgress((s) => s.settings.sound);
@@ -112,17 +112,6 @@ export default function LandingPage() {
               <span />
               <span />
             </span>
-            <div className={styles.portrait} aria-hidden="true">
-              <span className={styles.sun} />
-              <img
-                className={`pix ${styles.rizal}`}
-                src={asset('assets/sprites/rizal_adult_suit.png')}
-                alt=""
-                width={102}
-                height={234}
-              />
-              <span className={styles.ground} />
-            </div>
             <div className={styles.text}>
               <h1 id="landing-title" className={styles.heading}>
                 <span className={styles.welcome}>{t('landing.welcome')}</span>{' '}
@@ -163,6 +152,9 @@ export default function LandingPage() {
                 )}
               </div>
             </div>
+            {/* After the text, so "Begin the journey" is the first stop for the keyboard; the
+                CSS puts Rizal's window on the left (above, on phones). */}
+            <RizalSays guide={guide} />
           </section>
         </div>
       ) : (

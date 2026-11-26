@@ -518,6 +518,7 @@
     "continue": "Continue: {place} · {year}",
     "heading": "Heading to {place}, {year} …",
     "skip": "Skip",
-    "sound": "Sound"
+    "sound": "Sound",
+    "talk": "Talk to Rizal"
   }
 }
