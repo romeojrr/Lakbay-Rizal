@@ -10,9 +10,10 @@ import Portrait from '../../components/Portrait/Portrait';
 import styles from './Tour.module.css';
 import { useTourTarget } from './useTourTarget';
 
-/** '/' means any map page (the home page opens a region). */
+/** In guide.json, '/' means any map page (U9 moved the map off '/' to the landing page). */
 const onRoute = (route: string, path: string) =>
-  route === '/' ? path === '/' || path.startsWith('/region/') : path === route;
+  route === '/' ? path.startsWith('/region/') : path === route;
+const routeOf = (route: string) => (route === '/' ? '/map' : route);
 
 const CARD_GAP = 14;
 
@@ -59,8 +60,11 @@ export default function Tour() {
 
   // Go where the step happens.
   useEffect(() => {
-    if (step && !ready) navigate(step.route);
-  }, [step, ready, navigate]);
+    // '/map' redirects to a region by itself; navigating again would cut that redirect off.
+    if (step && !ready && !(step.route === '/' && pathname === '/map')) {
+      navigate(routeOf(step.route));
+    }
+  }, [step, ready, navigate, pathname]);
 
   // "click-target": the player's own click on the element moves the tour on.
   useEffect(() => {

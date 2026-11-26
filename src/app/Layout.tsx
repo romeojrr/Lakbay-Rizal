@@ -42,14 +42,18 @@ export default function Layout() {
   // replay it from Settings). Checked once, when the game opens: a progress reset does not
   // start it mid-visit. Never on the final stop (GD-6).
   const { pathname } = useLocation();
+  // U9: on a first visit the landing page comes first; the tour starts when the player
+  // reaches a region map (after MAGLAKBAY), or at once if the game opened on another page.
   const [openedOn] = useState(pathname);
   useEffect(() => {
     const { tourDone, seenIntro } = useProgress.getState();
     const ui = useUi.getState();
     if (tourDone || seenIntro || ui.tourOffered) return;
     if (openedOn === `/stop/${stops.at(-1)?.id}`) return;
+    if (pathname === '/') return;
+    if (openedOn === '/' && !pathname.startsWith('/region/')) return;
     ui.startTour();
-  }, [openedOn, stops]);
+  }, [openedOn, pathname, stops]);
 
   // §3.11: sound is allowed from the first click; music follows the region on screen.
   useEffect(() => unlockOnFirstGesture(), []);
@@ -65,6 +69,20 @@ export default function Layout() {
     root.dataset.textSize = textSize;
     root.dataset.motion = reduceMotion;
   }, [textSize, reduceMotion]);
+
+  // U9 landing: the world map fills the screen with its own small bar.
+  if (pathname === '/') {
+    return (
+      <>
+        <main>
+          <Outlet />
+        </main>
+        <Celebrations />
+        <TipBubble />
+        <RouteIris />
+      </>
+    );
+  }
 
   return (
     <>

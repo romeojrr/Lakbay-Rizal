@@ -4,7 +4,7 @@ import { horizontalOverflow, openFromMenu, skipIntroOnFreshProfile } from './hel
 test("fresh profile: Rizal's tour runs once; Skip ends it; Settings replays it (FR-4, FR-84)", async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/map');
   const tour = page.getByRole('dialog', { name: 'Tour with José Rizal' });
   await expect(tour).toBeVisible();
   await expect(tour.getByText('Step 1 of 14')).toBeVisible();
@@ -46,7 +46,7 @@ test.describe('with the intro already seen', () => {
     await confirm.getByRole('button', { name: 'Yes, reset' }).click();
     await expect(page.getByRole('status').filter({ hasText: 'Progress was reset' })).toBeVisible();
 
-    await page.goto('/');
+    await page.goto('/map');
     await page
       .getByRole('dialog', { name: 'Tour with José Rizal' })
       .getByRole('button', { name: 'Skip tour' })

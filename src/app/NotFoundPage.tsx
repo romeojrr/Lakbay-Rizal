@@ -9,7 +9,7 @@ export default function NotFoundPage() {
     <Panel className={styles.screen}>
       <h1 className={styles.title}>{t('notFound.title')}</h1>
       <p>{t('notFound.body')}</p>
-      <Link className={styles.button} to="/">
+      <Link className={styles.button} to="/map">
         {t('notFound.home')}
       </Link>
     </Panel>

@@ -6,7 +6,7 @@ import { expectNoSeriousA11yIssues } from './a11y';
 test('all 14 steps: spotlights, the pin click, the move to Calamba, then done', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/map');
   const tour = page.getByRole('dialog', { name: 'Tour with José Rizal' });
   await expect(tour.getByText('Step 1 of 14')).toBeVisible();
   await expect(tour).toBeFocused();

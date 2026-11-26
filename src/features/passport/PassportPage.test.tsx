@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
@@ -63,7 +63,7 @@ describe('Passport (FR-50 to FR-52)', () => {
     useProgress.getState().complete(stop('berlin-1887'));
     renderAt('/passport');
     await screen.findByText('New!');
-    expect(useProgress.getState().newStamp).toBeUndefined();
+    await waitFor(() => expect(useProgress.getState().newStamp).toBeUndefined());
   });
 
   it('theme badges count from content and light up when complete (FR-52)', async () => {

@@ -34,8 +34,10 @@ async function playCalamba(page: Page) {
   expect(await horizontalOverflow(page)).toBe(0);
 }
 
-test('§12b 1–4: tour, Calamba story, quiz, gold stamp', async ({ page }) => {
+test('§12b 1–4: landing, tour, Calamba story, quiz, gold stamp', async ({ page }) => {
   await page.goto('/');
+  await page.getByRole('button', { name: /MAGLAKBAY/ }).click();
+  await expect(page).toHaveURL(/\/region\/philippines$/);
   const tour = page.getByRole('dialog', { name: 'Tour with José Rizal' });
   for (let n = 1; n <= 3; n++) {
     await expect(tour.getByText(`Step ${n} of 14`)).toBeVisible();
@@ -49,7 +51,7 @@ test('§12b 1–4: tour, Calamba story, quiz, gold stamp', async ({ page }) => {
 test('§12b 8: the same at 740 × 360 landscape', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop', 'one landscape run is enough');
   await page.setViewportSize({ width: 740, height: 360 });
-  await page.goto('/');
+  await page.goto('/map');
   await page
     .getByRole('dialog', { name: 'Tour with José Rizal' })
     .getByRole('button', { name: 'Skip tour' })
@@ -59,7 +61,7 @@ test('§12b 8: the same at 740 × 360 landscape', async ({ page }, testInfo) => 
 
 test('§12b 9: reduced motion — no transform animations run', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/');
+  await page.goto('/map');
   await page
     .getByRole('dialog', { name: 'Tour with José Rizal' })
     .getByRole('button', { name: 'Skip tour' })
@@ -80,7 +82,7 @@ test('§12b 9: reduced motion — no transform animations run', async ({ page })
 });
 
 test('§12b 10: the final stop — no quiz, no guide, no sparkles; the Epilogue', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/map');
   await page
     .getByRole('dialog', { name: 'Tour with José Rizal' })
     .getByRole('button', { name: 'Skip tour' })

@@ -19,7 +19,7 @@ function renderAt(path: string) {
 
 describe('RegionTabs', () => {
   it('links to every region in content, in order', () => {
-    renderAt('/');
+    renderAt('/map');
     const nav = screen.getByRole('navigation', { name: 'Regions' });
     const links = within(nav).getAllByRole('link');
     expect(links.map((link) => link.textContent)).toEqual([

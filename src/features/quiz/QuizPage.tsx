@@ -26,7 +26,7 @@ export default function QuizPage() {
     return (
       <Panel className={styles.notice}>
         <h1 className={styles.noticeTitle}>{t('stop.notFoundTitle')}</h1>
-        <BackLink fallback="/" label={t('stop.backToMap')} />
+        <BackLink fallback="/map" label={t('stop.backToMap')} />
       </Panel>
     );
   }

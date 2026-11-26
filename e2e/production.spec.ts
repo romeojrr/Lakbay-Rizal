@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('production build without verified stops shows "Content coming soon"', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/map');
   await expect(page.getByRole('heading', { name: 'Content coming soon' })).toBeVisible();
   await expect(page.getByRole('link', { name: /Passport · 0\/0/ })).toBeVisible();
   await expect(page.getByRole('link', { name: /^Enter / })).toHaveCount(0);

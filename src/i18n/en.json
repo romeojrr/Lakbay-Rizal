@@ -99,7 +99,8 @@
     "title": "{place} · {year}",
     "enter": "Enter {place} ▶",
     "goToNext": "Go to your next stop: {place}",
-    "regionDone": "You have finished every stop in {region}."
+    "regionDone": "You have finished every stop in {region}.",
+    "first": "First stop"
   },
   "journey": {
     "title": "Journey"
@@ -505,5 +506,15 @@
     "open": "Open",
     "locked": "Locked",
     "stamp": "Stamp earned"
+  },
+  "landing": {
+    "stats": "{from} – {to} · {stops} stops · {regions} regions",
+    "tagline": "Follow José Rizal's journey around the world.",
+    "start": "MAGLAKBAY",
+    "startSub": "Begin the journey",
+    "continue": "Continue: {place} · {year}",
+    "heading": "Heading to {place}, {year} …",
+    "skip": "Skip",
+    "sound": "Sound"
   }
 }

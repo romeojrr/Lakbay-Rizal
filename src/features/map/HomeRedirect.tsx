@@ -4,7 +4,7 @@ import { getNextStop } from '../../content/selectors';
 import { useProgress } from '../../store/progress';
 import { useUi } from '../../store/ui';
 
-/** `/` opens the map on the last region viewed, else the region of the next stop (FR-2). */
+/** `/map` opens the map on the last region viewed, else the region of the next stop (FR-2). */
 export default function HomeRedirect() {
   const { content, stops } = useRootData();
   const completed = useProgress((s) => s.completed);

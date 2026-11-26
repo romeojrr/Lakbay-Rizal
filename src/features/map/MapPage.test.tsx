@@ -34,7 +34,7 @@ afterEach(() => {
 
 describe('MapPage', () => {
   it('opens on the region of the next stop', async () => {
-    const router = renderAt('/');
+    const router = renderAt('/map');
     expect(await screen.findByRole('heading', { level: 1, name: 'Philippines' })).toBeVisible();
     expect(router.state.location.pathname).toBe('/region/philippines');
   });

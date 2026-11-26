@@ -1,0 +1,346 @@
+/* U9 landing: the world fills the screen; the card sits in the middle (soft panel style). */
+.landing {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  overflow: hidden;
+  background: #3d84c0;
+}
+
+/* The 16:9 world box always covers the screen. --fx is the part of the map kept in the
+   middle: the centre on wide screens, the route (Europe to Asia) on narrow ones. */
+.world {
+  --fx: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100vw, 100vh * 16 / 9);
+  aspect-ratio: 16 / 9;
+  transform: translate(calc(-1 * var(--fx)), -50%);
+}
+
+@media (max-aspect-ratio: 4 / 3) {
+  .world {
+    --fx: 66%;
+  }
+}
+
+.camera {
+  position: absolute;
+  inset: 0;
+}
+
+.map {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.route {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 0.22;
+  stroke-dasharray: 0.6 0.5;
+  stroke-linecap: square;
+}
+
+.pin {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  border: 2px solid var(--ink);
+  transform: translate(-50%, -50%);
+}
+
+.regionLabel {
+  position: absolute;
+  padding: 0 6px;
+  font-size: var(--fs-small);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: rgba(246, 240, 225, 0.85);
+  border-radius: 4px;
+  transform: translate(-50%, -50%);
+  transition: opacity 300ms ease-out;
+}
+
+.gone {
+  opacity: 0;
+}
+
+/* Clouds: blocky pixel puffs drifting slowly across. */
+.cloud,
+.burstCloud {
+  position: absolute;
+  width: 56px;
+  height: 14px;
+  background: #ffffff;
+  box-shadow:
+    12px -8px 0 0 #ffffff,
+    28px -8px 0 0 #ffffff,
+    -8px 6px 0 0 #f1f4f8;
+  opacity: 0.9;
+}
+
+.cloud {
+  animation: drift 90s linear infinite;
+}
+
+.cloud0 {
+  top: 18%;
+  left: -10%;
+}
+
+.cloud1 {
+  top: 62%;
+  left: -30%;
+  animation-duration: 120s;
+}
+
+.cloud2 {
+  top: 40%;
+  left: -55%;
+  animation-duration: 150s;
+}
+
+@keyframes drift {
+  to {
+    transform: translateX(160vw);
+  }
+}
+
+/* The card and Rizal beside it. */
+.stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 72px 16px 24px;
+}
+
+.card {
+  width: min(480px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 22px 26px;
+  text-align: center;
+  background: var(--card-warm);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-panel);
+  animation: rise 360ms ease-out;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.stats {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--fs-h1);
+  letter-spacing: 2px;
+}
+
+.tagline {
+  margin: 0;
+  max-width: 32ch;
+}
+
+.start {
+  min-width: 240px;
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 24px;
+  color: var(--ink);
+  background: var(--accent);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-button);
+  cursor: pointer;
+}
+
+.start:hover {
+  filter: brightness(1.05);
+}
+
+.startWord {
+  font-size: var(--fs-h2);
+  letter-spacing: 2px;
+}
+
+.startSub {
+  font-size: var(--fs-small);
+}
+
+.continue {
+  font-family: var(--font-pixel);
+  font-size-adjust: none;
+  font-size: var(--fs-small);
+  color: var(--ink);
+}
+
+.rizal {
+  width: 68px;
+  height: 156px;
+  align-self: center;
+  animation: bob 1.6s steps(2) infinite;
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* The mini top bar: sound and EN | FIL (after the card in the page, so MAGLAKBAY comes
+   first with the keyboard). */
+.bar {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+  color: var(--card-warm);
+  background: rgba(31, 26, 36, 0.82);
+  border-radius: var(--radius);
+}
+
+.sound {
+  min-height: 44px;
+  padding: 0 12px;
+  font-size: var(--fs-small);
+  color: var(--card-warm);
+  background: transparent;
+  border: 2px solid var(--ink-line);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* The fly-down: clouds burst past the camera; a small banner; Skip. */
+.burst {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.burstCloud {
+  left: 50%;
+  top: 50%;
+  animation: burst 1800ms ease-in 600ms both;
+}
+
+.burst0 {
+  --dx: -60vw;
+  --dy: -30vh;
+}
+
+.burst1 {
+  --dx: 55vw;
+  --dy: -35vh;
+}
+
+.burst2 {
+  --dx: -50vw;
+  --dy: 40vh;
+}
+
+.burst3 {
+  --dx: 60vw;
+  --dy: 30vh;
+}
+
+.burst4 {
+  --dx: 5vw;
+  --dy: -55vh;
+}
+
+@keyframes burst {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+  20% {
+    opacity: 0.95;
+  }
+  to {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(4);
+  }
+}
+
+.banner {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  margin: 0;
+  padding: 8px 16px;
+  font-size: var(--fs-body);
+  color: var(--ink);
+  background: var(--card-warm);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-panel);
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.skip {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  min-height: 44px;
+  padding: 4px 16px;
+  font-size: var(--fs-small);
+  color: var(--ink);
+  background: var(--card);
+  border: var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+/* Phones: the card fills the width; Rizal stands above it. */
+@media (max-width: 640px) {
+  .stage {
+    flex-direction: column-reverse;
+    gap: 4px;
+  }
+
+  .card {
+    padding: 18px 16px;
+  }
+
+  .rizal {
+    width: 34px;
+    height: 78px;
+  }
+
+  .banner {
+    font-size: var(--fs-small);
+  }
+}

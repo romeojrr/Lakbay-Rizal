@@ -15,7 +15,7 @@ async function noHorizontalScroll(page: Page) {
 test('fresh profile opens the Philippines with Calamba current and later stops locked', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/map');
   await expect(page).toHaveURL(/\/region\/philippines$/);
   await expect(page.getByRole('heading', { level: 1, name: 'Philippines' })).toBeVisible();
   await expect(

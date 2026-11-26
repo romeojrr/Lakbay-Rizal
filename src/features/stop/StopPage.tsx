@@ -28,7 +28,7 @@ export default function StopPage() {
   if (!stop) {
     return (
       <Notice title={t('stop.notFoundTitle')}>
-        <BackLink fallback="/" label={t('stop.backToMap')} />
+        <BackLink fallback="/map" label={t('stop.backToMap')} />
       </Notice>
     );
   }

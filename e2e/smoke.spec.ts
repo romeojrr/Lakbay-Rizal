@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('shell shows the header with no horizontal page scroll', async ({ page }, testInfo) => {
-  await page.goto('/');
+  await page.goto('/map');
 
   const header = page.getByRole('banner');
   await expect(header).toBeVisible();
@@ -39,7 +39,7 @@ test('self-hosted fonts load and every request stays on the same origin', async 
     if (url.protocol.startsWith('http')) origins.add(url.origin);
   });
 
-  await page.goto('/');
+  await page.goto('/map');
   // Wait for the header (the first Pixelify text), then make sure both fonts load.
   await expect(page.getByRole('banner')).toBeVisible();
   const fontsReady = await page.evaluate(async () => {

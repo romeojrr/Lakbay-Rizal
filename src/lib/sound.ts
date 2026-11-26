@@ -6,7 +6,8 @@ import { useEffect, useState } from 'react';
 import { playTune, type Player } from './music';
 import { useProgress } from '../store/progress';
 
-export type Effect = 'page' | 'tick' | 'correct' | 'wrong' | 'stamp' | 'achievement' | 'build';
+export type Effect =
+  'page' | 'tick' | 'correct' | 'wrong' | 'stamp' | 'achievement' | 'build' | 'whoosh';
 
 type Note = { freq: number; at: number; length: number; wave?: OscillatorType; gain?: number };
 
@@ -25,6 +26,12 @@ const EFFECTS: Record<Effect, Note[]> = {
     { freq: 659, at: 0.08, length: 0.08, wave: 'square', gain: 0.3 },
     { freq: 784, at: 0.16, length: 0.08, wave: 'square', gain: 0.3 },
     { freq: 1047, at: 0.24, length: 0.2, wave: 'square', gain: 0.3 },
+  ],
+  // U9 fly-down: a soft falling sweep.
+  whoosh: [
+    { freq: 520, at: 0, length: 0.22, wave: 'triangle', gain: 0.25 },
+    { freq: 390, at: 0.18, length: 0.26, wave: 'triangle', gain: 0.2 },
+    { freq: 290, at: 0.4, length: 0.34, wave: 'triangle', gain: 0.15 },
   ],
   build: [
     { freq: 110, at: 0, length: 0.1, wave: 'triangle', gain: 0.8 },

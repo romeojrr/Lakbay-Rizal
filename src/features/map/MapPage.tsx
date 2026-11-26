@@ -65,7 +65,7 @@ export default function MapPage() {
     return (
       <Panel className={styles.notFound}>
         <h1 className={styles.notFoundTitle}>{t('map.notFoundTitle')}</h1>
-        <Link to="/">{t('map.backToMap')}</Link>
+        <Link to="/map">{t('map.backToMap')}</Link>
       </Panel>
     );
   }

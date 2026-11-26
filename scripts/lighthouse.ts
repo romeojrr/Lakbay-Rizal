@@ -8,7 +8,7 @@ import desktopConfig from 'lighthouse/core/config/desktop-config.js';
 import { mkdirSync, writeFileSync } from 'node:fs';
 
 const base = (process.argv[2] ?? 'http://localhost:4173').replace(/\/$/, '');
-const PAGES = ['/region/philippines', '/region/europe', '/stop/calamba-1861', '/passport'];
+const PAGES = ['/', '/region/philippines', '/region/europe', '/stop/calamba-1861', '/passport'];
 const MIN = 90;
 
 mkdirSync('lighthouse', { recursive: true });

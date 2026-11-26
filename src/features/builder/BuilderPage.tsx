@@ -20,7 +20,7 @@ export default function BuilderPage() {
     return (
       <Panel className={styles.notice}>
         <h1 className={styles.noticeTitle}>{t('builder.notHere')}</h1>
-        <BackLink fallback="/" label={t('stop.backToMap')} />
+        <BackLink fallback="/map" label={t('stop.backToMap')} />
       </Panel>
     );
   }

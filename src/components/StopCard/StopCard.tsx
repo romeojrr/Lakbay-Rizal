@@ -27,7 +27,13 @@ export default function StopCard({ member, regionLabel, nextElsewhere }: StopCar
 
   const { stop, state } = member;
   const heading =
-    state === 'current' ? t('card.now') : state === 'locked' ? t('card.comingUp') : t('card.next');
+    state === 'current'
+      ? stop.order === 1
+        ? t('card.first')
+        : t('card.now')
+      : state === 'locked'
+        ? t('card.comingUp')
+        : t('card.next');
 
   return (
     <Panel>

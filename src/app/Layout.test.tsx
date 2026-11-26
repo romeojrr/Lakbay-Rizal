@@ -18,7 +18,7 @@ const withAllStops: RootLoader = async () => rootData(content);
 
 describe('Layout header', () => {
   it('shows the logo, region tabs from content, Scenes link and Passport link', async () => {
-    renderAt('/', withAllStops);
+    renderAt('/map', withAllStops);
     const header = await screen.findByRole('banner');
 
     expect(within(header).getByRole('link', { name: 'LAKBAY RIZAL' })).toHaveAttribute('href', '/');
@@ -32,7 +32,7 @@ describe('Layout header', () => {
   });
 
   it('counts only the stops this build may show', async () => {
-    renderAt('/', async () => rootData(content, []));
+    renderAt('/map', async () => rootData(content, []));
     const header = await screen.findByRole('banner');
     expect(within(header).getByRole('link', { name: 'Passport · 0/0' })).toBeInTheDocument();
   });
@@ -42,7 +42,10 @@ describe('Layout header', () => {
     expect(await screen.findByRole('banner')).toBeInTheDocument();
     const main = screen.getByRole('main');
     expect(within(main).getByRole('heading', { name: 'Page not found' })).toBeVisible();
-    expect(within(main).getByRole('link', { name: 'Go to the map' })).toHaveAttribute('href', '/');
+    expect(within(main).getByRole('link', { name: 'Go to the map' })).toHaveAttribute(
+      'href',
+      '/map',
+    );
   });
 
   it('has Settings and Credits links in the footer', async () => {
@@ -59,7 +62,7 @@ describe('Layout header', () => {
   });
 
   it('shows a friendly retry message when content cannot load', async () => {
-    renderAt('/', async () => {
+    renderAt('/map', async () => {
       throw new Error('offline');
     });
     const alert = await screen.findByRole('alert');

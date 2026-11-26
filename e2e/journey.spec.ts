@@ -13,8 +13,11 @@ async function noSideScroll(page: Page) {
 test('SRS §12: the whole journey', async ({ page }) => {
   test.setTimeout(180_000);
 
-  await test.step("1. fresh profile → Rizal's tour starts → skip", async () => {
+  await test.step("1. fresh profile → landing → MAGLAKBAY → Rizal's tour starts → skip", async () => {
     await page.goto('/');
+    // U9: the landing page first; MAGLAKBAY flies down to Calamba, then the tour starts.
+    await page.getByRole('button', { name: /MAGLAKBAY/ }).click();
+    await expect(page).toHaveURL(/\/region\/philippines$/);
     const tour = page.getByRole('dialog', { name: 'Tour with José Rizal' });
     await expect(tour).toBeVisible();
     await expect(tour.getByText('Step 1 of 14')).toBeVisible();
@@ -99,7 +102,7 @@ test('SRS §12: the whole journey', async ({ page }) => {
       .getByRole('dialog', { name: 'Reset all progress?' })
       .getByRole('button', { name: 'Yes, reset' })
       .click();
-    await page.goto('/');
+    await page.goto('/map');
     await page
       .getByRole('dialog', { name: 'Tour with José Rizal' })
       .getByRole('button', { name: 'Skip tour' })

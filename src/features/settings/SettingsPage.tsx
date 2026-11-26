@@ -155,7 +155,7 @@ export default function SettingsPage() {
           className={styles.reset}
           onClick={() => {
             useUi.getState().startTour();
-            navigate('/');
+            navigate('/map');
           }}
         >
           {t('settings.replayTour')}
@@ -180,7 +180,7 @@ export default function SettingsPage() {
       />
       {message && (
         <p className={styles.help} role="status">
-          {message} <Link to="/">{t('notFound.home')}</Link>
+          {message} <Link to="/map">{t('notFound.home')}</Link>
         </p>
       )}
     </Panel>

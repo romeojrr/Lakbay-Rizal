@@ -138,7 +138,9 @@
     "scene": "Tagpo: {alt}"
   },
   "card": {
-    "next": "Susunod na hinto"
+    "next": "Susunod na hinto",
+    "first": "Unang hinto",
+    "enter": "Pumasok sa {place} ▶"
   },
   "journey": {
     "title": "Paglalakbay"
@@ -157,5 +159,12 @@
   "footer": {
     "settings": "Settings",
     "credits": "Pagkilala"
+  },
+  "landing": {
+    "stats": "{from} – {to} · {stops} hinto · {regions} rehiyon",
+    "tagline": "Sundan ang paglalakbay ni José Rizal sa buong mundo.",
+    "start": "MAGLAKBAY",
+    "continue": "Ituloy: {place} · {year}",
+    "heading": "Patungong {place}, {year} …"
   }
 }

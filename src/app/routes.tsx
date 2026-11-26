@@ -5,6 +5,7 @@ import { loadTranslations } from '../content/translations';
 import type { Content, Stop } from '../content/schemas';
 import type { Gamification, Guide } from '../content/schemas.v3';
 import { getVisibleStops, shouldIncludeDrafts } from '../content/selectors';
+import LandingPage from '../features/landing/LandingPage';
 import HomeRedirect from '../features/map/HomeRedirect';
 import MapPage from '../features/map/MapPage';
 import { useProgress } from '../store/progress';
@@ -57,7 +58,8 @@ export function createRoutes(loader: RootLoader = rootLoader): RouteObject[] {
       errorElement: <ContentError />,
       HydrateFallback: LoadingScreen,
       children: [
-        { index: true, Component: HomeRedirect },
+        { index: true, Component: LandingPage },
+        { path: 'map', Component: HomeRedirect },
         { path: 'region/:regionId', Component: MapPage },
         { path: 'stop/:stopId', lazy: page(() => import('../features/stop/StopPage')) },
         { path: 'stop/:stopId/quiz', lazy: page(() => import('../features/quiz/QuizPage')) },
