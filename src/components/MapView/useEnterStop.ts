@@ -1,13 +1,18 @@
-// "Enter <place>": the region map zooms in on the place, then the stop opens (owner,
-// 2026-11-26). Used by the map card's Enter button and by the pins. With reduced motion, or if
-// the map is not on screen, the stop opens at once.
+// "Enter <place>": the region map zooms in on the place like the landing's fly-down (same
+// pace, same whoosh), then the stop opens (owner, 2026-11-26). Used by the map card's Enter
+// button and by the pins. With reduced motion, or if the map is not on screen, the stop opens
+// at once.
 import { useCallback, type MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { play } from '../../lib/sound';
 import { useReducedMotion } from '../../lib/useReducedMotion';
 
-/** How long the zoom takes before the stop opens. */
-export const ENTER_MS = 750;
-const ZOOM = 4.5;
+/** How long the zoom takes before the stop opens: as slow as the landing's fly-down. */
+export const ENTER_MS = 2400;
+const ZOOM = 8;
+
+/** A zoom is playing: more clicks wait for it instead of starting another. */
+let zooming = false;
 
 /**
  * Keyframes that move `point` (in % of the layer) to the middle of the viewport while zooming
@@ -18,7 +23,7 @@ export function enterFrames(
   viewport: { left: number; top: number; width: number; height: number },
   point: { x: number; y: number },
   zoom = ZOOM,
-  count = 24,
+  count = 30,
 ): Keyframe[] {
   const px = layer.left + (point.x / 100) * layer.width;
   const py = layer.top + (point.y / 100) * layer.height;
@@ -33,7 +38,7 @@ export function enterFrames(
     const m = (z - 1) / (zoom - 1);
     frames.push({
       offset: t,
-      opacity: t < 0.7 ? 1 : 1 - (t - 0.7) / 0.3,
+      opacity: t < 0.82 ? 1 : 1 - (t - 0.82) / 0.18,
       transform: `translate(${(dx * m).toFixed(2)}px, ${(dy * m).toFixed(2)}px) scale(${z.toFixed(4)})`,
     });
   }
@@ -67,8 +72,12 @@ export function useEnterStop() {
       if (still || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey) return;
       if (!document.querySelector(`[data-map-layer="${region}"]`)) return;
       event.preventDefault();
+      if (zooming) return;
+      zooming = true;
+      play('whoosh'); // the same rush of air as the landing's fly-down
       const to = `/stop/${stopId}`;
       void zoomInto(region, point).then(() => {
+        zooming = false;
         // Something else (the tour) may already have opened it.
         if (window.location.pathname !== to) navigate(to);
       });
