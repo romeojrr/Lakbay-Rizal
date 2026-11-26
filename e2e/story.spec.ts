@@ -123,6 +123,22 @@ test('the dialogue box: inside the scene frame on wide screens, under it on phon
     expect(box.y + box.height).toBeLessThanOrEqual(frame.y + frame.height);
     expect(overlap).toBeGreaterThan(0);
     expect(overlap).toBeLessThanOrEqual(40);
+    // A long paragraph (Calamba's second, ~600 letters) gets smaller text, not a taller box.
+    const step = page.locator('[data-step]');
+    const titleBox = await step.locator('..').boundingBox();
+    await page.getByRole('button', { name: 'Next' }).click(); // paragraph 1 (typing)
+    await page.getByRole('button', { name: 'Next' }).click(); // shows it all
+    await page.getByRole('button', { name: 'Next' }).click(); // paragraph 2
+    await expect(step).toContainText('seventh');
+    const longBox = await step.locator('..').boundingBox();
+    expect(Math.abs((longBox?.y ?? 0) - (titleBox?.y ?? 0))).toBeLessThanOrEqual(1);
+    expect(Math.abs((longBox?.height ?? 0) - (titleBox?.height ?? 0))).toBeLessThanOrEqual(1);
+    const size = await step
+      .locator('p')
+      .first()
+      .evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
+    expect(size).toBeGreaterThanOrEqual(16);
+    expect(await step.evaluate((el) => el.scrollHeight <= el.clientHeight + 1)).toBe(true);
   } else {
     expect(overlap).toBeLessThanOrEqual(0);
   }

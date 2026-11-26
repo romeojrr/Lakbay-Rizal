@@ -29,17 +29,26 @@
   height: 100%;
 }
 
+/* Always the same height: a long paragraph gets a smaller font (`--fit-fs`, set by
+   useFitText) instead of a taller box. */
 .boxFill {
-  min-height: calc(var(--text-room) - 12px);
+  height: calc(var(--text-room) - 12px);
 }
 
 .boxFill .panel {
   flex: 1;
+  min-height: 0;
+  overflow-y: auto; /* only if even the smallest size does not fit */
 }
 
-/* The box is wide here: longer lines keep long paragraphs from covering the scene. */
+/* The box is wide here: longer lines need less shrinking. */
 .boxFill .text {
   max-width: 96ch;
+  font-size: var(--fit-fs, var(--fs-body));
+}
+
+.boxFill .factText {
+  font-size: var(--fit-fs, var(--fs-body));
 }
 
 .panel:focus {

@@ -10,6 +10,7 @@ import { buildSteps, stepText, types } from './steps';
 import StoryControls from './StoryControls';
 import StoryPanel from './StoryPanel';
 import { useStoryKeys } from './useStoryKeys';
+import { useFitText } from './useFitText';
 import { useTypewriter } from './useTypewriter';
 import styles from './StoryPanel.module.css';
 import { play } from '../../lib/sound';
@@ -104,8 +105,11 @@ export default function StoryPlayer(props: StoryPlayerProps) {
   const bubbleAt = line?.onScene && !quiet ? story.scene.speakerAnchors?.[line.speaker] : undefined;
   const framed = props.framed ?? false;
 
+  const boxRef = useRef<HTMLDivElement>(null);
+  useFitText(boxRef, framed, stepKey);
+
   const textBox = (
-    <div className={cx(styles.box, framed && styles.boxFill)}>
+    <div ref={boxRef} className={cx(styles.box, framed && styles.boxFill)}>
       <StoryPanel
         story={story}
         step={step}
