@@ -140,6 +140,7 @@ export default function StoryPlayer(props: StoryPlayerProps) {
         covered={framed || props.overlay}
         ambient={quiet ? undefined : AMBIENT[story.id]}
         fill={framed}
+        back={{ to: `/region/${story.region}`, label: t('map.backToMap') }}
       >
         {framed ? textBox : null}
       </SceneView>

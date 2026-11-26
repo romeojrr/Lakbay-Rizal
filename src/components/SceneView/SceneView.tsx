@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import { t } from '../../i18n/t';
 import { asset } from '../../lib/asset';
 import { cx } from '../../lib/cx';
@@ -31,6 +32,8 @@ interface SceneViewProps {
   children?: ReactNode;
   /** Replaces the "Place · year" heading (the Scenes page shows its own badges). */
   badge?: ReactNode;
+  /** An arrow button left of the "Place · year" badge, back to this page (the region map). */
+  back?: { to: string; label: string };
 }
 
 /** With the text box over the bottom ~40 % of the scene, the open area is centred here. */
@@ -78,6 +81,7 @@ export default function SceneView({
   fill,
   children,
   badge,
+  back,
 }: SceneViewProps) {
   const view = cameraView(camera, covered ? COVERED_FOCUS_Y : 50);
   const bubble = bubbleAt ? onScreen(view, bubbleAt) : undefined;
@@ -150,7 +154,17 @@ export default function SceneView({
             </span>
           )}
         </div>
-        {badge ?? <h1 className={styles.badge}>{t('stop.badge', { place, year })}</h1>}
+        {back ? (
+          // Owner, 2026-11-26: an arrow back to the map, left of the place on every stop.
+          <div className={styles.corner}>
+            <Link className={styles.back} to={back.to} aria-label={back.label} title={back.label}>
+              <span aria-hidden="true">◀</span>
+            </Link>
+            {badge ?? <h1 className={styles.badge}>{t('stop.badge', { place, year })}</h1>}
+          </div>
+        ) : (
+          (badge ?? <h1 className={styles.badge}>{t('stop.badge', { place, year })}</h1>)
+        )}
         {fill && children && (
           <div
             className={styles.text}

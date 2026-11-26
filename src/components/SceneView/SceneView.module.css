@@ -67,6 +67,55 @@
   border: 3px solid var(--card-warm);
 }
 
+/* The back arrow and the badge side by side in the top-left corner. */
+.corner {
+  z-index: 3;
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.corner .badge {
+  position: static;
+}
+
+/* Same look as the badge: a dark plate with a cream edge. */
+.back {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 10px;
+  font-size: var(--fs-small);
+  line-height: 1;
+  color: var(--card-warm);
+  text-decoration: none;
+  background: rgba(31, 26, 36, 0.88);
+  border: 3px solid var(--card-warm);
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.back:hover {
+  background: var(--ink);
+  transform: translateX(-2px);
+}
+
+.back:active {
+  transform: translateX(-1px) scale(0.96);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back:hover,
+  .back:active {
+    transform: none;
+  }
+}
+
 /* "…" above the speaker; its bottom centre sits on the anchor. */
 .bubble {
   position: absolute;
@@ -104,6 +153,17 @@
     top: 8px;
     padding: 3px 8px;
     font-size: var(--fs-small);
+  }
+
+  .corner {
+    left: 8px;
+    top: 8px;
+    gap: 6px;
+  }
+
+  .back {
+    min-width: 40px;
+    min-height: 40px;
   }
 
   .bubble {
