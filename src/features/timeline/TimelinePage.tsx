@@ -36,6 +36,7 @@ function Filter<V extends string>(props: {
         <button
           key={option}
           type="button"
+          className={styles.filterButton}
           aria-pressed={props.value === option}
           onClick={() => props.onChange(option)}
         >

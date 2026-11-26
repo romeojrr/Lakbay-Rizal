@@ -48,17 +48,15 @@ describe('Layout header', () => {
     );
   });
 
-  it('has Settings and Credits links in the footer', async () => {
+  it('the top bar has a Settings gear and no language switch; Credits is in Settings', async () => {
     renderAt('/some/unknown/page', withAllStops);
-    const footer = await screen.findByRole('contentinfo');
-    expect(within(footer).getByRole('link', { name: 'Settings' })).toHaveAttribute(
+    const header = await screen.findByRole('banner');
+    expect(within(header).getByRole('link', { name: 'Settings' })).toHaveAttribute(
       'href',
       '/settings',
     );
-    expect(within(footer).getByRole('link', { name: 'Credits' })).toHaveAttribute(
-      'href',
-      '/credits',
-    );
+    expect(within(header).queryByRole('group', { name: 'Language' })).toBeNull();
+    expect(screen.queryByRole('contentinfo')).toBeNull();
   });
 
   it('shows a friendly retry message when content cannot load', async () => {

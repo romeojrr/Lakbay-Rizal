@@ -43,6 +43,15 @@ const calambaSteps = buildSteps(content.stops.find((s) => s.id === 'calamba-1861
 const CALAMBA_CHAPTER_3 = calambaSteps.findIndex((s) => s.kind === 'title' && s.chapter === 2);
 const CALAMBA_FACT_1 = calambaSteps.findIndex((s) => s.kind === 'fact' && s.chapter === 0);
 
+/** Presses → until the story ends (Replay shows). Reduced motion: text appears at once. */
+async function readToEnd(user: ReturnType<typeof userEvent.setup>) {
+  for (let i = 0; i < 80; i++) {
+    if (screen.queryByRole('button', { name: 'Replay ↺' })) return;
+    await user.keyboard('{ArrowRight}');
+  }
+  throw new Error('the story did not end within 80 presses');
+}
+
 /** Presses Next until the story shows a spoken line. */
 async function nextToLine() {
   for (let i = 0; i < 8; i++) {
@@ -123,25 +132,19 @@ describe('Story player — Calamba (FR-80, SRS v2.3 §3.6)', { timeout: 15_000 }
     expect(step()).toBe(1);
     await user.click(screen.getByRole('button', { name: '◀ Back' }));
     expect(screen.getByRole('heading', { level: 2, name: 'A house by the lake' })).toBeVisible();
-
-    const autoplay = screen.getByRole('button', { name: 'Auto-play' });
-    expect(autoplay).toHaveAttribute('aria-pressed', 'false');
-    await user.keyboard('a');
-    expect(autoplay).toHaveAttribute('aria-pressed', 'true');
-    // Auto-play moves on 1.5 s after the step has finished.
-    await waitFor(() => expect(step()).toBe(1), { timeout: 2500 });
-    await user.keyboard('A');
-    expect(autoplay).toHaveAttribute('aria-pressed', 'false');
+    // No auto-play and no skip (owner, 2026-11-26).
+    expect(screen.queryByRole('button', { name: 'Auto-play' })).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Skip to the end' })).toBeNull();
   });
 
-  it('Skip to the end: the stop counts as visited and the quiz opens', async () => {
+  it('reading to the end: the stop counts as visited and the quiz opens', async () => {
     const user = userEvent.setup();
     freeAndStill();
     renderAt('/stop/calamba-1861');
     await screen.findByRole('heading', { level: 2, name: 'A house by the lake' });
     expect(screen.queryByRole('link', { name: 'Quiz ▶' })).toBeNull();
 
-    await user.click(screen.getByRole('button', { name: 'Skip to the end' }));
+    await readToEnd(user);
     expect(useProgress.getState().visited).toEqual(['calamba-1861']);
     expect(useProgress.getState().readIn).toEqual({ 'calamba-1861': ['en'] });
     expect(screen.getByRole('link', { name: 'Take the quiz ▶' })).toHaveAttribute(
@@ -149,7 +152,6 @@ describe('Story player — Calamba (FR-80, SRS v2.3 §3.6)', { timeout: 15_000 }
       '/stop/calamba-1861/quiz',
     );
     expect(screen.getByRole('link', { name: 'Quiz ▶' })).toBeVisible();
-    expect(screen.queryByRole('button', { name: 'Skip to the end' })).toBeNull();
 
     await user.click(screen.getByRole('button', { name: 'Replay ↺' }));
     expect(screen.getByRole('heading', { level: 2, name: 'A house by the lake' })).toBeVisible();
@@ -246,10 +248,8 @@ describe('Stop page — other states', () => {
     await screen.findByRole('heading', { level: 1, name: 'Bagumbayan · 1896' });
     expect(screen.queryByText('Quiz ▶')).toBeNull();
     expect(screen.queryByRole('heading', { name: 'Epilogue' })).toBeNull();
-    // No auto-play, and no close-ups: the narrator speaks.
-    expect(screen.queryByRole('button', { name: 'Auto-play' })).toBeNull();
-
-    await user.click(screen.getByRole('button', { name: 'Skip to the end' }));
+    // No close-ups: the narrator speaks.
+    await readToEnd(user);
     expect(screen.queryByRole('img', { name: /^Portrait of/ })).toBeNull();
     expect(screen.queryByRole('link', { name: 'Take the quiz ▶' })).toBeNull();
     const epilogue = screen.getByRole('heading', { name: 'Epilogue' }).parentElement as HTMLElement;

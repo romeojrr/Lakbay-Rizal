@@ -1,3 +1,12 @@
+/* Buttons use the shared look (src/styles/buttons.css); rules below add layout only. */
+.enter {
+  composes: ui-btn ui-btn-primary ui-btn-big from global;
+}
+
+.secondary {
+  composes: ui-btn from global;
+}
+
 .scene {
   display: block;
   width: 100%;
@@ -44,30 +53,5 @@
 
 .enter,
 .secondary {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-height: 52px;
   margin-top: 4px;
-  padding: 8px 12px;
-  font-size: var(--fs-body);
-  text-align: center;
-  text-decoration: none;
-  color: var(--ink);
-  background: var(--accent);
-  border: var(--border);
-  box-shadow: var(--shadow-button);
-  border-radius: var(--radius);
-}
-
-.secondary {
-  font-size: var(--fs-small);
-  background: var(--card-warm);
-}
-
-.enter:active,
-.secondary:active {
-  transform: translate(2px, 2px);
-  box-shadow: var(--shadow-button);
 }

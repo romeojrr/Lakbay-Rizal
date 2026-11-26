@@ -28,7 +28,7 @@
 .panel {
   scrollbar-gutter: stable; /* same card width whether or not the panel scrolls */
   position: sticky;
-  top: calc(var(--topbar-h) + 24px);
+  top: 0;
   max-height: var(--area-h);
   overflow-y: auto;
   min-width: 0;

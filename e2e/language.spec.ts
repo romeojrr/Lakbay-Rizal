@@ -1,5 +1,5 @@
-// U2 / FR-86 (SRS v2.3 §3.10, §12b step 7): EN | FIL switch with per-string fallback and the
-// "Draft translation" badge; the choice is saved. Also: a v2.2 (version 1) save is upgraded.
+// U2 / FR-86 (SRS v2.3 §3.10, §12b step 7): English or Filipino (in Settings) with per-string
+// fallback; the choice is saved. Also: a v2.2 (version 1) save is upgraded.
 import { expect, test, type Page } from '@playwright/test';
 import { expectNoSeriousA11yIssues } from './a11y';
 import { horizontalOverflow, skipIntroOnFreshProfile } from './helpers';
@@ -14,31 +14,34 @@ const FIL_TEASER = 'Isang bahay sa tabi ng lawa, at isang inang nagtuturo';
 const FIL_ALT =
   'Binabasahan ni Teodora Alonso ang batang si José sa harap ng bahay na bato ng pamilya';
 
-const languageGroup = (page: Page) =>
-  page.getByRole('banner').getByRole('group', { name: /^(Language|Wika)$/ });
+/** The language choice is in Settings (the gear in the top bar). */
+async function chooseLanguage(page: Page, which: 'Filipino' | 'English') {
+  await page.getByRole('banner').getByRole('link', { name: 'Settings' }).click();
+  const radios = page.getByRole('main').getByRole('radio');
+  await (which === 'Filipino' ? radios.nth(1) : radios.nth(0)).click();
+  await expect(page.locator('html')).toHaveAttribute('lang', which === 'Filipino' ? 'fil' : 'en');
+  await page.goBack();
+}
 
-test('switches to Filipino and back without a reload; the choice is saved', async ({ page }) => {
+test('switches to Filipino in Settings and back without a reload; the choice is saved', async ({
+  page,
+}) => {
   await page.goto('/region/philippines');
   await expect(page.getByText(EN_TEASER)).toBeVisible();
+  // The top bar has no language switch any more.
+  await expect(page.getByRole('banner').getByRole('group', { name: 'Language' })).toHaveCount(0);
   // Mark the page: a reload would lose this.
   await page.evaluate(() => ((window as unknown as { marker: number }).marker = 1));
 
-  await languageGroup(page).getByRole('button', { name: 'FIL (Filipino)' }).click();
+  await chooseLanguage(page, 'Filipino');
 
   // UI strings and content text are Filipino; the page was not reloaded.
-  await expect(page.locator('html')).toHaveAttribute('lang', 'fil');
+  await expect(page).toHaveURL(/\/region\/philippines$/);
   await expect(page.getByText(FIL_TEASER)).toBeVisible();
   await expect(page.getByRole('img', { name: FIL_ALT })).toBeVisible();
   expect(await page.evaluate(() => (window as unknown as { marker?: number }).marker)).toBe(1);
-  await expect(languageGroup(page).getByRole('button', { name: 'FIL (Filipino)' })).toBeFocused();
-
-  // Draft badge with its tooltip.
-  const badge = page.getByRole('banner').getByRole('button', { name: 'Draft translation' });
-  await expect(badge).toBeVisible();
-  await badge.click();
-  await expect(page.getByRole('tooltip')).toHaveText(
-    'Written by AI, being checked by the RIZLIFE team.',
-  );
+  // The translation is reviewed: no "Draft translation" badge.
+  await expect(page.getByRole('button', { name: 'Draft translation' })).toHaveCount(0);
   expect(await horizontalOverflow(page)).toBe(0);
   await expectNoSeriousA11yIssues(page, 'map in Filipino');
 
@@ -47,10 +50,8 @@ test('switches to Filipino and back without a reload; the choice is saved', asyn
   await expect(page.locator('html')).toHaveAttribute('lang', 'fil');
   await expect(page.getByText(FIL_TEASER)).toBeVisible();
 
-  await languageGroup(page).getByRole('button', { name: 'EN (English)' }).click();
-  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await chooseLanguage(page, 'English');
   await expect(page.getByText(EN_TEASER)).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Draft translation' })).toHaveCount(0);
 });
 
 test('strings without a Filipino version fall back to English', async ({ page }) => {

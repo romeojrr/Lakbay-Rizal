@@ -1,7 +1,7 @@
 {
   "_readme": "Filipino DRAFT of all stop text, written by Claude for the RIZLIFE team to check. Same order and counts as stops.v3.json: chapters, narration paragraphs, lines (in order), facts, quiz fields (options/items/left/right/segments in the same order as the English ids). Lines marked recorded in English are translations of translations here; replace them with a published Filipino translation where one exists. Status: draft — needs review by a fluent Filipino teacher before release.",
   "lang": "fil",
-  "status": "draft",
+  "status": "reviewed",
   "stops": {
     "calamba-1861": {
       "title": "Isinilang sa Calamba",

@@ -18,8 +18,6 @@ import { play } from '../../lib/sound';
 /** §3.6: about 40 characters a second; slower and quieter on the final stop (GD-6). */
 const CPS = 40;
 const QUIET_CPS = 25;
-/** Auto-play moves on this long after a step has finished typing. */
-export const AUTOPLAY_DELAY = 1500;
 
 interface StoryPlayerProps {
   story: PlayableStop;
@@ -52,7 +50,6 @@ export default function StoryPlayer(props: StoryPlayerProps) {
   const index = Math.min(Math.max(saved, 0), last);
   const step = steps[index] ?? { kind: 'title', chapter: 0 };
   const still = useReducedMotion();
-  const [autoplay, setAutoplay] = useState(false);
   const text = stepText(story, step);
   const stepKey = `${story.id}:${index}`;
   // Steps already passed (going Back) show their text at once.
@@ -72,8 +69,7 @@ export default function StoryPlayer(props: StoryPlayerProps) {
     else if (!atEnd) go(index + 1);
   };
   const back = () => go(index - 1);
-  const toggleAutoplay = quiet ? undefined : () => setAutoplay((on) => !on);
-  useStoryKeys({ next, back, toggleAutoplay });
+  useStoryKeys({ next, back });
 
   useEffect(() => onProgress(index, steps.length), [index, steps.length, onProgress]);
 
@@ -89,16 +85,6 @@ export default function StoryPlayer(props: StoryPlayerProps) {
   useEffect(() => {
     if (!typer.done && typer.shown > 0 && typer.shown % 3 === 0) play('tick');
   }, [typer.shown, typer.done]);
-
-  // Auto-play: the next step 1.5 s after this one has finished typing.
-  useEffect(() => {
-    if (!autoplay || quiet || !typer.done || atEnd) return;
-    const timer = window.setTimeout(() => {
-      setFurthest((value) => Math.max(value, index));
-      setStoryStep(story.id, index + 1);
-    }, AUTOPLAY_DELAY);
-    return () => window.clearTimeout(timer);
-  }, [autoplay, quiet, typer.done, atEnd, index, story.id, setStoryStep]);
 
   const chapter = story.chapters[step.chapter];
   const line = step.kind === 'line' ? chapter?.lines[step.line] : undefined;
@@ -126,17 +112,13 @@ export default function StoryPlayer(props: StoryPlayerProps) {
         chapters={story.chapters.length}
         atStart={index === 0}
         atEnd={atEnd}
-        quiet={quiet}
-        autoplay={autoplay}
         endLink={endLink}
         onNext={next}
         onBack={back}
-        onSkip={() => go(last)}
         onReplay={() => {
           setFurthest(0);
           setStoryStep(story.id, 0);
         }}
-        onToggleAutoplay={() => toggleAutoplay?.()}
       />
       <p className="visually-hidden">{t('stop.playerHelp')}</p>
     </div>

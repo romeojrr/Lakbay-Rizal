@@ -1,0 +1,157 @@
+/* One button look for the whole game (owner, 2026-11-26: "improve all the designs of
+   buttons"). Components compose these classes (CSS Modules `composes: ui-btn from global`)
+   and keep only their own layout. Colours are custom properties, so a component changes one
+   (`--btn-bg`, `--btn-fg`, `--btn-line`, `--btn-ledge`) without fighting the rest.
+
+   The look: soft rounded card, a thin light edge on top, and a low "ledge" under it, so the
+   button reads as something to press. Hover lifts it 1 px; pressing pushes it down. */
+.ui-btn {
+  --btn-bg: linear-gradient(180deg, #ffffff 0%, #f7f1e4 100%);
+  --btn-fg: var(--ink);
+  --btn-line: var(--line);
+  --btn-ledge: rgba(107, 90, 72, 0.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 6px 16px;
+  font-family: var(--font-pixel);
+  font-size-adjust: none;
+  font-size: var(--fs-small);
+  line-height: 1.1;
+  color: var(--btn-fg);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  background: var(--btn-bg);
+  border: 2px solid var(--btn-line);
+  border-radius: var(--btn-radius);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 3px 0 var(--btn-ledge),
+    0 4px 10px rgba(31, 26, 36, 0.1);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease,
+    filter 120ms ease;
+}
+
+.ui-btn:hover {
+  filter: brightness(1.04);
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 4px 0 var(--btn-ledge),
+    0 8px 16px rgba(31, 26, 36, 0.14);
+}
+
+.ui-btn:active {
+  filter: none;
+  transform: translateY(2px);
+  box-shadow:
+    inset 0 2px 4px rgba(31, 26, 36, 0.18),
+    0 1px 0 var(--btn-ledge);
+}
+
+/* Variants */
+.ui-btn-primary,
+.ui-btn[aria-pressed='true'],
+.ui-btn[aria-selected='true'],
+.ui-btn[aria-current='page'] {
+  --btn-bg: linear-gradient(180deg, #f3a050 0%, var(--accent) 100%);
+  --btn-fg: var(--ink);
+  --btn-line: #9c5b1d;
+  --btn-ledge: rgba(156, 91, 29, 0.55);
+}
+
+.ui-btn-dark {
+  --btn-bg: linear-gradient(180deg, #3b3444 0%, var(--ink) 100%);
+  --btn-fg: var(--card-warm);
+  --btn-line: var(--ink);
+  --btn-ledge: rgba(0, 0, 0, 0.45);
+}
+
+.ui-btn-danger {
+  --btn-bg: linear-gradient(180deg, #c04f3d 0%, var(--chip-cause) 100%);
+  --btn-fg: #ffffff;
+  --btn-line: #6e2418;
+  --btn-ledge: rgba(110, 36, 24, 0.5);
+}
+
+/* Bigger: the main action of a card or screen. */
+.ui-btn-big {
+  min-height: 52px;
+  padding: 8px 20px;
+  font-size: var(--fs-body);
+}
+
+/* Square, for an icon or a single sign (+, −). */
+.ui-btn-icon {
+  min-width: 44px;
+  padding: 0;
+}
+
+/* On the dark top bar: outlined, light text; the current page is filled. */
+.ui-btn-bar {
+  --btn-bg: rgba(255, 255, 255, 0.04);
+  --btn-fg: var(--card-warm);
+  --btn-line: var(--ink-line);
+  box-shadow: none;
+}
+
+.ui-btn-bar:hover {
+  --btn-line: var(--card-warm);
+  --btn-bg: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+}
+
+.ui-btn-bar:active {
+  box-shadow: none;
+}
+
+.ui-btn-bar[aria-current='page'],
+.ui-btn-bar[aria-pressed='true'] {
+  --btn-bg: linear-gradient(180deg, #f3a050 0%, var(--accent) 100%);
+  --btn-fg: var(--ink);
+  --btn-line: var(--accent);
+}
+
+.ui-btn-gold {
+  --btn-bg: linear-gradient(180deg, #f0c45c 0%, var(--gold) 100%);
+  --btn-fg: var(--ink);
+  --btn-line: var(--card-warm);
+}
+
+/* Disabled last, so it wins over every variant. */
+.ui-btn:disabled,
+.ui-btn[aria-disabled='true'] {
+  --btn-bg: var(--line-soft);
+  --btn-fg: var(--muted);
+  --btn-line: #a39a8c;
+  filter: none;
+  transform: none;
+  box-shadow: none;
+  cursor: default;
+}
+
+/* A row of buttons: never touching. */
+.ui-btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Reduced motion: no lift or push either. */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion='off']) .ui-btn {
+    transform: none !important;
+  }
+}
+
+:root[data-motion='on'] .ui-btn {
+  transform: none !important;
+}

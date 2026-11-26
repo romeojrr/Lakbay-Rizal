@@ -46,7 +46,7 @@ function Choice<K extends 'textSize' | 'reduceMotion'>({
               checked={value === option.value}
               onChange={() => setSettings({ [name]: option.value } as Partial<Settings>)}
             />
-            <span>{t(option.label)}</span>
+            <span className={styles.option}>{t(option.label)}</span>
           </label>
         ))}
       </div>
@@ -67,12 +67,14 @@ function LanguageOption({ lang, current }: { lang: Lang; current: Lang }) {
         checked={current === lang}
         onChange={() => void changeLanguage(lang, `settings-${lang}`)}
       />
-      <span lang={lang}>{t(`lang.${lang}`)}</span>
+      <span className={styles.option} lang={lang}>
+        {t(`lang.${lang}`)}
+      </span>
     </label>
   );
 }
 
-/** §3.10: the same choice as the EN | FIL switch in the top bar. */
+/** §3.10: English or Filipino (the top bar has no language switch; the gear opens here). */
 function LanguageChoice() {
   const lang = useLanguage();
   return (
@@ -152,7 +154,7 @@ export default function SettingsPage() {
         <p className={styles.help}>{t('settings.replayHelp')}</p>
         <button
           type="button"
-          className={styles.reset}
+          className={styles.replay}
           onClick={() => {
             useUi.getState().startTour();
             navigate('/map');
@@ -170,6 +172,9 @@ export default function SettingsPage() {
           {t('settings.reset')}
         </button>
       </div>
+      <p className={styles.credits}>
+        <Link to="/credits">{t('footer.credits')}</Link>
+      </p>
       <ConfirmDialog
         open={confirming}
         title={t('settings.resetConfirmTitle')}

@@ -1,3 +1,12 @@
+/* Buttons use the shared look (src/styles/buttons.css); rules below add layout only. */
+.secondary {
+  composes: ui-btn from global;
+}
+
+.next {
+  composes: ui-btn ui-btn-dark from global;
+}
+
 /* SRS v2.3 §3.6 story player. The parchment box keeps the v2.2 dialogue box look
    (Story.dc.html): 4 px ink border, gold inner line, panel shadow. */
 .player {
@@ -230,43 +239,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-}
-
-.secondary,
-.next {
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 14px;
-  font-size: var(--fs-small);
-  text-decoration: none;
-  border: var(--border);
-  cursor: pointer;
-  border-radius: var(--radius);
-}
-
-.secondary {
-  color: var(--ink);
-  background: var(--card);
-}
-
-.secondary[aria-pressed='true'] {
-  background: var(--accent);
-}
-
-.secondary:disabled {
-  color: var(--muted);
-  background: var(--line-soft);
-  cursor: default;
-}
-
-.next {
-  color: var(--card-warm);
-  background: var(--ink);
-}
-
-.next:hover {
-  background: #3a3342;
 }
 
 @media (max-width: 640px) {

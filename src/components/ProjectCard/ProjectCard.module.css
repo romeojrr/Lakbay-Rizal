@@ -1,3 +1,8 @@
+/* Buttons use the shared look (src/styles/buttons.css); rules below add layout only. */
+.build {
+  composes: ui-btn ui-btn-primary from global;
+}
+
 .card {
   display: flex;
   align-items: center;
@@ -53,21 +58,6 @@
   flex-shrink: 0;
   padding: 6px 12px;
   font-size: var(--fs-small);
-}
-
-.build {
-  min-height: 44px;
-  color: var(--ink);
-  background: var(--accent);
-  border: var(--border);
-  box-shadow: var(--shadow-button);
-  cursor: pointer;
-  border-radius: var(--radius);
-}
-
-.build:active {
-  transform: translate(2px, 2px);
-  box-shadow: var(--shadow-button);
 }
 
 .done {

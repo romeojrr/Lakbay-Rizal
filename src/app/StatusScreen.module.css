@@ -1,3 +1,8 @@
+/* Buttons use the shared look (src/styles/buttons.css); rules below add layout only. */
+.button {
+  composes: ui-btn ui-btn-primary from global;
+}
+
 .screen {
   max-width: 640px;
   margin: 48px auto;
@@ -16,21 +21,6 @@
 .title {
   margin: 0;
   font-size: var(--fs-h3);
-}
-
-.button {
-  min-height: 44px;
-  padding: 8px 18px;
-  font-size: var(--fs-small);
-  color: var(--ink);
-  background: var(--accent);
-  border: var(--border);
-  box-shadow: var(--shadow-button);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-  border-radius: var(--radius);
 }
 
 .details {

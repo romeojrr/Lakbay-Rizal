@@ -1,3 +1,12 @@
+/* Buttons use the shared look (src/styles/buttons.css); rules below add layout only. */
+.tab {
+  composes: ui-btn from global;
+}
+
+.journal {
+  composes: ui-btn from global;
+}
+
 /* Open leather passport (Passport.dc.html); the pages stack on small screens. */
 .book {
   max-width: 1240px;
@@ -118,17 +127,6 @@
 
 .journal {
   align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  padding: 6px 16px;
-  font-size: var(--fs-small);
-  text-decoration: none;
-  color: var(--ink);
-  background: var(--card);
-  border: var(--border);
-  box-shadow: var(--shadow-button);
-  border-radius: var(--radius);
 }
 
 .grid {
@@ -157,29 +155,11 @@
 /* v2.3 §3.8: Stamps · Achievements · Rank tabs on the stamp page. */
 .tabs {
   display: flex;
-  gap: 0;
-  margin-bottom: 14px;
-  border-bottom: 2px solid var(--line);
-}
-
-.tab {
-  min-height: 44px;
-  padding: 4px 14px;
-  font-size: var(--fs-small);
-  color: var(--ink);
-  background: var(--card);
-  border: var(--border);
-  border-bottom: 0;
-  cursor: pointer;
-  border-radius: var(--radius);
-}
-
-.tab + .tab {
-  border-left: 0;
-}
-
-.tab[aria-selected='true'] {
-  background: var(--accent);
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--line-soft);
 }
 
 .tabPanel[hidden] {

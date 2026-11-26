@@ -8,21 +8,16 @@ interface StoryControlsProps {
   chapters: number;
   atStart: boolean;
   atEnd: boolean;
-  /** GD-6: no auto-play on the final stop. */
-  quiet: boolean;
-  autoplay: boolean;
   /** Where the story leads when it ends ("Take the quiz ▶"), if anywhere. */
   endLink?: { to: string; label: string };
   onNext: () => void;
   onBack: () => void;
-  onSkip: () => void;
   onReplay: () => void;
-  onToggleAutoplay: () => void;
 }
 
-/** §3.6: chapter progress, Back / Next, Auto-play and Skip to the end. */
+/** §3.6: chapter progress and Back / Next (no auto-play or skip: owner, 2026-11-26). */
 export default function StoryControls(props: StoryControlsProps) {
-  const { chapter, chapters, atStart, atEnd, quiet, autoplay, endLink } = props;
+  const { chapter, chapters, atStart, atEnd, endLink } = props;
   return (
     <div className={styles.controls}>
       <div className={styles.progress}>
@@ -43,21 +38,6 @@ export default function StoryControls(props: StoryControlsProps) {
         </span>
       </div>
       <div className={styles.buttons}>
-        {!quiet && (
-          <button
-            type="button"
-            className={styles.secondary}
-            aria-pressed={autoplay}
-            onClick={props.onToggleAutoplay}
-          >
-            {t('stop.autoplay')}
-          </button>
-        )}
-        {!atEnd && (
-          <button type="button" className={styles.secondary} onClick={props.onSkip}>
-            {t('stop.skip')}
-          </button>
-        )}
         <button
           type="button"
           className={styles.secondary}

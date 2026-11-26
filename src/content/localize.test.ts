@@ -101,14 +101,21 @@ describe('localizeStopV3', () => {
 });
 
 describe('isDraftTranslation (§3.10)', () => {
+  it('the shipped Filipino files are reviewed: no "Draft translation" badge', () => {
+    expect(isDraftTranslation(fil)).toBe(false);
+  });
+
   it('is true while any Filipino file is a draft, or before they load', () => {
-    expect(isDraftTranslation(fil)).toBe(true);
     expect(isDraftTranslation(null)).toBe(true);
-    const reviewed = JSON.parse(JSON.stringify(fil)) as FilContent;
-    reviewed['i18n/fil.stops'].status = 'reviewed';
-    reviewed['i18n/fil.guide'].status = 'reviewed';
-    expect(isDraftTranslation(reviewed)).toBe(true);
-    reviewed['i18n/fil.gamification'].status = 'reviewed';
-    expect(isDraftTranslation(reviewed)).toBe(false);
+    const files = JSON.parse(JSON.stringify(fil)) as FilContent;
+    files['i18n/fil.stops'].status = 'draft';
+    files['i18n/fil.guide'].status = 'draft';
+    files['i18n/fil.gamification'].status = 'draft';
+    expect(isDraftTranslation(files)).toBe(true);
+    files['i18n/fil.stops'].status = 'reviewed';
+    files['i18n/fil.guide'].status = 'reviewed';
+    expect(isDraftTranslation(files)).toBe(true);
+    files['i18n/fil.gamification'].status = 'reviewed';
+    expect(isDraftTranslation(files)).toBe(false);
   });
 });

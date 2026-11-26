@@ -1,3 +1,5 @@
+// The shared button look comes first, so each component's own rules (size, layout) win.
+import './styles/buttons.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import BottomNav from '../components/BottomNav/BottomNav';
 import Celebrations from '../components/Celebrations/Celebrations';
 import RouteIris from '../components/RouteIris/RouteIris';
@@ -18,7 +18,11 @@ import { unlockOnFirstGesture, useMusic } from '../lib/sound';
 
 const NOTICE_MS = 6000;
 
-/** App shell (SRS v2.3 §5.5): slim top bar, page, footer (desktop) or bottom navigation (phones). */
+/**
+ * App shell (SRS v2.3 §5.5): slim top bar, page, bottom navigation (phones). The shell is one
+ * screen tall and the body never scrolls; a page longer than the screen scrolls inside the
+ * page area (owner, 2026-11-26). Settings is the gear in the top bar; Credits is in Settings.
+ */
 export default function Layout() {
   const { content, stops } = useRootData();
   const stamps = useProgress((s) => s.stamps);
@@ -55,6 +59,12 @@ export default function Layout() {
     ui.startTour();
   }, [openedOn, pathname, stops]);
 
+  // A new page starts at its top (the page area, not the window, scrolls).
+  const mainRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    mainRef.current?.scrollTo?.({ top: 0 });
+  }, [pathname]);
+
   // §3.11: sound is allowed from the first click; music follows the region on screen.
   useEffect(() => unlockOnFirstGesture(), []);
   const regionOnScreen =
@@ -85,7 +95,7 @@ export default function Layout() {
   }
 
   return (
-    <>
+    <div className={styles.shell}>
       <TopBar
         regions={content.regions}
         nextRegion={nextRegion}
@@ -93,21 +103,15 @@ export default function Layout() {
         total={stops.length}
       />
       <SaveGuard />
-      <main className={styles.main}>
+      <main ref={mainRef} className={styles.main}>
         <Outlet />
       </main>
-      <footer className={styles.footer}>
-        <nav aria-label={t('footer.label')} className={styles.footerNav}>
-          <Link to="/settings">{t('footer.settings')}</Link>
-          <Link to="/credits">{t('footer.credits')}</Link>
-        </nav>
-      </footer>
       <BottomNav mapRegion={mapRegion} earned={earned} total={stops.length} />
       {notice && <Toast message={notice} />}
       <Celebrations />
       <TipBubble />
       <Tour />
       <RouteIris />
-    </>
+    </div>
   );
 }

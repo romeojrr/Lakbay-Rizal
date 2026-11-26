@@ -31,7 +31,10 @@ test('a perfect Calamba: XP, Rizal reacts, toasts, gold stamp, Passport tabs', a
   await expectNoSeriousA11yIssues(page, 'passport achievements');
 
   // Filipino: the badges are in Filipino too.
-  await page.getByRole('banner').getByRole('button', { name: 'FIL (Filipino)' }).click();
+  await page.getByRole('banner').getByRole('link', { name: 'Settings' }).click();
+  await page.getByRole('main').getByRole('radio', { name: 'Filipino' }).click();
+  await expect(page.locator('html')).toHaveAttribute('lang', 'fil');
+  await page.goBack();
   await page.getByRole('tab', { name: /Achievements|Mga nakamit/ }).click();
   await expect(page.getByRole('tabpanel').getByText('Unang hakbang')).toBeVisible();
   await page.getByRole('tab', { name: /Rank|Ranggo/ }).click();

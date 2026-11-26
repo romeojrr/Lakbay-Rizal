@@ -1,39 +1,39 @@
-/* Page area under the slim top bar (§5.5). Each screen sets its own width limit. */
+/* The shell is exactly one screen: the top bar, then the page area, which scrolls on its own
+   when a page is longer than the screen. The body itself never scrolls (owner, 2026-11-26). */
+.shell {
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Each screen sets its own width limit. */
 .main {
-  max-width: 1920px;
-  /* At least one screen tall, so the footer starts below the fold and does not jump
-     while a page loads (NFR-1 layout shift). */
-  min-height: calc(100vh - var(--topbar-h));
-  margin: 0 auto;
+  /* Holds absolutely placed bits (screen-reader text) so they never stretch the body. */
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 24px;
 }
 
-.footer {
-  max-width: 1920px;
-  margin: 0 auto;
-  padding: 0 24px 24px;
-}
-
-.footerNav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 24px;
-  font-size: var(--fs-small);
-}
-
-.footerNav a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-}
-
-/* Phones: Settings and Credits live in the bottom navigation's More menu. */
+/* Phones: room under the page for the bottom navigation. */
 @media (max-width: 640px) {
   .main {
     padding: 16px 16px calc(var(--bottomnav-h) + env(safe-area-inset-bottom) + 24px);
   }
+}
 
-  .footer {
-    display: none;
+/* Phones held sideways: the page scrolls as a whole so scenes can fill the screen (§5.5). */
+@media (orientation: landscape) and (max-height: 500px) {
+  .shell {
+    height: auto;
+    overflow: visible;
+  }
+
+  .main {
+    overflow: visible;
   }
 }

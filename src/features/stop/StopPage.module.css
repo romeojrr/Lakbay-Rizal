@@ -1,3 +1,16 @@
+/* Buttons use the shared look (src/styles/buttons.css); rules below add layout only. */
+.primary {
+  composes: ui-btn ui-btn-primary from global;
+}
+
+.secondary {
+  composes: ui-btn from global;
+}
+
+.disabled {
+  composes: ui-btn from global;
+}
+
 /* Stop screen: the shared 70 / 30 layout: scene + dialogue box | info cards.
    Container queries put the cards under the story when the content area is narrow. */
 .screen {
@@ -27,7 +40,7 @@
 .cards {
   scrollbar-gutter: stable; /* same card width whether or not the panel scrolls */
   position: sticky;
-  top: calc(var(--topbar-h) + 24px);
+  top: 0;
   max-height: var(--area-h);
   overflow-y: auto;
   min-width: 0;
@@ -164,41 +177,7 @@
 .disabled {
   /* Actions are interface: the pixel font, like the buttons beside them. */
   font-family: var(--font-pixel);
-  font-size-adjust: none;
   flex: 1;
-  min-height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 12px;
-  font-size: var(--fs-small);
-  text-decoration: none;
-  color: var(--ink);
-  border: var(--border);
-  border-radius: var(--radius);
-}
-
-.primary {
-  background: var(--accent);
-  box-shadow: var(--shadow-button);
-}
-
-.secondary {
-  background: var(--card);
-  box-shadow: var(--shadow-button);
-  cursor: pointer;
-}
-
-.primary:active,
-.secondary:active {
-  transform: translate(2px, 2px);
-  box-shadow: var(--shadow-button);
-}
-
-.disabled {
-  color: var(--muted);
-  background: var(--line-soft);
-  border-color: #a39a8c;
 }
 
 /* Final stop (GD-6) */

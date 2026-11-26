@@ -1,3 +1,8 @@
+/* Buttons use the shared look (src/styles/buttons.css); rules below add layout only. */
+.tab {
+  composes: ui-btn ui-btn-bar from global;
+}
+
 .nav {
   min-width: 0;
 }
@@ -14,23 +19,6 @@
   list-style: none;
 }
 
-.tab {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  padding: 4px 14px;
-  font-size: var(--fs-small);
-  white-space: nowrap;
-  text-decoration: none;
-  color: var(--card-warm);
-  background: transparent;
-  border: 2px solid var(--ink-line);
-}
-
-.tab:hover {
-  border-color: var(--card-warm);
-}
-
 /* Marks the region of the next stop. */
 .marker {
   width: 10px;
@@ -43,11 +31,4 @@
 .active .marker {
   background: var(--card-warm);
   border-color: var(--ink);
-}
-
-.active,
-.active:hover {
-  color: var(--ink);
-  background: var(--accent);
-  border-color: var(--accent);
 }

@@ -1,3 +1,8 @@
+/* Buttons use the shared look (src/styles/buttons.css); rules below add layout only. */
+.option {
+  composes: ui-btn ui-btn-bar from global;
+}
+
 /* EN | FIL in the top bar (SRS v2.3 §3.10): v2.2 header outline style, current language
    filled like the active region tab. */
 .wrap {
@@ -9,35 +14,7 @@
 
 .group {
   display: inline-flex;
-}
-
-.option {
-  min-width: 44px;
-  min-height: 44px;
-  padding: 0 8px;
-  font-size: var(--fs-small);
-  color: var(--card-warm);
-  background: transparent;
-  border: 2px solid var(--ink-line);
-  cursor: pointer;
-}
-
-.option + .option {
-  border-left: 0;
-}
-
-.option:hover {
-  border-color: var(--card-warm);
-}
-
-.option[aria-pressed='true'] {
-  color: var(--ink);
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
-.option[aria-busy='true'] {
-  cursor: progress;
+  gap: 6px;
 }
 
 /* "Draft translation" badge and its tooltip. */

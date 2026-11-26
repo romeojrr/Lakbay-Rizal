@@ -1,3 +1,8 @@
+/* Buttons use the shared look (src/styles/buttons.css); rules below add layout only. */
+.button {
+  composes: ui-btn from global;
+}
+
 .toggle {
   display: flex;
   flex-wrap: wrap;
@@ -12,23 +17,5 @@
 
 .buttons {
   display: flex;
-}
-
-.button {
-  min-height: 44px;
-  padding: 6px 14px;
-  font-size: var(--fs-small);
-  color: var(--ink);
-  background: var(--card);
-  border: var(--border);
-  cursor: pointer;
-  border-radius: var(--radius);
-}
-
-.button + .button {
-  border-left: 0;
-}
-
-.button[aria-pressed='true'] {
-  background: var(--accent);
+  gap: 8px;
 }

@@ -44,19 +44,16 @@ const MAP_GUIDES = [
 const STOP_GUIDES = ['scene', 'line-tag', 'sources-card', 'quiz-button'];
 
 describe('App shell v2.3 (§5.5)', () => {
-  it('top bar: logo, XP placeholder, language switch and Passport', async () => {
+  it('top bar: logo, XP placeholder, Settings gear and Passport', async () => {
     renderAt('/region/europe');
     const header = await screen.findByRole('banner');
     expect(within(header).getByRole('link', { name: 'LAKBAY RIZAL' })).toBeVisible();
     expect(within(header).getByText('0 XP')).toBeVisible();
-    const language = within(header).getByRole('group', { name: 'Language' });
-    expect(within(language).getByRole('button', { name: 'EN (English)' })).toHaveAttribute(
-      'aria-pressed',
-      'true',
-    );
-    expect(within(language).getByRole('button', { name: 'FIL (Filipino)' })).toHaveAttribute(
-      'aria-pressed',
-      'false',
+    // The language choice is in Settings; the gear opens it.
+    expect(within(header).queryByRole('group', { name: 'Language' })).toBeNull();
+    expect(within(header).getByRole('link', { name: 'Settings' })).toHaveAttribute(
+      'href',
+      '/settings',
     );
     expect(within(header).getByRole('link', { name: 'Passport · 0/25' })).toBeVisible();
   });

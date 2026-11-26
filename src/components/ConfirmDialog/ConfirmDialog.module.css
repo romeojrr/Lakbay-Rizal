@@ -1,3 +1,12 @@
+/* Buttons use the shared look (src/styles/buttons.css); rules below add layout only. */
+.cancel {
+  composes: ui-btn from global;
+}
+
+.confirm {
+  composes: ui-btn ui-btn-danger from global;
+}
+
 .message {
   margin-top: 0;
 }
@@ -7,25 +16,4 @@
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 10px;
-}
-
-.cancel,
-.confirm {
-  min-height: 48px;
-  padding: 8px 18px;
-  font-size: var(--fs-small);
-  border: var(--border);
-  box-shadow: var(--shadow-button);
-  cursor: pointer;
-  border-radius: var(--radius);
-}
-
-.cancel {
-  color: var(--ink);
-  background: var(--card);
-}
-
-.confirm {
-  color: #ffffff;
-  background: var(--chip-cause);
 }

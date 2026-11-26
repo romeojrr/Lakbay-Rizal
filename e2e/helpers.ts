@@ -41,8 +41,9 @@ export async function skipIntroOnFreshProfile(page: Page) {
 }
 
 /**
- * Opens Settings, Credits or Scenes the way a player would at this width: from the header
- * and footer on desktop, from the bottom navigation's More menu on phones (v2.3 §5.5).
+ * Opens Settings, Credits or Scenes the way a player would at this width: from the header on
+ * desktop (Settings is the gear; Credits is inside Settings), from the bottom navigation's
+ * More menu on phones (v2.3 §5.5).
  */
 export async function openFromMenu(page: Page, name: 'Settings' | 'Credits' | 'Scenes') {
   const bottomNav = page.getByRole('navigation', { name: 'Main' });
@@ -51,20 +52,33 @@ export async function openFromMenu(page: Page, name: 'Settings' | 'Credits' | 'S
     await page.getByRole('dialog', { name: 'More' }).getByRole('link', { name }).click();
     return;
   }
-  const where = name === 'Scenes' ? page.getByRole('banner') : page.getByRole('contentinfo');
-  await where.getByRole('link', { name }).click();
+  const header = page.getByRole('banner');
+  if (name === 'Credits') {
+    await header.getByRole('link', { name: 'Settings' }).click();
+    await page.getByRole('main').getByRole('link', { name: 'Credits' }).click();
+    return;
+  }
+  await header.getByRole('link', { name }).click();
 }
 
+/** Sideways overflow of the page, or of the page area (which scrolls on its own). */
 export async function horizontalOverflow(page: Page): Promise<number> {
-  return page.evaluate(
-    () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
-  );
+  return page.evaluate(() => {
+    const main = document.querySelector('main');
+    return Math.max(
+      document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      main ? main.scrollWidth - main.clientWidth : 0,
+    );
+  });
 }
 
-/** SRS v2.3 §3.6: jumps to the end of the stop's story (it still counts as visited). */
+/** Reads to the end of the stop's story with the → key (there is no "Skip to the end"). */
 export async function finishStory(page: Page) {
-  await page.getByRole('button', { name: 'Skip to the end' }).click();
-  await expect(page.getByRole('button', { name: 'Replay ↺' })).toBeVisible();
+  const replay = page.getByRole('button', { name: 'Replay ↺' });
+  for (let i = 0; i < 160 && !(await replay.isVisible()); i++) {
+    await page.keyboard.press('ArrowRight');
+  }
+  await expect(replay).toBeVisible();
 }
 
 /** Plays the whole story with Next, as a player would (the first press finishes the typing). */

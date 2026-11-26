@@ -59,3 +59,28 @@ export function MoreIcon() {
     </svg>
   );
 }
+
+/** A gear: Settings (in the top bar). */
+export function GearIcon() {
+  const rows = [
+    '...##...',
+    '.#.##.#.',
+    '.######.',
+    '###..###',
+    '###..###',
+    '.######.',
+    '.#.##.#.',
+    '...##...',
+  ];
+  return (
+    <svg {...svgProps}>
+      {rows.flatMap((row, y) =>
+        [...row].map((cell, x) =>
+          cell === '#' ? (
+            <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" fill="currentColor" />
+          ) : null,
+        ),
+      )}
+    </svg>
+  );
+}

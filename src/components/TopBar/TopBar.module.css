@@ -1,3 +1,16 @@
+/* Buttons use the shared look (src/styles/buttons.css); rules below add layout only. */
+.link {
+  composes: ui-btn ui-btn-bar from global;
+}
+
+.passport {
+  composes: ui-btn ui-btn-gold from global;
+}
+
+.gear {
+  composes: ui-btn ui-btn-bar ui-btn-icon from global;
+}
+
 /* Colours, border and button styles from the v2.2 header (Main.dc.html); slim height from §5.5. */
 .bar {
   position: sticky;
@@ -58,28 +71,7 @@
 
 .link,
 .passport {
-  display: inline-flex;
   flex-shrink: 0;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 4px 14px;
-  font-size: var(--fs-small);
-  white-space: nowrap;
-  text-decoration: none;
-  color: var(--card-warm);
-  border: 2px solid var(--ink-line);
-}
-
-.link:hover {
-  border-color: var(--card-warm);
-}
-
-.passport,
-.passport:hover {
-  color: var(--ink);
-  background: var(--gold);
-  border-color: var(--card-warm);
 }
 
 /* Phones held sideways: the bar scrolls away so scenes can fill the screen (§5.5). */

@@ -1,3 +1,12 @@
+/* Buttons use the shared look (src/styles/buttons.css); rules below add layout only. */
+.primary {
+  composes: ui-btn ui-btn-primary from global;
+}
+
+.secondary {
+  composes: ui-btn from global;
+}
+
 .card {
   display: flex;
   flex-wrap: wrap;
@@ -50,28 +59,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-}
-
-.primary,
-.secondary {
-  display: inline-flex;
-  align-items: center;
-  min-height: 48px;
-  padding: 8px 18px;
-  font-size: var(--fs-small);
-  text-decoration: none;
-  color: var(--ink);
-  border: var(--border);
-  box-shadow: var(--shadow-button);
-  border-radius: var(--radius);
-}
-
-.primary {
-  background: var(--accent);
-}
-
-.secondary {
-  background: var(--card);
 }
 
 /* §3.8 stamp grade: a small ribbon; the word carries the meaning. */

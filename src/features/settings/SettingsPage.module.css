@@ -1,3 +1,16 @@
+/* Buttons use the shared look (src/styles/buttons.css); rules below add layout only. */
+.reset {
+  composes: ui-btn ui-btn-danger from global;
+}
+
+.replay {
+  composes: ui-btn from global;
+}
+
+.option {
+  composes: ui-btn from global;
+}
+
 .panel {
   max-width: 720px;
   margin: 0 auto;
@@ -34,6 +47,7 @@
 .segments {
   display: flex;
   flex-wrap: wrap;
+  gap: 8px;
 }
 
 .segment {
@@ -46,23 +60,13 @@
   opacity: 0;
 }
 
-.segment span {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  padding: 6px 16px;
-  margin-right: -3px;
-  font-size: var(--fs-small);
-  background: var(--card);
-  border: var(--border);
-  border-radius: var(--radius);
+.segment input:checked + .option {
+  --btn-bg: linear-gradient(180deg, #f3a050 0%, var(--accent) 100%);
+  --btn-line: #9c5b1d;
+  --btn-ledge: rgba(156, 91, 29, 0.55);
 }
 
-.segment input:checked + span {
-  background: var(--accent);
-}
-
-.segment input:focus-visible + span {
+.segment input:focus-visible + .option {
   outline: 3px solid var(--accent);
   outline-offset: 2px;
   position: relative;
@@ -88,18 +92,6 @@
   padding: 14px 16px;
   background: var(--card-warm);
   border: var(--border-thin);
-  border-radius: var(--radius);
-}
-
-.reset {
-  min-height: 48px;
-  padding: 8px 18px;
-  font-size: var(--fs-small);
-  color: #ffffff;
-  background: var(--chip-cause);
-  border: var(--border);
-  box-shadow: var(--shadow-button);
-  cursor: pointer;
   border-radius: var(--radius);
 }
 
@@ -154,4 +146,9 @@
   width: min(240px, 60vw);
   min-height: 44px;
   accent-color: var(--accent);
+}
+
+.credits {
+  margin: 20px 0 0;
+  font-size: var(--fs-small);
 }

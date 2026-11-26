@@ -2,11 +2,10 @@ import { Link } from 'react-router-dom';
 import type { Region, RegionId } from '../../content/schemas';
 import { t } from '../../i18n/t';
 import { asset } from '../../lib/asset';
-import LanguageSwitch from '../LanguageSwitch/LanguageSwitch';
 import RegionTabs from '../RegionTabs/RegionTabs';
 import SaveIndicator from '../SaveIndicator/SaveIndicator';
 import XpBar from '../XpBar/XpBar';
-import { PassportIcon } from '../BottomNav/navIcons';
+import { GearIcon, PassportIcon } from '../BottomNav/navIcons';
 import styles from './TopBar.module.css';
 
 interface TopBarProps {
@@ -18,7 +17,8 @@ interface TopBarProps {
 
 /**
  * Slim top bar (SRS v2.3 §5.5): 56 px on desktop, 48 px on phones. Region tabs, Scenes and
- * Passport move to the map screen and the bottom navigation on phones.
+ * Passport move to the map screen and the bottom navigation on phones. The language choice
+ * lives in Settings; the gear opens it (owner, 2026-11-26).
  */
 export default function TopBar({ regions, nextRegion, earned, total }: TopBarProps) {
   return (
@@ -38,7 +38,14 @@ export default function TopBar({ regions, nextRegion, earned, total }: TopBarPro
         </Link>
         <XpBar />
         <SaveIndicator />
-        <LanguageSwitch />
+        <Link
+          to="/settings"
+          className={styles.gear}
+          aria-label={t('nav.settings')}
+          title={t('nav.settings')}
+        >
+          <GearIcon />
+        </Link>
         <Link to="/passport" className={styles.passport} data-guide="passport-button">
           <PassportIcon />
           {t('nav.passportCount', { label: t('nav.passport'), done: earned, total })}

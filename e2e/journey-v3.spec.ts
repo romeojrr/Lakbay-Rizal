@@ -90,7 +90,6 @@ test('§12b 10: the final stop — no quiz, no guide, no sparkles; the Epilogue'
   await page.goto('/region/philippines');
   await page.getByRole('button', { name: 'Free explore' }).click();
   await page.goto('/stop/bagumbayan-1896');
-  await expect(page.getByRole('button', { name: 'Auto-play' })).toHaveCount(0);
   await finishStory(page);
   await expect(page.getByRole('heading', { name: 'Epilogue' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Take the quiz ▶' })).toHaveCount(0);

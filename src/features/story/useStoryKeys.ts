@@ -1,10 +1,9 @@
-// SRS v2.3 §3.6 keyboard: → / Space / Enter = next, ← = back, A = auto-play.
+// SRS v2.3 §3.6 keyboard: → / Space / Enter = next, ← = back.
 import { useEffect, useRef } from 'react';
 
 interface Keys {
   next: () => void;
   back: () => void;
-  toggleAutoplay?: () => void;
 }
 
 const TYPING = 'input, textarea, select, [contenteditable="true"]';
@@ -25,7 +24,7 @@ export function useStoryKeys(keys: Keys): void {
       if (target?.closest(TYPING)) return;
       // A dialog (Read more, the tour) is open: keys belong to it.
       if (document.querySelector('dialog[open]')) return;
-      const { next, back, toggleAutoplay } = latest.current;
+      const { next, back } = latest.current;
       switch (event.key) {
         case 'ArrowRight':
           event.preventDefault();
@@ -40,13 +39,6 @@ export function useStoryKeys(keys: Keys): void {
           if (target?.closest(PRESSABLE)) return;
           event.preventDefault();
           next();
-          break;
-        case 'a':
-        case 'A':
-          if (toggleAutoplay) {
-            event.preventDefault();
-            toggleAutoplay();
-          }
           break;
       }
     };

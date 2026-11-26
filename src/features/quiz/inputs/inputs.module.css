@@ -1,3 +1,8 @@
+/* Buttons use the shared look (src/styles/buttons.css); rules below add layout only. */
+.check {
+  composes: ui-btn ui-btn-primary from global;
+}
+
 /* Answer controls for the five question types (FR-81). Buttons keep the v2.2 quiz look
    (Quiz.dc.html): white cards, 3 px ink border, 4 px shadow, letter marks. */
 .list {
@@ -68,22 +73,6 @@
 
 .check {
   align-self: flex-end;
-  min-height: 48px;
-  padding: 8px 22px;
-  font-size: var(--fs-small);
-  color: var(--ink);
-  background: var(--accent);
-  border: var(--border);
-  box-shadow: var(--shadow-button);
-  cursor: pointer;
-  border-radius: var(--radius);
-}
-
-.check:disabled {
-  color: var(--muted);
-  background: var(--line-soft);
-  box-shadow: none;
-  cursor: default;
 }
 
 .help {
@@ -111,7 +100,7 @@
 .row {
   display: flex;
   align-items: stretch;
-  gap: 0;
+  gap: 8px;
   touch-action: none;
 }
 
@@ -135,7 +124,6 @@
   color: var(--ink);
   background: var(--card-warm);
   border: var(--border);
-  border-right: 0;
   cursor: grab;
   touch-action: none;
   user-select: none;

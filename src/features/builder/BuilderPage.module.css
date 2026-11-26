@@ -1,3 +1,8 @@
+/* Buttons use the shared look (src/styles/buttons.css); rules below add layout only. */
+.restart {
+  composes: ui-btn from global;
+}
+
 /* Layout from Dapitan.dc.html */
 .page {
   display: flex;
@@ -150,16 +155,6 @@
 .panelTitle {
   margin: 0;
   font-size: var(--fs-small);
-}
-
-.restart {
-  min-height: 44px;
-  padding: 4px 10px;
-  font-size: var(--fs-small);
-  color: var(--muted);
-  background: transparent;
-  border: 2px solid #a39a8c;
-  cursor: pointer;
 }
 
 .tiles {

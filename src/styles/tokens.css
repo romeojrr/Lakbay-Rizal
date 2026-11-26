@@ -59,13 +59,14 @@
   --shadow-panel: 0 6px 18px rgba(31, 26, 36, 0.12), 0 1px 3px rgba(31, 26, 36, 0.1);
   --shadow-button: 0 2px 6px rgba(31, 26, 36, 0.16);
   --radius: 6px;
+  --btn-radius: 8px;
 
   /* One layout for the map and stop screens (owner decision 2026-11-26): the main area
      (map or story) takes 70 %, the side panel 30 %; the main area is one screen tall. */
   --layout-max: 1680px;
   --layout-split: minmax(0, 7fr) minmax(280px, 3fr);
   --layout-gap: 24px;
-  --area-h: calc(100dvh - var(--topbar-h) - 48px);
+  --area-h: calc(100dvh - var(--topbar-h) - 4px - 48px);
 
   /* Type — SRS v2.3 §5.3: VT323 for all text, one weight, never below 18 px */
   --font-pixel: 'VT323', monospace;

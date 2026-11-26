@@ -1,3 +1,8 @@
+/* Buttons use the shared look (src/styles/buttons.css); rules below add layout only. */
+.print {
+  composes: ui-btn ui-btn-primary from global;
+}
+
 /* FR-87 certificate: a framed parchment page; prints on one A4 or Letter sheet. */
 .page {
   max-width: 820px;
@@ -34,18 +39,6 @@
 
 .help {
   color: var(--muted);
-}
-
-.print {
-  min-height: 48px;
-  padding: 6px 18px;
-  font-size: var(--fs-small);
-  color: var(--ink);
-  background: var(--accent);
-  border: var(--border);
-  box-shadow: var(--shadow-button);
-  cursor: pointer;
-  border-radius: var(--radius);
 }
 
 .certificate {

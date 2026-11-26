@@ -1,3 +1,8 @@
+/* Buttons use the shared look (src/styles/buttons.css); rules below add layout only. */
+.zoomButton {
+  composes: ui-btn ui-btn-icon from global;
+}
+
 /* Every region's map has the same frame: it fills the map area, whatever the map's shape. */
 .wood {
   height: 100%;
@@ -128,15 +133,6 @@
   width: 44px;
   height: 44px;
   font-size: var(--fs-body);
-  color: var(--ink);
-  background: var(--card-warm);
-  border: var(--border);
-  cursor: pointer;
-}
-
-.zoomButton:disabled {
-  color: var(--pin-locked-dot);
-  cursor: default;
 }
 
 /* Cluster pop-up list */
