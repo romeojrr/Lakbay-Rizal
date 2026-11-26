@@ -92,21 +92,25 @@ export default function PassportPage() {
             <ThemeBadge key={theme} theme={theme} {...themes[theme]} />
           ))}
         </ul>
-        <Link className={styles.journal} to="/journal">
-          {t('passport.journal')}
-        </Link>
-        {quizStopIds(stops).every((id) => completed.includes(id)) && (
-          <Link className={styles.journal} to="/certificate">
-            {t('certificate.print')}
+        <div className={styles.links}>
+          <Link className={styles.journal} to="/journal">
+            {t('passport.journal')}
           </Link>
-        )}
+          {quizStopIds(stops).every((id) => completed.includes(id)) && (
+            <Link className={styles.journal} to="/certificate">
+              {t('certificate.print')}
+            </Link>
+          )}
+        </div>
       </section>
 
       <section className={`${styles.page} ${styles.stampsPage}`} aria-labelledby="stamps-title">
-        <h2 id="stamps-title" className={styles.title}>
-          {t('passport.stampsTitle')}
-        </h2>
         <PassportTabs
+          heading={
+            <h2 id="stamps-title" className={styles.title}>
+              {t('passport.stampsTitle')}
+            </h2>
+          }
           panels={{
             stamps: (
               <ol className={styles.grid}>

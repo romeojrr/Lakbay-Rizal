@@ -14,7 +14,14 @@ const TABS: { id: TabId; label: MessageKey }[] = [
  * SRS v2.3 §3.8: the stamp page has three tabs: Stamps · Achievements · Rank. ARIA tabs:
  * arrow keys move between them, Home/End jump to the ends.
  */
-export default function PassportTabs({ panels }: { panels: Record<TabId, ReactNode> }) {
+export default function PassportTabs({
+  panels,
+  heading,
+}: {
+  panels: Record<TabId, ReactNode>;
+  /** Shown on the same row as the tabs (the page title). */
+  heading?: ReactNode;
+}) {
   const [active, setActive] = useState<TabId>('stamps');
   const refs = useRef<Record<string, HTMLButtonElement | null>>({});
 
@@ -39,26 +46,29 @@ export default function PassportTabs({ panels }: { panels: Record<TabId, ReactNo
 
   return (
     <>
-      <div className={styles.tabs} role="tablist" aria-label={t('passport.tabs')}>
-        {TABS.map((tab, index) => (
-          <button
-            key={tab.id}
-            ref={(el) => {
-              refs.current[tab.id] = el;
-            }}
-            id={`tab-${tab.id}`}
-            type="button"
-            role="tab"
-            className={styles.tab}
-            aria-selected={active === tab.id}
-            aria-controls={`panel-${tab.id}`}
-            tabIndex={active === tab.id ? 0 : -1}
-            onClick={() => setActive(tab.id)}
-            onKeyDown={(event) => onKey(event, index)}
-          >
-            {t(tab.label)}
-          </button>
-        ))}
+      <div className={styles.tabsRow}>
+        {heading}
+        <div className={styles.tabs} role="tablist" aria-label={t('passport.tabs')}>
+          {TABS.map((tab, index) => (
+            <button
+              key={tab.id}
+              ref={(el) => {
+                refs.current[tab.id] = el;
+              }}
+              id={`tab-${tab.id}`}
+              type="button"
+              role="tab"
+              className={styles.tab}
+              aria-selected={active === tab.id}
+              aria-controls={`panel-${tab.id}`}
+              tabIndex={active === tab.id ? 0 : -1}
+              onClick={() => setActive(tab.id)}
+              onKeyDown={(event) => onKey(event, index)}
+            >
+              {t(tab.label)}
+            </button>
+          ))}
+        </div>
       </div>
       {TABS.map((tab) => (
         <div

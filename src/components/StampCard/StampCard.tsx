@@ -38,7 +38,7 @@ export default function StampCard({ stop, earned, isNew, plain, grade }: StampCa
       style={{ transform: `rotate(${tilt}deg)` }}
     >
       <div className={styles.inner} style={{ borderColor: `var(--theme-${stop.theme})` }}>
-        <img className="pix" src={asset(icon)} alt="" width={56} height={56} />
+        <img className={`pix ${styles.icon}`} src={asset(icon)} alt="" width={52} height={52} />
         <span className={styles.name} style={{ color: `var(--text-${stop.theme})` }}>
           {stop.place.label}
         </span>

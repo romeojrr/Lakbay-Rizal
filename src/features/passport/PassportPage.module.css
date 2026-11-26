@@ -125,16 +125,18 @@
   padding: 0;
 }
 
-.journal {
-  align-self: flex-start;
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 18px;
+  gap: 22px 18px;
   margin: 0;
-  padding: 0;
+  padding: 0 0 12px;
 }
 
 @media (max-width: 640px) {
@@ -152,14 +154,21 @@
   }
 }
 
-/* v2.3 §3.8: Stamps · Achievements · Rank tabs on the stamp page. */
+/* v2.3 §3.8: Stamps · Achievements · Rank tabs on the stamp page, on the title's row. */
+.tabsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--line-soft);
+}
+
 .tabs {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 16px;
-  padding-bottom: 14px;
-  border-bottom: 2px solid var(--line-soft);
 }
 
 .tabPanel[hidden] {
@@ -245,4 +254,136 @@
 .rankTitle {
   font-size: var(--fs-h2);
   line-height: 1.1;
+}
+
+/* Wide screens (owner, 2026-11-26): the open passport is exactly one screen, the area under the
+   top bar, and the page never scrolls. The left page is a fixed column; the stamps fill the
+   right page in a 7 x 4 grid that sizes itself to the room (at most 150 px tall). A long
+   Achievements or Rank list scrolls inside its page. */
+@media (min-width: 961px) and (min-height: 600px) {
+  .book {
+    max-width: 1440px;
+    height: var(--area-h);
+    display: grid;
+    grid-template-columns: minmax(300px, 340px) minmax(0, 1fr);
+    gap: 8px;
+    overflow: hidden;
+  }
+
+  .page {
+    min-height: 0;
+    gap: 16px;
+    padding: 20px 24px;
+    /* A safety net on very short screens: the page scrolls inside, never the screen. */
+    overflow-y: auto;
+  }
+
+  /* Achievements: compact cards, so all 14 fit the page. */
+  .achievements {
+    gap: 8px;
+  }
+
+  .achievement {
+    padding: 5px 10px;
+  }
+
+  .badgeIcon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .badgeDesc {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  .traveller {
+    flex-wrap: nowrap;
+  }
+
+  .photo {
+    width: 100px;
+    height: 168px;
+  }
+
+  .badges {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 4px;
+    margin: -6px 0 0;
+  }
+
+  /* The journal (and certificate) links stand at the foot of the left page. */
+  .links {
+    margin-top: auto;
+  }
+
+  .stampsPage {
+    overflow: hidden;
+  }
+
+  .tabPanel {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    /* Room for the grade ribbons and the stamps' tilt at the edges. */
+    padding: 6px 6px 0;
+    margin: -6px -6px 0;
+  }
+
+  .grid {
+    --rows: 4;
+    height: 100%;
+    max-height: calc(var(--rows) * 176px + (var(--rows) - 1) * 24px + 20px);
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-template-rows: repeat(var(--rows), minmax(0, 1fr));
+    gap: 24px 16px;
+    padding: 4px 0 16px;
+  }
+
+  .grid > li {
+    --stamp-h: 100%;
+  }
+}
+
+/* Short or narrower desktop screens: smaller type in the stamps so they still fit. */
+@media (min-width: 961px) and (min-height: 600px) and (max-height: 820px) {
+  .grid {
+    gap: 20px 12px;
+  }
+
+  .photo {
+    height: 140px;
+  }
+}
+
+/* Narrower desktops: a slimmer left page leaves the stamps more room. */
+@media (min-width: 961px) and (max-width: 1200px) and (min-height: 600px) {
+  .book {
+    grid-template-columns: 260px minmax(0, 1fr);
+  }
+
+  .page {
+    gap: 12px;
+    padding: 18px;
+  }
+
+  .photo {
+    width: 84px;
+  }
+
+  .traveller {
+    gap: 12px;
+  }
+
+  /* Three badges a row, so their names never touch; smaller swatches keep the page short. */
+  .badges {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 10px;
+    --swatch: 32px;
+  }
+
+  .photo {
+    height: 132px;
+  }
 }

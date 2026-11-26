@@ -1,8 +1,11 @@
 .stamp,
 .locked {
   position: relative;
-  height: 150px;
+  min-width: 0;
+  height: var(--stamp-h, 150px);
   list-style: none;
+  /* The contents fit the tile: on the one-screen passport the tiles size to the room. */
+  container-type: size;
 }
 
 .stamp {
@@ -19,13 +22,55 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 4px;
+  padding: 4px;
   border: 3px dashed;
 }
 
+/* The 26 px icons at an exact 2x. */
+.icon {
+  width: 52px;
+  height: 52px;
+}
+
 .name {
+  max-width: 100%;
   font-size: var(--fs-small);
+  line-height: 1.2;
   text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.year {
+  line-height: 1.2;
+}
+
+/* A short tile: the icon at 1x and tighter spacing, so the name and year stay visible above
+   the grade ribbon. */
+@container (max-height: 140px) {
+  .inner {
+    gap: 2px;
+    padding: 2px 2px 8px;
+  }
+
+  .icon {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* A narrow tile: slightly smaller reading text; long names wrap between words. */
+@container (max-width: 100px) {
+  .name,
+  .year,
+  .lockedYear {
+    font-size: 14px;
+  }
+
+  .name {
+    overflow-wrap: normal;
+    hyphens: auto;
+  }
 }
 
 .year {
@@ -74,13 +119,17 @@
   color: var(--muted);
 }
 
-/* §3.8 grade ribbon under the stamp; the word carries the meaning. */
+/* §3.8 grade ribbon on the stamp's lower edge; the word carries the meaning. */
 .gold,
 .silver {
-  display: block;
-  margin: 4px auto 0;
-  width: fit-content;
-  padding: 0 6px;
+  position: absolute;
+  left: 50%;
+  bottom: -12px;
+  z-index: 1;
+  translate: -50% 0;
+  white-space: nowrap;
+  padding: 0 8px;
+  line-height: 1.4;
   font-size: var(--fs-small);
   color: var(--ink);
   border: var(--border-thin);
