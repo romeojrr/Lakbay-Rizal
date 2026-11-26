@@ -9,7 +9,7 @@ import { play } from '../../lib/sound';
 import { useReducedMotion } from '../../lib/useReducedMotion';
 import { useProgress } from '../../store/progress';
 import styles from './Landing.module.css';
-import { flyTransform, worldPoint } from './world';
+import { flyFrames, worldPoint } from './world';
 import WorldView from './WorldView';
 
 const FLY_MS = 2600;
@@ -18,10 +18,10 @@ const STILL_FADE_MS = 200;
 const ZOOM = 10;
 
 /**
- * U9 landing ("/"): the whole world with Rizal's route, a title card and MAGLAKBAY. Pressing
- * it flies the camera down to the player's next stop (Calamba on a first visit), then opens
- * that region's map. Esc, a click or Skip lands at once; with reduced motion it is a short
- * fade. "Continue" goes straight to the map for players with saved progress.
+ * U9 landing ("/"): the whole world with Rizal's route and a welcome card (Rizal stands inside
+ * it). "Begin the journey" flies the camera down to the player's next stop (Calamba on a first
+ * visit), then opens that region's map. Esc, a click or Skip lands at once; with reduced motion
+ * it is a short fade. "Continue" goes straight to the map for players with saved progress.
  */
 export default function LandingPage() {
   const { stops, content } = useRootData();
@@ -65,11 +65,11 @@ export default function LandingPage() {
     const box = camera.getBoundingClientRect();
     const view = { width: window.innerWidth, height: window.innerHeight };
     const point = worldPoint(target.place.lat, target.place.lon);
-    const move = flyTransform(box, point, view, ZOOM);
-    camera.style.transformOrigin = move.origin;
-    animation.current = camera.animate([{ transform: 'none' }, { transform: move.to }], {
+    const fly = flyFrames(box, point, view, ZOOM);
+    camera.style.transformOrigin = fly.origin;
+    animation.current = camera.animate(fly.frames, {
       duration: FLY_MS,
-      easing: 'ease-in-out',
+      easing: 'linear', // the frames carry the easing
       fill: 'forwards',
     });
     animation.current.onfinish = () => fadeThenLand(FADE_MS);
@@ -103,37 +103,52 @@ export default function LandingPage() {
       {phase === 'world' ? (
         <div className={styles.stage}>
           <section className={styles.card} aria-labelledby="landing-title">
-            <p className={styles.stats}>
-              {years
-                ? t('landing.stats', {
-                    from: years[0] ?? '',
-                    to: years[1] ?? '',
-                    stops: stops.length,
-                    regions: regionCount,
-                  })
-                : t('map.comingSoonTitle')}
-            </p>
-            <h1 id="landing-title" className={styles.title}>
-              {t('app.logo')}
-            </h1>
-            <p className={styles.tagline}>{t('landing.tagline')}</p>
-            <button type="button" className={styles.start} onClick={begin}>
-              <span className={styles.startWord}>{t('landing.start')} ▶</span>
-              <span className={styles.startSub}>{t('landing.startSub')}</span>
-            </button>
-            {started && target && (
-              <Link className={styles.continue} to="/map">
-                {t('landing.continue', { place: target.place.label, year: target.year })}
-              </Link>
-            )}
+            <span className={styles.corners} aria-hidden="true">
+              <span />
+              <span />
+              <span />
+              <span />
+            </span>
+            <div className={styles.portrait} aria-hidden="true">
+              <span className={styles.sun} />
+              <img
+                className={`pix ${styles.rizal}`}
+                src={asset('assets/sprites/rizal_adult_suit.png')}
+                alt=""
+                width={68}
+                height={156}
+              />
+              <span className={styles.ground} />
+            </div>
+            <div className={styles.text}>
+              <h1 id="landing-title" className={styles.heading}>
+                <span className={styles.welcome}>{t('landing.welcome')}</span>{' '}
+                <span className={styles.title}>{t('app.logo')}</span>
+              </h1>
+              <p className={styles.divider} aria-hidden="true">
+                <span />
+              </p>
+              <p className={styles.tagline}>{t('landing.tagline')}</p>
+              <p className={styles.stats}>
+                {years
+                  ? t('landing.stats', {
+                      from: years[0] ?? '',
+                      to: years[1] ?? '',
+                      stops: stops.length,
+                      regions: regionCount,
+                    })
+                  : t('map.comingSoonTitle')}
+              </p>
+              <button type="button" className={styles.start} onClick={begin}>
+                {t('landing.start')} ▶
+              </button>
+              {started && target && (
+                <Link className={styles.continue} to="/map">
+                  {t('landing.continue', { place: target.place.label, year: target.year })}
+                </Link>
+              )}
+            </div>
           </section>
-          <img
-            className={`pix ${styles.rizal}`}
-            src={asset('assets/sprites/rizal_adult_suit.png')}
-            alt=""
-            width={68}
-            height={156}
-          />
         </div>
       ) : (
         <>

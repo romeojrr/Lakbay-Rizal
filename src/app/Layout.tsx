@@ -47,7 +47,7 @@ export default function Layout() {
   // start it mid-visit. Never on the final stop (GD-6).
   const { pathname } = useLocation();
   // U9: on a first visit the landing page comes first; the tour starts when the player
-  // reaches a region map (after MAGLAKBAY), or at once if the game opened on another page.
+  // reaches a region map (after "Begin the journey"), or at once if the game opened on another page.
   const [openedOn] = useState(pathname);
   useEffect(() => {
     const { tourDone, seenIntro } = useProgress.getState();

@@ -81,3 +81,36 @@ export function flyTransform(
     to: `translate(${view.width / 2 - px}px, ${view.height / 2 - py}px) scale(${zoom})`,
   };
 }
+
+/**
+ * The fly-down as keyframes: the camera moves and zooms together, and the zoom grows
+ * geometrically (×1 → ×zoom), so it feels like a steady fall towards the ground instead of a
+ * rush at the start and a crawl at the end. Eased in and out; many frames, so the browser
+ * interpolates smoothly between them.
+ */
+export function flyFrames(
+  box: { left: number; top: number; width: number; height: number },
+  target: WorldPoint,
+  view: { width: number; height: number },
+  zoom: number,
+  count = 30,
+): { origin: string; frames: Keyframe[] } {
+  const px = box.left + (target.x / 100) * box.width;
+  const py = box.top + (target.y / 100) * box.height;
+  const dx = view.width / 2 - px;
+  const dy = view.height / 2 - py;
+  const ease = (t: number) => (t < 0.5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2);
+  const frames: Keyframe[] = [];
+  for (let i = 0; i <= count; i++) {
+    const p = ease(i / count);
+    // The move follows the zoom's progress on a log scale, so the target drifts to the
+    // middle at the same pace as the ground comes closer.
+    const z = zoom ** p;
+    const m = zoom === 1 ? p : (z - 1) / (zoom - 1);
+    frames.push({
+      offset: i / count,
+      transform: `translate(${(dx * m).toFixed(2)}px, ${(dy * m).toFixed(2)}px) scale(${z.toFixed(4)})`,
+    });
+  }
+  return { origin: `${target.x}% ${target.y}%`, frames };
+}

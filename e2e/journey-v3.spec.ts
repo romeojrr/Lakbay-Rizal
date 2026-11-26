@@ -36,7 +36,7 @@ async function playCalamba(page: Page) {
 
 test('§12b 1–4: landing, tour, Calamba story, quiz, gold stamp', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: /MAGLAKBAY/ }).click();
+  await page.getByRole('button', { name: /Begin the journey/ }).click();
   await expect(page).toHaveURL(/\/region\/philippines$/);
   const tour = page.getByRole('dialog', { name: 'Tour with José Rizal' });
   for (let n = 1; n <= 3; n++) {

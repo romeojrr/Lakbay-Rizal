@@ -28,6 +28,7 @@
 .camera {
   position: absolute;
   inset: 0;
+  will-change: transform;
 }
 
 .map {
@@ -118,37 +119,197 @@
   }
 }
 
-/* The card and Rizal beside it. */
+/* The welcome card: Rizal stands in his own little sky inside it. */
 .stage {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
   padding: 72px 16px 24px;
 }
 
+/* An ornamented frame: a dark wood edge, a cream mat, a thin gold line inside, and gold
+   diamonds on the corners. */
 .card {
-  width: min(480px, 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding: 22px 26px;
-  text-align: center;
-  background: var(--card-warm);
-  border: var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-panel);
-  animation: rise 360ms ease-out;
+  position: relative;
+  width: min(680px, 100%);
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  align-items: stretch;
+  gap: 26px;
+  padding: 26px 30px 26px 26px;
+  background: radial-gradient(120% 90% at 50% 0%, #fffaf0 0%, var(--card-warm) 60%, #efe5cf 100%);
+  border: 3px solid #5b4330;
+  border-radius: 14px;
+  box-shadow:
+    inset 0 0 0 6px var(--card-warm),
+    inset 0 0 0 8px var(--gold),
+    inset 0 0 0 10px rgba(201, 151, 58, 0.25),
+    0 18px 40px rgba(20, 14, 26, 0.35),
+    0 4px 10px rgba(20, 14, 26, 0.2);
+  animation: rise 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(18px) scale(0.98);
   }
+}
+
+.corners {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.corners span {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: var(--gold);
+  border: 2px solid #5b4330;
+  transform: rotate(45deg);
+}
+
+.corners span:nth-child(1) {
+  left: -9px;
+  top: -9px;
+}
+
+.corners span:nth-child(2) {
+  right: -9px;
+  top: -9px;
+}
+
+.corners span:nth-child(3) {
+  left: -9px;
+  bottom: -9px;
+}
+
+.corners span:nth-child(4) {
+  right: -9px;
+  bottom: -9px;
+}
+
+/* Rizal's little window: sky, a warm sun, a strip of ground. */
+.portrait {
+  position: relative;
+  min-height: 220px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(180deg, #7fb6e6 0%, #b9dcf3 62%, #e9f3f7 100%);
+  border: 2px solid #5b4330;
+  border-radius: 10px 10px 8px 8px;
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.45);
+}
+
+.sun {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 26px;
+  height: 26px;
+  background: #f7d774;
+  border-radius: 50%;
+  box-shadow: 0 0 18px 6px rgba(247, 215, 116, 0.55);
+}
+
+.ground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 26px;
+  background: linear-gradient(180deg, #7cbf4a 0, #7cbf4a 6px, #5e9a37 6px, #4f8730 100%);
+}
+
+.rizal {
+  position: relative;
+  z-index: 1;
+  width: 68px;
+  height: 156px;
+  margin-bottom: 14px;
+  animation: breathe 3.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* A slow, gentle sway: standing, breathing — not a jump. */
+@keyframes breathe {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  text-align: left;
+}
+
+.heading {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.welcome {
+  font-size: var(--fs-body);
+  color: #8a5a20;
+  letter-spacing: 1px;
+}
+
+.title {
+  font-size: var(--fs-h1);
+  letter-spacing: 3px;
+  line-height: 1;
+  color: var(--ink);
+}
+
+/* A gold rule with a diamond in the middle. */
+.divider {
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+  height: 10px;
+  margin: 0;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 4px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), rgba(201, 151, 58, 0));
+}
+
+.divider span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  background: var(--gold);
+  border: 2px solid #5b4330;
+  transform: rotate(45deg);
+}
+
+.tagline {
+  margin: 0;
+  max-width: 34ch;
 }
 
 .stats {
@@ -157,43 +318,11 @@
   color: var(--muted);
 }
 
-.title {
-  margin: 0;
-  font-size: var(--fs-h1);
-  letter-spacing: 2px;
-}
-
-.tagline {
-  margin: 0;
-  max-width: 32ch;
-}
-
 .start {
-  min-width: 240px;
+  composes: ui-btn ui-btn-primary ui-btn-big from global;
   margin-top: 6px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 8px 24px;
-  color: var(--ink);
-  background: var(--accent);
-  border: var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-button);
-  cursor: pointer;
-}
-
-.start:hover {
-  filter: brightness(1.05);
-}
-
-.startWord {
-  font-size: var(--fs-h2);
-  letter-spacing: 2px;
-}
-
-.startSub {
-  font-size: var(--fs-small);
+  min-width: 260px;
+  font-size: var(--fs-h3);
 }
 
 .continue {
@@ -203,21 +332,8 @@
   color: var(--ink);
 }
 
-.rizal {
-  width: 68px;
-  height: 156px;
-  align-self: center;
-  animation: bob 1.6s steps(2) infinite;
-}
-
-@keyframes bob {
-  50% {
-    transform: translateY(-3px);
-  }
-}
-
-/* The mini top bar: sound and EN | FIL (after the card in the page, so MAGLAKBAY comes
-   first with the keyboard). */
+/* The mini top bar: sound and EN | FIL (after the card in the page, so "Begin the journey"
+   comes first with the keyboard). */
 .bar {
   position: absolute;
   top: 12px;
@@ -232,14 +348,7 @@
 }
 
 .sound {
-  min-height: 44px;
-  padding: 0 12px;
-  font-size: var(--fs-small);
-  color: var(--card-warm);
-  background: transparent;
-  border: 2px solid var(--ink-line);
-  border-radius: 4px;
-  cursor: pointer;
+  composes: ui-btn ui-btn-bar from global;
 }
 
 /* The fly-down: clouds burst past the camera; a small banner; Skip. */
@@ -311,33 +420,46 @@
 }
 
 .skip {
+  composes: ui-btn from global;
   position: absolute;
   right: 16px;
   bottom: 16px;
-  min-height: 44px;
-  padding: 4px 16px;
-  font-size: var(--fs-small);
-  color: var(--ink);
-  background: var(--card);
-  border: var(--border);
-  border-radius: var(--radius);
-  cursor: pointer;
 }
 
-/* Phones: the card fills the width; Rizal stands above it. */
+/* Phones: Rizal's window above the text. */
 @media (max-width: 640px) {
-  .stage {
-    flex-direction: column-reverse;
-    gap: 4px;
+  .card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    padding: 18px;
   }
 
-  .card {
-    padding: 18px 16px;
+  .portrait {
+    min-height: 120px;
   }
 
   .rizal {
     width: 34px;
     height: 78px;
+    margin-bottom: 12px;
+  }
+
+  .text {
+    align-items: center;
+    text-align: center;
+  }
+
+  .heading {
+    align-items: center;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .start {
+    min-width: 0;
+    width: 100%;
   }
 
   .banner {

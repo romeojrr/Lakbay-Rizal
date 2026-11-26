@@ -96,7 +96,7 @@ a {
     0 4px,
     4px -4px,
     -4px 0;
-  animation: skeleton-shimmer 1.2s steps(4) infinite;
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
 }
 
 @keyframes skeleton-shimmer {

@@ -75,8 +75,9 @@ export async function horizontalOverflow(page: Page): Promise<number> {
 /** Reads to the end of the stop's story with the → key (there is no "Skip to the end"). */
 export async function finishStory(page: Page) {
   const replay = page.getByRole('button', { name: 'Replay ↺' });
-  for (let i = 0; i < 160 && !(await replay.isVisible()); i++) {
-    await page.keyboard.press('ArrowRight');
+  // A few presses between checks: each step takes two (finish the typing, then move on).
+  for (let i = 0; i < 40 && !(await replay.isVisible()); i++) {
+    for (let k = 0; k < 4; k++) await page.keyboard.press('ArrowRight');
   }
   await expect(replay).toBeVisible();
 }

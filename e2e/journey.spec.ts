@@ -13,10 +13,10 @@ async function noSideScroll(page: Page) {
 test('SRS §12: the whole journey', async ({ page }) => {
   test.setTimeout(180_000);
 
-  await test.step("1. fresh profile → landing → MAGLAKBAY → Rizal's tour starts → skip", async () => {
+  await test.step("1. fresh profile → landing → Begin the journey → Rizal's tour starts → skip", async () => {
     await page.goto('/');
-    // U9: the landing page first; MAGLAKBAY flies down to Calamba, then the tour starts.
-    await page.getByRole('button', { name: /MAGLAKBAY/ }).click();
+    // U9: the landing page first; "Begin the journey" flies down to Calamba, then the tour starts.
+    await page.getByRole('button', { name: /Begin the journey/ }).click();
     await expect(page).toHaveURL(/\/region\/philippines$/);
     const tour = page.getByRole('dialog', { name: 'Tour with José Rizal' });
     await expect(tour).toBeVisible();

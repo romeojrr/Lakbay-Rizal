@@ -1,12 +1,13 @@
 // Zoom (1×, 1.5×, 2×) and drag-to-pan for the map (FR-16).
-// Every region's map sits in the same fixed frame: at 1× the map covers the whole frame (like
-// `object-fit: cover`), so a map whose shape differs from the frame overflows a little and can
-// be panned. The view starts centred on `focus` (the current stop). The map layer grows inside
+// Every region's map sits in the same fixed frame. At 1× the whole map fits inside it (like
+// `object-fit: contain`; owner, 2026-11-26: "zoom out … by default"), centred, with the sea
+// colour around it; zooming in makes it bigger than the frame and it can be panned. The view
+// starts centred on `focus` (the current stop). The map layer grows inside
 // a scrolling viewport, so pins (positioned in %) stay on their towns and keep their size.
 // Touch uses native scrolling; mouse drag scrolls by hand.
 import { useLayoutEffect, useRef, useState, type MouseEvent, type PointerEvent } from 'react';
 
-export const ZOOM_LEVELS = [1, 1.5, 2] as const;
+export const ZOOM_LEVELS = [1, 1.5, 2.25, 3] as const;
 
 /** Below this map width (in px, after zoom) only the important pin labels are shown. */
 const COMPACT_WIDTH = 560;
@@ -21,9 +22,9 @@ interface Drag {
   moved: boolean;
 }
 
-/** Size of the map at 1× so it covers a `w` × `h` frame (`ratio` = map width / height). */
-export function coverSize(w: number, h: number, ratio: number) {
-  const width = Math.max(w, h * ratio);
+/** Size of the map at 1× so all of it fits a `w` × `h` frame (`ratio` = map width / height). */
+export function fitSize(w: number, h: number, ratio: number) {
+  const width = Math.min(w, h * ratio);
   return { width, height: width / ratio };
 }
 
@@ -71,7 +72,7 @@ export function useZoomPan(
   const suppressClick = useRef(false);
   const keepCenter = useRef<{ x: number; y: number } | null>(null);
   const zoom = ZOOM_LEVELS[level] ?? 1;
-  const base = size.w > 0 ? coverSize(size.w, size.h, ratio) : undefined;
+  const base = size.w > 0 ? fitSize(size.w, size.h, ratio) : undefined;
   /** The map is bigger than the frame, so it can be dragged. */
   const pannable =
     base !== undefined && (base.width * zoom > size.w + 1 || base.height * zoom > size.h + 1);

@@ -1,51 +1,32 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useReducedMotion } from '../../lib/useReducedMotion';
-import styles from './RouteIris.module.css';
 
 /**
- * SRS v2.3 §5.6 route change: a pixel "iris" — an ink circle that closes over the new page in
- * 8 steps (320 ms), revealing it from the edges. With reduced motion: a 150 ms fade. It never
- * takes clicks, and it does not run on the first page load.
+ * Route change (SRS v2.3 §5.6). Owner, 2026-11-26: no circle wipe — something smooth. The new
+ * page fades in (opacity only, so nothing shifts, blurs or flashes a colour). After the
+ * landing's fly-down, the map fades in a little more slowly. Reduced motion: a quick fade. It
+ * never takes clicks and does not run on the first page load.
  */
 let lastPath: string | null = null;
 
+const EASE = 'cubic-bezier(0.2, 0.7, 0.3, 1)';
+
 export default function RouteIris() {
   const { pathname } = useLocation();
-  const ref = useRef<HTMLDivElement>(null);
   const still = useReducedMotion();
 
   useEffect(() => {
-    // Kept outside the component: the landing and the other pages each mount their own iris.
+    // Kept outside the component: the landing and the other pages each mount their own.
     const before = lastPath;
     lastPath = pathname;
     if (before === null || before === pathname) return; // the first page load
-    const fromLanding = before === '/';
-    const el = ref.current;
-    if (!el || typeof el.animate !== 'function') return;
-    // U9: the landing's fly-down ends in a fade; the map fades in from the same colour.
-    if (fromLanding) {
-      el.style.background = '#3d84c0';
-      const fade = el.animate([{ opacity: 1 }, { opacity: 0 }], {
-        duration: 400,
-        easing: 'ease-out',
-      });
-      fade.onfinish = () => {
-        el.style.background = '';
-      };
-      return () => fade.cancel();
-    }
-    const animation = still
-      ? el.animate([{ opacity: 0.35 }, { opacity: 0 }], { duration: 150, easing: 'ease-out' })
-      : el.animate(
-          [
-            { opacity: 1, clipPath: 'circle(75% at 50% 50%)' },
-            { opacity: 1, clipPath: 'circle(0% at 50% 50%)' },
-          ],
-          { duration: 320, easing: 'steps(8)' },
-        );
+    const page = document.querySelector('main');
+    if (!page || typeof page.animate !== 'function') return;
+    const duration = still ? 150 : before === '/' ? 650 : 320;
+    const animation = page.animate([{ opacity: 0 }, { opacity: 1 }], { duration, easing: EASE });
     return () => animation.cancel();
   }, [pathname, still]);
 
-  return <div ref={ref} className={styles.iris} aria-hidden="true" />;
+  return null;
 }

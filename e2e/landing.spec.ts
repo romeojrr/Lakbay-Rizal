@@ -1,15 +1,17 @@
-// U9 landing ("/"): the world map, the title card, MAGLAKBAY flies down to the next stop and
+// U9 landing ("/"): the world map, the title card, "Begin the journey" flies down to the next stop and
 // opens its region's map; Continue for returning players; reduced motion; phones.
 import { expect, test } from '@playwright/test';
 import { expectNoSeriousA11yIssues } from './a11y';
 import { horizontalOverflow, skipIntroOnFreshProfile } from './helpers';
 
-test('open "/", press MAGLAKBAY, land on the map with Calamba as the next stop', async ({
+test('open "/", press "Begin the journey", land on the map with Calamba as the next stop', async ({
   page,
 }) => {
   await skipIntroOnFreshProfile(page);
   await page.goto('/');
-  await expect(page.getByRole('heading', { level: 1, name: 'LAKBAY RIZAL' })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { level: 1, name: 'Welcome to LAKBAY RIZAL' }),
+  ).toBeVisible();
   await expect(page.getByText("Follow José Rizal's journey around the world.")).toBeVisible();
   await expect(page.getByText(/^1861 – 1896 · 25 stops · 4 regions$/)).toBeVisible();
   // No saved progress yet: no Continue link. No top bar or bottom bar here.
@@ -18,9 +20,9 @@ test('open "/", press MAGLAKBAY, land on the map with Calamba as the next stop',
   expect(await horizontalOverflow(page)).toBe(0);
   await expectNoSeriousA11yIssues(page, 'landing');
 
-  // MAGLAKBAY is the first thing the keyboard reaches.
+  // "Begin the journey" is the first thing the keyboard reaches.
   await page.keyboard.press('Tab');
-  const start = page.getByRole('button', { name: /MAGLAKBAY/ });
+  const start = page.getByRole('button', { name: /Begin the journey/ });
   await expect(start).toBeFocused();
   await page.keyboard.press('Enter');
 
@@ -33,7 +35,7 @@ test('open "/", press MAGLAKBAY, land on the map with Calamba as the next stop',
 test('Skip (or Esc) lands at once', async ({ page }) => {
   await skipIntroOnFreshProfile(page);
   await page.goto('/');
-  await page.getByRole('button', { name: /MAGLAKBAY/ }).click();
+  await page.getByRole('button', { name: /Begin the journey/ }).click();
   await page.getByRole('button', { name: 'Skip' }).click();
   await expect(page).toHaveURL(/\/region\/philippines$/, { timeout: 2000 });
 });
@@ -42,11 +44,11 @@ test('reduced motion: no fly-down, a short fade to the map', async ({ page }) =>
   await skipIntroOnFreshProfile(page);
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
-  await page.getByRole('button', { name: /MAGLAKBAY/ }).click();
+  await page.getByRole('button', { name: /Begin the journey/ }).click();
   await expect(page).toHaveURL(/\/region\/philippines$/, { timeout: 1500 });
 });
 
-test('returning players: Continue goes to the map; MAGLAKBAY flies to their next stop', async ({
+test('returning players: Continue goes to the map; "Begin the journey" flies to their next stop', async ({
   page,
 }) => {
   await skipIntroOnFreshProfile(page);
@@ -64,7 +66,7 @@ test('returning players: Continue goes to the map; MAGLAKBAY flies to their next
   await page.goto('/');
   const go = page.getByRole('link', { name: 'Continue: Barcelona · 1882' });
   await expect(go).toBeVisible();
-  await page.getByRole('button', { name: /MAGLAKBAY/ }).click();
+  await page.getByRole('button', { name: /Begin the journey/ }).click();
   await expect(page.getByText('Heading to Barcelona, 1882 …')).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(page).toHaveURL(/\/region\/europe$/);

@@ -104,7 +104,7 @@
   background: #000000;
   opacity: 0;
   pointer-events: none;
-  animation: flicker 1.8s steps(6) infinite;
+  animation: flicker 2.4s ease-in-out infinite;
 }
 
 @keyframes flicker {

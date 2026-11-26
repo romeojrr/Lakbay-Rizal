@@ -44,7 +44,7 @@
 }
 
 .pan {
-  transition: transform 1.2s ease-in-out;
+  transition: transform 1.4s cubic-bezier(0.45, 0, 0.2, 1);
 }
 
 .image {
@@ -82,7 +82,7 @@
 /* The "…" bobs gently while the line is spoken. */
 .bob {
   display: inline-block;
-  animation: bob 1.2s steps(2) infinite;
+  animation: bob 1.4s ease-in-out infinite;
 }
 
 @keyframes bob {

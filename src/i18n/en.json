@@ -510,8 +510,8 @@
   "landing": {
     "stats": "{from} – {to} · {stops} stops · {regions} regions",
     "tagline": "Follow José Rizal's journey around the world.",
-    "start": "MAGLAKBAY",
-    "startSub": "Begin the journey",
+    "welcome": "Welcome to",
+    "start": "Begin the journey",
     "continue": "Continue: {place} · {year}",
     "heading": "Heading to {place}, {year} …",
     "skip": "Skip",

@@ -1,3 +1,5 @@
+import type { AudioBus } from './audioEngine';
+
 // Background music: four short, original chiptune loops composed for Lakbay Rizal, one per
 // region, played by a tiny Web Audio sequencer (no audio files, no licences). Each loop is a
 // melody and a bass line written as scale steps; the sequencer schedules them a little ahead
@@ -508,62 +510,90 @@ export interface Player {
   setVolume: (volume: number) => void;
 }
 
-/** Starts a region's loop; returns how to stop it. */
-export function playTune(context: AudioContext, name: string, volume: number): Player | null {
+/** Music level next to the effects, before the player's volume. */
+const MUSIC_LEVEL = 0.05;
+
+/** Starts a region's loop, fading in; returns how to stop it (it fades out). */
+export function playTune(bus: AudioBus, name: string, volume: number): Player | null {
   const tune = TUNES[name];
   if (!tune) return null;
+  const { context } = bus;
   const master = context.createGain();
-  master.gain.value = 0.045 * volume;
+  master.gain.setValueAtTime(0.0001, context.currentTime);
+  master.gain.exponentialRampToValueAtTime(
+    Math.max(MUSIC_LEVEL * volume, 0.0002),
+    context.currentTime + 1.5,
+  );
+  // Square leads are softened more than triangle ones.
   const soften = context.createBiquadFilter();
   soften.type = 'lowpass';
-  soften.frequency.value = 2400;
-  master.connect(soften).connect(context.destination);
+  soften.frequency.value = tune.leadWave === 'square' ? 1700 : 2600;
+  soften.Q.value = 0.5;
+  master.connect(soften).connect(bus.out);
+  const send = context.createGain();
+  send.gain.value = 0.45;
+  soften.connect(send).connect(bus.room);
 
   const stepTime = (60 / tune.bpm) * tune.stepBeats;
   let step = 0;
   let nextAt = context.currentTime + 0.1;
 
-  const note = (degree: Step, at: number, wave: OscillatorType, level: number, length: number) => {
+  const note = (
+    degree: Step,
+    at: number,
+    wave: OscillatorType,
+    level: number,
+    length: number,
+    lead: boolean,
+  ) => {
     if (degree === null) return;
-    const osc = context.createOscillator();
     const gain = context.createGain();
-    osc.type = wave;
-    osc.frequency.value = freqOf(midiOf(tune, degree));
+    // A soft rise (no click), a gentle fall, then silence.
     gain.gain.setValueAtTime(0.0001, at);
-    gain.gain.exponentialRampToValueAtTime(level, at + 0.012);
-    gain.gain.exponentialRampToValueAtTime(level * 0.5, at + 0.1);
+    gain.gain.exponentialRampToValueAtTime(level, at + (lead ? 0.025 : 0.015));
+    gain.gain.exponentialRampToValueAtTime(level * 0.55, at + 0.14);
     gain.gain.exponentialRampToValueAtTime(0.0001, at + length);
-    osc.connect(gain).connect(master);
-    osc.start(at);
-    osc.stop(at + length + 0.02);
+    gain.connect(master);
+    // The lead is two voices a few cents apart (a warmer sound); the bass is one.
+    for (const detune of lead ? [-5, 5] : [0]) {
+      const osc = context.createOscillator();
+      osc.type = wave;
+      osc.detune.value = detune;
+      osc.frequency.value = freqOf(midiOf(tune, degree));
+      osc.connect(gain);
+      osc.start(at);
+      osc.stop(at + length + 0.05);
+    }
   };
 
   // A held note lasts until the next note in its line.
   const length = (line: Step[], i: number) => {
-    if (tune.pluck) return stepTime * 1.4;
+    if (tune.pluck) return stepTime * 1.6;
     let n = 1;
     while (n < line.length && line[(i + n) % line.length] === null) n++;
-    return Math.min(n, 4) * stepTime * 0.9;
+    return Math.min(n, 4) * stepTime * 0.95;
   };
 
   const schedule = () => {
-    while (nextAt < context.currentTime + 0.25) {
+    while (nextAt < context.currentTime + 0.3) {
       const i = step % tune.lead.length;
-      note(tune.lead[i] ?? null, nextAt, tune.leadWave, 0.5, length(tune.lead, i));
-      note(tune.bass[i] ?? null, nextAt, 'triangle', 0.8, length(tune.bass, i));
+      note(tune.lead[i] ?? null, nextAt, tune.leadWave, 0.42, length(tune.lead, i), true);
+      note(tune.bass[i] ?? null, nextAt, 'triangle', 0.8, length(tune.bass, i), false);
       step += 1;
       nextAt += stepTime;
     }
   };
   schedule();
-  const timer = window.setInterval(schedule, 60);
+  const timer = window.setInterval(schedule, 50);
 
   return {
     stop: () => {
       window.clearInterval(timer);
-      master.gain.setTargetAtTime(0.0001, context.currentTime, 0.15);
-      window.setTimeout(() => master.disconnect(), 600);
+      master.gain.cancelScheduledValues(context.currentTime);
+      master.gain.setTargetAtTime(0.0001, context.currentTime, 0.3);
+      window.setTimeout(() => master.disconnect(), 1600);
     },
-    setVolume: (v) => master.gain.setTargetAtTime(0.045 * v, context.currentTime, 0.1),
+    setVolume: (v) =>
+      master.gain.setTargetAtTime(Math.max(MUSIC_LEVEL * v, 0.0001), context.currentTime, 0.1),
   };
 }

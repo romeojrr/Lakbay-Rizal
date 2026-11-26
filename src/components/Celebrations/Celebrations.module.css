@@ -78,7 +78,7 @@
 }
 
 .unroll {
-  animation: unroll 360ms steps(6);
+  animation: unroll 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 @keyframes unroll {

@@ -16,12 +16,15 @@
   position: relative;
   overflow: hidden;
   border: var(--border);
-  background: var(--track);
+  /* The maps' own sea colour, so the space around a zoomed-out map is just more sea. */
+  background: #3d8fc6;
 }
 
 .viewport {
   position: absolute;
   inset: 0;
+  /* A map smaller than the frame sits in the middle; a bigger one scrolls from its edge. */
+  display: flex;
   overflow: hidden;
   overscroll-behavior: contain;
   scrollbar-width: none;
@@ -42,6 +45,8 @@
 
 .layer {
   position: relative;
+  flex-shrink: 0;
+  margin: auto;
 }
 
 .image {

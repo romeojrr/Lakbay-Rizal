@@ -85,14 +85,14 @@ export default function MapView({
 
   return (
     <WoodFrame className={cx(styles.wood, slideFrom && styles[`slide-${slideFrom}`])}>
-      <div className={cx('skeleton', styles.frame)}>
+      <div className={styles.frame}>
         <div
           ref={viewportRef}
           className={cx(styles.viewport, pannable && styles.pannable)}
           {...handlers}
         >
           <div
-            className={cx(styles.layer, dropIn && pinStyles.dropIn)}
+            className={cx('skeleton', styles.layer, dropIn && pinStyles.dropIn)}
             style={{
               width: layerWidth === undefined ? '100%' : `${layerWidth}px`,
               aspectRatio: `${region.w} / ${region.h}`,

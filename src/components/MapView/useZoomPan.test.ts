@@ -1,14 +1,14 @@
-// Every region's map in the same frame: the map covers the frame, and the first view shows
-// the current stop and, when they fit, all the pins.
+// Every region's map in the same frame: the whole map fits at 1×; zoomed in, the first view
+// shows the current stop and, when they fit, all the pins.
 import { describe, expect, it } from 'vitest';
-import { coverSize, startScroll } from './useZoomPan';
+import { fitSize, startScroll } from './useZoomPan';
 
-describe('coverSize', () => {
-  it('fills the frame with no gaps, whatever the map shape', () => {
-    // A 2:1 map (America) in a 1200 × 900 frame: as tall as the frame, wider than it.
-    expect(coverSize(1200, 900, 2)).toEqual({ width: 1800, height: 900 });
-    // A square map (Philippines): as wide as the frame, taller than it.
-    expect(coverSize(1200, 900, 1)).toEqual({ width: 1200, height: 1200 });
+describe('fitSize', () => {
+  it('shows the whole map at 1×, whatever its shape', () => {
+    // A 2:1 map (America) in a 1200 × 900 frame: as wide as the frame, shorter than it.
+    expect(fitSize(1200, 900, 2)).toEqual({ width: 1200, height: 600 });
+    // A square map (Philippines): as tall as the frame, narrower than it.
+    expect(fitSize(1200, 900, 1)).toEqual({ width: 900, height: 900 });
   });
 });
 

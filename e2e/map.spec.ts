@@ -42,8 +42,8 @@ test('locked pins explain themselves; Free explore opens them', async ({ page })
 test('pins stay on their towns when zoomed (FR-16)', async ({ page }) => {
   await page.goto('/region/europe');
   await page.getByRole('button', { name: 'Free explore' }).click();
-  await page.getByRole('button', { name: 'Zoom in' }).click();
-  await page.getByRole('button', { name: 'Zoom in' }).click();
+  // Four zoom levels: 1× (the whole map), then three steps in.
+  for (let i = 0; i < 3; i++) await page.getByRole('button', { name: 'Zoom in' }).click();
   await expect(page.getByRole('button', { name: 'Zoom in' })).toBeDisabled();
   // No hover lift and no drop-in still running (§5.6 motion) while measuring.
   await page.mouse.move(0, 0);
