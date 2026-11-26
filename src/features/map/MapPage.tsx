@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { useRootData } from '../../app/useRootData';
 import InsetMap from '../../components/InsetMap/InsetMap';
 import JourneyList from '../../components/JourneyList/JourneyList';
@@ -8,10 +8,7 @@ import ModeToggle from '../../components/ModeToggle/ModeToggle';
 import Panel from '../../components/Panel/Panel';
 import RegionTabs from '../../components/RegionTabs/RegionTabs';
 import StopCard from '../../components/StopCard/StopCard';
-import TimelineSlider from '../../components/TimelineSlider/TimelineSlider';
 import Toast from '../../components/Toast/Toast';
-import { REGION_IDS } from '../../content/constants';
-import type { RegionId } from '../../content/schemas';
 import { getNextStop } from '../../content/selectors';
 import { t } from '../../i18n/t';
 import { useProgress } from '../../store/progress';
@@ -40,31 +37,17 @@ export default function MapPage() {
   const setMode = useProgress((s) => s.setMode);
   // Separate selectors: setting lastRegion must not re-render the whole map.
   const timelineYear = useUi((s) => s.timelineYear);
-  const setTimelineYear = useUi((s) => s.setTimelineYear);
   const setLastRegion = useUi((s) => s.setLastRegion);
-  const timelineExpanded = useUi((s) => s.timelineExpanded);
-  const setTimelineExpanded = useUi((s) => s.setTimelineExpanded);
-  const navigate = useNavigate();
   const location = useLocation();
   const insetRef = useRef<HTMLDivElement>(null);
-  const timelineRef = useRef<HTMLDivElement>(null);
   const [message, setMessage] = useState<string | null>(null);
 
   const region = content.regions.find((r) => r.id === regionId);
   const progress = useMemo(() => ({ completed }), [completed]);
-  const openTimeline = (location.state as { openTimeline?: boolean } | null)?.openTimeline;
 
   useEffect(() => {
     if (region) setLastRegion(region.id);
   }, [region, setLastRegion]);
-
-  // Bottom navigation "Timeline" (phones): open the strip and bring it into view.
-  useEffect(() => {
-    if (!openTimeline) return;
-    setTimelineExpanded(true);
-    timelineRef.current?.scrollIntoView?.({ block: 'center' });
-    timelineRef.current?.querySelector<HTMLElement>('[role="slider"]')?.focus();
-  }, [openTimeline, location.key, setTimelineExpanded]);
 
   useEffect(() => {
     if (!message) return;
@@ -96,20 +79,8 @@ export default function MapPage() {
   const cardMember = mapStops.find((m) => m.state !== 'done');
   const slideFrom = (location.state as SlideState | null)?.slideFrom;
 
-  // FR-21: moving the timeline to a year spent in another region switches the map.
-  const changeYear = (next: number) => {
-    setTimelineYear(next);
-    const target = getTimelineStop(stops, next);
-    if (target && target.region !== region.id) {
-      const from = REGION_IDS.indexOf(target.region) > REGION_IDS.indexOf(region.id);
-      navigate(`/region/${target.region satisfies RegionId}`, {
-        state: { slideFrom: from ? 'right' : 'left' } satisfies SlideState,
-      });
-    }
-  };
-
-  // Map screen (v2.2 layout, improved): the map on the left, a side panel (mode, next stop,
-  // journey) on the right, the timeline across the bottom. Phones: the panel goes below.
+  // Map screen: the map on the left and, right beside it, the side panel (next stop, mode,
+  // Manila inset, journey, the timeline page). Phones: the panel goes below the map.
   return (
     <div className={styles.screen}>
       <div className={styles.phoneTabs}>
@@ -140,6 +111,13 @@ export default function MapPage() {
           </div>
         </section>
         <aside className={styles.panel} aria-label={t('panel.label')}>
+          {stops.length > 0 && (
+            <StopCard
+              member={cardMember}
+              regionLabel={region.label}
+              nextElsewhere={nextStop && nextStop.region !== region.id ? nextStop : undefined}
+            />
+          )}
           <ModeToggle mode={mode} onChange={setMode} />
           {region.inset && insetGroup && (
             <InsetMap
@@ -149,23 +127,11 @@ export default function MapPage() {
               onLocked={showLocked}
             />
           )}
-          {stops.length > 0 && (
-            <StopCard
-              member={cardMember}
-              regionLabel={region.label}
-              nextElsewhere={nextStop && nextStop.region !== region.id ? nextStop : undefined}
-            />
-          )}
           {mapStops.length > 0 && <JourneyList members={mapStops} onLocked={showLocked} />}
+          <Link to="/timeline" className={styles.timelineLink} data-guide="timeline">
+            {t('stop.epilogueTimeline')} ▶
+          </Link>
         </aside>
-        <div ref={timelineRef} className={styles.timeline}>
-          <TimelineSlider
-            value={year}
-            onChange={changeYear}
-            expanded={timelineExpanded}
-            onToggleExpanded={setTimelineExpanded}
-          />
-        </div>
       </div>
       <Toast message={message} />
     </div>

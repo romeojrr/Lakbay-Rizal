@@ -109,17 +109,18 @@ test('reading text is Nunito; headings and buttons are VT323', async ({ page }) 
   await expect(page.getByRole('button', { name: 'Next ▶' })).toHaveCSS('font-family', /VT323/);
 });
 
-test('map: the side panel beside the map, the timeline across the bottom', async ({ page }) => {
+test('map: the map on the left, the side panel right beside it', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/region/europe');
   const panelRole = { name: 'Stops in this region' };
   const map = await page.locator('[data-guide="map"]').boundingBox();
   const panel = await page.getByRole('complementary', panelRole).boundingBox();
-  const timeline = await page.locator('[data-guide="timeline"]').boundingBox();
-  if (!map || !panel || !timeline) throw new Error('missing');
+  if (!map || !panel) throw new Error('missing');
+  // Right beside the map, with no wide gap, and the map uses the screen height.
   expect(panel.x).toBeGreaterThan(map.x + map.width - 1);
-  expect(timeline.y).toBeGreaterThan(map.y + map.height - 1);
-  expect(timeline.width).toBeGreaterThan(map.width);
+  expect(panel.x - (map.x + map.width)).toBeLessThan(80);
+  expect(map.height).toBeGreaterThan(600);
+  await expect(page.getByRole('slider', { name: 'Year' })).toHaveCount(0);
 
   // Phones: the panel goes below the map.
   await page.setViewportSize({ width: 360, height: 740 });

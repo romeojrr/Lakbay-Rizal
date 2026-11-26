@@ -39,18 +39,6 @@ test('locked pins explain themselves; Free explore opens them', async ({ page })
   await noHorizontalScroll(page);
 });
 
-test('timeline to 1892 switches to the Philippines and highlights Dapitan', async ({ page }) => {
-  await page.goto('/region/europe');
-  await page.getByRole('button', { name: 'Free explore' }).click();
-  const slider = page.getByRole('slider', { name: 'Year' });
-  await slider.focus();
-  await page.keyboard.press('End');
-  for (let i = 0; i < 4; i++) await page.keyboard.press('ArrowLeft');
-  await expect(page).toHaveURL(/\/region\/philippines$/);
-  await expect(slider).toHaveAttribute('aria-valuenow', '1892');
-  await expect(page.getByRole('link', { name: 'Dapitan, 1892, open' })).toHaveClass(/highlighted/);
-});
-
 test('pins stay on their towns when zoomed (FR-16)', async ({ page }) => {
   await page.goto('/region/europe');
   await page.getByRole('button', { name: 'Free explore' }).click();

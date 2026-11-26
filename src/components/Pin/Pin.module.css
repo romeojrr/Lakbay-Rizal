@@ -107,17 +107,17 @@
   height: 36px;
 }
 
-/* §5.6 map motion: pins drop in on a region's first view (30 ms apart), the current pin
+/* §5.6 map motion: pins appear on a region's first view (30 ms apart), the current pin
    pulses, and a pin lifts 2 px on hover. Transform only. */
 .dropIn .pin > svg {
   animation: drop 320ms ease-out backwards;
   animation-delay: calc(var(--i, 0) * 30ms);
 }
 
+/* A fade, not a fall: a pin that moves while it is clicked loses the click. */
 @keyframes drop {
   from {
     opacity: 0;
-    transform: translateY(-14px);
   }
 }
 

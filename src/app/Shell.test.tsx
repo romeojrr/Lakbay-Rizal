@@ -91,13 +91,14 @@ describe('App shell v2.3 (§5.5)', () => {
     expect(screen.queryByRole('button', { name: 'Hide panel' })).toBeNull();
   });
 
-  it('the timeline shows the era labels, and can be made smaller', async () => {
-    const user = userEvent.setup();
+  it('the side panel links to the whole timeline (no slider on the map)', async () => {
     renderAt('/region/europe');
-    const less = await screen.findByRole('button', { name: 'Less', expanded: true });
-    expect(screen.getByText('1882 · Europe')).toBeVisible();
-    await user.click(less);
-    expect(screen.getByText('1882 · Europe')).not.toBeVisible();
+    const panel = await screen.findByRole('complementary', { name: 'Stops in this region' });
+    expect(within(panel).getByRole('link', { name: /See the whole timeline/ })).toHaveAttribute(
+      'href',
+      '/timeline',
+    );
+    expect(screen.queryByRole('slider', { name: 'Year' })).toBeNull();
   });
 
   it('map screen has every guide target (§3.7)', async () => {

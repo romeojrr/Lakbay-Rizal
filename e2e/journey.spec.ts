@@ -64,16 +64,18 @@ test('SRS §12: the whole journey', async ({ page }) => {
     await expect(page.getByText('New!')).toHaveCount(0);
   });
 
-  await test.step('8. timeline to 1892 → Philippines, Dapitan highlighted', async () => {
+  await test.step('8. the timeline page lists Dapitan, 1892', async () => {
     await page.goto('/region/europe');
-    const slider = page.getByRole('slider', { name: 'Year' });
-    await slider.focus();
-    await page.keyboard.press('End');
-    for (let i = 0; i < 4; i++) await page.keyboard.press('ArrowLeft');
-    await expect(page).toHaveURL(/\/region\/philippines$/);
-    await expect(page.getByRole('link', { name: 'Dapitan, 1892, open' })).toHaveClass(
-      /highlighted/,
-    );
+    await page.getByRole('link', { name: /See the whole timeline/ }).click();
+    await expect(page).toHaveURL(/\/timeline$/);
+    await page
+      .getByRole('group', { name: 'Region' })
+      .getByRole('button', { name: 'Philippines' })
+      .click();
+    await expect(
+      page.getByText('Dapitan and Talisay, Mindanao', { exact: false }).first(),
+    ).toBeVisible();
+    await page.goto('/region/philippines');
   });
 
   await test.step('9. Dapitan → dialogue → builder → clinic + water system → stamp', async () => {

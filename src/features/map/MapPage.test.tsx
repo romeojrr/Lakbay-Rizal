@@ -90,20 +90,6 @@ describe('MapPage', () => {
     expect(within(inset as HTMLElement).getAllByRole('listitem')).toHaveLength(8);
   });
 
-  it('timeline to 1892 switches to the Philippines and highlights Dapitan (FR-21)', async () => {
-    const user = userEvent.setup();
-    useProgress.setState({ mode: 'free' });
-    const router = renderAt('/region/europe');
-    const slider = await screen.findByRole('slider', { name: 'Year' });
-    slider.focus();
-    await user.keyboard('{End}');
-    for (let i = 0; i < 4; i++) await user.keyboard('{ArrowLeft}');
-    expect(router.state.location.pathname).toBe('/region/philippines');
-    const dapitan = await screen.findByRole('link', { name: 'Dapitan, 1892, open' });
-    expect(dapitan.className).toMatch(/highlighted/);
-    expect(screen.getByRole('slider', { name: 'Year' })).toHaveAttribute('aria-valuenow', '1892');
-  });
-
   it('shows "Content coming soon" when no stops may be shown (FR-62)', async () => {
     renderAt('/region/europe', async () => rootData(content, []));
     expect(await screen.findByRole('heading', { name: 'Content coming soon' })).toBeVisible();

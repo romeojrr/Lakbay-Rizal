@@ -1,4 +1,5 @@
-/* Map screen (v2.2 layout, improved): map | side panel, the timeline across the bottom.
+/* Map screen: the map and the side panel side by side, centred together as one group, so
+   there is no empty gap between them. The panel is one screen tall and scrolls on its own.
    Container queries put the panel under the map when the content area is narrow. */
 .screen {
   container: mapscreen / inline-size;
@@ -6,37 +7,41 @@
 
 .grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) var(--panel-w);
-  grid-template-areas:
-    'map panel'
-    'timeline timeline';
+  grid-template-columns: minmax(0, max-content) var(--panel-w);
+  justify-content: center;
   align-items: start;
-  gap: 20px 24px;
+  gap: 24px;
 }
 
 .mapArea {
-  grid-area: map;
   min-width: 0;
 }
 
+/* As big as the screen height allows, keeping the map's shape (--ratio = width / height). */
+.mapBox {
+  width: calc((100dvh - var(--topbar-h) - 64px) * var(--ratio));
+  max-width: 100%;
+  min-width: min(100%, 320px);
+}
+
 .panel {
-  grid-area: panel;
+  position: sticky;
+  top: calc(var(--topbar-h) + 16px);
+  max-height: calc(100dvh - var(--topbar-h) - 32px);
+  overflow-y: auto;
   min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: 2px 6px 6px 2px; /* room for focus rings and shadows inside the scroll area */
 }
 
-.timeline {
-  grid-area: timeline;
-  min-width: 0;
-}
-
-/* Fit the map to the screen height too, keeping its shape (--ratio = width / height). */
-.mapBox {
-  width: min(100%, calc((100dvh - var(--topbar-h) - 220px) * var(--ratio)));
-  min-width: min(100%, 320px);
-  margin: 0 auto;
+.timelineLink {
+  align-self: flex-start;
+  font-family: var(--font-pixel);
+  font-size-adjust: none;
+  font-size: var(--fs-small);
+  color: var(--ink);
 }
 
 .phoneTabs {
@@ -53,19 +58,22 @@
   font-size: var(--fs-h3);
 }
 
-/* Narrow content area (tablets, phones): map, timeline, then the panel below. */
+/* Narrow content area (tablets, phones): the map, then the panel below it. */
 @container mapscreen (max-width: 760px) {
   .grid {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      'map'
-      'timeline'
-      'panel';
   }
 
   .mapBox {
     width: 100%;
     min-width: 0;
+  }
+
+  .panel {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    padding: 0;
   }
 }
 
