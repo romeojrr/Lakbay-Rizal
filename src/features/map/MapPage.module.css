@@ -14,22 +14,19 @@
   gap: var(--layout-gap);
 }
 
-/* The map area is always the same size; the region's map fits inside it, centred. */
+/* The map area is always the same size, and every region's map frame fills all of it. */
 .mapArea {
   min-width: 0;
   height: var(--area-h);
   min-height: 320px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  container-type: size;
 }
 
 .mapBox {
-  width: min(100cqw, 100cqh * var(--ratio));
+  height: 100%;
 }
 
 .panel {
+  scrollbar-gutter: stable; /* same card width whether or not the panel scrolls */
   position: sticky;
   top: calc(var(--topbar-h) + 24px);
   max-height: var(--area-h);
@@ -72,11 +69,12 @@
   .mapArea {
     height: auto;
     min-height: 0;
-    container-type: normal;
   }
 
+  /* One shape for every region here too. */
   .mapBox {
-    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
   }
 
   .panel {

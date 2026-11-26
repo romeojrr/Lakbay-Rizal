@@ -19,6 +19,7 @@
 }
 
 .cards {
+  scrollbar-gutter: stable; /* same card width whether or not the panel scrolls */
   position: sticky;
   top: calc(var(--topbar-h) + 24px);
   max-height: var(--area-h);

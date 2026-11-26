@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { useRootData } from '../../app/useRootData';
 import InsetMap from '../../components/InsetMap/InsetMap';
@@ -88,11 +88,7 @@ export default function MapPage() {
       </div>
       <div className={styles.grid}>
         <section className={styles.mapArea} aria-label={t('map.section')}>
-          <div
-            className={styles.mapBox}
-            data-guide="map"
-            style={{ '--ratio': region.w / region.h } as CSSProperties}
-          >
+          <div className={styles.mapBox} data-guide="map">
             <MapView
               key={region.id}
               region={region}

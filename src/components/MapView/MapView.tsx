@@ -15,7 +15,7 @@ import ClusterList from './ClusterList';
 import MapOverlays from './MapOverlays';
 import MapPath from './MapPath';
 import styles from './MapView.module.css';
-import { useZoomPan } from './useZoomPan';
+import { useZoomPan, type PinBounds } from './useZoomPan';
 
 interface MapViewProps {
   region: Region;
@@ -29,6 +29,18 @@ interface MapViewProps {
   emptyMessage?: { title: string; body: string };
   onLocked: () => void;
   onOpenInset: () => void;
+}
+
+/** Where the pins are (the map's middle when there are none). */
+function pinBounds(groups: PinGroup[]): PinBounds {
+  if (groups.length === 0) return { x0: 50, x1: 50, y0: 50, y1: 50 };
+  const xs = groups.map((g) => g.point.x);
+  const ys = groups.map((g) => g.point.y);
+  return { x0: Math.min(...xs), x1: Math.max(...xs), y0: Math.min(...ys), y1: Math.max(...ys) };
+}
+
+function centre(b: PinBounds) {
+  return { x: (b.x0 + b.x1) / 2, y: (b.y0 + b.y1) / 2 };
 }
 
 /** Regions whose pins have dropped in this visit (§5.6 "on first view"). */
@@ -45,11 +57,21 @@ export default function MapView({
   onLocked,
   onOpenInset,
 }: MapViewProps) {
-  const { viewportRef, zoom, compact, canZoomIn, canZoomOut, zoomIn, zoomOut, handlers } =
-    useZoomPan();
+  const current = groups.find((g) => g.members.some((m) => m.state === 'current'));
+  const pins = pinBounds(groups);
+  const {
+    viewportRef,
+    layerWidth,
+    pannable,
+    compact,
+    canZoomIn,
+    canZoomOut,
+    zoomIn,
+    zoomOut,
+    handlers,
+  } = useZoomPan(region.w / region.h, current?.point ?? centre(pins), pins);
   const [openCluster, setOpenCluster] = useState<string | null>(null);
   const closeCluster = useCallback(() => setOpenCluster(null), []);
-  const current = groups.find((g) => g.members.some((m) => m.state === 'current'));
   const open = groups.find((g) => g.key === openCluster);
   const listId = (group: PinGroup) => `cluster-${group.key}`;
   const route = region.route?.map(([lat, lon]) => projectToPercent(lat, lon, region));
@@ -62,19 +84,19 @@ export default function MapView({
   const arriving = travel ? groupOf(groups, travel.to) : undefined;
 
   return (
-    <WoodFrame className={cx(slideFrom && styles[`slide-${slideFrom}`])}>
-      <div
-        className={cx('skeleton', styles.frame)}
-        style={{ aspectRatio: `${region.w} / ${region.h}` }}
-      >
+    <WoodFrame className={cx(styles.wood, slideFrom && styles[`slide-${slideFrom}`])}>
+      <div className={cx('skeleton', styles.frame)}>
         <div
           ref={viewportRef}
-          className={cx(styles.viewport, zoom > 1 && styles.zoomed)}
+          className={cx(styles.viewport, pannable && styles.pannable)}
           {...handlers}
         >
           <div
             className={cx(styles.layer, dropIn && pinStyles.dropIn)}
-            style={{ width: `${zoom * 100}%`, aspectRatio: `${region.w} / ${region.h}` }}
+            style={{
+              width: layerWidth === undefined ? '100%' : `${layerWidth}px`,
+              aspectRatio: `${region.w} / ${region.h}`,
+            }}
           >
             <img
               className={`pix ${styles.image}`}
