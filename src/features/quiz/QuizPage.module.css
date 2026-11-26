@@ -171,19 +171,40 @@
   border-radius: var(--radius);
 }
 
-/* §3.7: Rizal pops up in the top corner with a speech bubble after an answer, then slips away
-   (owner, 2026-11-26). It never covers the answers and never takes clicks. */
+/* §3.7: Rizal pops up just above the quiz stage, on its right (clear of "Back to story"), with
+   a speech bubble after an answer, then slips away (owner, 2026-11-26). It never covers the
+   answers and never takes clicks. */
+.anchor {
+  position: relative;
+}
+
 .reaction {
-  position: fixed;
-  top: calc(var(--topbar-h) + 16px);
-  /* Beside the quiz when the screen has room for it, else in the corner. */
-  right: max(16px, calc((100vw - 980px) / 2 - 410px));
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
   z-index: 40;
-  max-width: min(380px, calc(100vw - 32px));
+  max-width: min(560px, 100%);
   display: flex;
-  align-items: flex-start;
+  flex-direction: row-reverse;
+  align-items: flex-end;
   gap: 10px;
   pointer-events: none;
+  transform-origin: bottom right;
+}
+
+/* Not much room above the stage: Rizal stands on the stage's top edge instead, over the
+   picture's border and above the question card. */
+@media (max-height: 900px), (max-width: 640px) {
+  .reaction {
+    bottom: calc(100% - 22px);
+  }
+}
+
+/* Phones: a little lower still, so the bubble stays clear of "Back to story". */
+@media (max-width: 640px) {
+  .reaction {
+    bottom: calc(100% - 36px);
+  }
 }
 
 .reaction > :first-child {
@@ -194,7 +215,7 @@
 
 .bubble {
   position: relative;
-  margin: 10px 0 0;
+  margin: 0 0 6px;
   padding: 10px 14px;
   font-size: var(--fs-small);
   line-height: 1.4;
@@ -204,17 +225,17 @@
   box-shadow: 0 10px 24px rgba(31, 26, 36, 0.18);
 }
 
-/* The bubble's tail, pointing at Rizal. */
+/* The bubble's tail, pointing at Rizal (on its right). */
 .bubble::before {
   content: '';
   position: absolute;
-  left: -9px;
-  top: 16px;
+  right: -9px;
+  bottom: 16px;
   width: 14px;
   height: 14px;
   background: var(--card);
-  border-left: var(--border);
-  border-bottom: var(--border);
+  border-right: var(--border);
+  border-top: var(--border);
   transform: rotate(45deg);
 }
 
@@ -225,23 +246,16 @@
 @keyframes pop-in {
   from {
     opacity: 0;
-    transform: translateY(-14px) scale(0.85);
+    transform: translateY(14px) scale(0.85);
   }
 }
 
 .leave {
   opacity: 0;
-  transform: translateY(-10px) scale(0.95);
+  transform: translateY(10px) scale(0.95);
   transition:
     opacity 280ms ease-in,
     transform 280ms ease-in;
-}
-
-@media (max-width: 640px) {
-  .reaction {
-    top: calc(var(--topbar-h) + 8px);
-    right: 8px;
-  }
 }
 
 /* §5.6: correct → green flash and 12 pixel sparkles. */

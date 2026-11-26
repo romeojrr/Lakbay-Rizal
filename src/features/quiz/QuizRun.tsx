@@ -145,6 +145,11 @@ export default function QuizRun({ stop, content }: QuizRunProps) {
   const source = content.sources.find((s) => s.id === question.sourceId);
   const item = stop.rewards.item ? content.items[stop.rewards.item] : undefined;
 
+  // Rizal pops up just above the quiz stage (owner, 2026-11-26).
+  const reactionView = reaction && (status !== 'answering' || reward) && (
+    <RizalReaction guide={guide} rizal={content.characters[guide.speaker]} reaction={reaction} />
+  );
+
   return (
     <div className={styles.page}>
       <div className={styles.head}>
@@ -160,57 +165,56 @@ export default function QuizRun({ stop, content }: QuizRunProps) {
       </div>
 
       {reward ? (
-        <RewardCard
-          ref={rewardRef}
-          stop={stop}
-          item={item}
-          fresh={reward.fresh}
-          grade={reward.grade}
-        />
+        <div className={styles.anchor}>
+          {reactionView}
+          <RewardCard
+            ref={rewardRef}
+            stop={stop}
+            item={item}
+            fresh={reward.fresh}
+            grade={reward.grade}
+          />
+        </div>
       ) : (
         <div className={styles.card}>
-          <QuizQuestion
-            ref={promptRef}
-            prompt={question.prompt}
-            sceneImage={stop.scene.image}
-            stampIcon={stop.rewards.stamp.icon}
-          >
-            <p className={styles.pick}>{t(INSTRUCTION[question.type])}</p>
-            <AnswerInput
-              key={`${question.id}:${attempt}`}
-              question={question}
-              status={status}
-              onAnswer={answer}
-            />
-            {status !== 'answering' && (
-              <Feedback
-                ref={feedbackRef}
-                right={status === 'right'}
-                explain={question.explain}
-                source={source?.short ?? question.sourceId}
-                hint={question.hint}
-                hintOpen={hintOpen}
-                onShowHint={() => setHintOpen(true)}
-                actionLabel={
-                  status === 'wrong'
-                    ? t('quiz.tryAgain')
-                    : isLast
-                      ? t('quiz.finish')
-                      : t('quiz.nextQuestion')
-                }
-                onAction={status === 'wrong' ? tryAgain : next}
-                xp={gained}
+          <div className={styles.anchor}>
+            {reactionView}
+            <QuizQuestion
+              ref={promptRef}
+              prompt={question.prompt}
+              sceneImage={stop.scene.image}
+              stampIcon={stop.rewards.stamp.icon}
+            >
+              <p className={styles.pick}>{t(INSTRUCTION[question.type])}</p>
+              <AnswerInput
+                key={`${question.id}:${attempt}`}
+                question={question}
+                status={status}
+                onAnswer={answer}
               />
-            )}
-          </QuizQuestion>
+              {status !== 'answering' && (
+                <Feedback
+                  ref={feedbackRef}
+                  right={status === 'right'}
+                  explain={question.explain}
+                  source={source?.short ?? question.sourceId}
+                  hint={question.hint}
+                  hintOpen={hintOpen}
+                  onShowHint={() => setHintOpen(true)}
+                  actionLabel={
+                    status === 'wrong'
+                      ? t('quiz.tryAgain')
+                      : isLast
+                        ? t('quiz.finish')
+                        : t('quiz.nextQuestion')
+                  }
+                  onAction={status === 'wrong' ? tryAgain : next}
+                  xp={gained}
+                />
+              )}
+            </QuizQuestion>
+          </div>
         </div>
-      )}
-      {reaction && (status !== 'answering' || reward) && (
-        <RizalReaction
-          guide={guide}
-          rizal={content.characters[guide.speaker]}
-          reaction={reaction}
-        />
       )}
     </div>
   );
