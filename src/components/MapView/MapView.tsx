@@ -22,7 +22,6 @@ interface MapViewProps {
   groups: PinGroup[];
   path: TravelPath;
   /** Sprite drawn beside the current stop. */
-  travellerSprite?: string;
   /** Slide in from this side when the timeline switched region (off with reduced motion). */
   slideFrom?: 'left' | 'right';
   /** Shown over the map when there are no stops to show (FR-62). */
@@ -51,7 +50,6 @@ export default function MapView({
   region,
   groups,
   path,
-  travellerSprite,
   slideFrom,
   emptyMessage,
   onLocked,
@@ -82,6 +80,22 @@ export default function MapView({
   }, [region.id]);
   const travel = useUi((s) => s.travel);
   const arriving = travel ? groupOf(groups, travel.to) : undefined;
+  // "Enter <place>": while the map zooms in, the place's own pin and name stand where its
+  // group was ("Ateneo" instead of "Manila area"), at the place's own point (owner, 2026-11-26).
+  const entering = useUi((s) => s.entering);
+  const shownGroups = groups.map((group): PinGroup => {
+    const member = entering ? group.members.find((m) => m.stop.id === entering) : undefined;
+    if (!member) return group;
+    return {
+      ...group,
+      kind: 'single',
+      members: [member],
+      lead: member,
+      point: member.point,
+      dimmed: false,
+      highlighted: true,
+    };
+  });
 
   return (
     <WoodFrame className={cx(styles.wood, slideFrom && styles[`slide-${slideFrom}`])}>
@@ -107,7 +121,7 @@ export default function MapView({
             />
             <MapPath path={path} route={route} />
             <TravelSprite region={region.id} groups={groups} />
-            {groups.map((group, index) =>
+            {shownGroups.map((group, index) =>
               group.kind === 'single' ? (
                 <Pin
                   key={group.key}
@@ -132,17 +146,6 @@ export default function MapView({
                   }
                 />
               ),
-            )}
-            {current && travellerSprite && (
-              <img
-                className={`pix ${styles.traveller}`}
-                src={asset(travellerSprite)}
-                alt=""
-                style={{
-                  left: `calc(${current.point.x}% + 20px)`,
-                  top: `calc(${current.point.y}% - 76px)`,
-                }}
-              />
             )}
             {open && (
               <ClusterList

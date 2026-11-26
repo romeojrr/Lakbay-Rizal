@@ -6,6 +6,7 @@ import { useCallback, type MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { play } from '../../lib/sound';
 import { useReducedMotion } from '../../lib/useReducedMotion';
+import { useUi } from '../../store/ui';
 
 /** How long the zoom takes before the stop opens: as slow as the landing's fly-down. */
 export const ENTER_MS = 2400;
@@ -124,11 +125,14 @@ export function useEnterStop() {
       zooming = true;
       play('whoosh'); // the same rush of air as the landing's fly-down
       const to = `/stop/${stopId}`;
+      // The map shows this place's own pin (e.g. "Ateneo", not "Manila area") while it zooms.
+      useUi.setState({ entering: stopId });
       const veil = whiteVeil();
       void zoomInto(region, point).then(() => {
         zooming = false;
         // Something else (the tour) may already have opened it.
         if (window.location.pathname !== to) navigate(to);
+        useUi.setState({ entering: null });
         veil.lift();
       });
     },

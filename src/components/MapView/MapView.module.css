@@ -58,15 +58,6 @@
   user-select: none;
 }
 
-.traveller {
-  position: absolute;
-  z-index: 3;
-  width: 34px;
-  height: 78px;
-  pointer-events: none;
-  filter: drop-shadow(3px 3px 0 rgba(31, 26, 36, 0.35));
-}
-
 /* Overlays */
 .titleBox {
   position: absolute;

@@ -94,7 +94,6 @@ export default function MapPage() {
               region={region}
               groups={groups}
               path={buildTravelPath(mapStops, year)}
-              travellerSprite={content.characters.rizal?.sprite}
               slideFrom={slideFrom}
               emptyMessage={
                 stops.length === 0
