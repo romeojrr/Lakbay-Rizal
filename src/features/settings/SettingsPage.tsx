@@ -94,14 +94,12 @@ function LanguageChoice() {
   );
 }
 
-/** /settings — language, text size, motion, journey mode, verify notes, reset (FR-71). */
+/** /settings — language, text size, motion, journey mode, sound, save code, reset (FR-71). */
 export default function SettingsPage() {
   useTip('settings-first'); // §3.7: a one-time hint from Rizal
   const navigate = useNavigate();
   const mode = useProgress((s) => s.mode);
   const setMode = useProgress((s) => s.setMode);
-  const showVerifyNotes = useProgress((s) => s.settings.showVerifyNotes);
-  const setSettings = useProgress((s) => s.setSettings);
   const reset = useProgress((s) => s.reset);
   const [confirming, setConfirming] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -137,17 +135,6 @@ export default function SettingsPage() {
       />
       <div className={styles.fieldset}>
         <ModeToggle mode={mode} onChange={setMode} />
-      </div>
-      <div className={styles.fieldset}>
-        <label className={styles.check}>
-          <input
-            type="checkbox"
-            checked={showVerifyNotes}
-            onChange={(e) => setSettings({ showVerifyNotes: e.target.checked })}
-          />
-          <span>{t('settings.verifyNotes')}</span>
-        </label>
-        <p className={styles.help}>{t('settings.verifyHelp')}</p>
       </div>
       <div className={styles.fieldset}>
         <h2 className={styles.legend}>{t('settings.replayTour')}</h2>

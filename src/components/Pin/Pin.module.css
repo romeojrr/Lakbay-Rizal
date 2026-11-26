@@ -130,13 +130,47 @@
   transform: translateY(-2px);
 }
 
+/* The current pin floats gently, with a soft glow on the ground under it (owner,
+   2026-11-26: smooth, not a pulse — scaling pixel art makes its pixels wobble). */
 .current > svg {
-  animation: pulse 1.6s ease-in-out infinite;
+  animation: float 2.6s ease-in-out infinite;
+  will-change: transform;
 }
 
-@keyframes pulse {
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
   50% {
-    transform: scale(1.08);
+    transform: translateY(-4px);
+  }
+}
+
+.glow {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--h) - 7px);
+  z-index: -1;
+  width: 34px;
+  height: 14px;
+  margin-left: -17px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 236, 170, 0.95), rgba(255, 236, 170, 0));
+  pointer-events: none;
+  animation: glow 2.6s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
   }
 }
 

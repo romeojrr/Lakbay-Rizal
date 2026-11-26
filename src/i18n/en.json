@@ -510,6 +510,9 @@
   "landing": {
     "stats": "{from} – {to} · {stops} stops · {regions} regions",
     "tagline": "Follow José Rizal's journey around the world.",
+    "statYears": "Years",
+    "statStops": "Stops",
+    "statRegions": "Regions",
     "welcome": "Welcome to",
     "start": "Begin the journey",
     "continue": "Continue: {place} · {year}",

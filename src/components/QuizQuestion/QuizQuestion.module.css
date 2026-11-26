@@ -1,11 +1,11 @@
 /* Layout from Quiz.dc.html */
 .stage {
   position: relative;
-  min-height: 280px;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32px 20px;
+  padding: 20px 18px;
   overflow: hidden;
   border: var(--border);
   box-shadow: var(--shadow-panel);
@@ -31,25 +31,24 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 760px;
+  max-width: 860px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 14px;
-  padding: 26px 28px;
-  text-align: center;
+  padding: 18px 22px 20px;
   background: var(--dialogue-bg);
   border: var(--border);
   box-shadow:
     inset 0 0 0 2px var(--gold),
     var(--shadow-panel);
-  border-radius: var(--radius);
+  border-radius: 12px;
 }
 
 .prompt {
   margin: 0;
-  font-size: var(--fs-h3);
-  line-height: 1.3;
+  max-width: none;
+  font-size: var(--fs-body);
+  line-height: 1.35;
 }
 
 .prompt:focus {
@@ -121,7 +120,12 @@
   }
 
   .prompt {
-    font-size: var(--fs-body);
+    font-size: var(--fs-small);
+  }
+
+  .stamp {
+    width: 26px;
+    height: 26px;
   }
 
   .option {
@@ -130,11 +134,23 @@
   }
 }
 
-/* Answers and feedback inside the card read left to right. */
+/* The stamp beside the question; everything reads left to right from one edge. */
+.head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 12px;
+  border-bottom: 2px dashed var(--line-soft);
+}
+
+.stamp {
+  flex-shrink: 0;
+}
+
 .body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
   text-align: left;
 }

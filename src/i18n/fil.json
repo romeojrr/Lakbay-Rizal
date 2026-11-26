@@ -163,6 +163,9 @@
   "landing": {
     "stats": "{from} – {to} · {stops} hinto · {regions} rehiyon",
     "tagline": "Sundan ang paglalakbay ni José Rizal sa buong mundo.",
+    "statYears": "Mga taon",
+    "statStops": "Hinto",
+    "statRegions": "Rehiyon",
     "welcome": "Maligayang pagdating sa",
     "start": "Simulan ang paglalakbay",
     "continue": "Ituloy: {place} · {year}",

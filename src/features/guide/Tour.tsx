@@ -106,10 +106,17 @@ export default function Tour() {
   const clickStep = step.next === 'click-target' && element;
   const cardStyle: CSSProperties = {};
   if (box) {
+    const big = box.height > window.innerHeight * 0.6;
     const below = box.top + box.height / 2 < window.innerHeight * 0.55;
-    cardStyle.left = Math.max(12, Math.min(box.left, window.innerWidth - 432));
-    if (below) cardStyle.top = Math.min(box.top + box.height + CARD_GAP, window.innerHeight - 220);
-    else cardStyle.bottom = Math.max(12, window.innerHeight - box.top + CARD_GAP);
+    cardStyle.left = Math.max(12, Math.min(box.left + (big ? 24 : 0), window.innerWidth - 352));
+    if (big) {
+      // A target taller than most of the screen (the map): the card sits inside it, bottom left.
+      cardStyle.bottom = Math.max(12, window.innerHeight - (box.top + box.height) + 24);
+    } else if (below) {
+      cardStyle.top = Math.min(box.top + box.height + CARD_GAP, window.innerHeight - 260);
+    } else {
+      cardStyle.bottom = Math.max(12, window.innerHeight - box.top + CARD_GAP);
+    }
   }
 
   return (

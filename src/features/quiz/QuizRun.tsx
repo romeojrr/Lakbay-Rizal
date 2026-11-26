@@ -147,10 +147,8 @@ export default function QuizRun({ stop, content }: QuizRunProps) {
 
   return (
     <div className={styles.page}>
-      <div className={styles.top}>
-        <BackLink fallback={`/stop/${stop.id}`} label={t('quiz.backToStory')} />
-      </div>
       <div className={styles.head}>
+        <BackLink fallback={`/stop/${stop.id}`} label={t('quiz.backToStory')} />
         <h1 className={styles.title}>{t('quiz.title', { place: stop.place.label })}</h1>
         <div className={styles.bar} aria-hidden="true">
           <div

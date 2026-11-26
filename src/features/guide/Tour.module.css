@@ -40,9 +40,9 @@
   pointer-events: auto;
   display: flex;
   align-items: flex-start;
-  gap: 14px;
-  width: min(420px, calc(100vw - 24px));
-  padding: 14px 16px;
+  gap: 12px;
+  width: min(340px, calc(100vw - 24px));
+  padding: 12px 14px;
   color: var(--ink);
   background: var(--dialogue-bg);
   border: var(--border);
@@ -74,7 +74,7 @@
 .body {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   min-width: 0;
 }
 
@@ -86,8 +86,8 @@
 
 .text {
   margin: 0;
-  font-size: var(--fs-body);
-  line-height: 1.4;
+  font-size: var(--fs-small);
+  line-height: 1.45;
 }
 
 .buttons {
@@ -97,24 +97,16 @@
   gap: 8px;
 }
 
-.skip,
-.next {
-  min-height: 44px;
-  padding: 4px 14px;
-  font-size: var(--fs-small);
-  border: var(--border);
-  cursor: pointer;
-  border-radius: var(--radius);
-}
-
 .skip {
-  color: var(--ink);
-  background: var(--card);
+  composes: ui-btn from global;
+  min-height: 40px;
+  padding: 4px 12px;
 }
 
 .next {
-  color: var(--card-warm);
-  background: var(--ink);
+  composes: ui-btn ui-btn-dark from global;
+  min-height: 40px;
+  padding: 4px 14px;
 }
 
 .rise {

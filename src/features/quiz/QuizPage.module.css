@@ -9,22 +9,19 @@
 
 /* Centred column, max 1000 px (Quiz.dc.html) */
 .page {
-  max-width: 1000px;
+  max-width: 980px;
+  min-height: var(--area-h);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 22px;
-}
-
-.top {
-  margin-bottom: -6px;
+  gap: 14px;
 }
 
 .head {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px 14px;
+  gap: 8px 14px;
 }
 
 .title {
@@ -33,16 +30,18 @@
 }
 
 .bar {
-  flex: 1 1 200px;
-  height: 16px;
+  flex: 1 1 160px;
+  height: 14px;
+  overflow: hidden;
   background: var(--card);
   border: var(--border);
-  border-radius: var(--radius);
+  border-radius: 999px;
 }
 
 .fill {
   height: 100%;
-  transition: width 200ms ease-out;
+  border-radius: 999px;
+  transition: width 360ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .count {
@@ -52,26 +51,31 @@
 
 /* The dimmed scene with the centred quiz card (v2.2 layout); the card itself is 760 px max. */
 .card {
+  /* The quiz sits in the middle of the space under the header row. */
+  flex: 1;
   width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  justify-content: center;
+  gap: 12px;
 }
 
 .pick {
   margin: 0;
-  text-align: center;
+  max-width: none;
+  font-family: var(--font-pixel);
+  font-size-adjust: none;
   font-size: var(--fs-small);
-  color: var(--muted);
+  color: var(--speaker);
 }
 
 .feedback {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px 16px;
-  padding: 16px 18px;
+  gap: 8px 12px;
+  padding: 10px 14px;
 }
 
 .correct,
@@ -167,40 +171,76 @@
   border-radius: var(--radius);
 }
 
-/* §3.7: Rizal's reaction, one bubble at a time, under the card. */
+/* §3.7: Rizal pops up in the top corner with a speech bubble after an answer, then slips away
+   (owner, 2026-11-26). It never covers the answers and never takes clicks. */
 .reaction {
-  width: 100%;
-  max-width: 760px;
-  margin: 0 auto;
+  position: fixed;
+  top: calc(var(--topbar-h) + 16px);
+  /* Beside the quiz when the screen has room for it, else in the corner. */
+  right: max(16px, calc((100vw - 980px) / 2 - 410px));
+  z-index: 40;
+  max-width: min(380px, calc(100vw - 32px));
   display: flex;
-  align-items: center;
-  gap: 12px;
+  align-items: flex-start;
+  gap: 10px;
+  pointer-events: none;
 }
 
 .reaction > :first-child {
   --s: 1;
+  flex-shrink: 0;
+  filter: drop-shadow(0 6px 14px rgba(31, 26, 36, 0.25));
 }
 
 .bubble {
   position: relative;
-  margin: 0;
+  margin: 10px 0 0;
   padding: 10px 14px;
   font-size: var(--fs-small);
-  line-height: 1.35;
+  line-height: 1.4;
   background: var(--card);
   border: var(--border);
-  box-shadow: var(--shadow-button);
-  border-radius: var(--radius);
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(31, 26, 36, 0.18);
 }
 
-.pop {
-  animation: pop-in 180ms ease-out;
+/* The bubble's tail, pointing at Rizal. */
+.bubble::before {
+  content: '';
+  position: absolute;
+  left: -9px;
+  top: 16px;
+  width: 14px;
+  height: 14px;
+  background: var(--card);
+  border-left: var(--border);
+  border-bottom: var(--border);
+  transform: rotate(45deg);
+}
+
+.popIn {
+  animation: pop-in 380ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 @keyframes pop-in {
   from {
     opacity: 0;
-    transform: scale(0.96);
+    transform: translateY(-14px) scale(0.85);
+  }
+}
+
+.leave {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+  transition:
+    opacity 280ms ease-in,
+    transform 280ms ease-in;
+}
+
+@media (max-width: 640px) {
+  .reaction {
+    top: calc(var(--topbar-h) + 8px);
+    right: 8px;
   }
 }
 
@@ -245,5 +285,16 @@
   100% {
     opacity: 0;
     transform: translate(var(--dx), var(--dy));
+  }
+}
+
+/* Phones: the quiz simply follows the header (the page area scrolls if it must). */
+@media (max-width: 640px) {
+  .page {
+    min-height: 0;
+  }
+
+  .card {
+    flex: none;
   }
 }

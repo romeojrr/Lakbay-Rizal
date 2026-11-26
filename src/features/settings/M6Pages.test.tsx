@@ -84,13 +84,12 @@ describe('Settings (FR-71)', () => {
     expect(document.documentElement.dataset.motion).toBe('on');
   });
 
-  it('switches journey mode and verify notes', async () => {
+  it('switches journey mode; the team-only verify notes option is gone', async () => {
     const user = userEvent.setup();
     renderAt('/settings');
     await user.click(await screen.findByRole('button', { name: 'Free explore' }));
     expect(useProgress.getState().mode).toBe('free');
-    await user.click(screen.getByRole('checkbox', { name: 'Show verify notes (team)' }));
-    expect(useProgress.getState().settings.showVerifyNotes).toBe(true);
+    expect(screen.queryByRole('checkbox', { name: 'Show verify notes (team)' })).toBeNull();
   });
 
   it('Reset progress asks first, then starts again', async () => {

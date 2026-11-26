@@ -60,7 +60,8 @@ test('strings without a Filipino version fall back to English', async ({ page })
   await page.getByRole('main').getByRole('radio', { name: 'Filipino' }).click();
   await expect(page.locator('html')).toHaveAttribute('lang', 'fil');
   await expect(page.getByRole('main').getByRole('group', { name: 'Wika' })).toBeVisible();
-  await expect(page.getByRole('checkbox', { name: 'Show verify notes (team)' })).toBeVisible();
+  // "Same as my device" has no Filipino string yet: it shows in English.
+  await expect(page.getByRole('radio', { name: 'Same as my device' })).toBeVisible();
   await expect(page.getByRole('main').getByRole('radio', { name: 'Filipino' })).toBeFocused();
   await expectNoSeriousA11yIssues(page, 'settings in Filipino');
 });

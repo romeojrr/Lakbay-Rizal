@@ -70,7 +70,8 @@ export default function Layout() {
   const regionOnScreen =
     /^\/region\/([a-z]+)/.exec(pathname)?.[1] ??
     stops.find((s) => pathname.startsWith(`/stop/${s.id}`))?.region;
-  useMusic(regionOnScreen);
+  // The landing page and Settings have their own tunes; the map and stops play the region's.
+  useMusic(pathname === '/' ? 'world' : pathname === '/settings' ? 'settings' : regionOnScreen);
 
   // FR-71: text size and reduce motion apply to the whole page (see tokens.css, global.css).
   const { textSize, reduceMotion } = useProgress((s) => s.settings);

@@ -29,8 +29,54 @@ const MINOR = [0, 2, 3, 5, 7, 8, 10];
 const MAJOR = [0, 2, 4, 5, 7, 9, 11];
 const _ = null;
 
-/** Four original loops. The lead and bass arrays are the same length (one loop). */
+/** Original loops: one per region, plus the landing page ("world") and Settings. The lead
+ * and bass arrays are the same length (one loop). */
 export const TUNES: Record<string, Tune> = {
+  // The landing page: an opening theme, rising like a journey about to begin.
+  world: {
+    bpm: 132,
+    stepBeats: 0.5,
+    root: 62, // D
+    scale: MAJOR,
+    leadWave: 'triangle',
+    // prettier-ignore
+    lead: [
+      0, _, 2, 4, 7, _, 6, 4,
+      5, _, 4, 2, 4, _, _, _,
+      0, _, 2, 4, 7, _, 9, 7,
+      8, _, 7, 6, 7, _, _, _,
+    ],
+    // prettier-ignore
+    bass: [
+      -7, _, _, _, -3, _, _, _,
+      -4, _, _, _, -3, _, _, _,
+      -7, _, _, _, -5, _, _, _,
+      -6, _, _, _, -3, _, _, _,
+    ],
+  },
+  // Settings: a calm, slow, plucked tune.
+  settings: {
+    bpm: 76,
+    stepBeats: 1,
+    root: 65, // F
+    scale: MAJOR_PENTA,
+    leadWave: 'triangle',
+    pluck: true,
+    // prettier-ignore
+    lead: [
+      4, _, 3, _, 2, _, _, _,
+      3, _, 2, _, 1, _, _, _,
+      2, _, 1, _, 0, _, 1, _,
+      2, _, _, _, _, _, _, _,
+    ],
+    // prettier-ignore
+    bass: [
+      -5, _, _, _, _, _, _, _,
+      -4, _, _, _, _, _, _, _,
+      -3, _, _, _, _, _, _, _,
+      -5, _, _, _, _, _, _, _,
+    ],
+  },
   // Philippines: a gentle lilting tune in 6/8, like a song heard across the lake at dusk.
   philippines: {
     bpm: 168,

@@ -8,6 +8,7 @@ import { asset } from '../../lib/asset';
 import { play } from '../../lib/sound';
 import { useReducedMotion } from '../../lib/useReducedMotion';
 import { useProgress } from '../../store/progress';
+import { useUi } from '../../store/ui';
 import styles from './Landing.module.css';
 import { flyFrames, worldPoint } from './world';
 import WorldView from './WorldView';
@@ -37,8 +38,10 @@ export default function LandingPage() {
   const [phase, setPhase] = useState<'world' | 'flying' | 'landing'>('world');
   const target = getNextStop(stops, { completed }) ?? stops[0];
 
+  // Owner, 2026-11-26: every "Begin the journey" starts Rizal's tour on the map.
   const land = useCallback(() => {
     animation.current?.cancel();
+    useUi.getState().startTour();
     navigate(target ? `/region/${target.region}` : '/map');
   }, [navigate, target]);
 
@@ -115,8 +118,8 @@ export default function LandingPage() {
                 className={`pix ${styles.rizal}`}
                 src={asset('assets/sprites/rizal_adult_suit.png')}
                 alt=""
-                width={68}
-                height={156}
+                width={102}
+                height={234}
               />
               <span className={styles.ground} />
             </div>
@@ -129,24 +132,36 @@ export default function LandingPage() {
                 <span />
               </p>
               <p className={styles.tagline}>{t('landing.tagline')}</p>
-              <p className={styles.stats}>
-                {years
-                  ? t('landing.stats', {
-                      from: years[0] ?? '',
-                      to: years[1] ?? '',
-                      stops: stops.length,
-                      regions: regionCount,
-                    })
-                  : t('map.comingSoonTitle')}
-              </p>
-              <button type="button" className={styles.start} onClick={begin}>
-                {t('landing.start')} ▶
-              </button>
-              {started && target && (
-                <Link className={styles.continue} to="/map">
-                  {t('landing.continue', { place: target.place.label, year: target.year })}
-                </Link>
+              {years ? (
+                <dl className={styles.stats}>
+                  <div className={styles.stat}>
+                    <dt>{t('landing.statYears')}</dt>
+                    <dd>
+                      {years[0]} – {years[1]}
+                    </dd>
+                  </div>
+                  <div className={styles.stat}>
+                    <dt>{t('landing.statStops')}</dt>
+                    <dd>{stops.length}</dd>
+                  </div>
+                  <div className={styles.stat}>
+                    <dt>{t('landing.statRegions')}</dt>
+                    <dd>{regionCount}</dd>
+                  </div>
+                </dl>
+              ) : (
+                <p className={styles.soon}>{t('map.comingSoonTitle')}</p>
               )}
+              <div className={styles.actions}>
+                <button type="button" className={styles.start} onClick={begin}>
+                  {t('landing.start')} ▶
+                </button>
+                {started && target && (
+                  <Link className={styles.continue} to="/map">
+                    {t('landing.continue', { place: target.place.label, year: target.year })}
+                  </Link>
+                )}
+              </div>
             </div>
           </section>
         </div>

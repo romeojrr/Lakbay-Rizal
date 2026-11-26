@@ -34,11 +34,13 @@ export default function Pin({ group, compact, onLocked, index = 0, arriving }: P
   const style = {
     left: `calc(${group.point.x}% - 40px)`,
     top: `calc(${group.point.y}% - ${h}px)`,
+    '--h': `${h}px`,
     '--i': index,
     '--pop-delay': arriving ? '1500ms' : '0ms',
   } as React.CSSProperties;
   const content = (
     <>
+      {big && <span className={styles.glow} aria-hidden="true" />}
       <PinGlyph color={pinColor(stop, state)} dot={dot} big={big} />
       <span className={`pixel ${styles.label}`}>{state === 'locked' ? '?' : stop.place.label}</span>
     </>

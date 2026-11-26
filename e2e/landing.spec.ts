@@ -13,7 +13,12 @@ test('open "/", press "Begin the journey", land on the map with Calamba as the n
     page.getByRole('heading', { level: 1, name: 'Welcome to LAKBAY RIZAL' }),
   ).toBeVisible();
   await expect(page.getByText("Follow José Rizal's journey around the world.")).toBeVisible();
-  await expect(page.getByText(/^1861 – 1896 · 25 stops · 4 regions$/)).toBeVisible();
+  // Years, stops and regions as three tiles, from content.
+  const stats = page.locator('dl');
+  await expect(stats.getByText('1861 – 1896')).toBeVisible();
+  await expect(stats.getByText('Stops')).toBeVisible();
+  await expect(stats.getByText('25', { exact: true })).toBeVisible();
+  await expect(stats.getByText('4', { exact: true })).toBeVisible();
   // No saved progress yet: no Continue link. No top bar or bottom bar here.
   await expect(page.getByRole('link', { name: /^Continue/ })).toHaveCount(0);
   await expect(page.getByRole('banner')).toHaveCount(0);
@@ -79,5 +84,6 @@ test('Filipino: the card in Filipino', async ({ page }) => {
   await expect(
     page.getByText('Sundan ang paglalakbay ni José Rizal sa buong mundo.'),
   ).toBeVisible();
-  await expect(page.getByText(/^1861 – 1896 · 25 hinto · 4 rehiyon$/)).toBeVisible();
+  await expect(page.locator('dl').getByText('Hinto')).toBeVisible();
+  await expect(page.locator('dl').getByText('Rehiyon')).toBeVisible();
 });

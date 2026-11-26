@@ -82,11 +82,11 @@ describe('language switch (FR-86)', () => {
     const user = userEvent.setup();
     renderAt('/settings');
     await user.click(await screen.findByRole('radio', { name: 'Filipino' }));
-    // "Settings" has a Filipino string; the verify-notes option does not (yet).
+    // "Settings" has a Filipino string; the motion option "Same as my device" does not (yet).
     expect(await screen.findByRole('heading', { level: 1, name: 'Settings' })).toBeVisible();
     const main = screen.getByRole('main');
     expect(within(main).getByRole('group', { name: 'Wika' })).toBeVisible();
-    expect(screen.getByRole('checkbox', { name: 'Show verify notes (team)' })).toBeVisible();
+    expect(screen.getByRole('radio', { name: 'Same as my device' })).toBeVisible();
     expect(screen.getByRole('radio', { name: 'Filipino' })).toBeChecked();
     await waitFor(() => expect(screen.getByRole('radio', { name: 'Filipino' })).toHaveFocus());
   });

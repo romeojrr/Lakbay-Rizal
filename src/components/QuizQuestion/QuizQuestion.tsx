@@ -19,10 +19,18 @@ const QuizQuestion = forwardRef<HTMLParagraphElement, QuizQuestionProps>(functio
     <div className={styles.stage}>
       <img className={`pix ${styles.scene}`} src={asset(sceneImage)} alt="" />
       <div className={styles.card}>
-        <img className="pix" src={asset(stampIcon)} alt="" width={52} height={52} />
-        <p ref={ref} id="quiz-prompt" className={styles.prompt} tabIndex={-1}>
-          {prompt}
-        </p>
+        <div className={styles.head}>
+          <img
+            className={`pix ${styles.stamp}`}
+            src={asset(stampIcon)}
+            alt=""
+            width={52}
+            height={52}
+          />
+          <p ref={ref} id="quiz-prompt" className={styles.prompt} tabIndex={-1}>
+            {prompt}
+          </p>
+        </div>
         <div className={styles.body}>{children}</div>
       </div>
     </div>
