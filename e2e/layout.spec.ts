@@ -130,7 +130,7 @@ test('map: the map on the left, the side panel right beside it', async ({ page }
   expect(phonePanel.y).toBeGreaterThan(phoneMap.y + phoneMap.height - 1);
 });
 
-test('stop: scene and dialogue box on the left, info cards on the right; below on phones', async ({
+test('stop: the scene (dialogue box inside) on the left, info cards on the right; below on phones', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
@@ -140,9 +140,10 @@ test('stop: scene and dialogue box on the left, info cards on the right; below o
   const text = await page.locator('[data-step]').boundingBox();
   const cards = await page.getByRole('complementary', cardsRole).boundingBox();
   if (!scene || !text || !cards) throw new Error('missing');
-  expect(text.y).toBeGreaterThanOrEqual(scene.y + scene.height - 1);
+  // Wide screens: the dialogue box is inside the scene's frame, at its bottom.
+  expect(text.y).toBeGreaterThan(scene.y + scene.height / 2);
+  expect(text.y + text.height).toBeLessThanOrEqual(scene.y + scene.height);
   expect(cards.x).toBeGreaterThan(scene.x + scene.width - 1);
-  expect(scene.width / scene.height).toBeCloseTo(16 / 9, 1);
 
   await page.setViewportSize({ width: 360, height: 740 });
   const phoneText = await page.locator('[data-step]').boundingBox();

@@ -3,6 +3,7 @@ import { AMBIENT } from '../../components/SceneView/Ambient';
 import SceneView from '../../components/SceneView/SceneView';
 import type { Character, PlayableStop, Source } from '../../content/schemas';
 import { t } from '../../i18n/t';
+import { cx } from '../../lib/cx';
 import { useReducedMotion } from '../../lib/useReducedMotion';
 import { useUi } from '../../store/ui';
 import { buildSteps, stepText, types } from './steps';
@@ -33,6 +34,11 @@ interface StoryPlayerProps {
   textClassName?: string;
   /** The text box sits over the bottom of the scene (wide screens, §5.5). */
   overlay?: boolean;
+  /**
+   * Wide screens: the scene fills its parent (the same frame as the region maps) and the text
+   * box goes inside the frame, over the bottom of the scene.
+   */
+  framed?: boolean;
 }
 
 /** SRS v2.3 §3.6: the chapter-based story player over (or under) the scene. */
@@ -96,9 +102,48 @@ export default function StoryPlayer(props: StoryPlayerProps) {
   const chapter = story.chapters[step.chapter];
   const line = step.kind === 'line' ? chapter?.lines[step.line] : undefined;
   const bubbleAt = line?.onScene && !quiet ? story.scene.speakerAnchors?.[line.speaker] : undefined;
+  const framed = props.framed ?? false;
+
+  const textBox = (
+    <div className={cx(styles.box, framed && styles.boxFill)}>
+      <StoryPanel
+        story={story}
+        step={step}
+        stepKey={stepKey}
+        shown={typer.shown}
+        typing={!typer.done}
+        still={still}
+        quiet={quiet}
+        characters={characters}
+        sources={sources}
+      />
+      <StoryControls
+        chapter={step.chapter + 1}
+        chapters={story.chapters.length}
+        atStart={index === 0}
+        atEnd={atEnd}
+        quiet={quiet}
+        autoplay={autoplay}
+        endLink={endLink}
+        onNext={next}
+        onBack={back}
+        onSkip={() => go(last)}
+        onReplay={() => {
+          setFurthest(0);
+          setStoryStep(story.id, 0);
+        }}
+        onToggleAutoplay={() => toggleAutoplay?.()}
+      />
+      <p className="visually-hidden">{t('stop.playerHelp')}</p>
+    </div>
+  );
 
   return (
-    <section className={styles.player} style={{ width }} aria-label={t('stop.story')}>
+    <section
+      className={cx(styles.player, framed && styles.playerFill)}
+      style={{ width: framed ? undefined : width }}
+      aria-label={t('stop.story')}
+    >
       <SceneView
         scene={story.scene}
         place={story.place.label}
@@ -106,42 +151,13 @@ export default function StoryPlayer(props: StoryPlayerProps) {
         bubbleAt={bubbleAt}
         bubbleKey={stepKey}
         still={still}
-        covered={props.overlay}
+        covered={framed || props.overlay}
         ambient={quiet ? undefined : AMBIENT[story.id]}
-      />
-      <div className={props.textClassName}>
-        <div className={styles.box}>
-          <StoryPanel
-            story={story}
-            step={step}
-            stepKey={stepKey}
-            shown={typer.shown}
-            typing={!typer.done}
-            still={still}
-            quiet={quiet}
-            characters={characters}
-            sources={sources}
-          />
-          <StoryControls
-            chapter={step.chapter + 1}
-            chapters={story.chapters.length}
-            atStart={index === 0}
-            atEnd={atEnd}
-            quiet={quiet}
-            autoplay={autoplay}
-            endLink={endLink}
-            onNext={next}
-            onBack={back}
-            onSkip={() => go(last)}
-            onReplay={() => {
-              setFurthest(0);
-              setStoryStep(story.id, 0);
-            }}
-            onToggleAutoplay={() => toggleAutoplay?.()}
-          />
-          <p className="visually-hidden">{t('stop.playerHelp')}</p>
-        </div>
-      </div>
+        fill={framed}
+      >
+        {framed ? textBox : null}
+      </SceneView>
+      {!framed && <div className={props.textClassName}>{textBox}</div>}
     </section>
   );
 }

@@ -4,6 +4,40 @@
   border: var(--border);
 }
 
+.layer {
+  position: relative;
+}
+
+/* Wide screens: the same frame as the region maps. The picture covers the space above the
+   dialogue box, which sits inside the frame over the bottom of the scene. */
+.fillWood {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.fill {
+  flex: 1;
+  min-height: 0;
+  background: var(--ink);
+}
+
+.layerFill {
+  position: absolute;
+}
+
+/* The dialogue box. `--text-room` (set from the frame's height) is its usual height; a long
+   paragraph makes it grow upward over the scene, and past the frame it scrolls. */
+.text {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 4;
+  max-height: calc(100% - 24px);
+  overflow-y: auto;
+}
+
 /* v2.3 §3.6: the camera layer pans and zooms over 1.2 s (transform only). */
 .camera {
   transform-origin: 0 0;
@@ -20,6 +54,7 @@
 }
 
 .badge {
+  z-index: 3;
   position: absolute;
   left: 14px;
   top: 14px;

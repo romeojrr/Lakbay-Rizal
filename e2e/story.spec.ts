@@ -108,11 +108,37 @@ test('Read more: summary, then and today, date and sources (FR-33)', async ({ pa
   await expect(page).toHaveURL(/\/region\/europe$/);
 });
 
-test('the dialogue box sits under the scene at every width', async ({ page }) => {
+test('the dialogue box: inside the scene frame on wide screens, under it on phones', async ({
+  page,
+}, testInfo) => {
   await page.goto('/stop/calamba-1861');
-  const scene = await page.getByRole('img', { name: /Teodora Alonso reads/ }).boundingBox();
+  const picture = await page.getByRole('img', { name: /Teodora Alonso reads/ }).boundingBox();
+  const frame = await page.locator('[data-guide="scene"]').boundingBox();
   const box = await page.locator('[data-step]').boundingBox();
-  expect(scene && box).toBeTruthy();
-  const overlap = (scene?.y ?? 0) + (scene?.height ?? 0) - (box?.y ?? 0);
-  expect(overlap).toBeLessThanOrEqual(0);
+  expect(picture && frame && box).toBeTruthy();
+  if (!picture || !frame || !box) return;
+  const overlap = picture.y + picture.height - box.y;
+  if (testInfo.project.name === 'desktop') {
+    // Inside the frame, over only the last strip of the picture (the ground, not the people).
+    expect(box.y + box.height).toBeLessThanOrEqual(frame.y + frame.height);
+    expect(overlap).toBeGreaterThan(0);
+    expect(overlap).toBeLessThanOrEqual(40);
+  } else {
+    expect(overlap).toBeLessThanOrEqual(0);
+  }
+});
+
+test('wide screens: the scene frame is the same size as the map frame', async ({
+  page,
+}, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'two columns only on wide screens');
+  await page.goto('/region/philippines');
+  const map = await page.locator('[data-guide="map"]').boundingBox();
+  await page.goto('/stop/calamba-1861');
+  const scene = await page.locator('[data-guide="scene"]').boundingBox();
+  expect(map && scene).toBeTruthy();
+  // [data-guide=map] includes the wood frame; [data-guide=scene] is the picture inside it.
+  expect(Math.abs((scene?.x ?? 0) - (map?.x ?? 0))).toBeLessThanOrEqual(12);
+  expect(Math.abs((scene?.width ?? 0) - (map?.width ?? 0))).toBeLessThanOrEqual(24);
+  expect(Math.abs((scene?.height ?? 0) - (map?.height ?? 0))).toBeLessThanOrEqual(24);
 });

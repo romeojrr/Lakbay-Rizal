@@ -18,6 +18,12 @@
   min-width: 0;
 }
 
+/* Wide screens: exactly the map screen's map area, so scene and map frames match. */
+.stageFill {
+  height: var(--area-h);
+  min-height: 420px;
+}
+
 .cards {
   scrollbar-gutter: stable; /* same card width whether or not the panel scrolls */
   position: sticky;

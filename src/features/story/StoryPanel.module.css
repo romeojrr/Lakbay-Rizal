@@ -24,6 +24,24 @@
   min-height: 96px;
 }
 
+/* Inside the scene frame: the same height on every step, controls at the bottom. */
+.playerFill {
+  height: 100%;
+}
+
+.boxFill {
+  min-height: calc(var(--text-room) - 12px);
+}
+
+.boxFill .panel {
+  flex: 1;
+}
+
+/* The box is wide here: longer lines keep long paragraphs from covering the scene. */
+.boxFill .text {
+  max-width: 96ch;
+}
+
 .panel:focus {
   outline: none;
 }

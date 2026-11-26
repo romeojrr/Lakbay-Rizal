@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react';
 import ReadMoreDialog from '../../components/ReadMoreDialog/ReadMoreDialog';
 import SourceCard from '../../components/SourceCard/SourceCard';
 import type { Content, PlayableStop } from '../../content/schemas';
 import { t } from '../../i18n/t';
 import { useLanguage } from '../../i18n/useLanguage';
+import { cx } from '../../lib/cx';
 import { useSceneFit } from '../../lib/useSceneFit';
 import { useGame } from '../../game/useGame';
 import { useProgress } from '../../store/progress';
@@ -15,6 +16,27 @@ import styles from './StopPage.module.css';
 import { setQuiet } from '../../lib/sound';
 
 const SCENE = { w: 384, h: 216 };
+/** Same as the stop screen's container query: wider than this, the cards sit beside. */
+const WIDE = 960;
+
+/** True while the element is wider than the two-column breakpoint (and not a phone). */
+function useWide(ref: RefObject<HTMLElement>) {
+  const [wide, setWide] = useState(false);
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const measure = () => setWide(el.clientWidth > WIDE && window.innerHeight > 500);
+    measure();
+    window.addEventListener('resize', measure);
+    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(measure);
+    observer?.observe(el);
+    return () => {
+      window.removeEventListener('resize', measure);
+      observer?.disconnect();
+    };
+  }, [ref]);
+  return wide;
+}
 /** WoodFrame (8 px padding + 3 px border) and the scene's own 3 px border, on both sides. */
 const FRAME_CHROME = 28;
 /** Room kept under the scene for the dialogue box. */
@@ -35,6 +57,9 @@ export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
   const [readMoreOpen, setReadMoreOpen] = useState(false);
   const [atEnd, setAtEnd] = useState(false);
   const stageRef = useRef<HTMLDivElement>(null);
+  const screenRef = useRef<HTMLDivElement>(null);
+  // Wide screens: the scene uses the same frame as the region maps, text inside it.
+  const wide = useWide(screenRef);
   // Scene and dialogue box fit one screen together, like the map area (shared layout).
   const fit = useSceneFit(stageRef, SCENE.w, SCENE.h, FRAME_CHROME, DIALOGUE_ROOM);
   const visited = useProgress((s) => s.visited.includes(stop.id));
@@ -84,9 +109,9 @@ export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
   // Stop screen (v2.2 layout, improved): the scene with the dialogue box under it on the
   // left; This stop, the actions and the sources on the right. Phones: the cards go below.
   return (
-    <div className={styles.screen}>
+    <div ref={screenRef} className={styles.screen}>
       <div className={styles.layout}>
-        <div ref={stageRef} className={styles.stage}>
+        <div ref={stageRef} className={cx(styles.stage, wide && styles.stageFill)}>
           <StoryPlayer
             story={story}
             characters={content.characters}
@@ -94,6 +119,7 @@ export default function StopStory({ stop, content, isFinal }: StopStoryProps) {
             quiet={isFinal}
             endLink={endLink}
             width={fit.width}
+            framed={wide}
             onProgress={onProgress}
             textClassName={styles.dialogue}
           />
