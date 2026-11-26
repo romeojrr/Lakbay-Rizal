@@ -77,9 +77,11 @@ export function useTourTarget(
     };
   }, [element]);
 
+  const searching = id !== null && found?.key !== key;
   return {
     element,
-    box: element ? box : null,
-    searching: id !== null && found?.key !== key,
+    // While the next target is looked for, the last spotlight stays (no blink between steps).
+    box: element || searching ? box : null,
+    searching,
   };
 }

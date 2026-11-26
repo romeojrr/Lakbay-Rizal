@@ -41,10 +41,8 @@ export default function ReadMoreDialog({ stop, sources, open, onClose }: ReadMor
           <dd>{stop.dateLabel}</dd>
         </div>
       </dl>
-      <section className={styles.story}>
-        {paragraphs(stop.story)}
-        {stop.readMore && paragraphs(stop.readMore)}
-      </section>
+      {paragraphs(stop.story)}
+      {stop.readMore && paragraphs(stop.readMore)}
       <h3 className={styles.heading}>{t('stop.sources')}</h3>
       <ol className={styles.sources}>
         {stop.sources.map((ref) => {

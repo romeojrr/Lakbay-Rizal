@@ -93,6 +93,7 @@ export default function MapView({
         >
           <div
             className={cx('skeleton', styles.layer, dropIn && pinStyles.dropIn)}
+            data-map-layer={region.id}
             style={{
               width: layerWidth === undefined ? '100%' : `${layerWidth}px`,
               aspectRatio: `${region.w} / ${region.h}`,

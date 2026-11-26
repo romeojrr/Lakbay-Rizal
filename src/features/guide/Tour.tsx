@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, type CSSProperties } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useRootData } from '../../app/useRootData';
 import { t } from '../../i18n/t';
-import { useReducedMotion } from '../../lib/useReducedMotion';
 import { useProgress } from '../../store/progress';
 import { useUi } from '../../store/ui';
 import { buildSteps } from '../story/steps';
@@ -29,7 +28,6 @@ export default function Tour() {
   const { setTourStep, endTour } = useUi.getState();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const still = useReducedMotion();
   const cardRef = useRef<HTMLDivElement>(null);
   const step = active ? guide.tour[index] : undefined;
   const ready = step ? onRoute(step.route, pathname) : false;
@@ -100,7 +98,10 @@ export default function Tour() {
     if (step && ready && !searching) cardRef.current?.focus({ preventScroll: true });
   }, [step, ready, searching, index]);
 
-  if (!step || !ready || searching || stopId === stops.at(-1)?.id) return null;
+  if (!step || stopId === stops.at(-1)?.id) return null;
+  // Between steps (the page changing, or the next target being looked for) the dimmed page
+  // stays and only the card waits, so nothing blinks (owner, 2026-11-26).
+  const waiting = !ready || searching;
 
   const isLast = index === guide.tour.length - 1;
   const clickStep = step.next === 'click-target' && element;
@@ -158,8 +159,9 @@ export default function Tour() {
       {!clickStep && <div className={styles.blocker} aria-hidden="true" />}
       <div
         ref={cardRef}
-        className={`${styles.card} ${box ? styles.placed : styles.centred} ${still ? 'motion-fade' : styles.rise}`}
-        style={cardStyle}
+        className={`${styles.card} ${box ? styles.placed : styles.centred}`}
+        style={waiting ? { ...cardStyle, visibility: 'hidden' } : cardStyle}
+        aria-hidden={waiting || undefined}
         role="dialog"
         aria-modal={!clickStep}
         aria-label={t('guide.label')}

@@ -3,6 +3,7 @@ import type { PinGroup } from '../../features/map/mapModel';
 import { cx } from '../../lib/cx';
 import styles from './Pin.module.css';
 import PinGlyph, { PIN_SIZE } from './PinGlyph';
+import { useEnterStop } from '../MapView/useEnterStop';
 import { pinColor, pinName } from './pinLook';
 
 interface PinProps {
@@ -19,6 +20,7 @@ interface PinProps {
 /** One stop on the map: a link when open, a button that explains the lock otherwise (FR-12, FR-13, FR-18). */
 export default function Pin({ group, compact, onLocked, index = 0, arriving }: PinProps) {
   const { stop, state } = group.lead;
+  const enter = useEnterStop();
   const big = state === 'current';
   const { h } = big ? PIN_SIZE.big : PIN_SIZE.small;
   const dot =
@@ -66,6 +68,7 @@ export default function Pin({ group, compact, onLocked, index = 0, arriving }: P
       style={style}
       aria-label={pinName(stop, state)}
       data-guide={state === 'current' ? 'pin-current' : undefined}
+      onClick={(event) => enter(event, stop.id, stop.region, group.point)}
     >
       {content}
     </Link>

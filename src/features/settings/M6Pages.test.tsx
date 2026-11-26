@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
@@ -140,7 +140,8 @@ describe("Rizal's tour (FR-4, FR-84, SRS v2.3 §3.7)", () => {
     expect(within(card).getByText('Step 1 of 14')).toBeVisible();
     expect(card).toHaveAccessibleDescription(/^Good day! I am José Rizal/);
     await user.click(within(card).getByRole('button', { name: 'Next' }));
-    expect(await screen.findByText('Step 2 of 14', undefined, { timeout: 3000 })).toBeVisible();
+    // The card waits (hidden) while the next step's target is looked for, then shows.
+    await waitFor(() => expect(screen.getByText('Step 2 of 14')).toBeVisible(), { timeout: 3000 });
     await user.click(screen.getByRole('button', { name: 'Skip tour' }));
     expect(screen.queryByRole('dialog', { name: 'Tour with José Rizal' })).toBeNull();
     expect(useProgress.getState().tourDone).toBe(true);

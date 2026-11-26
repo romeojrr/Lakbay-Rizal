@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import ReadMoreDialog from '../../components/ReadMoreDialog/ReadMoreDialog';
 import SourceCard from '../../components/SourceCard/SourceCard';
 import type { Content, PlayableStop } from '../../content/schemas';
@@ -6,6 +6,7 @@ import { t } from '../../i18n/t';
 import { useLanguage } from '../../i18n/useLanguage';
 import { cx } from '../../lib/cx';
 import { useSceneFit } from '../../lib/useSceneFit';
+import { useWide } from '../../lib/useWide';
 import { useGame } from '../../game/useGame';
 import { useProgress } from '../../store/progress';
 import { chaptersReadAt, buildSteps } from '../story/steps';
@@ -16,27 +17,6 @@ import styles from './StopPage.module.css';
 import { setQuiet } from '../../lib/sound';
 
 const SCENE = { w: 384, h: 216 };
-/** Same as the stop screen's container query: wider than this, the cards sit beside. */
-const WIDE = 960;
-
-/** True while the element is wider than the two-column breakpoint (and not a phone). */
-function useWide(ref: RefObject<HTMLElement>) {
-  const [wide, setWide] = useState(false);
-  useLayoutEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const measure = () => setWide(el.clientWidth > WIDE && window.innerHeight > 500);
-    measure();
-    window.addEventListener('resize', measure);
-    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(measure);
-    observer?.observe(el);
-    return () => {
-      window.removeEventListener('resize', measure);
-      observer?.disconnect();
-    };
-  }, [ref]);
-  return wide;
-}
 /** WoodFrame (8 px padding + 3 px border) and the scene's own 3 px border, on both sides. */
 const FRAME_CHROME = 28;
 /** Room kept under the scene for the dialogue box. */

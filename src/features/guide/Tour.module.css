@@ -109,21 +109,6 @@
   padding: 4px 14px;
 }
 
-.rise {
-  animation: rise 220ms ease-out;
-}
-
-.centred.rise {
-  animation: none;
-}
-
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-}
-
 /* Phones: the card goes to the bottom (or top) edge, full width. */
 @media (max-width: 640px) {
   .placed {

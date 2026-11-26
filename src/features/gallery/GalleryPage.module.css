@@ -3,35 +3,56 @@
   composes: ui-btn from global;
 }
 
-/* Layout from Scenes.dc.html */
+/* The shared 70 / 30 layout (as the map and stop screens): the scene in the map's frame,
+   the list of scenes beside it. Under 960 px the list goes below. */
 .page {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 24px;
+  container: scenes / inline-size;
+}
+
+.grid {
+  max-width: var(--layout-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: var(--layout-split);
+  align-items: start;
+  gap: var(--layout-gap);
 }
 
 .main {
-  flex: 999 1 600px;
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
 }
 
-.scene {
-  position: relative;
+/* Wide screens: one screen tall, exactly the map area. */
+.mainFill {
+  height: var(--area-h);
+  min-height: 420px;
+}
+
+/* The scene's notes inside the frame, like the story's dialogue box. */
+.infoBox {
+  height: calc(var(--text-room) - 12px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 18px;
+  background: var(--dialogue-bg);
   border: var(--border);
+  box-shadow:
+    inset 0 0 0 2px var(--gold),
+    var(--shadow-panel);
   border-radius: var(--radius);
 }
 
-.image {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
+.infoBox .sceneTitle {
+  font-size: var(--fs-body);
 }
 
 .badges {
+  z-index: 3;
   position: absolute;
   left: 14px;
   top: 14px;
@@ -107,11 +128,13 @@
 }
 
 .list {
-  flex: 1 1 300px;
+  position: sticky;
+  top: 0;
   min-width: 0;
-  max-height: 780px;
+  max-height: var(--area-h);
   overflow-y: auto;
-  padding: 2px 10px 10px 2px;
+  scrollbar-gutter: stable; /* same width whether or not the list scrolls */
+  padding: 2px 6px 6px 2px;
 }
 
 .items {
@@ -194,6 +217,19 @@
   }
 
   .list {
+    position: static;
     max-height: none;
+  }
+}
+
+@container scenes (max-width: 960px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .list {
+    position: static;
+    max-height: none;
+    overflow: visible;
   }
 }

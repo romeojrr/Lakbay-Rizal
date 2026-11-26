@@ -29,6 +29,8 @@ interface SceneViewProps {
    */
   fill?: boolean;
   children?: ReactNode;
+  /** Replaces the "Place · year" heading (the Scenes page shows its own badges). */
+  badge?: ReactNode;
 }
 
 /** With the text box over the bottom ~40 % of the scene, the open area is centred here. */
@@ -75,6 +77,7 @@ export default function SceneView({
   ambient,
   fill,
   children,
+  badge,
 }: SceneViewProps) {
   const view = cameraView(camera, covered ? COVERED_FOCUS_Y : 50);
   const bubble = bubbleAt ? onScreen(view, bubbleAt) : undefined;
@@ -147,7 +150,7 @@ export default function SceneView({
             </span>
           )}
         </div>
-        <h1 className={styles.badge}>{t('stop.badge', { place, year })}</h1>
+        {badge ?? <h1 className={styles.badge}>{t('stop.badge', { place, year })}</h1>}
         {fill && children && (
           <div
             className={styles.text}

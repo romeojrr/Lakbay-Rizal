@@ -4,6 +4,7 @@ import type { MapStop } from '../../features/map/mapModel';
 import { t } from '../../i18n/t';
 import { asset } from '../../lib/asset';
 import Chip from '../Chip/Chip';
+import { useEnterStop } from '../MapView/useEnterStop';
 import Panel from '../Panel/Panel';
 import styles from './StopCard.module.css';
 
@@ -17,6 +18,7 @@ interface StopCardProps {
 
 /** "Next stop" card with scene thumbnail, theme chip, teaser and Enter button (FR-17). */
 export default function StopCard({ member, regionLabel, nextElsewhere }: StopCardProps) {
+  const enter = useEnterStop();
   if (!member) {
     return (
       <Panel className={styles.body}>
@@ -59,7 +61,11 @@ export default function StopCard({ member, regionLabel, nextElsewhere }: StopCar
             )}
           </>
         ) : (
-          <Link className={styles.enter} to={`/stop/${stop.id}`}>
+          <Link
+            className={styles.enter}
+            to={`/stop/${stop.id}`}
+            onClick={(event) => enter(event, stop.id, stop.region, member.point)}
+          >
             {t('card.enter', { place: stop.place.label })}
           </Link>
         )}
