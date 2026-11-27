@@ -89,7 +89,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tip {
+  :root:not([data-motion='off']) .tip {
     transition: none;
   }
+}
+
+:root[data-motion='on'] .tip {
+  transition: none;
 }

@@ -191,3 +191,16 @@
   margin: 20px 0 0;
   font-size: var(--fs-small);
 }
+
+/* "Your device asks for less motion…": a quiet note under the Reduce motion choice. */
+.note {
+  margin: -6px 0 0;
+  max-width: 60ch;
+  padding: 10px 14px;
+  font-size: var(--fs-small);
+  color: var(--ink);
+  background: var(--card-warm);
+  border: var(--border-thin);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius);
+}

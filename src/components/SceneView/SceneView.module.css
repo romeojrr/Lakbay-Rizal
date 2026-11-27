@@ -93,6 +93,18 @@
   }
 }
 
+/* Reduced motion: the same change of picture as a plain fade; nothing scales or moves. */
+.fadeInStill {
+  position: relative;
+  animation: scene-fade 500ms ease-in-out both;
+}
+
+@keyframes scene-fade {
+  from {
+    opacity: 0;
+  }
+}
+
 .badgeIn {
   animation: badge-in 600ms ease-out 300ms both;
 }
@@ -159,11 +171,17 @@
   transform: translateX(-1px) scale(0.96);
 }
 
+/* Reduced motion (unless Settings says Off, or says On on any device): the arrow keeps still. */
 @media (prefers-reduced-motion: reduce) {
-  .back:hover,
-  .back:active {
+  :root:not([data-motion='off']) .back:hover,
+  :root:not([data-motion='off']) .back:active {
     transform: none;
   }
+}
+
+:root[data-motion='on'] .back:hover,
+:root[data-motion='on'] .back:active {
+  transform: none;
 }
 
 /* "…" above the speaker; its bottom centre sits on the anchor. */

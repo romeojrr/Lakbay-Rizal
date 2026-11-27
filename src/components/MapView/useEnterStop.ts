@@ -15,6 +15,8 @@ const ZOOM = 4.5;
 const VEIL_IN_MS = 450;
 const VEIL_OUT_MS = 400;
 const WHITE = '#fffdf8';
+/** Reduced motion: the fade to white before the stop opens. */
+const STILL_VEIL_MS = 250;
 
 /** A zoom is playing: more clicks wait for it instead of starting another. */
 let zooming = false;
@@ -70,7 +72,7 @@ function zoomInto(region: string, point: { x: number; y: number }): Promise<void
  * A white veil over the page area (not the top bar), fading in over the last part of the zoom.
  * It lives on <body>, so it stays while the stop page replaces the map, then fades away.
  */
-function whiteVeil(): { lift: () => void } {
+function whiteVeil(inMs = VEIL_IN_MS, delay = ENTER_MS - VEIL_IN_MS): { lift: () => void } {
   const area = document.querySelector('main')?.getBoundingClientRect();
   const veil = document.createElement('div');
   veil.setAttribute('aria-hidden', 'true');
@@ -88,8 +90,8 @@ function whiteVeil(): { lift: () => void } {
   });
   document.body.append(veil);
   veil.animate([{ opacity: 0 }, { opacity: 1 }], {
-    duration: VEIL_IN_MS,
-    delay: ENTER_MS - VEIL_IN_MS,
+    duration: inMs,
+    delay,
     easing: 'ease-in',
     fill: 'forwards',
   });
@@ -117,8 +119,22 @@ export function useEnterStop() {
   const still = useReducedMotion();
   return useCallback(
     (event: MouseEvent, stopId: string, region: string, point: { x: number; y: number }) => {
-      // New tab, new window, or reduced motion: the link works as a plain link.
-      if (still || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey) return;
+      // New tab or new window: the link works as a plain link.
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey) return;
+      if (still) {
+        // Reduced motion: no zoom, just a short fade to white and back (opacity only).
+        event.preventDefault();
+        if (zooming) return;
+        zooming = true;
+        const to = `/stop/${stopId}`;
+        const veil = whiteVeil(STILL_VEIL_MS, 0);
+        window.setTimeout(() => {
+          zooming = false;
+          if (window.location.pathname !== to) navigate(to);
+          veil.lift();
+        }, STILL_VEIL_MS);
+        return;
+      }
       if (!document.querySelector(`[data-map-layer="${region}"]`)) return;
       event.preventDefault();
       if (zooming) return;

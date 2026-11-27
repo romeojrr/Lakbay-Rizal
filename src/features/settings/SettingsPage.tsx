@@ -8,6 +8,7 @@ import { getTranslations, isDraftTranslation } from '../../content/translations'
 import { LANGS, type Lang } from '../../i18n/language';
 import { t, type MessageKey } from '../../i18n/t';
 import { changeLanguage, useLanguage, useRestoreFocus } from '../../i18n/useLanguage';
+import { useDeviceWantsLessMotion } from '../../lib/useReducedMotion';
 import { useProgress, type Progress } from '../../store/progress';
 import { useUi } from '../../store/ui';
 import styles from './SettingsPage.module.css';
@@ -111,6 +112,10 @@ export default function SettingsPage() {
     setMessage(t('settings.resetDone'));
   };
 
+  // Owner, 2026-11-27: animations seemed broken on a PC with Windows "Animation effects" off.
+  const deviceLessMotion = useDeviceWantsLessMotion();
+  const reduceMotion = useProgress((s) => s.settings.reduceMotion);
+
   return (
     <Panel className={styles.panel}>
       <h1 className={styles.title}>{t('settings.title')}</h1>
@@ -133,6 +138,11 @@ export default function SettingsPage() {
           { value: 'off', label: 'settings.off' },
         ]}
       />
+      {deviceLessMotion && reduceMotion === 'system' && (
+        <p className={styles.note} role="note">
+          {t('settings.motionDevice')}
+        </p>
+      )}
       <div className={styles.fieldset}>
         <ModeToggle mode={mode} onChange={setMode} />
       </div>

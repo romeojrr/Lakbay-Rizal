@@ -319,6 +319,7 @@
     "large": "Large",
     "motion": "Reduce motion",
     "motionHelp": "Turns off sliding and pop-in animations.",
+    "motionDevice": "Your device asks for less motion, so the game keeps to gentle fades. To see every animation, choose Off, or turn on Animation effects in your device's settings.",
     "system": "Same as my device",
     "on": "On",
     "off": "Off",

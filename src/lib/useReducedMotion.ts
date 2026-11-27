@@ -14,6 +14,11 @@ function subscribe(onChange: () => void) {
 const deviceWantsLess = () =>
   typeof window !== 'undefined' && !!window.matchMedia && window.matchMedia(QUERY).matches;
 
+/** The device itself asks for less motion (e.g. Windows "Animation effects" is off). */
+export function useDeviceWantsLessMotion(): boolean {
+  return useSyncExternalStore(subscribe, deviceWantsLess, () => false);
+}
+
 export function useReducedMotion(): boolean {
   const setting = useProgress((s) => s.settings.reduceMotion);
   const device = useSyncExternalStore(subscribe, deviceWantsLess, () => false);

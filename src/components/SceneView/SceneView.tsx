@@ -46,6 +46,8 @@ interface SceneViewProps {
 
 /** A change of picture (another place in the story) cross-fades over this long. */
 export const SCENE_FADE_MS = 1200;
+/** With reduced motion: a plain opacity cross-fade, shorter, nothing moves or scales. */
+export const STILL_SCENE_FADE_MS = 500;
 
 /** With the text box over the bottom ~40 % of the scene, the open area is centred here. */
 const COVERED_FOCUS_Y = 35;
@@ -108,16 +110,16 @@ export default function SceneView({
     before: null,
   });
   if (pictures.now !== scene.image) {
-    setPictures({ now: scene.image, before: still ? null : pictures.now });
+    setPictures({ now: scene.image, before: pictures.now });
   }
   useEffect(() => {
     if (!pictures.before) return;
     const timer = window.setTimeout(
       () => setPictures((p) => ({ ...p, before: null })),
-      SCENE_FADE_MS,
+      still ? STILL_SCENE_FADE_MS : SCENE_FADE_MS,
     );
     return () => window.clearTimeout(timer);
-  }, [pictures.before]);
+  }, [pictures.before, still]);
 
   // Size the picture to the frame. The text box's room depends on the frame only, not on the
   // box's height, so the picture does not jump between steps.
@@ -155,7 +157,15 @@ export default function SceneView({
 
   // The badge names the place on screen; it fades over when the story moves elsewhere.
   const heading = (
-    <h1 key={place} className={cx(styles.badge, pictures.before && styles.badgeIn)}>
+    <h1
+      key={place}
+      // An opacity fade only, so it stays on with reduced motion too (motion-ok).
+      className={cx(
+        styles.badge,
+        pictures.before && styles.badgeIn,
+        pictures.before && 'motion-ok',
+      )}
+    >
       {year === null ? place : t('stop.badge', { place, year })}
     </h1>
   );
@@ -185,7 +195,13 @@ export default function SceneView({
             )}
             <img
               key={scene.image}
-              className={cx('pix', styles.image, pictures.before && styles.fadeIn)}
+              className={cx(
+                'pix',
+                styles.image,
+                pictures.before && (still ? styles.fadeInStill : styles.fadeIn),
+                // Reduced motion keeps this gentle fade (opacity only), as SRS §5.6 allows.
+                pictures.before && still && 'motion-ok',
+              )}
               src={asset(scene.image)}
               alt={scene.alt}
             />

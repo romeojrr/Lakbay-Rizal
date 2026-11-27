@@ -74,9 +74,14 @@ export async function horizontalOverflow(page: Page): Promise<number> {
 
 /** Reads to the end of the stop's story with the → key (there is no "Skip to the end"). */
 export async function finishStory(page: Page) {
+  // Wait for the story itself first: opening a stop from the map plays the Enter zoom (2.4 s)
+  // before the stop page loads, and key presses sent during it were lost on the map. On a busy
+  // machine that used up the presses below and the story never reached its end.
+  await page.waitForURL(/\/stop\//);
+  await expect(page.getByRole('region', { name: 'Story' })).toBeVisible({ timeout: 15_000 });
   const replay = page.getByRole('button', { name: 'Replay ↺' });
   // A few presses between checks: each step takes two (finish the typing, then move on).
-  for (let i = 0; i < 40 && !(await replay.isVisible()); i++) {
+  for (let i = 0; i < 60 && !(await replay.isVisible()); i++) {
     for (let k = 0; k < 4; k++) await page.keyboard.press('ArrowRight');
   }
   await expect(replay).toBeVisible();

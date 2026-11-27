@@ -118,6 +118,7 @@
     "language": "Wika",
     "textSize": "Laki ng teksto",
     "motion": "Bawasan ang galaw",
+    "motionDevice": "Humihiling ang iyong device ng mas kaunting galaw, kaya mahihinang fade lang ang ipinapakita ng laro. Para makita ang lahat ng animasyon, piliin ang Off, o buksan ang Animation effects sa settings ng iyong device.",
     "sound": "Tunog",
     "music": "Musika",
     "replayTour": "Ulitin ang tour",
