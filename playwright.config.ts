@@ -16,6 +16,10 @@ export default defineConfig({
   use: {
     baseURL: `http://localhost:${PORT}`,
     trace: 'on-first-retry',
+    // The offline cache fills in the background and competes with the page's own image loads,
+    // which made the long all-stops test fail now and then under load. Only the offline test
+    // needs the service worker; it turns it back on for itself (e2e/offline.spec.ts).
+    serviceWorkers: 'block',
   },
   projects: [
     {

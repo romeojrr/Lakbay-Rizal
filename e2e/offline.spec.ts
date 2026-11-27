@@ -17,6 +17,9 @@ async function waitForServer(url: string) {
   throw new Error(`${url} did not start`);
 }
 
+// This test is about the service worker, so it is allowed here (blocked in the other tests).
+test.use({ serviceWorkers: 'allow' });
+
 test.beforeEach(async ({ page }) => {
   await skipIntroOnFreshProfile(page);
 });

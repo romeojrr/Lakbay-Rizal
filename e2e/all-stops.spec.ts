@@ -20,10 +20,16 @@ const stops = (JSON.parse(readFileSync('public/content/stops.json', 'utf8')) as 
 );
 
 /** Every image on the page has loaded (scenes, sprites, portraits, stamps, item icons). */
+// One check, not two: waiting for "complete" and then reading the images later raced with a page
+// that was still mounting (its new images counted as broken). Now it waits until every image
+// has really loaded; a truly broken one still fails, and is listed, after the timeout.
 async function expectImagesLoaded(page: Page, where: string) {
-  await page.waitForFunction(() => [...document.images].every((img) => img.complete));
+  const allLoaded = () => [...document.images].every((img) => img.complete && img.naturalWidth > 0);
+  await page.waitForFunction(allLoaded, null, { timeout: 15_000 }).catch(() => undefined);
   const broken = await page.evaluate(() =>
-    [...document.images].filter((img) => img.naturalWidth === 0).map((img) => img.src),
+    [...document.images]
+      .filter((img) => !img.complete || img.naturalWidth === 0)
+      .map((img) => img.src),
   );
   expect(broken, `broken images on ${where}`).toEqual([]);
 }
@@ -44,6 +50,7 @@ async function playStopQuiz(page: Page, stop: SeedStop) {
 
 async function playBuilder(page: Page) {
   await page.getByRole('link', { name: 'Build the town ▶' }).click();
+  await page.waitForURL(/\/dapitan\/build/);
   await expectImagesLoaded(page, 'builder');
   await page.getByRole('button', { name: 'Build the Clinic' }).click();
   await page.getByRole('button', { name: 'Build the Water system' }).click();
