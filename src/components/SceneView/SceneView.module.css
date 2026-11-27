@@ -63,12 +63,41 @@
   inset: 0;
 }
 
+/* A slow, eased cross-fade: the new picture fades in over the old one while it settles from a
+   touch larger to its place, so the change feels like a camera easing in (owner: smoother). */
 .fadeIn {
   position: relative;
-  animation: scene-in 700ms ease-in-out both;
+  transform-origin: 50% 60%;
+  animation: scene-in 1200ms cubic-bezier(0.33, 0, 0.2, 1) both;
 }
 
 @keyframes scene-in {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* The old picture eases back a little as it is covered. */
+.before {
+  animation: scene-out 1200ms cubic-bezier(0.33, 0, 0.2, 1) both;
+}
+
+@keyframes scene-out {
+  to {
+    transform: scale(0.985);
+  }
+}
+
+.badgeIn {
+  animation: badge-in 600ms ease-out 300ms both;
+}
+
+@keyframes badge-in {
   from {
     opacity: 0;
   }

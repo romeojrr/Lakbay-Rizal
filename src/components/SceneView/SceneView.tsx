@@ -18,7 +18,8 @@ import styles from './SceneView.module.css';
 interface SceneViewProps {
   scene: { image: string; alt: string };
   place: string;
-  year: number;
+  /** null: the badge shows the place alone (a picture with no single year). */
+  year: number | null;
   /** v2.3 §3.6: the chapter's framing. Leave out for the whole scene. */
   camera?: Camera;
   /** Scene point (in %) of the speaker; shows the "…" bubble there (FR-34). */
@@ -44,7 +45,7 @@ interface SceneViewProps {
 }
 
 /** A change of picture (another place in the story) cross-fades over this long. */
-export const SCENE_FADE_MS = 700;
+export const SCENE_FADE_MS = 1200;
 
 /** With the text box over the bottom ~40 % of the scene, the open area is centred here. */
 const COVERED_FOCUS_Y = 35;
@@ -152,6 +153,13 @@ export default function SceneView({
       : { width: '100%', top: 0, left: 0 }
     : undefined;
 
+  // The badge names the place on screen; it fades over when the story moves elsewhere.
+  const heading = (
+    <h1 key={place} className={cx(styles.badge, pictures.before && styles.badgeIn)}>
+      {year === null ? place : t('stop.badge', { place, year })}
+    </h1>
+  );
+
   return (
     <WoodFrame className={cx(fill && styles.fillWood)}>
       <div
@@ -200,10 +208,10 @@ export default function SceneView({
             <Link className={styles.back} to={back.to} aria-label={back.label} title={back.label}>
               <span aria-hidden="true">◀</span>
             </Link>
-            {badge ?? <h1 className={styles.badge}>{t('stop.badge', { place, year })}</h1>}
+            {badge ?? heading}
           </div>
         ) : (
-          (badge ?? <h1 className={styles.badge}>{t('stop.badge', { place, year })}</h1>)
+          (badge ?? heading)
         )}
         {fill && children && (
           <div

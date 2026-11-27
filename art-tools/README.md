@@ -28,6 +28,14 @@ python3 scene_makiling1887.py     # → assets/scenes/makiling_1887.png   (Calam
 ```
 A stop lists these in `scene.places`; `chapters[].narrationScenes` says which narration paragraph shows which.
 ```
+python3 places_philippines.py     # 8 pictures: Pasig 1868, Biñan by night, Laguna 1870, Manila Bay 1882,
+                                  # the railway north 1892, Dapitan's mail steamer and relief map, the Fort Santiago chapel
+python3 places_asia_america.py    # 4: a steamer's deck at sea, San Francisco Bay 1888, Niagara Falls, Sandakan 1892
+python3 places_europe.py          # 11: Suez, Château d'If, Luna's studio, Heidelberg eye hospital, Dresden,
+                                  # the Berlin room, the Blumentritts' table, Rome, Chalcot Crescent, Ghent, Montjuïc
+```
+Each writes `out/scene_<name>.png` (ship it as `assets/scenes/story_<name>.png`), a 3× preview and contact sheets (`out/sheet_*.png`) for checking several at once. `places_kit.py` holds the shared parts (steamer, moon, stars, room, stepped gable).
+```
 Each writes `out/scene_<name>.png` (ship this) and `out/prev_<name>.png` (3× preview to look at). The v2.1 scripts also print each speaker's anchor (`{'rizal': {'x': 43.5, 'y': 58}}`); copy it into the stop's `scene.speakerAnchors`. Shipped file names are listed in SRS §7.8 (for example `scene_binan.py` → `assets/scenes/binan_1869.png`).
 
 `kit2.py` holds the shared v2.1 parts: `place()` (paste a sprite by its feet, return its anchor), bookshelf, table, chair, oil lamp, water with reflections, rain, falling petals or snow, European windows.

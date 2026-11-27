@@ -143,7 +143,7 @@ export default function StoryPlayer(props: StoryPlayerProps) {
       <SceneView
         scene={place ?? story.scene}
         place={place?.label ?? story.place.label}
-        year={story.year}
+        year={place && place.year !== undefined ? place.year : story.year}
         bubbleAt={place ? undefined : bubbleAt}
         bubbleKey={stepKey}
         still={still}

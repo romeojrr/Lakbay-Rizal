@@ -401,6 +401,14 @@
       "x": 70,
       "y": 72
      }
+    },
+    "places": {
+     "pasig": {
+      "image": "/assets/scenes/story_pasig_1868.png",
+      "label": "Pasig River",
+      "alt": "A casco, a heavy cargo boat with a curved roof of matting, on the Pasig River, with nipa houses on stilts, bamboo and palms along the bank and the hills of Antipolo beyond",
+      "year": 1868
+     }
     }
    },
    "dialogue": {
@@ -717,6 +725,10 @@
       "His education went on at home. His father hired an old man, a former schoolmate of his, to teach José the first steps in Latin; the old teacher lived with the family until he died five months later. The boy drew, modelled small figures in clay, and wrote verses.",
       "In June 1868, just after his sister Trinidad was born, he travelled with his father up the Pasig River to Manila in a casco, a heavy cargo boat. They stopped at Cainta, Taytay and Antipolo, and in Santa Ana he visited his eldest sister, Saturnina, who was studying at La Concordia College. He was happy at every stop along the river. Back in Calamba, his parents decided that their bright, small son needed a real school. His father had been born in Biñan, a larger town to the north, and that is where they would send him."
      ],
+     "narrationScenes": [
+      null,
+      "pasig"
+     ],
      "lines": [
       {
        "speaker": "teodora",
@@ -764,6 +776,19 @@
      "jose-boy": {
       "x": 38.5,
       "y": 64
+     }
+    },
+    "places": {
+     "night": {
+      "image": "/assets/scenes/story_binan_1869.png",
+      "label": "Biñan by moonlight",
+      "alt": "Biñan at night under the moon: a bahay na bato with one lit capiz window, nipa houses, a mango tree and an empty dirt street"
+     },
+     "lake": {
+      "image": "/assets/scenes/story_laguna_1870.png",
+      "label": "Laguna de Bay",
+      "alt": "A small lake steamer with an awning nears Calamba's shore on Laguna de Bay, Mount Makiling behind the town and a boat rowing out to meet it",
+      "year": 1870
      }
     }
    },
@@ -1007,6 +1032,10 @@
       "One Sunday in 1869, Paciano took his younger brother to Biñan, about an hour and a half away by carriage. Their father had been born there, and he wanted José to go on with the Latin he had begun at home. The parting was tearful for his parents and sisters, but José, as he later wrote, managed to hide his own tears.",
       "They reached Biñan at nightfall and went to the house of an aunt, where José would live. She was over seventy and liked to sit on the floor reading the Bible in Tagalog. Two cousins and three half-cousins lived there too. That first night a cousin walked him around the town under the moon. Biñan seemed large and wealthy to him, but \"neither attractive nor cheerful\"."
      ],
+     "narrationScenes": [
+      null,
+      "night"
+     ],
      "lines": [
       {
        "speaker": "jose-boy",
@@ -1109,6 +1138,10 @@
      "narration": [
       "Late in 1870 a letter came from his sister Saturnina: the steamer Talim would stop at Biñan to bring him home. He said goodbye to his friends and thanked his teacher. Looking back, he decided that the maestro had punished him out of kindness, and that \"his heart was heavy when he did it\".",
       "He left on Saturday afternoon, 17 December 1870. It was the first steamer he had ever seen, and he thought it beautiful. He was the only passenger from Biñan. A Frenchman, Arturo Camps, a friend of his father, looked after him on board. When Calamba's shore came into view he wanted to jump into the first banca; a deckhand lifted him into the captain's boat, four sailors rowed them ashore, and a servant was waiting with a carriage. He found himself home again, \"happy in the love of my family\". His time in Biñan had lasted only about a year and a half, but he had learned Latin and Spanish grammar, and that he could hold his own among older boys."
+     ],
+     "narrationScenes": [
+      null,
+      "lake"
      ],
      "lines": [
       {
@@ -1521,6 +1554,14 @@
       "x": 56.0,
       "y": 58
      }
+    },
+    "places": {
+     "bay": {
+      "image": "/assets/scenes/story_manilabay_1882.png",
+      "label": "Manila Bay",
+      "alt": "Manila Bay before dawn: a mail steamer with its lamps lit and smoke rising, the low city and its church towers dark against the first light",
+      "year": 1882
+     }
     }
    },
    "dialogue": {
@@ -1842,6 +1883,10 @@
       "On 8 December 1880 a student society at the Ateneo staged his play \"Junto al Pasig\" (Beside the Pasig), on the feast of the Immaculate Conception, a big day in the school's calendar. In it he put criticism of Spain into the mouth of the devil, a joke the authorities did not miss. Around the same time, on vacation in Calamba, he passed a dark figure in the street one night without saluting. It was a lieutenant of the Guardia Civil, who struck him across the back with his sword. Rizal complained to the authorities, and nothing came of it.",
       "By 1882 he and Paciano had made a secret plan: he would finish his studies in Spain, where he could learn freely and observe how Europe lived. His brother would find the money; a sister gave him a diamond ring to pawn if he needed it. He would not tell his parents; Paciano would explain once he was safely away. On 3 May 1882, before dawn, he sailed."
      ],
+     "narrationScenes": [
+      null,
+      "bay"
+     ],
      "lines": [
       {
        "speaker": "paciano",
@@ -1889,6 +1934,23 @@
      "gentleman": {
       "x": 43.0,
       "y": 58
+     }
+    },
+    "places": {
+     "bay": {
+      "image": "/assets/scenes/story_manilabay_1882.png",
+      "label": "Manila Bay",
+      "alt": "Manila Bay before dawn: a mail steamer with its lamps lit and smoke rising, the low city and its church towers dark against the first light"
+     },
+     "suez": {
+      "image": "/assets/scenes/story_suez_1882.png",
+      "label": "Suez Canal",
+      "alt": "A steamer passing through the Suez Canal between low sand banks, with palms and a white house at a canal station"
+     },
+     "chateau": {
+      "image": "/assets/scenes/story_chateaudif_1882.png",
+      "label": "Château d'If",
+      "alt": "The Château d'If, the island prison off Marseille: a square stone castle with round towers inside ramparts on a rocky island, with the hills of Marseille and Notre-Dame de la Garde behind"
      }
     }
    },
@@ -2127,6 +2189,10 @@
       "Rizal left Manila on 3 May 1882 aboard the steamer Salvadora, travelling under the name José Mercado. His parents were not told. Only his brother, a few relatives and some friends knew. To avoid suspicion he first went home to Calamba as if on an ordinary visit, then slipped back to Manila and boarded after midnight. By daybreak he was on his way to Singapore. After he was gone, Paciano had to pretend to search Manila for his missing brother.",
       "Why such secrecy? A student who left the colony to study abroad without the authorities' approval could bring suspicion on his whole family, and the Mercados were already watched. Once his absence was discovered, relatives in Calamba were followed and questioned. Money for the journey came from Paciano and an uncle, and was later sent to him through a cousin in Manila, so that the estate's managers would not learn of it."
      ],
+     "narrationScenes": [
+      "bay",
+      null
+     ],
      "lines": [
       {
        "speaker": "rizal",
@@ -2147,6 +2213,10 @@
      "narration": [
       "With a sketchbook in hand, he drew his fellow passengers and kept a diary of everything he saw. At Singapore he changed to the French mail steamer Djemnah. He crossed the Indian Ocean, stopped at Aden, and sailed through the Suez Canal, which had opened only thirteen years before. From Marseille he took the train across the Pyrenees mountains into Spain. At the frontier town of Port Bou, he noted, the Spanish customs officers reminded him of the worst kind of official in Manila. On 16 June 1882 he reached Barcelona.",
       "In Marseille, before the train, he found time to visit the Château d'If, the island prison made famous by The Count of Monte Cristo, the novel that had thrilled him as a schoolboy. He also noticed how differently he was treated on each side of the border: courteously by French officials, coldly by Spanish ones."
+     ],
+     "narrationScenes": [
+      "suez",
+      "chateau"
      ],
      "lines": [
       {
@@ -2596,6 +2666,13 @@
       "x": 46.5,
       "y": 58
      }
+    },
+    "places": {
+     "studio": {
+      "image": "/assets/scenes/story_lunastudio_1885.png",
+      "label": "Juan Luna's studio",
+      "alt": "Juan Luna's studio in Paris: a great canvas on an easel, others turned to the wall, a slanted north window, a model's platform with a red drape, and fencing foils and masks on the wall"
+     }
     }
    },
    "dialogue": {
@@ -2883,6 +2960,11 @@
       "Luna used his friend as a model. Rizal posed as an Egyptian priest in Luna's painting The Death of Cleopatra, and as the chieftain Sikatuna in The Blood Compact, a painting of the sixteenth-century friendship pact between Sikatuna and the Spaniard Legazpi. The two friends argued about art and politics and fenced on Sundays.",
       "Trinidad Pardo de Tavera loved the study of languages and Félix loved art; both shared Rizal's belief that education was the way forward for their people. The painting of the Blood Compact also carried a message. The pact of 1565, sealed with drops of blood in wine, recalled a time when a Spaniard and a Filipino had met as equals, a promise reformers felt Spain had long since broken."
      ],
+     "narrationScenes": [
+      null,
+      "studio",
+      null
+     ],
      "lines": [
       {
        "speaker": "luna",
@@ -2952,6 +3034,13 @@
      "rizal": {
       "x": 43.5,
       "y": 58
+     }
+    },
+    "places": {
+     "ward": {
+      "image": "/assets/scenes/story_eyeclinic_1886.png",
+      "label": "University Eye Hospital",
+      "alt": "A ward of the University Eye Hospital in Heidelberg: iron beds with white sheets under tall windows on the wooded hills"
      }
     }
    },
@@ -3198,6 +3287,11 @@
       "His work was at the University Eye Hospital under Professor Otto Becker, a leading German eye specialist. He examined patients, watched operations and assisted where he could, and attended lectures in medicine and other subjects.",
       "He also watched German life closely and wrote home about it. In a letter to his sister Trinidad he admired German women as serious, hard-working and well educated, and hoped Filipino women would have the same chance to study. He liked the German custom of introducing oneself at gatherings instead of waiting to be introduced, and the order and cleanliness of German towns.",
       "German universities then led the world in medical research, and Heidelberg's eye clinic was among the best. For Rizal, it was a chance to learn the newest methods of examining and operating on the eye, the very skills he hoped to use on his mother."
+     ],
+     "narrationScenes": [
+      "ward",
+      null,
+      null
      ],
      "lines": [
       {
@@ -3639,6 +3733,13 @@
       "x": 69.5,
       "y": 58
      }
+    },
+    "places": {
+     "dresden": {
+      "image": "/assets/scenes/story_dresden_1886.png",
+      "label": "Dresden",
+      "alt": "Dresden from across the Elbe: the long stone Augustus Bridge, the tower of the Catholic court church, the great stone dome of the Frauenkirche and the old town along the river"
+     }
     }
    },
    "dialogue": {
@@ -3948,6 +4049,11 @@
       "On 29 October 1886 he left Leipzig for Dresden, where he met Dr. Adolf Bernhard Meyer, director of the museum of anthropology and ethnography, who had studied the Philippines himself. In Dresden's art museum he saw a painting of Prometheus Bound, the Greek hero chained for bringing fire to people, which moved him deeply. From Dresden he went on to Berlin, the capital of the German Empire, arriving at the start of November.",
       "Berlin was the heart of German science, the home of famous anthropologists and medical researchers. Rizal hoped to learn from them, and to finish, at last, the novel he had carried across three countries."
      ],
+     "narrationScenes": [
+      null,
+      "dresden",
+      null
+     ],
      "lines": [
       {
        "speaker": "rizal",
@@ -3993,6 +4099,14 @@
      "viola": {
       "x": 35.5,
       "y": 56
+     }
+    },
+    "places": {
+     "room": {
+      "image": "/assets/scenes/story_berlinroom_1886.png",
+      "label": "His Berlin room",
+      "alt": "His cheap rented room in Berlin in winter: a tall tiled stove, a small table with piles of manuscript, an inkwell and a candle stub, a narrow iron bed, and snow on the roofs outside a frosted window",
+      "year": null
      }
     }
    },
@@ -4236,6 +4350,10 @@
       "He rented a cheap room on the third floor of a lodging house near the university and worked late into the night, rewriting and finishing the last part of the novel. Money from home was late again. That winter he grew so poor that he ate once a day, sometimes only bread, and wore his clothes until they were thin. He washed his own clothes and cleaned his own room.",
       "The printer's price was low by European standards, but he could not pay even that. Biographers say that in a moment of despair he nearly threw the manuscript into the fire. Five years of work, written in Madrid, Paris, Heidelberg, Wilhelmsfeld and Berlin, almost ended in a Berlin stove."
      ],
+     "narrationScenes": [
+      "room",
+      "room"
+     ],
      "lines": [
       {
        "speaker": "rizal",
@@ -4344,6 +4462,18 @@
      "blumentritt": {
       "x": 51.5,
       "y": 58
+     }
+    },
+    "places": {
+     "home": {
+      "image": "/assets/scenes/story_blumentritt_1887.png",
+      "label": "The Blumentritts' home",
+      "alt": "The Blumentritt family's dining room in Leitmeritz: a table laid with a white cloth, plates, bread and a jug under a hanging lamp, a green tiled stove and evening light at the window"
+     },
+     "rome": {
+      "image": "/assets/scenes/story_rome_1887.png",
+      "label": "Rome",
+      "alt": "The Colosseum in Rome: its outer wall standing four storeys high on one side and broken away on the other, the inner arches showing, with umbrella pines and grass around it"
      }
     }
    },
@@ -4599,6 +4729,11 @@
       "The two men talked about the Philippines for hours. Blumentritt knew the names of its peoples, languages and islands from years of study; Rizal knew the life behind them. For four days Blumentritt showed them his town: its old square, its churches and its beer gardens.",
       "Blumentritt's knowledge came from Spanish books, old maps and a network of correspondents. Rizal brought what no book could give him: the view of a Filipino who had grown up in the places Blumentritt had only read about."
      ],
+     "narrationScenes": [
+      "home",
+      null,
+      null
+     ],
      "lines": [
       {
        "speaker": "blumentritt",
@@ -4656,6 +4791,11 @@
       "After four days the travellers left for Prague, carrying letters of introduction from Blumentritt. They went on to Vienna, where they met the novelist Norfenfals, then travelled up the Danube, through Munich and Nuremberg, and into Switzerland. In Geneva, in June, Viola turned back toward Barcelona, and Rizal went on to Italy, and Rome.",
       "Rizal and Blumentritt never met again. But they wrote to each other until the night before Rizal died, and Blumentritt became his most trusted friend: he wrote the introduction to Rizal's edition of Morga's history, defended him in print, and grieved for him all his life. From Marseille, on 3 July 1887, Rizal sailed for home.",
       "In Rome he toured the ruins of the ancient city, and on 29 June, the feast of Saints Peter and Paul, he visited the Vatican. Then he made his way to Marseille. He had been away from home for five years, and he had a novel to show for it."
+     ],
+     "narrationScenes": [
+      null,
+      null,
+      "rome"
      ],
      "lines": [
       {
@@ -5067,6 +5207,13 @@
       "x": 55.0,
       "y": 58
      }
+    },
+    "places": {
+     "deck": {
+      "image": "/assets/scenes/story_deck_1888.png",
+      "label": "Aboard the Belgic",
+      "alt": "On the deck of a mail steamer at sea: the wooden rail, a lifeboat slung from its davits, a ventilator and the foot of a mast, with the open Pacific beyond"
+     }
     }
    },
    "dialogue": {
@@ -5389,6 +5536,11 @@
       "He also met Tetcho Suehiro, a Japanese journalist and novelist who had been jailed for his writing and was going into exile in Europe. Suehiro spoke only Japanese, so Rizal acted as his interpreter all the way to London. Two writers who had both been in trouble with their governments crossed America together.",
       "Of all his travels, Craig writes, Rizal counted his month in Japan among the happiest. He sailed away with a full diary, a little Japanese, and a heavy heart."
      ],
+     "narrationScenes": [
+      "deck",
+      null,
+      null
+     ],
      "lines": [
       {
        "speaker": "rizal",
@@ -5430,6 +5582,23 @@
      "rizal": {
       "x": 52.0,
       "y": 58
+     }
+    },
+    "places": {
+     "bay": {
+      "image": "/assets/scenes/story_sfbay_1888.png",
+      "label": "San Francisco Bay",
+      "alt": "San Francisco seen from a ship held at anchor in the bay: hills covered with low wooden houses and church spires, wharves, sailing ships at anchor and fog over the hills, with the ship's rail in front"
+     },
+     "falls": {
+      "image": "/assets/scenes/story_niagara_1888.png",
+      "label": "Niagara Falls",
+      "alt": "The curved crest of the Horseshoe Falls at Niagara, seen from down in the gorge: green water breaking white as it falls, spray rising, layered rock walls and trees above"
+     },
+     "deck": {
+      "image": "/assets/scenes/story_deck_1888.png",
+      "label": "Aboard the City of Rome",
+      "alt": "On the deck of a mail steamer at sea: the wooden rail, a lifeboat slung from its davits, a ventilator and the foot of a mast, with the open Atlantic beyond"
      }
     }
    },
@@ -5647,6 +5816,11 @@
       "He noticed something else: the ship's valuable cargo of silk was taken ashore at once, without any delay. Goods could land; people could not. On 4 May the first-class passengers, Rizal among them, were finally allowed ashore. He stayed at the Palace Hotel, one of the grandest in the city.",
       "Rizal described the quarantine in his letters, and the historian James Sobredo quotes one of them in his account of the episode."
      ],
+     "narrationScenes": [
+      "bay",
+      null,
+      null
+     ],
      "lines": [
       {
        "speaker": "rizal",
@@ -5672,6 +5846,11 @@
       "On 6 May he took the ferry to Oakland and boarded a train across the continent. He passed through Sacramento and Reno, across Utah and over the Rocky Mountains, whose scenery he found magnificent, then on through Nebraska to Chicago. In Chicago he noticed that almost every cigar store had a wooden statue of a Native American outside, no two alike. It made him think how America kept the memory of its first people in public view, while at home Filipinos could learn about their own ancestors only in foreign museums.",
       "At Niagara Falls he felt the awe that everyone feels there, though he loyally said the waterfalls of his own province were more delicate. From Albany the train ran beside the Hudson River, which reminded him of the Pasig. On 13 May he reached New York. He visited relics of George Washington, whom he called a great man without equal in that century.",
       "The railway line across the continent had been finished only in 1869. A journey that once took months by wagon now took about a week."
+     ],
+     "narrationScenes": [
+      null,
+      "falls",
+      null
      ],
      "lines": [
       {
@@ -5720,6 +5899,10 @@
       "On 16 May 1888 he sailed from New York on the City of Rome, one of the largest steamers in the world. On board, the passengers even printed their own newspaper. He spent his spare hours rereading Gulliver's Travels in English, and kept interpreting for his Japanese friend. Other passengers were astonished that he could speak to each of them in their own language.",
       "He landed in Liverpool on 24 May and went on to London. Ten years later, in 1898, the United States would take the Philippines from Spain, just as Jagor had predicted. In an essay written in 1889, Rizal had already wondered whether America might one day look across the Pacific."
      ],
+     "narrationScenes": [
+      "deck",
+      null
+     ],
      "lines": [
       {
        "speaker": "rizal",
@@ -5757,6 +5940,13 @@
      "rizal": {
       "x": 51.5,
       "y": 58
+     }
+    },
+    "places": {
+     "crescent": {
+      "image": "/assets/scenes/story_chalcot_1888.png",
+      "label": "Chalcot Crescent",
+      "alt": "Chalcot Crescent in Primrose Hill, London: a terrace of tall stucco houses with sash windows, chimney pots, iron railings and a gas lamp under a grey sky"
      }
     }
    },
@@ -5990,6 +6180,11 @@
       "Rizal reached London in late May 1888. For a short time he stayed with Antonio María Regidor, a Filipino lawyer who had been exiled after 1872 and now practised in London. Then he rented two rooms from the Beckett family at 37 Chalcot Crescent, in Primrose Hill. Mr. Beckett was the organist of a nearby church; with his wife and three daughters, the family soon treated their lodger as a favourite. Regent's Park and the zoo were close by, and the British Museum was within walking distance.",
       "He stayed nearly ten months, the longest he lived anywhere in Europe outside Spain. He perfected his English, read The Times, and watched how the British ran their courts and their press. A blue plaque on the house remembers him today, placed there in 1983 to mark the home of a famous visitor to the city.",
       "His first letters home spoke of breathing the free air of England, where newspapers criticised the government openly and courts protected even the poor."
+     ],
+     "narrationScenes": [
+      "crescent",
+      null,
+      null
      ],
      "lines": [
       {
@@ -7098,6 +7293,18 @@
       "x": 65.5,
       "y": 58
      }
+    },
+    "places": {
+     "graslei": {
+      "image": "/assets/scenes/story_ghent_1891.png",
+      "label": "Graslei, Ghent",
+      "alt": "The Graslei in Ghent: a row of old guild houses with stepped gables along the river Leie, mirrored in the water, with a moored barge and the towers of the old city behind"
+     },
+     "deck": {
+      "image": "/assets/scenes/story_deck_1888.png",
+      "label": "Aboard the Melbourne",
+      "alt": "On the deck of a mail steamer at sea: the wooden rail, a lifeboat slung from its davits, a ventilator and the foot of a mast, with the open sea beyond"
+     }
     }
    },
    "dialogue": {
@@ -7310,6 +7517,11 @@
       "He found a printer, F. Meyer-Van Loo, on Vlaanderenstraat, who agreed to print El Filibusterismo and to be paid in parts as the work went on. Rizal handed over the manuscript and every peso he had.",
       "Rizal arrived in a gloomy mood. The news from Calamba was bad, his hopes of Madrid were gone, and he had lost both Leonor and Nellie. Work was his refuge. Alejandrino would later become a general in the revolution and write a memoir about these years."
      ],
+     "narrationScenes": [
+      "graslei",
+      null,
+      null
+     ],
      "lines": [
       {
        "speaker": "printer",
@@ -7391,6 +7603,12 @@
       "Like the Noli, the Fili was written in Spanish and was banned in the Philippines; copies were smuggled in and passed from hand to hand. For years afterwards Filipinos who wanted change argued over its meaning. Was Simoun a warning, or a model?",
       "In Hong Kong he planned to practise as an eye doctor and to bring his family to live with him, away from their persecutors. He also nursed an older dream: a modern Filipino school, and Craig records that a young Pampangan had once offered him a large sum to found one in Hong Kong."
      ],
+     "narrationScenes": [
+      null,
+      "deck",
+      null,
+      null
+     ],
      "lines": [
       {
        "speaker": "rizal",
@@ -7432,6 +7650,14 @@
      "teodora-older": {
       "x": 72.0,
       "y": 58
+     }
+    },
+    "places": {
+     "sandakan": {
+      "image": "/assets/scenes/story_sandakan_1892.png",
+      "label": "Sandakan, Borneo",
+      "alt": "Sandakan in British North Borneo: houses on stilts over the bay joined by plank walks, white buildings on the slope and steep forested hills behind",
+      "year": 1892
      }
     }
    },
@@ -7730,6 +7956,11 @@
       "But the Governor-General of the Philippines, Eulogio Despujol, disapproved. He argued that the Philippines needed its own farmers at home. The plan came to nothing. Meanwhile Rizal kept writing: an appeal to the Spanish nation on behalf of Calamba, a Tagalog version of the Rights of Man, and a draft constitution for a new society he wanted to found at home: La Liga Filipina.",
       "After visiting the colony's prison with Dr. Márquez, he wrote an article contrasting British punishment, meant to reform prisoners, with Spanish punishment, which he saw as meant only to make them suffer."
      ],
+     "narrationScenes": [
+      "sandakan",
+      null,
+      null
+     ],
      "lines": [
       {
        "speaker": "rizal",
@@ -7805,6 +8036,18 @@
      "member": {
       "x": 70.0,
       "y": 58
+     }
+    },
+    "places": {
+     "railway": {
+      "image": "/assets/scenes/story_railway_1892.png",
+      "label": "The railway north",
+      "alt": "A small steam engine pulling three wooden coaches along the new railway through the rice fields of Central Luzon, telegraph poles beside the line and Mount Arayat rising beyond"
+     },
+     "palace": {
+      "image": "/assets/scenes/malacanang_1887.png",
+      "label": "Malacañang Palace",
+      "alt": "Malacañang Palace, the Governor-General's residence, on the bank of the Pasig River in Manila: a long two-storey house with a stone arcade below, capiz windows above, a tiled roof and the Spanish flag"
      }
     }
    },
@@ -8048,6 +8291,11 @@
       "He was followed everywhere. Craig, who later read the secret police files, says that houses Rizal visited were searched soon after he left, and their owners questioned. Warned of this, Rizal's hosts hurried to hide forbidden papers. In one house, Craig writes, so many banned writings were kept that Rizal waited until the family had carried them up into the roof.",
       "At one house, Craig tells us, the host did not know who his guest was. He began to talk about Rizal, declaring that the author of the Noli had a charmed life and could appear among them at that very moment if he wished. When Rizal told him who he was, the old man hurried off to hide his papers before the search he knew would follow."
      ],
+     "narrationScenes": [
+      "railway",
+      null,
+      null
+     ],
      "lines": [
       {
        "speaker": "rizal",
@@ -8102,6 +8350,11 @@
       "On 7 July the government announced that Rizal would be deported. That same night, Bonifacio and others, convinced that peaceful reform was now hopeless, founded a secret society for independence: the Katipunan. On 15 July Rizal sailed south on the steamer Cebu, under guard. On Sunday evening, 17 July 1892, he reached Dapitan, on the northern coast of Mindanao.",
       "Leaflets like these circulated freely in Hong Kong. Craig concluded that they had been gathered up by accident with waste paper and packed in the bedding, and that the Governor-General used them as an excuse."
      ],
+     "narrationScenes": [
+      "palace",
+      null,
+      null
+     ],
      "lines": [
       {
        "speaker": "rizal",
@@ -8147,6 +8400,19 @@
      "pupil": {
       "x": 52,
       "y": 66
+     }
+    },
+    "places": {
+     "steamer": {
+      "image": "/assets/scenes/story_dapitan_steamer_1892.png",
+      "label": "Dapitan bay",
+      "alt": "The mail steamer in the bay at Dapitan, dressed overall in signal flags, with palms on the beach and a banca drawn up on the sand"
+     },
+     "map": {
+      "image": "/assets/scenes/story_dapitan_map.png",
+      "label": "Dapitan town plaza",
+      "alt": "The raised map of Mindanao that Rizal and Father Sánchez built in the town plaza of Dapitan, on the lawn among the trees",
+      "year": null
      }
     }
    },
@@ -8386,6 +8652,10 @@
       "In September 1892 the mail steamer arrived flying flags, and Carnicero rushed to the beach with a band, thinking an important official had come. Instead, the steamer brought news: a lottery ticket that Rizal had bought together with Carnicero and a Spaniard living nearby had won the second prize, twenty thousand pesos. Rizal's share was about six thousand.",
       "He sent part to his father and part to his friend Basa in Hong Kong, and used the rest to buy land at Talisay, a little bay about a kilometre from the town. There he built a small settlement of houses made of bamboo, wood and nipa: one for himself, one for his pupils, a clinic and others. He planted abacá, coconuts, fruit trees, cacao and coffee, brought in modern farm tools, and went into business with local traders in fishing and abacá."
      ],
+     "narrationScenes": [
+      "steamer",
+      null
+     ],
      "lines": [
       {
        "speaker": "rizal-dapitan",
@@ -8451,6 +8721,10 @@
       "Patients came to Talisay from all over Mindanao and beyond. The poor paid nothing; the rich paid well. When a wealthy Englishman paid him five hundred pesos, Rizal used the money to light the streets of the town. With his former Ateneo teacher, Father Francisco Sánchez, who visited Dapitan, he surveyed the land and planned a water system: a dam to collect water from a stream, and pipes to carry it to the houses. In the town plaza they built a large raised map of Mindanao to teach geography.",
       "He collected animals and plants for European scientists, and three were named after him: a flying lizard, Draco rizali; a beetle, Apogonia rizali; and a frog, Rhacophorus rizali. In 1895 an Irish woman, Josephine Bracken, came to Dapitan, and she and Rizal lived together. In mid-1896 Dr. Pío Valenzuela came on behalf of the Katipunan to tell him a revolution was being prepared. Rizal said it was premature: the people were not ready and had no arms. On 31 July 1896, after four years in Dapitan, he left to volunteer as a doctor in Cuba."
      ],
+     "narrationScenes": [
+      "map",
+      null
+     ],
      "lines": [
       {
        "speaker": "rizal-dapitan",
@@ -8492,6 +8766,18 @@
      "rizal": {
       "x": 46.0,
       "y": 58
+     }
+    },
+    "places": {
+     "montjuic": {
+      "image": "/assets/scenes/story_montjuic_1896.png",
+      "label": "Montjuïc, Barcelona",
+      "alt": "The castle of Montjuïc on its hill above Barcelona's harbour, its low walls and pointed bastions on the summit, steamers at anchor and the city along the shore"
+     },
+     "chapel": {
+      "image": "/assets/scenes/story_chapel_1896.png",
+      "label": "The prison chapel",
+      "alt": "The chapel of Fort Santiago on his last night: a stone room lit by two candles on the altar under a crucifix, a barred window on the night, and a small table with papers and a little cooking stove"
      }
     }
    },
@@ -8727,6 +9013,11 @@
       "Friends in London tried to save him. When the ship stopped at Singapore, a British colony, they asked the court there to free him, arguing he was being held without any charge. The judge refused, ruling that the ship was Spanish territory. Rizal never knew of the attempt. On 3 November 1896 he reached Manila and was locked in Fort Santiago.",
       "He was held at Montjuïc only a few hours, until the mail steamer for Manila was ready to sail."
      ],
+     "narrationScenes": [
+      "montjuic",
+      null,
+      null
+     ],
      "lines": [
       {
        "speaker": "rizal",
@@ -8784,6 +9075,11 @@
       "On the morning of 29 December he was moved to the prison chapel. Jesuit priests who had taught him at the Ateneo visited him, and so did his mother and sisters. He was not allowed close to them. To his sister Trinidad he gave a small alcohol cooking stove, a gift he had once received in Paris, and said quickly in English, so the guard would not understand: \"There is something inside.\"",
       "Inside was a poem of fourteen stanzas, written in Spanish, without a title. It is known today as Mi Último Adiós, My Last Farewell. His family found it at home after he was gone. Accounts written later disagree about some events of that last night, including whether he took back his criticism of the Church and whether he married Josephine Bracken. Historians still debate these questions, and good sources take both sides seriously.",
       "That night he also wrote farewell letters to his family."
+     ],
+     "narrationScenes": [
+      "chapel",
+      null,
+      null
      ],
      "lines": [
       {

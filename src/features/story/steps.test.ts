@@ -151,8 +151,25 @@ describe('placeOf (v2.4: the story moves to another place)', () => {
   });
 
   it('stops without other places never move', () => {
-    for (const step of buildSteps(calamba.chapters)) {
-      expect(placeOf(calamba, step)).toBeUndefined();
+    const madrid = realContent().stops.find((s) => s.id === 'madrid-1882');
+    if (!madrid) throw new Error('madrid-1882');
+    for (const step of buildSteps(madrid.chapters)) {
+      expect(placeOf(madrid, step)).toBeUndefined();
+    }
+  });
+
+  it('a picture can carry its own year: the Pasig River trip of 1868 in the 1861 stop', () => {
+    const trip = buildSteps(calamba.chapters).find(
+      (step) => step.kind === 'narration' && step.chapter === 3 && step.paragraph === 1,
+    );
+    if (!trip) throw new Error('no step');
+    expect(placeOf(calamba, trip)).toMatchObject({ label: 'Pasig River', year: 1868 });
+  });
+
+  it('every place a paragraph names exists, and every stop picture is used', () => {
+    for (const stop of realContent().stops) {
+      const used = new Set(stop.chapters.flatMap((c) => c.narrationScenes ?? []));
+      for (const id of Object.keys(stop.scene.places ?? {})) expect(used, stop.id).toContain(id);
     }
   });
 });

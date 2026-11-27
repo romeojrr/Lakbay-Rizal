@@ -92,6 +92,11 @@ export const ScenePlaceSchema = z.strictObject({
   /** Shown in the badge instead of the stop's place, e.g. "Malacañang Palace". */
   label: text,
   alt: text,
+  /**
+   * The year in the badge when it is not the stop's own (e.g. 1868 for a trip told in the
+   * Calamba 1861 stop); null when no single year is right, and the badge shows the label alone.
+   */
+  year: z.number().int().min(1800).max(1900).nullable().optional(),
 });
 const scenePlaces = z
   .record(z.string().regex(/^[a-z0-9-]+$/, 'use lowercase letters, digits and -'), ScenePlaceSchema)
