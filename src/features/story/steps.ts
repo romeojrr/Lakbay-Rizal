@@ -2,6 +2,7 @@
 // chapter title card → narration paragraphs → dialogue lines → "Did you know?" fact → next chapter.
 // A long paragraph is shown as a few pages (split between sentences, the words unchanged), so
 // each page fits the dialogue box at the normal reading size.
+import type { ScenePlace } from '../../content/schemas';
 import type { Chapter, StopV3 } from '../../content/schemas.v3';
 
 /** A paragraph longer than this many characters is split into pages. */
@@ -106,6 +107,19 @@ export function stepText(story: StopV3, step: Step): string {
 }
 
 /** Steps that type their text out letter by letter. */
+/**
+ * The picture a step shows (v2.4): a narration page whose paragraph names another place shows
+ * that place (`chapter.narrationScenes` → `scene.places`); everything else shows the stop's scene.
+ */
+export function placeOf(
+  story: StopV3 & { scene: { places?: Record<string, ScenePlace> } },
+  step: Step,
+): ScenePlace | undefined {
+  if (step.kind !== 'narration') return undefined;
+  const id = story.chapters[step.chapter]?.narrationScenes?.[step.paragraph];
+  return id ? story.scene.places?.[id] : undefined;
+}
+
 export const types = (step: Step | undefined): boolean =>
   step?.kind === 'narration' || step?.kind === 'line';
 

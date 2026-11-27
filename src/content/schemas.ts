@@ -83,6 +83,20 @@ export const LineSchema = z.strictObject({
   recorded: z.strictObject({ sourceId: text }).optional(),
 });
 
+/**
+ * Another picture of a stop (v2.4, owner 2026-11-27): when a narration paragraph moves to a
+ * place it names (e.g. "summoned Rizal to Malacañang Palace"), the scene changes to it.
+ */
+export const ScenePlaceSchema = z.strictObject({
+  image: assetPath,
+  /** Shown in the badge instead of the stop's place, e.g. "Malacañang Palace". */
+  label: text,
+  alt: text,
+});
+const scenePlaces = z
+  .record(z.string().regex(/^[a-z0-9-]+$/, 'use lowercase letters, digits and -'), ScenePlaceSchema)
+  .optional();
+
 export const ChapterSchema = z.strictObject({
   id: z.string().regex(/^c\d+$/, 'must look like c1, c2, …'),
   title: text.max(40, 'must be 40 characters or fewer'),
@@ -92,6 +106,11 @@ export const ChapterSchema = z.strictObject({
     zoom: z.number().min(1, 'must be 1 or more').max(1.6, 'must be 1.6 or less'),
   }),
   narration: z.array(text).min(1, 'needs at least 1 paragraph'),
+  /**
+   * Per narration paragraph: the id of a picture in `scene.places` to show, or null for the
+   * stop's own scene. Only for a paragraph that names the place it moves to.
+   */
+  narrationScenes: z.array(z.string().nullable()).optional(),
   lines: z.array(LineSchema).max(4, 'use at most 4 lines per chapter'),
   fact: z.strictObject({ text, sourceId: text }).optional(),
 });
@@ -166,6 +185,7 @@ export const PlayableStopSchema = z.strictObject({
     /** FR-55: three short "what you see" notes for the scene gallery. */
     notes: z.array(text).max(3, 'use at most 3 notes').optional(),
     speakerAnchors: z.record(z.string(), AnchorSchema).optional(),
+    places: scenePlaces,
   }),
   rewards: z.strictObject({
     stamp: z.strictObject({ icon: assetPath }),
@@ -186,6 +206,7 @@ export const OutlineStopSchema = z.strictObject({
     alt: z.string(),
     notes: z.array(z.string()).optional(),
     speakerAnchors: z.record(z.string(), AnchorSchema).optional(),
+    places: scenePlaces,
   }),
   rewards: z.strictObject({
     stamp: z.strictObject({ icon: assetPath.nullable() }),
@@ -286,6 +307,7 @@ export type Mood = z.infer<typeof MoodSchema>;
 export type Skill = z.infer<typeof SkillSchema>;
 export type Line = z.infer<typeof LineSchema>;
 export type Chapter = z.infer<typeof ChapterSchema>;
+export type ScenePlace = z.infer<typeof ScenePlaceSchema>;
 export type Question = z.infer<typeof QuestionSchema>;
 export type QuestionType = Question['type'];
 export type Region = z.infer<typeof RegionSchema>;

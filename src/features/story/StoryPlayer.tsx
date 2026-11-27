@@ -6,7 +6,8 @@ import { t } from '../../i18n/t';
 import { cx } from '../../lib/cx';
 import { useReducedMotion } from '../../lib/useReducedMotion';
 import { useUi } from '../../store/ui';
-import { buildSteps, stepText, types } from './steps';
+import { asset } from '../../lib/asset';
+import { buildSteps, placeOf, stepText, types } from './steps';
 import StoryControls from './StoryControls';
 import StoryPanel from './StoryPanel';
 import { useStoryKeys } from './useStoryKeys';
@@ -89,6 +90,15 @@ export default function StoryPlayer(props: StoryPlayerProps) {
   const chapter = story.chapters[step.chapter];
   const line = step.kind === 'line' ? chapter?.lines[step.line] : undefined;
   const bubbleAt = line?.onScene && !quiet ? story.scene.speakerAnchors?.[line.speaker] : undefined;
+  // v2.4: a narration page that names another place shows that place's picture.
+  const place = placeOf(story, step);
+  // Load the stop's other pictures early, so a change of scene never waits for the network.
+  useEffect(() => {
+    for (const other of Object.values(story.scene.places ?? {})) {
+      const img = new Image();
+      img.src = asset(other.image);
+    }
+  }, [story.scene.places]);
   const framed = props.framed ?? false;
 
   const boxRef = useRef<HTMLDivElement>(null);
@@ -131,14 +141,14 @@ export default function StoryPlayer(props: StoryPlayerProps) {
       aria-label={t('stop.story')}
     >
       <SceneView
-        scene={story.scene}
-        place={story.place.label}
+        scene={place ?? story.scene}
+        place={place?.label ?? story.place.label}
         year={story.year}
-        bubbleAt={bubbleAt}
+        bubbleAt={place ? undefined : bubbleAt}
         bubbleKey={stepKey}
         still={still}
         covered={framed || props.overlay}
-        ambient={quiet ? undefined : AMBIENT[story.id]}
+        ambient={quiet || place ? undefined : AMBIENT[story.id]}
         fill={framed}
         back={{ to: `/region/${story.region}`, label: t('map.backToMap') }}
       >

@@ -293,6 +293,18 @@ class CrossChecker {
           `${stop.scene.image} is ${Math.round(bytes / 1024)} KB; scenes must be 60 KB or less (NFR-1)`,
         );
       }
+      for (const [id, place] of Object.entries(stop.scene.places ?? {})) {
+        const where = `${stop.id} › scene.places.${id}.image`;
+        check('stops.json', where, place.image, SIZES.scene);
+        const size = assetInfo(place.image)?.bytes;
+        if (size !== undefined && size > MAX_SCENE_BYTES) {
+          this.error(
+            'stops.json',
+            where,
+            `${place.image} is ${Math.round(size / 1024)} KB; scenes must be 60 KB or less (NFR-1)`,
+          );
+        }
+      }
       check('stops.json', `${stop.id} › rewards.stamp.icon`, stop.rewards.stamp.icon, SIZES.icon);
     }
     for (const [id, item] of Object.entries(this.content.items)) {

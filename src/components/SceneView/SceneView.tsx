@@ -1,4 +1,11 @@
-import { useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from 'react';
 import { Link } from 'react-router-dom';
 import { t } from '../../i18n/t';
 import { asset } from '../../lib/asset';
@@ -35,6 +42,9 @@ interface SceneViewProps {
   /** An arrow button left of the "Place · year" badge, back to this page (the region map). */
   back?: { to: string; label: string };
 }
+
+/** A change of picture (another place in the story) cross-fades over this long. */
+export const SCENE_FADE_MS = 700;
 
 /** With the text box over the bottom ~40 % of the scene, the open area is centred here. */
 const COVERED_FOCUS_Y = 35;
@@ -90,6 +100,23 @@ export default function SceneView({
   };
   const sceneRef = useRef<HTMLDivElement>(null);
   const [fit, setFit] = useState<Fit | undefined>(undefined);
+  // v2.4: when the picture changes (the story moves to another place), the old one stays under
+  // the new one while it fades in. With reduced motion the new picture simply replaces it.
+  const [pictures, setPictures] = useState<{ now: string; before: string | null }>({
+    now: scene.image,
+    before: null,
+  });
+  if (pictures.now !== scene.image) {
+    setPictures({ now: scene.image, before: still ? null : pictures.now });
+  }
+  useEffect(() => {
+    if (!pictures.before) return;
+    const timer = window.setTimeout(
+      () => setPictures((p) => ({ ...p, before: null })),
+      SCENE_FADE_MS,
+    );
+    return () => window.clearTimeout(timer);
+  }, [pictures.before]);
 
   // Size the picture to the frame. The text box's room depends on the frame only, not on the
   // box's height, so the picture does not jump between steps.
@@ -140,7 +167,20 @@ export default function SceneView({
             style={cameraStyle}
             data-zoom={view.zoom}
           >
-            <img className={`pix ${styles.image}`} src={asset(scene.image)} alt={scene.alt} />
+            {pictures.before && (
+              <img
+                className={`pix ${styles.image} ${styles.before}`}
+                src={asset(pictures.before)}
+                alt=""
+                aria-hidden="true"
+              />
+            )}
+            <img
+              key={scene.image}
+              className={cx('pix', styles.image, pictures.before && styles.fadeIn)}
+              src={asset(scene.image)}
+              alt={scene.alt}
+            />
           </div>
           <Ambient kind={ambient} />
           {bubble && bubble.x >= 0 && bubble.x <= 100 && bubble.y >= 0 && bubble.y <= 100 && (

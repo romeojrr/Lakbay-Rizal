@@ -109,7 +109,13 @@ export const FilStopSchema = z.strictObject({
   story: maybe,
   dateLabel: maybe,
   place: z.strictObject({ then: maybe, today: maybe }).optional(),
-  scene: z.strictObject({ alt: maybe, time: maybe }).optional(),
+  scene: z
+    .strictObject({
+      alt: maybe,
+      time: maybe,
+      places: z.record(z.string(), z.strictObject({ label: maybe, alt: maybe })).optional(),
+    })
+    .optional(),
   chapters: z
     .array(
       z.strictObject({

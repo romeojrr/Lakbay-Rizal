@@ -33,6 +33,20 @@ function localizeStopBase<T extends Stop>(stop: T, fil: FilStop | undefined): T 
       ...stop.scene,
       alt: pick(fil.scene?.alt, stop.scene.alt),
       ...(stop.scene.time !== null ? { time: pick(fil.scene?.time, stop.scene.time) } : {}),
+      ...(stop.scene.places
+        ? {
+            places: Object.fromEntries(
+              Object.entries(stop.scene.places).map(([id, place]) => [
+                id,
+                {
+                  ...place,
+                  label: pick(fil.scene?.places?.[id]?.label, place.label),
+                  alt: pick(fil.scene?.places?.[id]?.alt, place.alt),
+                },
+              ]),
+            ),
+          }
+        : {}),
     },
   };
 }

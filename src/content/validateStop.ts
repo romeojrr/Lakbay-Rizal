@@ -61,6 +61,16 @@ export function checkChapters(stop: PlayableStop, content: Content, error: Repor
       warn(`${ch}.narration`, `has ${chapter.narration.length} paragraphs; use 1 to 3 (SRS §6.4b)`);
     }
     if (chapter.fact) source(`${ch}.fact.sourceId`, chapter.fact.sourceId);
+    if (chapter.narrationScenes) {
+      if (chapter.narrationScenes.length > chapter.narration.length) {
+        error(`${ch}.narrationScenes`, 'has more entries than narration paragraphs');
+      }
+      chapter.narrationScenes.forEach((id, pi) => {
+        if (id !== null && !stop.scene.places?.[id]) {
+          error(`${ch}.narrationScenes[${pi}]`, `"${id}" is not in scene.places`);
+        }
+      });
+    }
     chapter.lines.forEach((line, li) => {
       const where = `${ch}.lines[${li}]`;
       const lineWords = countWords(line.text);

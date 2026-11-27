@@ -53,6 +53,27 @@
   aspect-ratio: 16 / 9;
 }
 
+/* v2.4: the story moves to another place: the new picture fades in over the old one. */
+.camera {
+  position: relative;
+}
+
+.before {
+  position: absolute;
+  inset: 0;
+}
+
+.fadeIn {
+  position: relative;
+  animation: scene-in 700ms ease-in-out both;
+}
+
+@keyframes scene-in {
+  from {
+    opacity: 0;
+  }
+}
+
 .badge {
   z-index: 3;
   position: absolute;

@@ -1548,7 +1548,17 @@
       ],
       "scene": {
         "alt": "Kauuwi mula Europa, nakatayo si Rizal kasama ang inang si Doña Teodora sa klinika sa unang palapag ng bahay ng pamilya; naghihintay sa bukás na pinto ang isang magsasakang naka-salakot, tanaw ang tubuhan at Bundok Makiling",
-        "time": "Umaga"
+        "time": "Umaga",
+        "places": {
+          "malacanang": {
+            "label": "Palasyo ng Malacañang",
+            "alt": "Ang Palasyo ng Malacañang, tirahan ng Gobernador-Heneral, sa pampang ng Ilog Pasig sa Maynila: mahabang bahay na may dalawang palapag, may arkong bato sa ibaba, bintanang kapis sa itaas, bubong na tisa at ang watawat ng Espanya"
+          },
+          "makiling": {
+            "label": "Bundok Makiling",
+            "alt": "Ang makahoy na tuktok ng Bundok Makiling sa ibabaw ng dagat ng ulap, at ang Lawa ng Laguna at ang mga burol sa kabilang pampang sa malayong ibaba"
+          }
+        }
       },
       "dateLabel": "Agosto 1887 – Pebrero 1888",
       "place": {

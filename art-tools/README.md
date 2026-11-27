@@ -22,6 +22,12 @@ python3 scene_usa.py  scene_london.py  scene_paris1889.py  scene_brussels.py  sc
 python3 scene_ghent.py  scene_hongkong.py  scene_tondo.py  scene_fortsantiago.py  scene_bagumbayan.py
 ```
 (run each file on its own: `python3 scene_binan.py`, and so on.)
+# v2.4 — extra pictures inside a stop's story (no people; see SRS §7.4, §7.5)
+python3 scene_malacanang1887.py   # → assets/scenes/malacanang_1887.png (Calamba 1887, chapter 2)
+python3 scene_makiling1887.py     # → assets/scenes/makiling_1887.png   (Calamba 1887, chapter 2)
+```
+A stop lists these in `scene.places`; `chapters[].narrationScenes` says which narration paragraph shows which.
+```
 Each writes `out/scene_<name>.png` (ship this) and `out/prev_<name>.png` (3× preview to look at). The v2.1 scripts also print each speaker's anchor (`{'rizal': {'x': 43.5, 'y': 58}}`); copy it into the stop's `scene.speakerAnchors`. Shipped file names are listed in SRS §7.8 (for example `scene_binan.py` → `assets/scenes/binan_1869.png`).
 
 `kit2.py` holds the shared v2.1 parts: `place()` (paste a sprite by its feet, return its anchor), bookshelf, table, chair, oil lamp, water with reflections, rain, falling petals or snow, European windows.

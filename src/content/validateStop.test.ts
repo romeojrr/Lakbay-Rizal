@@ -18,6 +18,21 @@ const stop = (raw: Record<string, any>, id: string) =>
   (raw.stops as { id: string }[]).find((s) => s.id === id) as Record<string, any>;
 
 describe('stops.json chapters, lines and quiz (§6.2b)', () => {
+  it('narrationScenes name places in scene.places, one per paragraph at most (v2.4)', () => {
+    const unknown = check((raw) => {
+      stop(raw, 'calamba-1887').chapters[1].narrationScenes[0] = 'nowhere';
+    });
+    expect(unknown.errors).toContain(
+      'stops.json › calamba-1887 › chapters[1].narrationScenes[0]: "nowhere" is not in scene.places',
+    );
+    const tooMany = check((raw) => {
+      stop(raw, 'calamba-1887').chapters[1].narrationScenes.push(null, null);
+    });
+    expect(tooMany.errors).toContain(
+      'stops.json › calamba-1887 › chapters[1].narrationScenes: has more entries than narration paragraphs',
+    );
+  });
+
   it('needs 4 chapters and at most 4 lines per chapter', () => {
     const three = check((raw) => {
       stop(raw, 'berlin-1887').chapters.pop();

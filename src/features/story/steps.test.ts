@@ -1,7 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import { cameraView, onScreen } from '../../components/SceneView/camera';
 import { realContent } from '../../test/content';
-import { buildSteps, chaptersReadAt, paragraphPages, PAGE_CHARS, stepText, types } from './steps';
+import {
+  buildSteps,
+  chaptersReadAt,
+  paragraphPages,
+  PAGE_CHARS,
+  placeOf,
+  stepText,
+  types,
+} from './steps';
 
 const calamba = realContent().stops.find((s) => s.id === 'calamba-1861');
 if (!calamba) throw new Error('calamba-1861');
@@ -113,5 +121,38 @@ describe('camera (SRS v2.3 §3.6)', () => {
     const point = onScreen(view, { x: 60.5, y: 58 });
     expect(point.x).toBeCloseTo(50);
     expect(point.y).toBeCloseTo(37.2);
+  });
+});
+
+describe('placeOf (v2.4: the story moves to another place)', () => {
+  const home = realContent().stops.find((s) => s.id === 'calamba-1887');
+  if (!home) throw new Error('calamba-1887');
+
+  it('Calamba 1887, chapter 2: Malacañang, then Makiling, then the stop scene again', () => {
+    const narration = buildSteps(home.chapters).filter(
+      (step) => step.kind === 'narration' && step.chapter === 1,
+    );
+    const labels = narration.map((step) => placeOf(home, step)?.label ?? null);
+    expect(labels[0]).toBe('Malacañang Palace');
+    expect(labels).toContain('Mount Makiling');
+    expect(labels.at(-1)).toBeNull();
+    // Every page of a paragraph shows the same picture.
+    for (const step of narration) {
+      if (step.kind !== 'narration') continue;
+      const first = narration.find((s) => s.kind === 'narration' && s.paragraph === step.paragraph);
+      expect(placeOf(home, step)).toBe(first && placeOf(home, first));
+    }
+  });
+
+  it('title cards, lines and facts stay on the stop scene', () => {
+    for (const step of buildSteps(home.chapters)) {
+      if (step.kind !== 'narration') expect(placeOf(home, step)).toBeUndefined();
+    }
+  });
+
+  it('stops without other places never move', () => {
+    for (const step of buildSteps(calamba.chapters)) {
+      expect(placeOf(calamba, step)).toBeUndefined();
+    }
   });
 });

@@ -4273,6 +4273,18 @@
           "x": 44,
           "y": 58
         }
+      },
+      "places": {
+        "malacanang": {
+          "image": "/assets/scenes/malacanang_1887.png",
+          "label": "Malacañang Palace",
+          "alt": "Malacañang Palace, the Governor-General's residence, on the bank of the Pasig River in Manila: a long two-storey house with a stone arcade below, capiz windows above, a tiled roof and the Spanish flag"
+        },
+        "makiling": {
+          "image": "/assets/scenes/makiling_1887.png",
+          "label": "Mount Makiling",
+          "alt": "The forested summit of Mount Makiling above a sea of clouds, with Laguna de Bay and the hills of its far shore far below"
+        }
       }
     },
     "dialogue": {
@@ -4512,6 +4524,7 @@
           "The guard and the guarded became friends. They shared a love of painting and fencing, and together they climbed Mount Makiling and planted a flag at the top, as European climbers did. Rizal's enemies spread the story that he had raised a German flag and claimed the islands for Germany. The rumour shows how wild the talk about him had become.",
           "The censors had advised the Governor-General to deal harshly with the author. Terrero read the book himself and set that advice aside, at least for a time."
         ],
+        "narrationScenes": ["malacanang", "makiling", null],
         "lines": [
           {
             "speaker": "taviel",
