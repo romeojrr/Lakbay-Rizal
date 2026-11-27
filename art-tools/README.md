@@ -34,7 +34,7 @@ python3 places_asia_america.py    # 4: a steamer's deck at sea, San Francisco Ba
 python3 places_europe.py          # 11: Suez, Château d'If, Luna's studio, Heidelberg eye hospital, Dresden,
                                   # the Berlin room, the Blumentritts' table, Rome, Chalcot Crescent, Ghent, Montjuïc
 ```
-Each writes `out/scene_<name>.png` (ship it as `assets/scenes/story_<name>.png`), a 3× preview and contact sheets (`out/sheet_*.png`) for checking several at once. `places_kit.py` holds the shared parts (steamer, moon, stars, room, stepped gable). `places_cast.py` holds the people (Rizal at each age, and those the narration puts with him) and `stage()`, which stands them in a picture. `python3 places_more.py` draws the 6 pictures for Ateneo, Madrid, Wilhelmsfeld, Paris 1889, Brussels and Biarritz.
+Each writes `out/scene_<name>.png` (ship it as `assets/scenes/story_<name>.png`), a 3× preview and contact sheets (`out/sheet_*.png`) for checking several at once. `places_kit.py` holds the shared parts (steamer, moon, stars, room, stepped gable). `places_cast.py` holds the people (Rizal at each age, and those the narration puts with him) and `stage()`, which stands them in a picture. `python3 places_more.py` draws the 6 pictures for Ateneo, Madrid, Wilhelmsfeld, Paris 1889, Brussels and Biarritz. `python3 places_bagumbayan.py` draws the final stop's two (the walk at dawn, Paco Cemetery).
 ```
 Each writes `out/scene_<name>.png` (ship this) and `out/prev_<name>.png` (3× preview to look at). The v2.1 scripts also print each speaker's anchor (`{'rizal': {'x': 43.5, 'y': 58}}`); copy it into the stop's `scene.speakerAnchors`. Shipped file names are listed in SRS §7.8 (for example `scene_binan.py` → `assets/scenes/binan_1869.png`).
 

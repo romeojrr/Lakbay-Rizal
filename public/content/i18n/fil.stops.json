@@ -3099,7 +3099,21 @@
       "quiz": [],
       "scene": {
         "alt": "Ang walang taong parang ng Bagumbayan sa bukang-liwayway, may pasyalan at mga poste ng ilaw, mga puno ng niyog, ang tahimik at maputlang Look ng Maynila, mga barkong nakadaong at ang kabundukan ng Bataan sa abot-tanaw",
-        "time": "Bukang-liwayway"
+        "time": "Bukang-liwayway",
+        "places": {
+          "walk": {
+            "label": "Ang paglakad patungong Bagumbayan",
+            "alt": "Naglalakad si Rizal na nakaitim na amerikana sa unang liwanag sa tabi ng mga lumang pader ng lungsod, kasama ang kaniyang tagapagtanggol na si Tinyente Luis Taviel de Andrade at dalawang paring Heswita; maputla ang Look ng Maynila sa kabila ng mga niyog"
+          },
+          "night": {
+            "label": "Ang gabi bago nito",
+            "alt": "Si Rizal sa kapilya ng Fort Santiago sa huling gabi niya: isang silid na bato na tinatanglawan ng dalawang kandila sa altar sa ilalim ng krusipiho, isang bintanang may rehas sa gabi, at isang maliit na mesa na may kaniyang mga papel"
+          },
+          "paco": {
+            "label": "Sementeryo ng Paco",
+            "alt": "Ang Sementeryo ng Paco sa isang makulimlim na umaga: ang pabilog na pader ng mga nitso, ang kapilyang may simboryo at ilang payak na krus sa damuhan, walang tao"
+          }
+        }
       },
       "dateLabel": "30 Disyembre 1896",
       "place": {

@@ -150,12 +150,11 @@ describe('placeOf (v2.4: the story moves to another place)', () => {
     }
   });
 
-  it('stops without other places never move', () => {
-    // The final stop keeps its one scene (GD-6).
+  it('the final stop: the chapter of his death stays on the empty field (GD-6)', () => {
     const finalStop = realContent().stops.find((s) => s.id === 'bagumbayan-1896');
     if (!finalStop) throw new Error('bagumbayan-1896');
     for (const step of buildSteps(finalStop.chapters)) {
-      expect(placeOf(finalStop, step)).toBeUndefined();
+      if (step.chapter === 1) expect(placeOf(finalStop, step)).toBeUndefined();
     }
   });
 

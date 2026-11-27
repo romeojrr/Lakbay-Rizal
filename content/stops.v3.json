@@ -9208,7 +9208,25 @@
     "image": "/assets/scenes/bagumbayan_1896.png",
     "time": "Dawn",
     "alt": "The empty field of Bagumbayan at dawn, with a promenade and lamp posts, coconut palms, Manila Bay calm and pale, ships at anchor and the mountains of Bataan on the horizon",
-    "speakerAnchors": {}
+    "speakerAnchors": {},
+    "places": {
+     "walk": {
+      "image": "/assets/scenes/story_walk_1896.png",
+      "label": "The walk to Bagumbayan",
+      "alt": "Rizal in his dark suit walks at first light beside the old city walls with his defender, Lieutenant Luis Taviel de Andrade, and two Jesuit priests, Manila Bay pale beyond the palms"
+     },
+     "night": {
+      "image": "/assets/scenes/story_chapel_1896.png",
+      "label": "The night before",
+      "alt": "Rizal in the chapel of Fort Santiago on his last night: a stone room lit by two candles on the altar under a crucifix, a barred window on the night, and a small table with his papers"
+     },
+     "paco": {
+      "image": "/assets/scenes/story_paco_1896.png",
+      "year": null,
+      "label": "Paco Cemetery",
+      "alt": "Paco Cemetery in a grey morning: the round wall of burial niches, the domed chapel and a few plain crosses on the grass, with no one there"
+     }
+    }
    },
    "dialogue": {
     "dramatized": true
@@ -9274,6 +9292,11 @@
       "He was dressed in a dark suit. Those who walked with him said he was calm, and spoke quietly about the clear morning and the view across the bay. It was the same field where, almost twenty-five years before, the three priests Gómez, Burgos and Zamora had been executed.",
       "The night before, he had written his last letters. To Blumentritt he wrote in German, saying goodbye to his friend and declaring that he died innocent of the crime of rebellion. To Paciano he wrote that he knew how much his brother had suffered for him: \"I assure you, brother, that I die innocent of this crime of rebellion.\""
      ],
+     "narrationScenes": [
+      "walk",
+      "walk",
+      "night"
+     ],
      "lines": [
       {
        "speaker": "narrator",
@@ -9321,6 +9344,11 @@
       "His death did not end the struggle; it strengthened it. The revolution spread. On 12 June 1898 Filipino leaders declared the independence of the Philippines at Kawit, Cavite. Later that year the revolutionary government declared 30 December a national day of mourning for Rizal, and it has been remembered ever since as Rizal Day.",
       "His remains were buried secretly, without a name on the grave. His family searched until they found the spot. In 1912 his remains were moved to the base of a new monument on the field where he died. Bagumbayan became the Luneta, and later Rizal Park. His monument stands there today, guarded day and night.",
       "In a last letter he had asked for a simple grave: a stone and a cross, his name and the dates of his birth and death, nothing more. His sister Narcisa searched the cemeteries of Manila until she found the unmarked grave at Paco, and had it marked in secret. Far away in Leitmeritz, Blumentritt mourned his friend and defended his name in print for the rest of his life."
+     ],
+     "narrationScenes": [
+      null,
+      null,
+      "paco"
      ],
      "lines": [
       {
