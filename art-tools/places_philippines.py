@@ -16,7 +16,8 @@ from PIL import Image
 from artkit import Canvas, BAYER, hx, tex_noise, tex_blocks, tex_planks_h, tex_planks_v, tex_thatch, tex_tiles
 from common import W, H, grade_fn, sky, cloud, ridge, canopy, trunk, palm, capiz_window, lamp_glow, shadow
 from kit2 import water, reflect, table, chair
-from places_kit import stars, moon, steamer, room, contact
+from places_kit import stars, moon, steamer, room, contact, deck
+from places_cast import *
 from scene_manila import facade_bahay
 
 CLOUD = ['#8FA8C0', '#AFC3D4', '#CCDAE4', '#E2EAEF', '#F1F4F5', '#FAFBFA', '#FFFFFF']
@@ -88,26 +89,23 @@ def pasig_1868():
     river = c.R('river', '#5E7E6A')
     wm = water(c, 126, H - 1, river, seed=7, base=3, top_tone=4)
     reflect(c, huts, 126, wm & (c.yy < 150), d=-1)
-    # the casco: a long, flat-bottomed cargo boat with a curved roof of matting
+    # aboard the casco: its deck in front, the arched roof of matting behind; José and his
+    # father stand at the bow as the boat goes up the river
     hull = c.R('hull', '#4E3A2A')
     mat = c.R('mat', '#B89A62')
-    cx0, cx1, wl = 88, 278, 180
-    hm = c.poly([(cx0, wl - 16), (cx1, wl - 16), (cx1 - 8, wl), (cx0 + 10, wl)])
-    c.solid(hm, hull, 3, hl=1, sh=1)
-    c.tex(hm, tex_planks_h(c, ph=4, y0=wl - 16, seam=60, grain=0.06))
-    c.fill(c.rect(cx0, wl - 17, cx1, wl - 16), hull, 5)
-    roof = c.ell(cx0 + 14, wl - 44, cx1 - 18, wl + 12) & c.rect(0, 0, W - 1, wl - 17)
+    roof = c.ell(-30, 146, 206, 250) & c.rect(0, 0, W - 1, 195)
     c.solid(roof, mat, 4, hl=1, sh=1)
-    c.fill(roof & ((c.xx - cx0) % 5 == 0), mat, 3)
+    c.fill(roof & ((c.xx + 30) % 5 == 0), mat, 3)
     c.fill(roof & ((c.yy + c.xx // 3) % 4 == 0), mat, 5)
-    # bamboo push-poles laid along the roof, a steering oar at the stern
-    c.fill(c.line([(cx0 + 6, wl - 20), (cx1 - 6, wl - 22)]), c.R('pole', '#C8B070'), 4)
-    c.fill(c.line([(cx0 + 2, wl - 16), (cx0 - 16, wl + 6)], w=2), hull, 2)
-    c.adjust(c.rect(cx0 + 4, wl + 1, cx1 - 6, wl + 3) & wm, -1)
+    c.fill(c.line([(0, 160), (200, 166)]), c.R('pole', '#C8B070'), 4)  # push-poles on the roof
+    hm = c.poly([(0, 194), (310, 194), (384, 184), (384, 216), (0, 216)])
+    c.solid(hm, hull, 3, hl=1, sh=1)
+    c.tex(hm, tex_planks_h(c, ph=5, y0=194, seam=70, grain=0.06))
+    c.fill(c.poly([(0, 194), (310, 194), (384, 184), (384, 187), (310, 197), (0, 197)]), hull, 5)
     # a small banca near the bank
     bn = c.poly([(300, 150), (338, 150), (334, 154), (304, 154)])
     c.solid(bn, hull, 3, hl=1, sh=1)
-    return c.render()
+    return stage(c, [(francisco(g), 246, 203, False), (jose_boy(g, barefoot=True), 286, 203, False)])
 
 
 # ---------------------------------------------------------------- Biñan by moonlight, 1869
@@ -158,7 +156,7 @@ def binan_1869():
     c.fill(c.rect(0, 168, 176, 171), stone, 2)
     # moonlight on the open street
     c.dither_adjust(rm & c.ell(140, 176, 420, 240), 0.35)
-    return c.render()
+    return stage(c, [(cousin(g), 206, 208, False), (jose_boy(g, barefoot=True), 240, 208, False)])
 
 
 # ---------------------------------------------------------------- Laguna de Bay, 17 Dec 1870
@@ -185,20 +183,14 @@ def laguna_1870():
     # the lake
     lake = c.R('lake', '#6A9AB0')
     wm = water(c, 128, H - 1, lake, seed=4, base=3, top_tone=5)
-    # the steamer, small, with an awning over the deck
-    sm = steamer(c, 48, 178, 132, c.R('hull', '#2E2E36'), c.R('upper', '#E6E0D2'), c.R('funnel', '#2E2A2A'),
-                 c.R('mast', '#3A3430'), funnels=1, masts=2, awning=c.R('awning', '#D8CCB0'), portholes=False)
-    smoke = c.R('smoke', '#B8B4B0')
-    for k in range(6):
-        c.solid(c.ell(96 - k * 12, 132 - k * 5, 108 - k * 10, 140 - k * 5), smoke, 4 + (k % 2), hl=1, sh=0)
-    reflect(c, sm, 178, wm, d=-1)
-    c.dither_adjust(c.rect(40, 178, 190, 181) & wm, 0.6)  # wake
     # the captain's boat, rowed out to meet it
     bn = c.poly([(240, 190), (282, 190), (278, 195), (244, 195)])
     c.solid(bn, c.R('banca', '#6A4A2E'), 3, hl=1, sh=1)
     for ox in (250, 258, 266, 274):
         c.fill(c.line([(ox, 189), (ox - 4, 197)]), c.R('oar', '#C8A870'), 3)
-    return c.render()
+    # we are aboard the steamer: its deck and rail in front, under the awning's edge
+    deck(c, rail_y=166, deck_y=188)
+    return stage(c, [(camps(g), 120, 210, False), (jose_boy(g), 160, 210, False)])
 
 
 # ---------------------------------------------------------------- Manila Bay before dawn, 3 May 1882
@@ -229,16 +221,8 @@ def manilabay_1882():
     bay = c.R('bay', '#2E3A5E')
     wm = water(c, 126, H - 1, bay, seed=9, base=2, top_tone=3)
     c.dither_adjust(wm & (c.yy < 140) & (c.xx > 120) & (c.xx < 280), 0.4)  # dawn on the water
-    # the mail steamer, lit, smoke rising: about to leave
-    sm = steamer(c, 120, 186, 190, c.R('hull', '#1A1A24'), c.R('upper', '#B8B4C4'), c.R('funnel', '#2A2430'),
-                 c.R('mast', '#2A2A34'), funnels=1, masts=2, lights=c.R('lamp', '#FFE6A0'))
-    smoke = c.R('smoke', '#5A5A70')
-    for k in range(7):
-        c.solid(c.ell(206 - k * 16, 120 - k * 6, 222 - k * 14, 130 - k * 6), smoke, 3 + (k % 2), hl=1, sh=0)
-    reflect(c, sm, 186, wm, d=-1)
-    for lx in (128, 150, 176, 200, 250, 270):
-        c.fill(c.rect(lx, 190 + (lx % 7), lx + 1, 190 + (lx % 7)), c.R('lamprefl', '#C89A50'), 4)
-    return c.render()
+    deck(c, rail_y=164, deck_y=186)
+    return stage(c, [(rizal_young(g), 230, 210, False)])
 
 
 # ---------------------------------------------------------------- the railway north, 1892
@@ -315,7 +299,12 @@ def railway_1892():
     smoke = c.R('smoke', '#D8D4D0')
     for k in range(8):
         c.solid(c.ell(70 + k * 14, base - 54 - k * 3, 92 + k * 16, base - 40 - k * 3), smoke, 4 + (k % 2), hl=1, sh=0)
-    return c.render()
+    plat = c.R('platform', '#9A8A70')
+    c.fill(c.rect(0, 194, W - 1, H - 1), plat, 4)
+    c.tex(c.rect(0, 194, W - 1, H - 1), tex_planks_h(c, ph=5, y0=194, seam=60, grain=0.05))
+    c.fill(c.rect(0, 194, W - 1, 195), plat, 6)
+    c.dither_adjust(c.rect(0, 196, W - 1, 200), -0.5)
+    return stage(c, [(rizal_suit(g, hat='bowler'), 300, 210, False)])
 
 
 # ---------------------------------------------------------------- Dapitan: the mail steamer, Sept 1892
@@ -433,7 +422,7 @@ def dapitan_map():
     shadow(c, ox - 6, oy + mh - 6, ox + mw + 6, oy + mh + 8, -1)
     # a low edging of stones around the lawn's walk
     c.fill(c.rect(0, 206, W - 1, 207), c.R('kerb', '#C8C0AA'), 4)
-    return c.render()
+    return stage(c, [(rizal_dapitan(g), 22, 212, False), (sanchez(g), 330, 212, True)])
 
 
 # ---------------------------------------------------------------- Fort Santiago: the chapel, 29 Dec 1896
@@ -463,7 +452,7 @@ def chapel_1896():
         c.fill(c.rect(cx_ + 1, 96, cx_ + 2, 99), c.R('flame', '#FFF0C0'), 6)
         pass
     # a small table with papers, a pen, the little alcohol cooking stove, a bench
-    table(c, 280, 170, 350, wood, h=26)
+    table(c, 280, 144, 350, wood, h=26)
     c.solid(c.rect(290, 140, 312, 143), c.R('paper', '#ECE4CE'), 5, hl=1, sh=1)
     c.fill(c.rect(300, 139, 312, 139), c.R('pen', '#2A2430'), 2)
     stove = c.R('stove', '#8A8A90')
@@ -478,7 +467,7 @@ def chapel_1896():
     for start in (50, 110, 170):  # each pass takes one more tone away, further out
         c.dither_adjust(every, -np.clip((d - start) / 80, 0, 1))
     c.dither_adjust(every, np.clip(1 - d / 80, 0, 1) * 0.8)
-    return c.render()
+    return stage(c, [(rizal_black(g), 244, 206, False)])
 
 
 SCENES = {

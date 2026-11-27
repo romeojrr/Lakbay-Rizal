@@ -151,10 +151,11 @@ describe('placeOf (v2.4: the story moves to another place)', () => {
   });
 
   it('stops without other places never move', () => {
-    const madrid = realContent().stops.find((s) => s.id === 'madrid-1882');
-    if (!madrid) throw new Error('madrid-1882');
-    for (const step of buildSteps(madrid.chapters)) {
-      expect(placeOf(madrid, step)).toBeUndefined();
+    // The final stop keeps its one scene (GD-6).
+    const finalStop = realContent().stops.find((s) => s.id === 'bagumbayan-1896');
+    if (!finalStop) throw new Error('bagumbayan-1896');
+    for (const step of buildSteps(finalStop.chapters)) {
+      expect(placeOf(finalStop, step)).toBeUndefined();
     }
   });
 

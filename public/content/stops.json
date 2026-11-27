@@ -34,7 +34,7 @@
         "pasig": {
           "image": "/assets/scenes/story_pasig_1868.png",
           "label": "Pasig River",
-          "alt": "A casco, a heavy cargo boat with a curved roof of matting, on the Pasig River, with nipa houses on stilts, bamboo and palms along the bank and the hills of Antipolo beyond",
+          "alt": "Seven-year-old José and his father stand at the bow of a casco, a heavy cargo boat with a curved roof of matting, going up the Pasig River past nipa houses on stilts, bamboo and palms, with the hills of Antipolo beyond",
           "year": 1868
         }
       }
@@ -403,12 +403,12 @@
         "night": {
           "image": "/assets/scenes/story_binan_1869.png",
           "label": "Biñan by moonlight",
-          "alt": "Biñan at night under the moon: a bahay na bato with one lit capiz window, nipa houses, a mango tree and an empty dirt street"
+          "alt": "José walks Biñan's moonlit street with a cousin on his first night: a bahay na bato with one lit capiz window, nipa houses and a mango tree"
         },
         "lake": {
           "image": "/assets/scenes/story_laguna_1870.png",
           "label": "Laguna de Bay",
-          "alt": "A small lake steamer with an awning nears Calamba's shore on Laguna de Bay, Mount Makiling behind the town and a boat rowing out to meet it",
+          "alt": "José at the steamer's rail beside Arturo Camps, his father's friend, as Calamba's shore and Mount Makiling come into view across Laguna de Bay, a boat rowing out to meet them",
           "year": 1870
         }
       }
@@ -806,6 +806,13 @@
           "x": 46,
           "y": 66
         }
+      },
+      "places": {
+        "class": {
+          "image": "/assets/scenes/story_ateneo_class_1872.png",
+          "label": "His first class",
+          "alt": "Father José Bech, a Jesuit in a black cassock, with young José and his classmates in their white coats in an Ateneo classroom: a blackboard, a crucifix, two banners for the class's rival \"empires\", benches and capiz windows"
+        }
       }
     },
     "dialogue": {
@@ -1046,6 +1053,7 @@
           "On 10 June 1872 José went to Manila and took his entrance examinations at the College of San Juan de Letran, in Christian doctrine, arithmetic and reading. He passed. But when he went to the Ateneo Municipal, the Jesuit school inside the walls of Intramuros, the priest in charge refused him. He had come late, he did not look strong, and he was very small for eleven. Then Manuel Xerez Burgos, a nephew of the executed Father Burgos, spoke in his favour, and the school let him in.",
           "He put on the uniform, a white coat and a necktie, heard Mass in the Jesuits' chapel and walked into his first class. His teacher was Father José Bech: tall, thin and quick in his movements, sometimes cross and impatient, at other times, Rizal wrote, \"playing like a child\"."
         ],
+        "narrationScenes": [null, "class"],
         "lines": [
           {
             "speaker": "jesuit",
@@ -1077,6 +1085,7 @@
           "The Jesuits split each class into two rival \"empires\" that competed in every lesson. The best student on each side was its \"emperor\". Rizal's memoir calls the two sides Romans and Greeks; many later books say Romans and Carthaginians. José was put at the end of the line. He understood Spanish but could barely speak it. So he paid three pesos a month for extra lessons at Santa Isabel College during the siesta hour. By the end of the first week he was moving up. A month later, he was emperor, and he won his first prize, a religious picture.",
           "He lodged at first outside the walls, on Calle Caraballo, a twenty-five-minute walk away, in the house of a woman who owed his family three hundred pesos. Later he moved inside Intramuros. In his second year he found three old classmates from Biñan in his class, and at the end of the year he won a medal. A year later, slips in his spoken Spanish cost him the medal, which went to a Spanish boy who spoke his mother tongue better. He read eagerly: at twelve he was thrilled by The Count of Monte Cristo, and he persuaded his father to buy him a set of world histories, saying he needed them for school."
         ],
+        "narrationScenes": ["class", null],
         "lines": [
           {
             "speaker": "jesuit",
@@ -1162,7 +1171,7 @@
         "bay": {
           "image": "/assets/scenes/story_manilabay_1882.png",
           "label": "Manila Bay",
-          "alt": "Manila Bay before dawn: a mail steamer with its lamps lit and smoke rising, the low city and its church towers dark against the first light",
+          "alt": "Rizal at the rail of the steamer in Manila Bay before dawn, the low city and its church towers dark against the first light",
           "year": 1882
         }
       }
@@ -1535,17 +1544,17 @@
         "bay": {
           "image": "/assets/scenes/story_manilabay_1882.png",
           "label": "Manila Bay",
-          "alt": "Manila Bay before dawn: a mail steamer with its lamps lit and smoke rising, the low city and its church towers dark against the first light"
+          "alt": "Rizal at the rail of the steamer in Manila Bay before dawn, the low city and its church towers dark against the first light"
         },
         "suez": {
           "image": "/assets/scenes/story_suez_1882.png",
           "label": "Suez Canal",
-          "alt": "A steamer passing through the Suez Canal between low sand banks, with palms and a white house at a canal station"
+          "alt": "Rizal at the ship's rail with his sketchbook as it passes through the Suez Canal, between sand banks, palms and a white house at a canal station"
         },
         "chateau": {
           "image": "/assets/scenes/story_chateaudif_1882.png",
           "label": "Château d'If",
-          "alt": "The Château d'If, the island prison off Marseille: a square stone castle with round towers inside ramparts on a rocky island, with the hills of Marseille and Notre-Dame de la Garde behind"
+          "alt": "Rizal on the rocks of the Château d'If, the island prison off Marseille: a square stone castle with round towers inside ramparts, with the hills of Marseille and Notre-Dame de la Garde behind"
         }
       }
     },
@@ -1904,6 +1913,14 @@
           "x": 52,
           "y": 58
         }
+      },
+      "places": {
+        "banquet": {
+          "image": "/assets/scenes/story_madrid_banquet_1884.png",
+          "year": 1884,
+          "label": "The banquet for Luna and Hidalgo",
+          "alt": "Rizal, a page in his hand, gives the main speech at the banquet for the painters Juan Luna and Félix Resurrección Hidalgo, in a red dining room with gilt mirrors, a chandelier and a long table laid with glasses and candelabra"
+        }
       }
     },
     "dialogue": {
@@ -2188,6 +2205,7 @@
           "That same week, on 21 June 1884, he earned his licentiate in medicine, the degree that allowed him to practise. A year later, on 19 June 1885, his twenty-fourth birthday, he completed his licentiate in philosophy and letters with the rating \"excellent\". He also finished the courses for a doctorate in medicine, but could not afford the fees, so the doctor's diploma was never issued. In Madrid he also became a Freemason, joining a lodge called Acacia. With two degrees in hand, he set out to study the eye.",
           "Madrid also gave him friends among liberal Spaniards who wanted reform at home. Craig records that in later years he played chess with Francisco Pi y Margall, a former president of Spain's short-lived republic and a champion of education for all."
         ],
+        "narrationScenes": ["banquet", null, null],
         "lines": [
           {
             "speaker": "rizal",
@@ -2249,7 +2267,7 @@
         "studio": {
           "image": "/assets/scenes/story_lunastudio_1885.png",
           "label": "Juan Luna's studio",
-          "alt": "Juan Luna's studio in Paris: a great canvas on an easel, others turned to the wall, a slanted north window, a model's platform with a red drape, and fencing foils and masks on the wall"
+          "alt": "Juan Luna stands by his great canvas while Rizal poses for him on the model's platform, in Luna's Paris studio with its slanted north window and fencing foils and masks on the wall"
         }
       }
     },
@@ -2610,7 +2628,7 @@
         "ward": {
           "image": "/assets/scenes/story_eyeclinic_1886.png",
           "label": "University Eye Hospital",
-          "alt": "A ward of the University Eye Hospital in Heidelberg: iron beds with white sheets under tall windows on the wooded hills"
+          "alt": "Rizal in a ward of the University Eye Hospital in Heidelberg: iron beds with white sheets under tall windows on the wooded hills"
         }
       }
     },
@@ -2959,6 +2977,13 @@
           "x": 51.5,
           "y": 58
         }
+      },
+      "places": {
+        "study": {
+          "image": "/assets/scenes/story_vicarage_1886.png",
+          "label": "Writing in the vicarage",
+          "alt": "Rizal in shirtsleeves holds a page of the Noli beside his writing table in the timber-framed vicarage at Wilhelmsfeld, a bookcase on one side and spring hills and woods outside the window"
+        }
       }
     },
     "dialogue": {
@@ -3220,6 +3245,7 @@
           "The friendship with Pastor Ullmer may have shaped how he wrote about religion. In his novel, Rizal attacks abusive friars and the misuse of the Church's power over people's lives, but not faith itself. Those who knew him in Germany saw a man who was critical of the religious orders in his country yet deeply respectful of sincere belief, wherever he found it.",
           "The book's title, Noli Me Tangere, is Latin for \"Touch me not\", words from the Gospel of John. Its hero, Crisóstomo Ibarra, returns to the Philippines after seven years of study in Europe, hoping to build a school in his town, and runs into the power of a friar and the colonial officials who protect him. Through Ibarra's story, Rizal set out to show the \"social cancer\" of his country so that it could be cured."
         ],
+        "narrationScenes": ["study", null, null],
         "lines": [
           {
             "speaker": "rizal",
@@ -3297,7 +3323,7 @@
         "dresden": {
           "image": "/assets/scenes/story_dresden_1886.png",
           "label": "Dresden",
-          "alt": "Dresden from across the Elbe: the long stone Augustus Bridge, the tower of the Catholic court church, the great stone dome of the Frauenkirche and the old town along the river"
+          "alt": "Rizal in an overcoat on the bank of the Elbe facing Dresden: the long stone Augustus Bridge, the tower of the Catholic court church, the great dome of the Frauenkirche and the old town"
         }
       }
     },
@@ -3656,7 +3682,7 @@
         "room": {
           "image": "/assets/scenes/story_berlinroom_1886.png",
           "label": "His Berlin room",
-          "alt": "His cheap rented room in Berlin in winter: a tall tiled stove, a small table with piles of manuscript, an inkwell and a candle stub, a narrow iron bed, and snow on the roofs outside a frosted window",
+          "alt": "Rizal in shirtsleeves with a page of his manuscript in his cheap Berlin room in winter: a tall tiled stove, a small table with piles of manuscript, an inkwell and a candle stub, a narrow iron bed, and snow on the roofs outside",
           "year": null
         }
       }
@@ -4012,12 +4038,12 @@
         "home": {
           "image": "/assets/scenes/story_blumentritt_1887.png",
           "label": "The Blumentritts' home",
-          "alt": "The Blumentritt family's dining room in Leitmeritz: a table laid with a white cloth, plates, bread and a jug under a hanging lamp, a green tiled stove and evening light at the window"
+          "alt": "Blumentritt welcomes Rizal and Máximo Viola in his family's dining room in Leitmeritz: a table laid with a white cloth, plates, bread and a jug under a hanging lamp, and a green tiled stove"
         },
         "rome": {
           "image": "/assets/scenes/story_rome_1887.png",
           "label": "Rome",
-          "alt": "The Colosseum in Rome: its outer wall standing four storeys high on one side and broken away on the other, the inner arches showing, with umbrella pines and grass around it"
+          "alt": "Rizal before the Colosseum in Rome, its outer wall standing four storeys high on one side and broken away on the other, with umbrella pines around it"
         }
       }
     },
@@ -4377,12 +4403,12 @@
         "malacanang": {
           "image": "/assets/scenes/malacanang_1887.png",
           "label": "Malacañang Palace",
-          "alt": "Malacañang Palace, the Governor-General's residence, on the bank of the Pasig River in Manila: a long two-storey house with a stone arcade below, capiz windows above, a tiled roof and the Spanish flag"
+          "alt": "Rizal in front of Malacañang Palace, the Governor-General's residence on the bank of the Pasig River: a long two-storey house with a stone arcade below, capiz windows above, a tiled roof and the Spanish flag"
         },
         "makiling": {
           "image": "/assets/scenes/makiling_1887.png",
           "label": "Mount Makiling",
-          "alt": "The forested summit of Mount Makiling above a sea of clouds, with Laguna de Bay and the hills of its far shore far below"
+          "alt": "Rizal and his bodyguard, Lieutenant José Taviel de Andrade, on the forested summit of Mount Makiling above a sea of clouds, with Laguna de Bay far below"
         }
       }
     },
@@ -4731,7 +4757,7 @@
         "deck": {
           "image": "/assets/scenes/story_deck_1888.png",
           "label": "Aboard the Belgic",
-          "alt": "On the deck of a mail steamer at sea: the wooden rail, a lifeboat slung from its davits, a ventilator and the foot of a mast, with the open Pacific beyond"
+          "alt": "Rizal on the deck of a mail steamer at sea: the wooden rail, a lifeboat on its davits, a ventilator and the foot of a mast, with the open Pacific beyond"
         }
       }
     },
@@ -5100,17 +5126,17 @@
         "bay": {
           "image": "/assets/scenes/story_sfbay_1888.png",
           "label": "San Francisco Bay",
-          "alt": "San Francisco seen from a ship held at anchor in the bay: hills covered with low wooden houses and church spires, wharves, sailing ships at anchor and fog over the hills, with the ship's rail in front"
+          "alt": "Rizal at the rail of the Belgic, held at anchor in San Francisco Bay: the city's hills covered with low wooden houses and church spires, wharves, sailing ships and fog"
         },
         "falls": {
           "image": "/assets/scenes/story_niagara_1888.png",
           "label": "Niagara Falls",
-          "alt": "The curved crest of the Horseshoe Falls at Niagara, seen from down in the gorge: green water breaking white as it falls, spray rising, layered rock walls and trees above"
+          "alt": "Rizal on the rocks of the gorge below the Horseshoe Falls at Niagara: green water breaking white as it falls, spray rising, trees above"
         },
         "deck": {
           "image": "/assets/scenes/story_deck_1888.png",
           "label": "Aboard the City of Rome",
-          "alt": "On the deck of a mail steamer at sea: the wooden rail, a lifeboat slung from its davits, a ventilator and the foot of a mast, with the open Atlantic beyond"
+          "alt": "Rizal on the deck of a mail steamer at sea: the wooden rail, a lifeboat on its davits, a ventilator and the foot of a mast, with the open Atlantic beyond"
         }
       }
     },
@@ -5443,7 +5469,7 @@
         "crescent": {
           "image": "/assets/scenes/story_chalcot_1888.png",
           "label": "Chalcot Crescent",
-          "alt": "Chalcot Crescent in Primrose Hill, London: a terrace of tall stucco houses with sash windows, chimney pots, iron railings and a gas lamp under a grey sky"
+          "alt": "Rizal in an overcoat on Chalcot Crescent in Primrose Hill, London: a terrace of tall stucco houses with sash windows, chimney pots, iron railings and a gas lamp under a grey sky"
         }
       }
     },
@@ -5797,6 +5823,14 @@
           "x": 53.5,
           "y": 58
         }
+      },
+      "places": {
+        "fencing": {
+          "image": "/assets/scenes/story_luna_fencing_1889.png",
+          "year": 1889,
+          "label": "Fencing at Juan Luna's",
+          "alt": "Rizal and Nellie Boustead cross foils in Juan Luna's house in Paris, Luna looking on, with paintings on the walls and a rack of foils by the window"
+        }
       }
     },
     "dialogue": {
@@ -6086,6 +6120,7 @@
           "On Sundays he fenced at Juan Luna's house; one of his opponents was Nellie Boustead, a skilled fencer whose family he would soon visit. But Paris was expensive and full of distractions, and he had a second novel to write. On 28 January 1890 he left for Brussels.",
           "La Solidaridad came out twice a month. It was read by liberals in Spain and, smuggled in, by Filipinos at home, and Rizal's essays in it were among its most widely discussed."
         ],
+        "narrationScenes": [null, "fencing", null],
         "lines": [
           {
             "speaker": "rizal",
@@ -6124,6 +6159,14 @@
         "rizal": {
           "x": 40.5,
           "y": 58
+        }
+      },
+      "places": {
+        "calamba": {
+          "image": "/assets/scenes/story_calamba_1891.png",
+          "year": null,
+          "label": "Calamba, after the evictions",
+          "alt": "Calamba after the evictions of 1890 and 1891: the posts of houses torn down, a broken stone wall with an empty doorway, heaps of thatch and scattered roof tiles, cane fields and Mount Makiling under a grey sky; no one is left"
         }
       }
     },
@@ -6379,6 +6422,7 @@
           "The family lost the case. Other tenants who had followed their example lost too. In 1890 and 1891 the Governor-General, Valeriano Weyler, sent soldiers to Calamba. Families were evicted, their houses torn down, and those who stayed were forbidden to shelter them. Paciano and several of Rizal's brothers-in-law were deported to the island of Mindoro. Rizal wanted to rush home, but friends warned that he would only be arrested.",
           "Weyler would later become notorious in Cuba, where his harsh methods earned him the nickname \"the Butcher\". Rizal's parents found shelter on a piece of land the family owned at Los Baños."
         ],
+        "narrationScenes": [null, "calamba", null],
         "lines": [
           {
             "speaker": "rizal",
@@ -6451,6 +6495,13 @@
         "nellie": {
           "x": 47.5,
           "y": 58
+        }
+      },
+      "places": {
+        "villa": {
+          "image": "/assets/scenes/story_eliada_1891.png",
+          "label": "The Villa Eliada",
+          "alt": "Rizal holds the last page of El Filibusterismo in a quiet room of the Villa Eliada, his manuscript and a lamp on the desk, the grey Atlantic breaking outside the tall window"
         }
       }
     },
@@ -6707,6 +6758,7 @@
           "He wrote to Blumentritt that day to share the news. Some historians, among them Ambeth Ocampo, point out that he went on to finish the clean copy for the printer in Brussels in April, so the book was finished in two senses, in two cities. On 30 March he left for Paris, then returned to Brussels.",
           "The novel had taken him three and a half years of travel and interruptions, from Calamba in October 1887 to the Atlantic coast."
         ],
+        "narrationScenes": ["villa", null, null],
         "lines": [
           {
             "speaker": "rizal",
@@ -6781,12 +6833,12 @@
         "graslei": {
           "image": "/assets/scenes/story_ghent_1891.png",
           "label": "Graslei, Ghent",
-          "alt": "The Graslei in Ghent: a row of old guild houses with stepped gables along the river Leie, mirrored in the water, with a moored barge and the towers of the old city behind"
+          "alt": "Rizal and José Alejandrino on the quay facing the Graslei in Ghent, across the river Leie from the old guild houses with stepped gables, a barge moored and the towers of the old city behind"
         },
         "deck": {
           "image": "/assets/scenes/story_deck_1888.png",
           "label": "Aboard the Melbourne",
-          "alt": "On the deck of a mail steamer at sea: the wooden rail, a lifeboat slung from its davits, a ventilator and the foot of a mast, with the open sea beyond"
+          "alt": "Rizal on the deck of a mail steamer at sea: the wooden rail, a lifeboat on its davits, a ventilator and the foot of a mast, with the open sea beyond"
         }
       }
     },
@@ -7126,7 +7178,7 @@
         "sandakan": {
           "image": "/assets/scenes/story_sandakan_1892.png",
           "label": "Sandakan, Borneo",
-          "alt": "Sandakan in British North Borneo: houses on stilts over the bay joined by plank walks, white buildings on the slope and steep forested hills behind",
+          "alt": "Rizal in a light suit and straw hat on a plank jetty at Sandakan, British North Borneo: houses on stilts over the bay, white buildings on the slope and steep forested hills behind",
           "year": 1892
         }
       }
@@ -7504,12 +7556,12 @@
         "railway": {
           "image": "/assets/scenes/story_railway_1892.png",
           "label": "The railway north",
-          "alt": "A small steam engine pulling three wooden coaches along the new railway through the rice fields of Central Luzon, telegraph poles beside the line and Mount Arayat rising beyond"
+          "alt": "Rizal on a station platform as a small steam engine and three wooden coaches stand on the new railway through the rice fields of Central Luzon, with Mount Arayat beyond"
         },
         "palace": {
           "image": "/assets/scenes/malacanang_1887.png",
           "label": "Malacañang Palace",
-          "alt": "Malacañang Palace, the Governor-General's residence, on the bank of the Pasig River in Manila: a long two-storey house with a stone arcade below, capiz windows above, a tiled roof and the Spanish flag"
+          "alt": "Rizal in front of Malacañang Palace, the Governor-General's residence on the bank of the Pasig River: a long two-storey house with a stone arcade below, capiz windows above, a tiled roof and the Spanish flag"
         }
       }
     },
@@ -7857,7 +7909,7 @@
         "map": {
           "image": "/assets/scenes/story_dapitan_map.png",
           "label": "Dapitan town plaza",
-          "alt": "The raised map of Mindanao that Rizal and Father Sánchez built in the town plaza of Dapitan, on the lawn among the trees",
+          "alt": "Rizal and Father Sánchez beside the raised map of Mindanao they built in the town plaza of Dapitan",
           "year": null
         }
       }
@@ -8209,7 +8261,7 @@
         "chapel": {
           "image": "/assets/scenes/story_chapel_1896.png",
           "label": "The prison chapel",
-          "alt": "The chapel of Fort Santiago on his last night: a stone room lit by two candles on the altar under a crucifix, a barred window on the night, and a small table with papers and a little cooking stove"
+          "alt": "Rizal in the chapel of Fort Santiago on his last night: a stone room lit by two candles on the altar under a crucifix, a barred window on the night, and a small table with papers and a little cooking stove"
         }
       }
     },

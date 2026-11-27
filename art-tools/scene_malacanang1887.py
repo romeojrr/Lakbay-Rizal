@@ -10,6 +10,7 @@ from artkit import Canvas, tex_noise, tex_blocks, tex_planks_h, hx
 from common import W, H, grade_fn, sky, cloud, canopy, trunk, palm, shadow
 from kit2 import water, reflect
 from scene_manila import facade_bahay
+from places_cast import stage, rizal_suit
 
 
 def build():
@@ -104,7 +105,7 @@ def build():
 
     shadow(c, x0, base - 2, x1, base + 4, -1)
     c.dither_adjust(c.rect(x0, lower_top + 1, x1, lower_top + 10), -0.4)  # eaves shade the arcade
-    return c.render(), {}
+    return stage(c, [(rizal_suit(g, hat='bowler'), 98, 168, False)]), {}
 
 
 if __name__ == '__main__':

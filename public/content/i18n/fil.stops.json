@@ -115,7 +115,7 @@
         "places": {
           "pasig": {
             "label": "Ilog Pasig",
-            "alt": "Isang kasko, mabigat na bangkang pangkargamento na may kurbang bubong na banig, sa Ilog Pasig; may mga bahay-kubo sa tukod, kawayan at niyog sa pampang, at ang mga burol ng Antipolo sa malayo"
+            "alt": "Nakatayo ang pitong-taong-gulang na si José at ang kaniyang ama sa unahan ng isang kasko, mabigat na bangkang pangkargamento na may kurbang bubong na banig, paakyat sa Ilog Pasig, lampas sa mga bahay-kubo sa tukod, kawayan at niyog, at ang mga burol ng Antipolo sa malayo"
           }
         }
       },
@@ -240,11 +240,11 @@
         "places": {
           "night": {
             "label": "Biñan sa liwanag ng buwan",
-            "alt": "Ang Biñan sa gabi sa ilalim ng buwan: isang bahay na bato na may iisang bintanang kapis na may ilaw, mga bahay-kubo, isang punong mangga at isang tahimik na kalye"
+            "alt": "Naglalakad si José kasama ang isang pinsan sa kalye ng Biñan sa liwanag ng buwan sa una niyang gabi: isang bahay na bato na may iisang bintanang kapis na may ilaw, mga bahay-kubo at isang punong mangga"
           },
           "lake": {
             "label": "Lawa ng Laguna",
-            "alt": "Isang maliit na bapor na may tolda ang papalapit sa pampang ng Calamba sa Lawa ng Laguna; nasa likod ng bayan ang Bundok Makiling, at may bangkang sumasalubong"
+            "alt": "Si José sa rehas ng bapor katabi ni Arturo Camps, kaibigan ng kaniyang ama, habang natatanaw ang pampang ng Calamba at ang Bundok Makiling sa kabila ng Lawa ng Laguna, at may bangkang sumasalubong sa kanila"
           }
         }
       },
@@ -363,7 +363,13 @@
       ],
       "scene": {
         "alt": "Ang batang si José at isang gurong Heswita sa labas ng Ateneo Municipal",
-        "time": "Tanghali"
+        "time": "Tanghali",
+        "places": {
+          "class": {
+            "label": "Ang una niyang klase",
+            "alt": "Si Padre José Bech, isang Heswita na nakasotanang itim, kasama ang batang si José at ang mga kaklase niyang nakaputing amerikana sa isang silid-aralan ng Ateneo: pisara, krusipiho, dalawang bandila ng magkaribal na \"imperyo\" ng klase, mga bangko at bintanang kapis"
+          }
+        }
       },
       "dateLabel": "Hunyo 1872 – Marso 1877",
       "place": {
@@ -488,7 +494,7 @@
         "places": {
           "bay": {
             "label": "Look ng Maynila",
-            "alt": "Ang Look ng Maynila bago magbukang-liwayway: isang bapor-koreo na may sinding ilaw at umuusok, at ang mababang lungsod at mga kampanaryo nito na madilim sa unang liwanag"
+            "alt": "Si Rizal sa rehas ng bapor sa Look ng Maynila bago magbukang-liwayway, ang mababang lungsod at ang mga kampanaryo nito na madilim sa unang liwanag"
           }
         }
       },
@@ -611,15 +617,15 @@
         "places": {
           "bay": {
             "label": "Look ng Maynila",
-            "alt": "Ang Look ng Maynila bago magbukang-liwayway: isang bapor-koreo na may sinding ilaw at umuusok, at ang mababang lungsod at mga kampanaryo nito na madilim sa unang liwanag"
+            "alt": "Si Rizal sa rehas ng bapor sa Look ng Maynila bago magbukang-liwayway, ang mababang lungsod at ang mga kampanaryo nito na madilim sa unang liwanag"
           },
           "suez": {
             "label": "Kanal Suez",
-            "alt": "Isang bapor na dumaraan sa Kanal Suez sa pagitan ng mabababang pampang ng buhangin, may mga palma at isang puting bahay sa isang himpilan ng kanal"
+            "alt": "Si Rizal sa rehas ng barko hawak ang kaniyang kuwaderno ng guhit habang dumaraan ito sa Kanal Suez, sa pagitan ng mga pampang ng buhangin, mga palma at isang puting bahay sa isang himpilan ng kanal"
           },
           "chateau": {
             "label": "Château d'If",
-            "alt": "Ang Château d'If, ang pulong-bilangguan sa labas ng Marseille: isang parisukat na kastilyong bato na may mga bilog na tore sa loob ng mga pader, sa isang mabatong pulo; sa likod ang mga burol ng Marseille at ang Notre-Dame de la Garde"
+            "alt": "Si Rizal sa mga bato ng Château d'If, ang pulong-bilangguan sa labas ng Marseille: isang parisukat na kastilyong bato na may mga bilog na tore sa loob ng mga pader; sa likod ang mga burol ng Marseille at ang Notre-Dame de la Garde"
           }
         }
       },
@@ -735,7 +741,13 @@
       ],
       "scene": {
         "alt": "Si Rizal sa labas ng Universidad Central sa Calle San Bernardo sa takipsilim",
-        "time": "Takipsilim ng taglagas"
+        "time": "Takipsilim ng taglagas",
+        "places": {
+          "banquet": {
+            "label": "Ang piging para kina Luna at Hidalgo",
+            "alt": "Nagtatalumpati si Rizal, may hawak na pahina, sa piging para sa mga pintor na sina Juan Luna at Félix Resurrección Hidalgo, sa isang pulang silid-kainan na may mga gintong salamin, aranya at mahabang mesang may mga kopa at kandelabra"
+          }
+        }
       },
       "dateLabel": "Setyembre 1882 – 1885",
       "place": {
@@ -864,7 +876,7 @@
         "places": {
           "studio": {
             "label": "Estudyo ni Juan Luna",
-            "alt": "Ang estudyo ni Juan Luna sa Paris: isang malaking kanbas sa kabalyete, iba pang kanbas na nakaharap sa pader, isang pahilig na bintana, plataporma ng modelo na may pulang tela, at mga espada at maskara ng eskrima sa pader"
+            "alt": "Nakatayo si Juan Luna sa tabi ng malaki niyang kanbas habang nagpapose si Rizal sa plataporma ng modelo, sa estudyo ni Luna sa Paris na may pahilig na bintana at mga espada at maskara ng eskrima sa pader"
           }
         }
       },
@@ -990,7 +1002,7 @@
         "places": {
           "ward": {
             "label": "Ospital sa Mata ng Unibersidad",
-            "alt": "Isang ward ng Ospital sa Mata ng Unibersidad sa Heidelberg: mga kamang bakal na may puting kumot sa ilalim ng matataas na bintana, tanaw ang makahoy na mga burol"
+            "alt": "Si Rizal sa isang ward ng Ospital sa Mata ng Unibersidad sa Heidelberg: mga kamang bakal na may puting kumot sa ilalim ng matataas na bintana, tanaw ang makahoy na mga burol"
           }
         }
       },
@@ -1114,7 +1126,13 @@
       ],
       "scene": {
         "alt": "Binabati ni Rizal na naka-sombrerong dayami si Pastor Karl Ullmer, nakaitim na amerikana at may hawak na aklat, sa tarangkahan ng hardin ng bahay ng pastor, may puting simbahan ng nayon at gubat ng pino sa likod",
-        "time": "Umaga ng tag-init"
+        "time": "Umaga ng tag-init",
+        "places": {
+          "study": {
+            "label": "Pagsusulat sa bahay ng pastor",
+            "alt": "Si Rizal na nakakamisadentro, hawak ang isang pahina ng Noli, sa tabi ng kaniyang mesang sulatan sa bahay ng pastor sa Wilhelmsfeld; may aparador ng aklat sa isang panig at mga burol at kakahuyan ng tagsibol sa labas ng bintana"
+          }
+        }
       },
       "dateLabel": "Abril–Hunyo 1886",
       "place": {
@@ -1242,7 +1260,7 @@
         "places": {
           "dresden": {
             "label": "Dresden",
-            "alt": "Ang Dresden mula sa kabila ng Ilog Elbe: ang mahabang tulay na bato ng Augusto, ang tore ng simbahang Katoliko ng korte, ang malaking simboryong bato ng Frauenkirche at ang lumang bayan sa tabi ng ilog"
+            "alt": "Si Rizal na naka-abrigo sa pampang ng Elbe, nakaharap sa Dresden: ang mahabang tulay na bato ng Augusto, ang tore ng simbahang Katoliko ng korte, ang malaking simboryo ng Frauenkirche at ang lumang bayan"
           }
         }
       },
@@ -1366,7 +1384,7 @@
         "places": {
           "room": {
             "label": "Ang kuwarto niya sa Berlin",
-            "alt": "Ang mura niyang inuupahang kuwarto sa Berlin sa taglamig: isang mataas na kalang may baldosa, isang maliit na mesa na may patong-patong na manuskrito, tintero at upos ng kandila, isang makitid na kamang bakal, at niyebe sa mga bubong sa labas ng nagyeyelong bintana"
+            "alt": "Si Rizal na nakakamisadentro, hawak ang isang pahina ng manuskrito, sa mura niyang kuwarto sa Berlin sa taglamig: mataas na kalang may baldosa, maliit na mesang may patong-patong na manuskrito, tintero at upos ng kandila, makitid na kamang bakal, at niyebe sa mga bubong sa labas"
           }
         }
       },
@@ -1495,11 +1513,11 @@
         "places": {
           "home": {
             "label": "Tahanan ng mga Blumentritt",
-            "alt": "Ang silid-kainan ng pamilya Blumentritt sa Leitmeritz: isang mesang may puting mantel, mga plato, tinapay at pitsel sa ilalim ng nakabitin na lampara, isang berdeng kalang may baldosa, at liwanag ng gabi sa bintana"
+            "alt": "Tinatanggap ni Blumentritt sina Rizal at Máximo Viola sa silid-kainan ng kaniyang pamilya sa Leitmeritz: mesang may puting mantel, mga plato, tinapay at pitsel sa ilalim ng nakabitin na lampara, at isang berdeng kalang may baldosa"
           },
           "rome": {
             "label": "Roma",
-            "alt": "Ang Colosseum sa Roma: nakatayo pa ang panlabas na pader nito nang apat na palapag sa isang panig at gumuho sa kabila, kita ang mga arko sa loob, may mga punong pino at damo sa paligid"
+            "alt": "Si Rizal sa harap ng Colosseum sa Roma, nakatayo pa ang panlabas na pader nito nang apat na palapag sa isang panig at gumuho sa kabila, may mga punong pino sa paligid"
           }
         }
       },
@@ -1622,11 +1640,11 @@
         "places": {
           "malacanang": {
             "label": "Palasyo ng Malacañang",
-            "alt": "Ang Palasyo ng Malacañang, tirahan ng Gobernador-Heneral, sa pampang ng Ilog Pasig sa Maynila: mahabang bahay na may dalawang palapag, may arkong bato sa ibaba, bintanang kapis sa itaas, bubong na tisa at ang watawat ng Espanya"
+            "alt": "Si Rizal sa harap ng Palasyo ng Malacañang, tirahan ng Gobernador-Heneral sa pampang ng Ilog Pasig: mahabang bahay na may dalawang palapag, may arkong bato sa ibaba, bintanang kapis sa itaas, bubong na tisa at ang watawat ng Espanya"
           },
           "makiling": {
             "label": "Bundok Makiling",
-            "alt": "Ang makahoy na tuktok ng Bundok Makiling sa ibabaw ng dagat ng ulap, at ang Lawa ng Laguna at ang mga burol sa kabilang pampang sa malayong ibaba"
+            "alt": "Si Rizal at ang kaniyang bantay, si Tinyente José Taviel de Andrade, sa makahoy na tuktok ng Bundok Makiling sa ibabaw ng dagat ng ulap, at ang Lawa ng Laguna sa malayong ibaba"
           }
         }
       },
@@ -1753,7 +1771,7 @@
         "places": {
           "deck": {
             "label": "Sakay ng Belgic",
-            "alt": "Sa kubyerta ng isang bapor-koreo sa laot: ang rehas na kahoy, isang lifeboat na nakabitin sa davit, isang bentilador at ang paanan ng palo, at ang malawak na Pasipiko sa kabila"
+            "alt": "Si Rizal sa kubyerta ng isang bapor-koreo sa laot: ang rehas na kahoy, isang lifeboat sa davit, isang bentilador at ang paanan ng palo, at ang malawak na Pasipiko sa kabila"
           }
         }
       },
@@ -1873,15 +1891,15 @@
         "places": {
           "bay": {
             "label": "Look ng San Francisco",
-            "alt": "Ang San Francisco mula sa isang barkong nakadaong sa look: mga burol na puno ng mabababang bahay na kahoy at mga tore ng simbahan, mga pantalan, mga barkong layag na nakaangkla at ulap sa mga burol, at ang rehas ng barko sa harap"
+            "alt": "Si Rizal sa rehas ng Belgic, na pinigil at nakaangkla sa Look ng San Francisco: mga burol ng lungsod na puno ng mabababang bahay na kahoy at mga tore ng simbahan, mga pantalan, mga barkong layag at ulap"
           },
           "falls": {
             "label": "Talon ng Niagara",
-            "alt": "Ang kurbang gilid ng Horseshoe Falls sa Niagara, mula sa ibaba ng bangin: luntiang tubig na pumuputi habang bumabagsak, umaangat na ambon, patong-patong na batong pader at mga puno sa itaas"
+            "alt": "Si Rizal sa mga bato ng bangin sa ibaba ng Horseshoe Falls sa Niagara: luntiang tubig na pumuputi habang bumabagsak, umaangat na ambon, mga puno sa itaas"
           },
           "deck": {
             "label": "Sakay ng City of Rome",
-            "alt": "Sa kubyerta ng isang bapor-koreo sa laot: ang rehas na kahoy, isang lifeboat na nakabitin sa davit, isang bentilador at ang paanan ng palo, at ang malawak na Atlantiko sa kabila"
+            "alt": "Si Rizal sa kubyerta ng isang bapor-koreo sa laot: ang rehas na kahoy, isang lifeboat sa davit, isang bentilador at ang paanan ng palo, at ang malawak na Atlantiko sa kabila"
           }
         }
       },
@@ -2005,7 +2023,7 @@
         "places": {
           "crescent": {
             "label": "Chalcot Crescent",
-            "alt": "Ang Chalcot Crescent sa Primrose Hill, London: isang hanay ng matataas na bahay na estuko na may mga bintanang sash, mga tsimenea, rehas na bakal at isang lamparang gas sa ilalim ng abuhing langit"
+            "alt": "Si Rizal na naka-abrigo sa Chalcot Crescent sa Primrose Hill, London: hanay ng matataas na bahay na estuko na may mga bintanang sash, mga tsimenea, rehas na bakal at lamparang gas sa ilalim ng abuhing langit"
           }
         }
       },
@@ -2126,7 +2144,13 @@
       ],
       "scene": {
         "alt": "Naglalakad si Rizal na naka-boater kasama ang pintor na si Juan Luna sa graba ng perya sa Paris noong 1889, kasama ang bagong Eiffel Tower, isang palasyong pang-eksibit na may simboryo at mga bandila, maraming tao at mga puno ng kastanyas",
-        "time": "Hapon ng tag-init"
+        "time": "Hapon ng tag-init",
+        "places": {
+          "fencing": {
+            "label": "Eskrima sa bahay ni Juan Luna",
+            "alt": "Nagtatagisan ng espada sina Rizal at Nellie Boustead sa bahay ni Juan Luna sa Paris habang nanonood si Luna, may mga pinta sa pader at lalagyan ng mga espada sa tabi ng bintana"
+          }
+        }
       },
       "dateLabel": "1889–1890",
       "place": {
@@ -2244,7 +2268,13 @@
       ],
       "scene": {
         "alt": "Hawak ni Rizal, nakakamiseta, ang isang pahina ng manuskrito sa silid ng bahay-panuluyan na may ilaw ng lampara, bulaklaking wallpaper, mesang sulatan, hugasan at kalang bakal, habang umuulan ng niyebe sa mga bubong ng Brussels",
-        "time": "Gabi ng taglamig"
+        "time": "Gabi ng taglamig",
+        "places": {
+          "calamba": {
+            "label": "Calamba, matapos ang pagpapaalis",
+            "alt": "Ang Calamba matapos ang mga pagpapaalis noong 1890 at 1891: mga haligi ng mga bahay na giniba, isang sirang pader na bato na may bakanteng pintuan, mga bunton ng pawid at nagkalat na tisa, mga tubuhan at ang Bundok Makiling sa ilalim ng abuhing langit; wala nang natira"
+          }
+        }
       },
       "dateLabel": "1890",
       "place": {
@@ -2359,7 +2389,13 @@
       ],
       "scene": {
         "alt": "Nakatayo sina Rizal at Nellie Boustead sa terasa ng Villa Eliada, may batong barandilya, mga palmeras sa paso, puting villa na may guhit-guhit na toldang-lilim, at ang Look ng Biscay na humahampas sa maiitim na bato",
-        "time": "Umaga ng huling taglamig"
+        "time": "Umaga ng huling taglamig",
+        "places": {
+          "villa": {
+            "label": "Ang Villa Eliada",
+            "alt": "Hawak ni Rizal ang huling pahina ng El Filibusterismo sa isang tahimik na silid ng Villa Eliada, ang manuskrito at lampara sa mesa, at ang abuhing Atlantiko na humahampas sa labas ng mataas na bintana"
+          }
+        }
       },
       "dateLabel": "Pebrero–Marso 1891",
       "place": {
@@ -2480,11 +2516,11 @@
         "places": {
           "graslei": {
             "label": "Graslei, Ghent",
-            "alt": "Ang Graslei sa Ghent: isang hanay ng mga lumang bahay ng gremyo na may hagdang-hagdang tuktok sa tabi ng Ilog Leie, nakaaninag sa tubig, may nakadaong na barkasa at ang mga tore ng lumang lungsod sa likod"
+            "alt": "Sina Rizal at José Alejandrino sa pantalang nakaharap sa Graslei sa Ghent, sa tapat ng mga lumang bahay ng gremyo na may hagdang-hagdang tuktok sa kabila ng Ilog Leie, may nakadaong na barkasa at ang mga tore ng lumang lungsod sa likod"
           },
           "deck": {
             "label": "Sakay ng Melbourne",
-            "alt": "Sa kubyerta ng isang bapor-koreo sa laot: ang rehas na kahoy, isang lifeboat na nakabitin sa davit, isang bentilador at ang paanan ng palo, at ang malawak na dagat sa kabila"
+            "alt": "Si Rizal sa kubyerta ng isang bapor-koreo sa laot: ang rehas na kahoy, isang lifeboat sa davit, isang bentilador at ang paanan ng palo, at ang malawak na dagat sa kabila"
           }
         }
       },
@@ -2611,7 +2647,7 @@
         "places": {
           "sandakan": {
             "label": "Sandakan, Borneo",
-            "alt": "Ang Sandakan sa British North Borneo: mga bahay na nakatukod sa ibabaw ng look na pinagdugtong ng mga daang tabla, mga puting gusali sa dalisdis at matatarik na makahoy na burol sa likod"
+            "alt": "Si Rizal na nakaputing amerikana at sombrerong dayami sa isang daungang tabla sa Sandakan, British North Borneo: mga bahay na nakatukod sa ibabaw ng look, mga puting gusali sa dalisdis at matatarik na makahoy na burol sa likod"
           }
         }
       },
@@ -2738,11 +2774,11 @@
         "places": {
           "railway": {
             "label": "Ang riles pahilaga",
-            "alt": "Isang maliit na tren de bapor na humihila ng tatlong kahoy na bagon sa bagong riles sa mga palayan ng Gitnang Luzon, may mga poste ng telegrapo sa tabi ng riles at ang Bundok Arayat sa malayo"
+            "alt": "Si Rizal sa plataporma ng istasyon habang nakahinto ang isang maliit na tren de bapor at tatlong kahoy na bagon sa bagong riles sa mga palayan ng Gitnang Luzon, at ang Bundok Arayat sa malayo"
           },
           "palace": {
             "label": "Palasyo ng Malacañang",
-            "alt": "Ang Palasyo ng Malacañang, tirahan ng Gobernador-Heneral, sa pampang ng Ilog Pasig sa Maynila: mahabang bahay na may dalawang palapag, may arkong bato sa ibaba, bintanang kapis sa itaas, bubong na tisa at ang watawat ng Espanya"
+            "alt": "Si Rizal sa harap ng Palasyo ng Malacañang, tirahan ng Gobernador-Heneral sa pampang ng Ilog Pasig: mahabang bahay na may dalawang palapag, may arkong bato sa ibaba, bintanang kapis sa itaas, bubong na tisa at ang watawat ng Espanya"
           }
         }
       },
@@ -2871,7 +2907,7 @@
           },
           "map": {
             "label": "Plasa ng Dapitan",
-            "alt": "Ang nakaumbok na mapa ng Mindanao na itinayo nina Rizal at Padre Sánchez sa plasa ng Dapitan, sa damuhan sa gitna ng mga puno"
+            "alt": "Sina Rizal at Padre Sánchez sa tabi ng nakaumbok na mapa ng Mindanao na itinayo nila sa plasa ng Dapitan"
           }
         }
       },
@@ -3002,7 +3038,7 @@
           },
           "chapel": {
             "label": "Ang kapilya ng bilangguan",
-            "alt": "Ang kapilya ng Fort Santiago sa huling gabi niya: isang silid na bato na tinatanglawan ng dalawang kandila sa altar sa ilalim ng krusipiho, isang bintanang may rehas sa gabi, at isang maliit na mesa na may mga papel at maliit na kalan"
+            "alt": "Si Rizal sa kapilya ng Fort Santiago sa huling gabi niya: isang silid na bato na tinatanglawan ng dalawang kandila sa altar sa ilalim ng krusipiho, isang bintanang may rehas sa gabi, at isang maliit na mesa na may mga papel at maliit na kalan"
           }
         }
       },

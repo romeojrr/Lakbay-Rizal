@@ -14,7 +14,8 @@ from PIL import Image
 from artkit import Canvas, BAYER, hx, tex_noise, tex_planks_h, tex_planks_v, tex_thatch, tex_blocks
 from common import W, H, grade_fn, sky, cloud, ridge, canopy, trunk, palm, shadow
 from kit2 import water, reflect
-from places_kit import steamer, contact
+from places_kit import steamer, contact, deck
+from places_cast import *
 
 CLOUD = ['#8FA8C0', '#AFC3D4', '#CCDAE4', '#E2EAEF', '#F1F4F5', '#FAFBFA', '#FFFFFF']
 
@@ -76,7 +77,7 @@ def deck_1888():
         c.fill(c.line([(338, 0), (ax, 150)]), rope, 2)
     c.fill(c.line([(338, 20), (W - 1, 60)]), rope, 2)
     c.dither_adjust(c.rect(0, 172, W - 1, 180), -0.5)  # the rail's shadow
-    return c.render()
+    return stage(c, [(rizal_suit(g, hat='bowler'), 176, 208, False)])
 
 
 # ---------------------------------------------------------------- San Francisco Bay, 1888
@@ -123,7 +124,7 @@ def sfbay_1888():
         c.solid(c.rect(px, 190, px + 2, H - 1), rail, 3, hl=1, sh=1)
     c.fill(c.rect(0, 202, W - 1, 202), rail, 2)
     c.fill(c.rect(0, 191, W - 1, H - 1) & ~(c.rect(0, 191, W - 1, H - 1) & wm) & (c.yy > 214), rail, 2)
-    return c.render()
+    return stage(c, [(rizal_suit(g, hat='bowler'), 56, 214, False)])
 
 
 # ---------------------------------------------------------------- Niagara Falls, May 1888
@@ -175,7 +176,7 @@ def niagara_1888():
     mist = c.ell(70, 112, 320, 176) & ~(left | right)
     c.dither_adjust(mist, 0.75)
     c.dither_adjust(c.ell(120, 120, 270, 166) & ~(left | right), 0.6)
-    return c.render()
+    return stage(c, [(rizal_suit(g, hat='bowler'), 22, 210, False)])
 
 
 # ---------------------------------------------------------------- Sandakan, March 1892
@@ -222,7 +223,14 @@ def sandakan_1892():
     for bx, by in ((176, 186), (60, 200)):
         bn = c.poly([(bx, by), (bx + 40, by), (bx + 36, by + 5), (bx + 4, by + 5)])
         c.solid(bn, c.R('boat', '#6A4A2E'), 3, hl=1, sh=1)
-    return c.render()
+    # a plank jetty in front, where Rizal stands looking over the bay
+    plank = c.R('jetty', '#8A6A4A')
+    c.fill(c.rect(0, 196, 176, H - 1), plank, 4)
+    c.tex(c.rect(0, 196, 176, H - 1), tex_planks_v(c, pw=6, grain=0.05))
+    c.fill(c.rect(0, 196, 176, 197), plank, 6)
+    for px in range(4, 176, 24):
+        c.fill(c.rect(px, 198, px + 3, H - 1), c.R('jettypost', '#4A3A2A'), 2)
+    return stage(c, [(rizal_light(g), 70, 206, False)])
 
 
 SCENES = {

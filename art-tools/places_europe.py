@@ -22,7 +22,8 @@ from PIL import Image
 from artkit import Canvas, BAYER, hx, tex_noise, tex_blocks, tex_bricks, tex_planks_h, tex_planks_v, tex_tiles, tex_cobbles
 from common import W, H, grade_fn, sky, cloud, ridge, canopy, trunk, palm, lamp_glow, shadow
 from kit2 import water, reflect, table, chair, bookshelf, euro_window, paper_stack
-from places_kit import steamer, room, stepped_gable, windows_grid, stars, contact
+from places_kit import steamer, room, stepped_gable, windows_grid, stars, contact, deck
+from places_cast import *
 
 CLOUD = ['#8FA8C0', '#AFC3D4', '#CCDAE4', '#E2EAEF', '#F1F4F5', '#FAFBFA', '#FFFFFF']
 GREY_CLOUD = ['#7A808A', '#8E949C', '#A2A8AE', '#B6BABE', '#C8CACC', '#D8DADA', '#E8E8E8']
@@ -47,12 +48,6 @@ def suez_1882():
     # the canal: a narrow, straight band of water between sand banks
     canal = c.R('canal', '#3E8AA8')
     wm = water(c, 132, 160, canal, seed=3, base=3, top_tone=5)
-    sm = steamer(c, 40, 152, 170, c.R('hull', '#24242C'), c.R('upper', '#EAE4D6'), c.R('funnel', '#C89A40'),
-                 c.R('mast', '#3A3430'), funnel_top=c.R('ftop', '#1E1C1C'), funnels=1, masts=2, sails=True)
-    reflect(c, sm, 152, wm, d=-1)
-    smoke = c.R('smoke', '#B8B0A8')
-    for k in range(6):
-        c.solid(c.ell(104 - k * 14, 98 - k * 4, 118 - k * 12, 106 - k * 4), smoke, 4 + (k % 2), hl=1, sh=0)
     # the near bank: sand, a towpath, low scrub
     bank = c.rect(0, 160, W - 1, H - 1)
     c.fill(bank, sand, 4)
@@ -65,7 +60,8 @@ def suez_1882():
         for k in range(14):
             x_, y_ = bx + int(rng.integers(0, 18)), 192 + int(rng.integers(-3, 4))
             c.fill(c.line([(x_, y_ + 4), (x_ + int(rng.integers(-3, 4)), y_ - int(rng.integers(1, 6)))]), scrub, 3 + int(rng.integers(0, 2)))
-    return c.render()
+    deck(c, rail_y=150, deck_y=172)
+    return stage(c, [(rizal_young(g, holding='book'), 186, 208, False)])
 
 
 # ---------------------------------------------------------------- the Château d'If, 1882
@@ -116,7 +112,10 @@ def chateaudif_1882():
         for wy in (108, 122):
             c.fill(c.rect(wx, wy, wx + 2, wy + 4), c.R('slit', '#4A443E'), 2)
     reflect(c, isl | keep | ramp_m, 176, wm & (c.yy > 176), d=-1)
-    return c.render()
+    ledge = c.poly([(0, 186), (60, 180), (130, 186), (176, 200), (190, 216), (0, 216)])
+    c.solid(ledge, rock, 4, hl=1, sh=1)
+    c.fill(ledge & ((c.xx * 3 + c.yy) % 7 == 0), rock, 3)
+    return stage(c, [(rizal_young(g), 56, 204, False)])
 
 
 # ---------------------------------------------------------------- Juan Luna's studio, Paris
@@ -164,7 +163,7 @@ def lunastudio_1885():
     c.solid(c.rect(150, 178, 260, 192), wood, 3, hl=1, sh=1)
     c.solid(c.poly([(160, 178), (250, 178), (262, 196), (146, 196)]), drape, 3, hl=1, sh=1)
     c.fill(c.poly([(160, 178), (250, 178), (262, 196), (146, 196)]) & ((c.xx % 9) == 0), drape, 2)
-    return c.render()
+    return stage(c, [(luna(g), 4, 208, False), (rizal_suit(g), 194, 184, False)])
 
 
 # ---------------------------------------------------------------- Heidelberg: the eye hospital
@@ -197,7 +196,7 @@ def eyeclinic_1886():
         c.fill(c.rect(bx + 4, 166, bx + 110, 168), iron, 2)
     # a small table with a basin and a spirit lamp between the beds
     table(c, 122, 186, 136, c.R('wood', '#6A4A2E'), h=18)
-    return c.render()
+    return stage(c, [(rizal_suit(g), 114, 212, False)])
 
 
 # ---------------------------------------------------------------- Dresden on the Elbe, 1886
@@ -271,7 +270,7 @@ def dresden_1886():
     bank = c.poly([(0, 196), (W - 1, 186), (W - 1, H - 1), (0, H - 1)])
     c.fill(bank, c.R('grass', '#6E9A48'), 3)
     c.fill(bank & ((c.xx * 7 + c.yy * 3) % 11 == 0), c.R('grass', '#6E9A48'), 4)
-    return c.render()
+    return stage(c, [(rizal_overcoat(g), 40, 212, False)])
 
 
 # ---------------------------------------------------------------- Berlin: the lodging room, winter
@@ -306,7 +305,7 @@ def berlinroom_1886():
     c.fill(c.rect(43, 136, 53, 143), c.R('ember', '#C86A2A'), 4)
     # a small table: the manuscript in piles, an inkwell, a candle stub
     wood = c.R('wood', '#5A3E2A')
-    table(c, 120, 170, 208, wood, h=26)
+    table(c, 120, 144, 208, wood, h=26)
     paper = c.R('paper', '#E8E0CC')
     ink = c.R('ink', '#2A2430')
     paper_stack(c, 128, 143, 22, paper, ink, n=5)
@@ -320,7 +319,7 @@ def berlinroom_1886():
     iron = c.R('iron', '#2E3038')
     c.fill(c.rect(300, 132, 302, 178) | c.rect(380, 144, 382, 178), iron, 3)
     c.solid(c.rect(302, 152, 380, 164), c.R('blanket', '#6A6E7A'), 3, hl=1, sh=1)
-    return c.render()
+    return stage(c, [(rizal_shirt(g), 214, 204, False)])
 
 
 # ---------------------------------------------------------------- Leitmeritz: the Blumentritts' table
@@ -358,10 +357,7 @@ def blumentritt_1887():
         c.solid(c.rect(px + 26, 146, px + 30, 154), c.R('glass', '#C8D8D8'), 5, hl=1)
     c.solid(c.ell(196, 140, 226, 152), c.R('bread', '#B8864A'), 4, hl=1, sh=1)
     c.solid(c.rect(282, 132, 294, 152), c.R('jug', '#7A8AA0'), 4, hl=1, sh=1)
-    wood = c.R('wood', '#5A3E2A')
-    for chx in (70, 336):
-        chair(c, chx, 172, wood, facing=1 if chx < 200 else -1)
-    return c.render()
+    return stage(c, [(blumentritt(g), 44, 206, False), (rizal_suit(g), 302, 206, True), (viola(g), 340, 206, True)])
 
 
 # ---------------------------------------------------------------- Rome: the Colosseum, June 1887
@@ -422,7 +418,7 @@ def rome_1887():
     for px, py, w_ in ((350, 120, 60), (-20, 128, 56)):
         trunk(c, px + w_ // 2 - 2, py + 10, 180, 4, bark)
         canopy(c, px, py - 12, w_, 26, pine, seed=px + 50, base=3)
-    return c.render()
+    return stage(c, [(rizal_suit(g, hat='bowler'), 238, 210, False)])
 
 
 # ---------------------------------------------------------------- London: Chalcot Crescent, 1888
@@ -474,7 +470,7 @@ def chalcot_1888():
     c.fill(c.rect(0, 172, W - 1, 180), c.R('pavement', '#9A968E'), 4)
     c.fill(street, c.R('road', '#6A665E'), 3)
     c.tex(street, tex_cobbles(c, y0=180))
-    return c.render()
+    return stage(c, [(rizal_overcoat(g), 228, 204, False)])
 
 
 # ---------------------------------------------------------------- Ghent: the Graslei, July 1891
@@ -515,7 +511,10 @@ def ghent_1891():
     bg = c.poly([(40, 176), (150, 176), (144, 186), (46, 186)])
     c.solid(bg, c.R('barge', '#3A3430'), 3, hl=1, sh=1)
     c.fill(c.rect(60, 170, 120, 176), c.R('cargo', '#8A6A4A'), 3)
-    return c.render()
+    quay = c.R('nearquay', '#8A8478')
+    c.solid(c.rect(0, 198, W - 1, H - 1), quay, 4, hl=1, sh=1)
+    c.tex(c.rect(0, 198, W - 1, H - 1), tex_blocks(c, 18, 6, y0=198, seed=31))
+    return stage(c, [(alejandrino(g), 250, 212, False), (rizal_suit(g, hat='bowler'), 288, 212, False)])
 
 
 # ---------------------------------------------------------------- Montjuïc above Barcelona, Oct 1896

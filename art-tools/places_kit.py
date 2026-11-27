@@ -137,3 +137,25 @@ def contact(paths, out, cols=2, scale=2):
     for i, im in enumerate(ims):
         sheet.paste(im.resize((w * scale, h * scale), Image.NEAREST), ((i % cols) * (w * scale + 6), (i // cols) * (h * scale + 6)))
     sheet.save(out)
+
+
+def deck(c, rail_y=150, deck_y=172):
+    """The foreground of a picture seen from on board: a teak deck whose planks run along the
+    ship (parallel to the rail), the bulwark rail on its stanchions, the rail's shadow."""
+    teak = c.R('teak', '#B89068')
+    dm = c.rect(0, deck_y, W - 1, H - 1)
+    c.fill(dm, teak, 4)
+    y, gap, k = deck_y + 2.0, 2.0, 0
+    while y < H:
+        c.fill(c.rect(0, int(y), W - 1, int(y)), teak, 3)
+        for bx in range((k * 53) % 97, W, 97):
+            c.fill(c.rect(bx, int(y - gap) + 1, bx, int(y) - 1), teak, 3)
+        y += gap
+        gap *= 1.28
+        k += 1
+    wood = c.R('rail', '#6A4A2E')
+    c.solid(c.rect(0, rail_y, W - 1, rail_y + 4), wood, 4, hl=1, sh=1)
+    for px in range(0, W, 24):
+        c.solid(c.rect(px, rail_y + 4, px + 2, deck_y), wood, 3, hl=1, sh=1)
+    c.fill(c.rect(0, (rail_y + deck_y) // 2, W - 1, (rail_y + deck_y) // 2), wood, 2)
+    c.dither_adjust(c.rect(0, deck_y, W - 1, deck_y + 8), -0.5)

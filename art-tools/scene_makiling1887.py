@@ -6,6 +6,7 @@ import numpy as np
 from PIL import Image
 from artkit import Canvas, BAYER, tex_noise, hx
 from common import W, H, grade_fn, sky, cloud, ridge, canopy, trunk
+from places_cast import stage, rizal_hike, taviel
 
 
 def build():
@@ -73,7 +74,7 @@ def build():
     c.dither_adjust(c.rect(0, 200, W - 1, H - 1) & ~path, -0.2)
     # morning mist drifting over the crest
     c.dither_adjust(c.rect(0, 140, W - 1, 170) & top, 0.35)
-    return c.render(), {}
+    return stage(c, [(rizal_hike(g), 150, 206, False), (taviel(g), 196, 206, False)]), {}
 
 
 if __name__ == '__main__':
